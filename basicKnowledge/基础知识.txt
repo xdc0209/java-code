@@ -1,18 +1,18 @@
-// ÅÅĞò   
-1. Êı×é£ºArrays.sort(strings);   
-2. List£ºCollections.sort(list);   
+// æ’åº   
+1. æ•°ç»„ï¼šArrays.sort(strings);   
+2. Listï¼šCollections.sort(list);   
 
       
-// Á½¸ö½Ó¿Ú   
-1. java.lang.Comparable: Ìá¹©¶ÔÏóµÄ×ÔÈ»ÅÅĞò£¬ÄÚÖÃÓÚÀàÖĞ   
+// ä¸¤ä¸ªæ¥å£   
+1. java.lang.Comparable: æä¾›å¯¹è±¡çš„è‡ªç„¶æ’åºï¼Œå†…ç½®äºç±»ä¸­   
    int compareTo(Object o);   
     boolean equals(Object o2);   
-2. java.util.Comparator: Ìá¹©ÌØ¶¨µÄ±È½Ï·½·¨   
+2. java.util.Comparator: æä¾›ç‰¹å®šçš„æ¯”è¾ƒæ–¹æ³•   
    int compare(Object o1, Object o2)   
 
   
-// Clone·½·¨   
-Òª¿ËÂ¡¶ÔÏó£¬±ØĞëÏÈ×öÁ½²½: 1. ¸²¸Ç¶ÔÏóµÄclone()·½·¨; 2. ÊµÏÖ¿ÕµÄCloneable½Ó¿Ú   
+// Cloneæ–¹æ³•   
+è¦å…‹éš†å¯¹è±¡ï¼Œå¿…é¡»å…ˆåšä¸¤æ­¥: 1. è¦†ç›–å¯¹è±¡çš„clone()æ–¹æ³•; 2. å®ç°ç©ºçš„Cloneableæ¥å£   
 public class Clone1 implements Cloneable {   
     public Object clone() {   
         return super.clone();   
@@ -20,26 +20,26 @@ public class Clone1 implements Cloneable {
 }   
   
   
-// ´®ĞĞ»¯¶ÔÏó   
-¶ÔÏó´®ĞĞ»¯£¬±ØĞëÊµÏÖSerializable½Ó¿Ú   
-// ±£´æÊı¾İµ½´ÅÅÌ   
+// ä¸²è¡ŒåŒ–å¯¹è±¡   
+å¯¹è±¡ä¸²è¡ŒåŒ–ï¼Œå¿…é¡»å®ç°Serializableæ¥å£   
+// ä¿å­˜æ•°æ®åˆ°ç£ç›˜   
 ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(FILENAME)));   
 os.writeObject(serialObject);   
 os.close();   
-// ¶Á³öÊı¾İ   
+// è¯»å‡ºæ•°æ®   
 ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILENAME));   
 is.readObject();   
 is.close();   
   
-// ¶ÁĞ´Jar»òZipÎÄµµ   
+// è¯»å†™Jaræˆ–Zipæ–‡æ¡£   
 ZipFile zippy = new ZipFile("a.jar");   
-Enumeration all = zippy.entries();  // Ã¶¾ÙÖµÁĞ³öËùÓĞÎÄ¼şÇåµ¥   
+Enumeration all = zippy.entries();  // æšä¸¾å€¼åˆ—å‡ºæ‰€æœ‰æ–‡ä»¶æ¸…å•   
 while (all.hasMoreElements()) {   
     ZipEntry entry = (ZipEntry)all.nextElement();   
     if (entry.isFile())   
         println("Directory: " + entry.getName());   
            
-    // ¶ÁĞ´ÎÄ¼ş   
+    // è¯»å†™æ–‡ä»¶   
     FileOutputStream os = new FileOutputStream(entry.getName());   
     InputStream is = zippy.getInputStream(entry);   
     int n = 0;   
@@ -51,7 +51,7 @@ while (all.hasMoreElements()) {
     }   
 }   
   
-// ¶ÁĞ´gzipÎÄµµ   
+// è¯»å†™gzipæ–‡æ¡£   
 FileInputStream fin = new FileInputStream(FILENAME);   
 GZIPInputStream gzis = new GZIPInputStream(fin);   
 InputStreamReader xover = new InputStreamReader(gzis);   
@@ -60,53 +60,53 @@ String line;
 while ((line = is.readLine()) != null)   
     System.out.println("Read: " + line);  
  
-11. Ä¿Â¼ºÍÎÄ¼ş²Ù×÷
-Java´úÂë  
-// »ñÈ¡ÎÄ¼şĞÅÏ¢   
-exists(): Èç¹ûÎÄ¼ş´æÔÚ£¬·µ»Øtrue  
-getCanonicalPath(): »ñÈ¡È«Ãû   
-getName(): ÎÄ¼şÃû   
-getParent(): ¸¸Ä¿Â¼   
-canRead(): Èç¹ûÎÄ¼ş¿É¶Á£¬·µ»Øtrue  
-canWrite(): Èç¹ûÎÄ¼ş¿ÉĞ´£¬·µ»Øtrue  
-lastModified(): ÎÄ¼ş¸üĞÂÊ±¼ä   
-length(): ÎÄ¼ş´óĞ¡   
-isFile(): Èç¹ûÊÇÎÄ¼ş£¬·µ»Øtrue  
-ifDirectory(): Èç¹ûÊÇÄ¿Â¼£¬·µ»Øtrue  
-Òªµ÷ÓÃÎÄ¼şµÄÕâĞ©·½·¨£¬±ØĞë   
+11. ç›®å½•å’Œæ–‡ä»¶æ“ä½œ
+Javaä»£ç   
+// è·å–æ–‡ä»¶ä¿¡æ¯   
+exists(): å¦‚æœæ–‡ä»¶å­˜åœ¨ï¼Œè¿”å›true  
+getCanonicalPath(): è·å–å…¨å   
+getName(): æ–‡ä»¶å   
+getParent(): çˆ¶ç›®å½•   
+canRead(): å¦‚æœæ–‡ä»¶å¯è¯»ï¼Œè¿”å›true  
+canWrite(): å¦‚æœæ–‡ä»¶å¯å†™ï¼Œè¿”å›true  
+lastModified(): æ–‡ä»¶æ›´æ–°æ—¶é—´   
+length(): æ–‡ä»¶å¤§å°   
+isFile(): å¦‚æœæ˜¯æ–‡ä»¶ï¼Œè¿”å›true  
+ifDirectory(): å¦‚æœæ˜¯ç›®å½•ï¼Œè¿”å›true  
+è¦è°ƒç”¨æ–‡ä»¶çš„è¿™äº›æ–¹æ³•ï¼Œå¿…é¡»   
 File f = new File(fileName);   
   
-// ´´½¨ÎÄ¼ş   
+// åˆ›å»ºæ–‡ä»¶   
 File f = new File("c:\\test\\mytest.txt");   
-f.createNewFile();  // ´´½¨mytest.txtÎÄ¼şµ½testÄ¿Â¼ÏÂ   
+f.createNewFile();  // åˆ›å»ºmytest.txtæ–‡ä»¶åˆ°testç›®å½•ä¸‹   
   
-// ĞŞ¸ÄÎÄ¼şÃû   
+// ä¿®æ”¹æ–‡ä»¶å   
 File f = new File("c:\\test\\mytest.txt");   
 f.renameTo(new File("c:\\test\\google.txt"));   
-°Ñmytest.txtĞŞ¸Ä³Égoogle.txt   
+æŠŠmytest.txtä¿®æ”¹æˆgoogle.txt   
   
-// É¾³ıÎÄ¼ş   
+// åˆ é™¤æ–‡ä»¶   
 File f = new File("c:\\test\\mytest.txt");   
 f.delete();   
   
-// ÁÙÊ±ÎÄ¼ş   
-File f = new File("C:\\test");  // Ö¸¶¨Ò»¸öÎÄ¼ş¼Ğ   
-// ÔÚtestÎÄ¼ş¼ĞÖĞ´´½¨fooÇ°×º£¬tmpºó×ºµÄÁÙÊ±ÎÄ¼ş   
+// ä¸´æ—¶æ–‡ä»¶   
+File f = new File("C:\\test");  // æŒ‡å®šä¸€ä¸ªæ–‡ä»¶å¤¹   
+// åœ¨testæ–‡ä»¶å¤¹ä¸­åˆ›å»ºfooå‰ç¼€ï¼Œtmpåç¼€çš„ä¸´æ—¶æ–‡ä»¶   
 File tmp = File.createTempFile("foo", "tmp", f);    
-tmp.deleteOnExit();  // ÔÚ³ÌĞò½áÊøÊ±É¾³ı¸ÃÁÙÊ±ÎÄ¼ş   
+tmp.deleteOnExit();  // åœ¨ç¨‹åºç»“æŸæ—¶åˆ é™¤è¯¥ä¸´æ—¶æ–‡ä»¶   
   
-// ¸ü¸ÄÎÄ¼şÊôĞÔ   
-setReadOnly(): ÉèÖÃÎªÖ»¶Á   
-setlastModified(): ÉèÖÃ×îºó¸ü¸ÄÊ±¼ä   
+// æ›´æ”¹æ–‡ä»¶å±æ€§   
+setReadOnly(): è®¾ç½®ä¸ºåªè¯»   
+setlastModified(): è®¾ç½®æœ€åæ›´æ”¹æ—¶é—´   
   
-// ÁĞ³öµ±Ç°ÎÄ¼ş¼ĞµÄÎÄ¼şÁĞ±í   
+// åˆ—å‡ºå½“å‰æ–‡ä»¶å¤¹çš„æ–‡ä»¶åˆ—è¡¨   
 String[] dir = new java.io.File(".").list();   
 java.util.Arrays.sort(dir);   
 for (int i = 0; i < dir.length; i++) {   
     System.out.println(dir[i]);   
 }   
   
-// ¹ıÂËÎÄ¼şÁĞ±í   
+// è¿‡æ»¤æ–‡ä»¶åˆ—è¡¨   
 class OnlyJava implements FilenameFilter {   
     public boolean accept(File dir, String s) {   
         if (s.endsWith(".java") || s.endsWith(".class") || s.endsWith(".jar"))   
@@ -114,19 +114,19 @@ class OnlyJava implements FilenameFilter {
     }   
 }   
   
-// »ñÈ¡¸ùÄ¿Â¼   
+// è·å–æ ¹ç›®å½•   
 File[] rootDir = File.listRoots();   
 for (int i = 0; i < rootDir.length; i++) {   
     System.out.println(rootDir[i]);   
 }   
   
-// ´´½¨ĞÂÄ¿Â¼   
-new File("/home/ian/bin").mkdir();  // Èç¹û"/home/ian"´æÔÚ£¬Ôò¿ÉÒÔ´´½¨binÄ¿Â¼   
-new File("/home/ian/bin").mkdirs();  // Èç¹û"/home/ian"²»´æÔÚ£¬»á´´½¨ËùÓĞµÄÄ¿Â¼  
+// åˆ›å»ºæ–°ç›®å½•   
+new File("/home/ian/bin").mkdir();  // å¦‚æœ"/home/ian"å­˜åœ¨ï¼Œåˆ™å¯ä»¥åˆ›å»ºbinç›®å½•   
+new File("/home/ian/bin").mkdirs();  // å¦‚æœ"/home/ian"ä¸å­˜åœ¨ï¼Œä¼šåˆ›å»ºæ‰€æœ‰çš„ç›®å½•  
  
  
-16. Êı¾İ¿â·ÃÎÊ 
-Java´úÂë  
+16. æ•°æ®åº“è®¿é—® 
+Javaä»£ç   
 // JDO   
 Properties p = new Properties();   
 p.load(new FileInputStream("jdo.properties"));   
@@ -134,7 +134,7 @@ PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory(p);
 PersistenceManager pm = pmf.getPersistenceManager();   
 
   
-// Êı¾İ²Ù×÷   
+// æ•°æ®æ“ä½œ   
 Class clz = Class.forName("oracle.jdbc.driver.OracleDriver");   
 String dbUrl = "jdbc:oracle:thin:@192.168.0.23:1521#:nms";   
 Connection conn = DriverManager.getConnection(dbUrl, "su", "1234");   
@@ -145,19 +145,19 @@ while (rs.next()) {
     String otherName = rs.getString("name");   
 }   
   
-// µ÷ÓÃ´æ´¢¹ı³Ì              
+// è°ƒç”¨å­˜å‚¨è¿‡ç¨‹              
 CallableStatement cs = conn.prepareCall("{ call ListDefunctUsers }");   
 ResultSet rs = cs.executeQuery();   
            
 
 17. XML
-    SAX: ÔÚ¶ÁÈ¡ÎÄµµÌáÈ¡ÏàÓ¦µÄ±ê¼ÇÊÂ¼ş(ÔªËØÆğÊ¼¡¢ÔªËØ½áÊø¡¢ÎÄµµÆğÊ¼)
-    DOM: ÔÚÄÚ´æÖĞ¹¹ÔìÓëÎÄµµÖĞÔªËØÏàÓ¦µÄÊ÷£¬¿ÉÒÔ±éÀú¡¢ËÑË÷¡¢ĞŞ¸Ä
-    DTD: ÑéÖ¤ÎÄµµÊÇ·ñÕıÈ·
-    JAXP: ÓÃÓÚXML´¦ÀíµÄJava API
-    Castor: ¿ªÔ´ÏîÄ¿£¬ÓÃÓÚJava¶ÔÏóÓëXMLÓ³Éä
-Java´úÂë  
-// ´Ó¶ÔÏóÖĞÉú³ÉXML   
+    SAX: åœ¨è¯»å–æ–‡æ¡£æå–ç›¸åº”çš„æ ‡è®°äº‹ä»¶(å…ƒç´ èµ·å§‹ã€å…ƒç´ ç»“æŸã€æ–‡æ¡£èµ·å§‹)
+    DOM: åœ¨å†…å­˜ä¸­æ„é€ ä¸æ–‡æ¡£ä¸­å…ƒç´ ç›¸åº”çš„æ ‘ï¼Œå¯ä»¥éå†ã€æœç´¢ã€ä¿®æ”¹
+    DTD: éªŒè¯æ–‡æ¡£æ˜¯å¦æ­£ç¡®
+    JAXP: ç”¨äºXMLå¤„ç†çš„Java API
+    Castor: å¼€æºé¡¹ç›®ï¼Œç”¨äºJavaå¯¹è±¡ä¸XMLæ˜ å°„
+Javaä»£ç   
+// ä»å¯¹è±¡ä¸­ç”ŸæˆXML   
 private final static String FILENAME = "serial.xml";   
 public static void main(String[] args) throws IOException {   
     String a = "hard work and best callback";   
@@ -174,20 +174,20 @@ public void dump() throws IOException {
     System.out.println(out.readObject());   
     out.close();   
 }   
-serial.xml¸ñÊ½ÄÚÈİÈçÏÂ:   
+serial.xmlæ ¼å¼å†…å®¹å¦‚ä¸‹:   
 <?xml version="1.0" encoding="UTF-8"?>    
 <java version="1.6.0_02" class="java.beans.XMLDecoder">    
     <string>hard work and best callback</string>    
 </java>   
-¿ØÖÆÌ¨Êä³ö   
+æ§åˆ¶å°è¾“å‡º   
 hard work and best callback   
   
-// XSLT×ª»»XML   
-XSLT¿ÉÒÔÓÃÀ´¶ÔÊä³ö¸ñÊ½½øĞĞ¸÷ÖÖ¿ØÖÆ   
+// XSLTè½¬æ¢XML   
+XSLTå¯ä»¥ç”¨æ¥å¯¹è¾“å‡ºæ ¼å¼è¿›è¡Œå„ç§æ§åˆ¶   
 Transformer tx = TransformerFactory.newInstance().newTransformer(new StreamSource("people.xml"));   
 tx.transform(new StreamSource("people.xml"), new StreamResult("people.html"));   
   
-// ÓÃSAX½âÎöXML - Ö÷ÒªÓÃÓÚ²éÕÒ¹Ø¼üÔªËØ£¬²»ÓÃÈ«ÎÄ±éÀú   
+// ç”¨SAXè§£æXML - ä¸»è¦ç”¨äºæŸ¥æ‰¾å…³é”®å…ƒç´ ï¼Œä¸ç”¨å…¨æ–‡éå†   
 public SaxLister() throws SAXException, IOException {   
     XMLReader parser = XMLReaderFactory.createXMLReader("org.apache.xerces.parsers.SAXParser");   
     parser.setContentHandler(new PeopleHandler());   
@@ -217,7 +217,7 @@ class PeopleHandler extends DefaultHandler {
     }   
 }   
   
-// DOM½âÎöXML - ±éÀúÕû¸öÊ÷   
+// DOMè§£æXML - éå†æ•´ä¸ªæ ‘   
 String uri = "file:" + new File("C:\\StudySource\\javacooksrc2\\xml\\people.xml").getAbsolutePath();   
 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();   
 DocumentBuilder builder = factory.newDocumentBuilder();   
@@ -235,11 +235,11 @@ for (int i = 0; i < nodes.getLength(); i++) {
     }   
 }   
   
-// Ê¹ÓÃDTD»òÕßXSDÑéÖ¤   
-¶¨ÒåºÃDTD»òXSDÎÄ¼ş   
+// ä½¿ç”¨DTDæˆ–è€…XSDéªŒè¯   
+å®šä¹‰å¥½DTDæˆ–XSDæ–‡ä»¶   
 XmlDocument doc = XmlDocument.createXmlDocument(uri, true);   
   
-// ÓÃDOMÉú³ÉXML   
+// ç”¨DOMç”ŸæˆXML   
 DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();   
 DocumentBuilder parser = fact.newDocumentBuilder();   
 Document doc = parser.newDocument();   
@@ -255,14 +255,14 @@ stanza.appendChild(line);
 line.appendChild(doc.createTextNode("While I pondered, weak and weary"));  
   
 18. RMI
-Java´úÂë  
-a. ¶¨Òå¿Í»§¶ËÓë·şÎñÆ÷Ö®¼äµÄÍ¨ĞÅ½Ó¿Ú   
+Javaä»£ç   
+a. å®šä¹‰å®¢æˆ·ç«¯ä¸æœåŠ¡å™¨ä¹‹é—´çš„é€šä¿¡æ¥å£   
 public interface RemoteDate extends Remote {   
     public Date getRemoteDate() throws RemoteException;   
     public final static String LOOKUPNAME = "RemoteDate";   
 }   
   
-b. ±àĞ´RMI·şÎñÆ÷   
+b. ç¼–å†™RMIæœåŠ¡å™¨   
 public class RemoteDateImpl extends UnicastRemoteObject implements RemoteDate {   
     public RemoteDateImpl() throws RemoteException {   
         super();   
@@ -276,35 +276,35 @@ System.out.println("DateServer starting...");
 Naming.rebind(RemoteDate.LOOKUPNAME, im);   
 System.out.println("DateServer ready.");   
   
-c. ÔËĞĞrmicÉú³Éstub   
+c. è¿è¡Œrmicç”Ÿæˆstub   
 javac RemoteDateImpl.java   
 rmic RemoteDateImpl   
   
-d. ±àĞ´¿Í»§¶Ë   
+d. ç¼–å†™å®¢æˆ·ç«¯   
 netConn = (RemoteDate)Naming.lookup(RemoteDate.LOOKUPNAME);   
 Date today = netConn.getRemoteDate();   
 System.out.println(today.toString());   
   
-e. È·±£RMI×¢²á±íÔËĞĞ   
+e. ç¡®ä¿RMIæ³¨å†Œè¡¨è¿è¡Œ   
 rmiregistry   
   
-f. Æô¶¯·şÎñÆ÷   
+f. å¯åŠ¨æœåŠ¡å™¨   
 java RemoteDateImpl   
        
-g. ÔËĞĞ¿Í»§¶Ë   
+g. è¿è¡Œå®¢æˆ·ç«¯   
 java DateClient  
   
-19. °üºÍ°ü×°»úÖÆ
-    jar cvf /tmp/test.jar .  // µ±Ç°Ä¿Â¼Ñ¹Ëõµ½test.jarÖĞ
-    jar xvf /tmp/test.jar  // °Ñtest.jar½âÑ¹µ½µ±Ç°Ä¿Â¼
-    ´ÓÖ¸¶¨classÔËĞĞjarÎÄ¼ş
-    a. Main-Class: HelloWord  // ×¢ÒâÖĞ¼äÓĞÒ»¸ö¿Õ¸ñ
+19. åŒ…å’ŒåŒ…è£…æœºåˆ¶
+    jar cvf /tmp/test.jar .  // å½“å‰ç›®å½•å‹ç¼©åˆ°test.jarä¸­
+    jar xvf /tmp/test.jar  // æŠŠtest.jarè§£å‹åˆ°å½“å‰ç›®å½•
+    ä»æŒ‡å®šclassè¿è¡Œjaræ–‡ä»¶
+    a. Main-Class: HelloWord  // æ³¨æ„ä¸­é—´æœ‰ä¸€ä¸ªç©ºæ ¼
     b. jar cvmf manifest.mf hello.jar HelloWorld.class
     c. java -jar hello.jar
  
-20. JavaÏß³Ì
-Java´úÂë  
-// Í£Ö¹Ïß³Ì - ²»ÒªÊ¹ÓÃstop()·½·¨   
+20. Javaçº¿ç¨‹
+Javaä»£ç   
+// åœæ­¢çº¿ç¨‹ - ä¸è¦ä½¿ç”¨stop()æ–¹æ³•   
 private boolean done = false;   
 public void run() {   
     while (!done) {   
@@ -314,15 +314,15 @@ public void run() {
 public void shutDown() {   
     done = true;   
 }   
-¿ÉÒÔµ÷ÓÃshutDown()·½·¨À´½áÊøÏß³Ì   
+å¯ä»¥è°ƒç”¨shutDown()æ–¹æ³•æ¥ç»“æŸçº¿ç¨‹   
   
-// Èç¹û¶ÁÈ¡IOµÄÊ±ºò³öÏÖ¶ÂÈû£¬ÄÇÃ´¿ÉÒÔÊ¹ÓÃÏÂÃæ·½·¨   
+// å¦‚æœè¯»å–IOçš„æ—¶å€™å‡ºç°å µå¡ï¼Œé‚£ä¹ˆå¯ä»¥ä½¿ç”¨ä¸‹é¢æ–¹æ³•   
 public void shutDown() throws IOException {   
     if (io != null)    
         io.close();   
 }   
   
-// Æô¶¯Ò»Ïß³Ì£¬µÈ´ı¿ØÖÆÌ¨ÊäÈë£¬Ê¹ÓÃjoin()·½·¨À´ÔİÍ£µ±Ç°Ïß³Ì£¬Ö±µ½ÆäËûÏß³Ìµ÷ÓÃ   
+// å¯åŠ¨ä¸€çº¿ç¨‹ï¼Œç­‰å¾…æ§åˆ¶å°è¾“å…¥ï¼Œä½¿ç”¨join()æ–¹æ³•æ¥æš‚åœå½“å‰çº¿ç¨‹ï¼Œç›´åˆ°å…¶ä»–çº¿ç¨‹è°ƒç”¨   
 Thread t = new Thread() {   
     public void run() {   
         System.out.println("Reading");   
@@ -344,7 +344,7 @@ try {
 }   
 System.out.println("Main finished.");   
   
-// ¼ÓËø±£Ö¤Í¬²½   
+// åŠ é”ä¿è¯åŒæ­¥   
 Lock lock = new ReentrantLock();   
 try {   
     lock.lock();   
@@ -353,13 +353,13 @@ try {
     lock.unlock();      
 }   
   
-Ïß³ÌÍ¨ĞÅwait(), notify(), notifyAll()   
-1.	Éú²úÕß-Ïû·ÑÕßÄ£Ê½   
+çº¿ç¨‹é€šä¿¡wait(), notify(), notifyAll()   
+1.	ç”Ÿäº§è€…-æ¶ˆè´¹è€…æ¨¡å¼   
 2.	Executors  
   
-21. ÄÚÊ¡»ò¡°ÃüÁîÀàµÄÀà¡±
-Java´úÂë  
-// ·´Éä   
+21. å†…çœæˆ–â€œå‘½ä»¤ç±»çš„ç±»â€
+Javaä»£ç   
+// åå°„   
 Class c = Class.forName("java.lang.String");   
 Constructor[] cons = c.getConstructors();   
 for (int i = 0; i < cons.length; i++) {   
@@ -370,11 +370,11 @@ for (int i = 0; i < meths.length; i++) {
     System.out.println(meths[i].toString());   
 }   
   
-// ¶¯Ì¬×°ÔØÀà   
+// åŠ¨æ€è£…è½½ç±»   
 Class c = Class.forName("java.lang.String");   
 Object obj = c.newInstance();   
   
-// Í¨¹ı·´Éäµ÷ÓÃÀàµÄ·½·¨   
+// é€šè¿‡åå°„è°ƒç”¨ç±»çš„æ–¹æ³•   
 class X {   
     public void master(String s) {   
         System.out.println("Working on \"" + s + "\"");   
@@ -385,19 +385,19 @@ Class[] argTypes = {String.class};
 Method worker = clx.getMethod("master", argTypes);   
 Object[] theData = {"Chocolate chips"};   
 worker.invoke(new X(), theData);   
-Êä³ö: Working on "Chocolate chips"  
+è¾“å‡º: Working on "Chocolate chips"  
   
-22. JavaÓëÆäËûÓïÑÔµÄ½áºÏ
-Java´úÂë  
-// Ö´ĞĞCMDÃüÁî£¬ÔÚEclipse¿ØÖÆÌ¨Êä³ö   
+22. Javaä¸å…¶ä»–è¯­è¨€çš„ç»“åˆ
+Javaä»£ç   
+// æ‰§è¡ŒCMDå‘½ä»¤ï¼Œåœ¨Eclipseæ§åˆ¶å°è¾“å‡º   
 Process p = Runtime.getRuntime().exec("C:/StudySource/ver.cmd");   
-p.waitFor(); // µÈ´ıÃüÁîÖ´ĞĞÍê   
+p.waitFor(); // ç­‰å¾…å‘½ä»¤æ‰§è¡Œå®Œ   
 BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));   
 String s;   
 while ((s = br.readLine()) != null)   
     System.out.println(s);   
        
-// µ÷ÓÃJython - ¼ÆËã22.0/7   
+// è°ƒç”¨Jython - è®¡ç®—22.0/7   
 BSFManager manager = new BSFManager();   
 String[] fntypes = {".py"};   
 manager.registerScriptingEngine("jython", "org.apache.bsf.engines.jython.JythonEngine", fntypes);   
@@ -405,5 +405,5 @@ Object r = manager.eval("jython", "testString", 0, 0, "22.0/7");
 System.out.println("Result type is " + r.getClass().getName());   
 System.out.println("Result value is " + r);   
   
-// µ÷ÓÃC++£¬Ê¹ÓÃJNI 
+// è°ƒç”¨C++ï¼Œä½¿ç”¨JNI 
 
