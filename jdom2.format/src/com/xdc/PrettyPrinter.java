@@ -21,8 +21,6 @@ public class PrettyPrinter
 			// Output the document, use standard formatter
 			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 			outputter.output(doc, System.out);
-			System.out.println("xdc");
-
 		}
 		catch (Exception e)
 		{
