@@ -1,12 +1,15 @@
-package download;
+package com.xdc.basic;
 
 import java.util.Vector;
 
-public class TestWaitAndNotify {
-	Vector data = new Vector();
+public class WaitAndNotifyDemo
+{
+	Vector	data	= new Vector();
 
-	void addData() {
-		synchronized (data) {
+	void addData()
+	{
+		synchronized (data)
+		{
 			String name = Thread.currentThread().getName();
 			System.out.println(name + " enter addData()");
 			data.add("value" + ((int) (Math.random() * 100)));
@@ -15,17 +18,23 @@ public class TestWaitAndNotify {
 		}
 	}
 
-	void removeData() {
-		synchronized (data) {
+	void removeData()
+	{
+		synchronized (data)
+		{
 			String name = Thread.currentThread().getName();
 			System.out.println(name + " enter removeData()");
 
-			while (data.size() == 0) {
+			while (data.size() == 0)
+			{
 				System.out.println(name + " no data to remove, try to wait");
-				try {
+				try
+				{
 					data.wait();
 					System.out.println(name + " wake up");
-				} catch (InterruptedException e) {
+				}
+				catch (InterruptedException e)
+				{
 					e.printStackTrace();
 				}
 			}
@@ -34,7 +43,8 @@ public class TestWaitAndNotify {
 		}
 	}
 
-	private void start() {
+	private void start()
+	{
 		new Thread2(this).start();
 		new Thread2(this).start();
 		new Thread2(this).start();
@@ -44,52 +54,66 @@ public class TestWaitAndNotify {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// TODO Auto-generated method stub
-		TestWaitAndNotify object = new TestWaitAndNotify();
+		WaitAndNotifyDemo object = new WaitAndNotifyDemo();
 		object.start();
 	}
 
-	class Thread1 extends Thread {
-		TestWaitAndNotify synObject;
+	class Thread1 extends Thread
+	{
+		WaitAndNotifyDemo	synObject;
 
-		Thread1(TestWaitAndNotify synObject) {
+		Thread1(WaitAndNotifyDemo synObject)
+		{
 			this.synObject = synObject;
 		}
 
-		public void run() {
+		public void run()
+		{
 			String name = getName();
-			while (true) {
+			while (true)
+			{
 				System.out.println(name + " try to addData...");
 				synObject.addData();
-				try {
+				try
+				{
 					Thread.sleep(2000);
-				} catch (InterruptedException e) {
+				}
+				catch (InterruptedException e)
+				{
 					e.printStackTrace();
 				}
 			}
 		}
 	}
 
-	class Thread2 extends Thread {
-		TestWaitAndNotify synObject;
+	class Thread2 extends Thread
+	{
+		WaitAndNotifyDemo	synObject;
 
-		Thread2(TestWaitAndNotify synObject) {
+		Thread2(WaitAndNotifyDemo synObject)
+		{
 			this.synObject = synObject;
 		}
 
-		public void run() {
+		public void run()
+		{
 			String name = getName();
-			while (true) {
+			while (true)
+			{
 				System.out.println(name + " try to removeData...");
 				synObject.removeData();
-				try {
+				try
+				{
 					Thread.sleep(100);
-				} catch (InterruptedException e) {
+				}
+				catch (InterruptedException e)
+				{
 					e.printStackTrace();
 				}
 			}
 		}
 	}
-
 }

@@ -1,8 +1,8 @@
-package download;
+package com.xdc.basic;
 
 import java.sql.*;
 
-public class TestJDBC {
+public class JDBCDemo {
 	public static void main(String[] args) {
 		try {
 			Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");

@@ -1,4 +1,4 @@
-package hub;
+package com.xdc.basic.ui;
 
 /*
  *设计一个简单计算器，
@@ -6,18 +6,28 @@ package hub;
  当单击操作符＋，－，×，÷按钮时，
  对两个操作数进行运算并将结果填入到“结果”标签右侧的文本框中
  */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SY extends JFrame implements ActionListener {
-	JLabel l1, l2, l3;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-	JTextField t1, t2, t3;
+public class Calculator extends JFrame implements ActionListener
+{
+	JLabel	l1, l2, l3;
 
-	JButton b1, b2, b3, b4;
+	JTextField	t1, t2, t3;
 
-	public SY() {
+	JButton	   b1, b2, b3, b4;
+
+	public Calculator()
+	{
 		setTitle("简单计算器");
 		l1 = new JLabel("操作数");
 		l2 = new JLabel("操作数");
@@ -51,44 +61,52 @@ public class SY extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public void actionPerformed(ActionEvent j) {
+	public void actionPerformed(ActionEvent j)
+	{
 		double n;
-		try {
-			if (j.getSource() == b1) {
+		try
+		{
+			if (j.getSource() == b1)
+			{
 				double n1, n2;
 				n1 = Double.parseDouble(t1.getText());
 				n2 = Double.parseDouble(t2.getText());
 				n = n1 + n2;
 				t3.setText(String.valueOf(n));
 			}
-			if (j.getSource() == b2) {
+			if (j.getSource() == b2)
+			{
 				double n1, n2;
 				n1 = Double.parseDouble(t1.getText());
 				n2 = Double.parseDouble(t2.getText());
 				n = n1 - n2;
 				t3.setText(String.valueOf(n));
 			}
-			if (j.getSource() == b3) {
+			if (j.getSource() == b3)
+			{
 				double n1, n2;
 				n1 = Double.parseDouble(t1.getText());
 				n2 = Double.parseDouble(t2.getText());
 				n = n1 * n2;
 				t3.setText(String.valueOf(n));
 			}
-			if (j.getSource() == b4) {
+			if (j.getSource() == b4)
+			{
 				double n1, n2;
 				n1 = Double.parseDouble(t1.getText());
 				n2 = Double.parseDouble(t2.getText());
 				n = n1 / n2;
 				t3.setText(String.valueOf(n));
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 		}
 	}
 
 	// 快捷使用GridBagLayout的方法
-	private void addComponent(GridBagLayout layout, Component component,
-			int row, int col, int width, int height) {
+	private void addComponent(GridBagLayout layout, Component component, int row, int col, int width, int height)
+	{
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.BOTH;
 		constraints.insets = new Insets(10, 2, 10, 2);
@@ -105,8 +123,10 @@ public class SY extends JFrame implements ActionListener {
 	}
 
 	// 主方法初始化并显示窗口
-	public static void main(String[] args) {
-		SY calc = new SY();
+	public static void main(String[] args)
+	{
+		Calculator calc = new Calculator();
 		calc.setVisible(true);
+
 	}
 }

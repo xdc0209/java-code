@@ -1,4 +1,4 @@
-package download;
+package com.xdc.basic.ui;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -60,6 +60,7 @@ public class Note extends JFrame implements ActionListener {
 			text.setLineWrap(true);
 		} else if (e.getActionCommand().equals("取消自动换行")) {
 			text.setLineWrap(false);
+			
 		}
 	}
 }
