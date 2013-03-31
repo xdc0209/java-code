@@ -3,92 +3,88 @@ package download;
 //fontChooser1.setFrame(this);//设置字体,必须要加 
 //这个不加就不能解决,记得加 
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
-import javax.swing.*;
-import java.io.*;
-import java.awt.event.*;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 //import com.borland.dbswing.FontChooser;
 
-/**
- * <p>
- * Title:
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2007
- * </p>
- * 
- * <p>
- * Company:
- * </p>
- * 
- * @author not attributable
- * @version 1.0
- */
-public class Frame1 extends JFrame {
-	JPanel contentPane;
+public class Frame1 extends JFrame
+{
+	JPanel	    contentPane;
 
-	JMenuBar jMenuBar1 = new JMenuBar();
+	JMenuBar	jMenuBar1	 = new JMenuBar();
 
-	JMenu jMenu1 = new JMenu();
+	JMenu	    jMenu1	     = new JMenu();
 
-	JMenu jMenu2 = new JMenu();
+	JMenu	    jMenu2	     = new JMenu();
 
-	JMenu jMenu3 = new JMenu();
+	JMenu	    jMenu3	     = new JMenu();
 
-	JMenu jMenu4 = new JMenu();
+	JMenu	    jMenu4	     = new JMenu();
 
-	JMenu jMenu5 = new JMenu();
+	JMenu	    jMenu5	     = new JMenu();
 
-	JMenuItem jMenuItem1 = new JMenuItem();
+	JMenuItem	jMenuItem1	 = new JMenuItem();
 
-	JMenuItem jMenuItem2 = new JMenuItem();
+	JMenuItem	jMenuItem2	 = new JMenuItem();
 
-	JMenuItem jMenuItem3 = new JMenuItem();
+	JMenuItem	jMenuItem3	 = new JMenuItem();
 
-	JMenuItem jMenuItem4 = new JMenuItem();
+	JMenuItem	jMenuItem4	 = new JMenuItem();
 
-	JMenuItem jMenuItem5 = new JMenuItem();
+	JMenuItem	jMenuItem5	 = new JMenuItem();
 
-	JMenuItem jMenuItem6 = new JMenuItem();
+	JMenuItem	jMenuItem6	 = new JMenuItem();
 
-	JMenuItem jMenuItem7 = new JMenuItem();
+	JMenuItem	jMenuItem7	 = new JMenuItem();
 
-	JMenuItem jMenuItem8 = new JMenuItem();
+	JMenuItem	jMenuItem8	 = new JMenuItem();
 
-	JMenuItem jMenuItem9 = new JMenuItem();
+	JMenuItem	jMenuItem9	 = new JMenuItem();
 
-	JMenuItem jMenuItem10 = new JMenuItem();
+	JMenuItem	jMenuItem10	 = new JMenuItem();
 
-	JMenuItem jMenuItem11 = new JMenuItem();
+	JMenuItem	jMenuItem11	 = new JMenuItem();
 
-	JMenuItem jMenuItem12 = new JMenuItem();
+	JMenuItem	jMenuItem12	 = new JMenuItem();
 
-	JMenuItem jMenuItem13 = new JMenuItem();
+	JMenuItem	jMenuItem13	 = new JMenuItem();
 
-	JMenuItem jMenuItem14 = new JMenuItem();
+	JMenuItem	jMenuItem14	 = new JMenuItem();
 
-	JMenuItem jMenuItem15 = new JMenuItem();
+	JMenuItem	jMenuItem15	 = new JMenuItem();
 
-	JMenuItem jMenuItem16 = new JMenuItem();
+	JMenuItem	jMenuItem16	 = new JMenuItem();
 
-	JTextArea jTextArea1 = new JTextArea();
+	JTextArea	jTextArea1	 = new JTextArea();
 
-	FontChooser fontChooser1 = new FontChooser();
+	FontChooser	fontChooser1	= new FontChooser();
 
-	JMenuItem jMenuItem17 = new JMenuItem();
+	JMenuItem	jMenuItem17	 = new JMenuItem();
 
-	public Frame1() {
-		try {
+	public Frame1()
+	{
+		try
+		{
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			jbInit();
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			exception.printStackTrace();
 		}
 	}
@@ -98,7 +94,8 @@ public class Frame1 extends JFrame {
 	 * 
 	 * @throws java.lang.Exception
 	 */
-	private void jbInit() throws Exception {
+	private void jbInit() throws Exception
+	{
 		contentPane = (JPanel) getContentPane();
 		contentPane.setLayout(null);
 		this.setJMenuBar(jMenuBar1);
@@ -126,8 +123,7 @@ public class Frame1 extends JFrame {
 		jMenuItem12.setText("删除");
 		jMenuItem13.setText("自动换行");
 		jMenuItem14.setText("字体");
-		jMenuItem14
-				.addActionListener(new Frame1_jMenuItem14_actionAdapter(this));
+		jMenuItem14.addActionListener(new Frame1_jMenuItem14_actionAdapter(this));
 		jMenuItem15.setText("状态栏");
 		jMenuItem16.setText("帮助主题");
 		jTextArea1.setBounds(new Rectangle(1, 1, 550, 350));
@@ -159,7 +155,8 @@ public class Frame1 extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		JFrame obj = new Frame1();
 		obj.setTitle("计事本");
 		obj.setSize(550, 350);
@@ -167,22 +164,26 @@ public class Frame1 extends JFrame {
 	}
 
 	// 实现新建方法
-	public void jMenuItem1_actionPerformed(ActionEvent e) {
+	public void jMenuItem1_actionPerformed(ActionEvent e)
+	{
 		jTextArea1.setText("");
 	}
 
 	// 实现退出方法
-	public void jMenuItem7_actionPerformed(ActionEvent e) {
+	public void jMenuItem7_actionPerformed(ActionEvent e)
+	{
 		System.exit(0);
 	}
 
 	// 实现打开方法
-	public void jMenuItem2_actionPerformed(ActionEvent e) {
+	public void jMenuItem2_actionPerformed(ActionEvent e)
+	{
 		JFileChooser open = new JFileChooser();
 		open.showOpenDialog(this);
 		File file;
 		FileReader in = null;
-		try { // 得到路径
+		try
+		{ // 得到路径
 			file = new File(open.getSelectedFile().getPath());
 			in = new FileReader(file); // 创建字符流以读取数据
 			int size = (int) file.length(); // 检查文件大小
@@ -193,13 +194,20 @@ public class Frame1 extends JFrame {
 				chars_read += in.read(data, chars_read, size - chars_read);
 			jTextArea1.setText(new String(data));// 在文本区域中显示字符
 
-		} catch (Exception ei) { // 不能为e
+		}
+		catch (Exception ei)
+		{ // 不能为e
 			jTextArea1.setText(e.getClass().getName() + ":" + ei.getMessage());
-		} finally {
-			try {
+		}
+		finally
+		{
+			try
+			{
 				if (in != null)
 					in.close();
-			} catch (IOException ee) {
+			}
+			catch (IOException ee)
+			{
 
 			}
 		}
@@ -207,73 +215,91 @@ public class Frame1 extends JFrame {
 	}
 
 	// 设置字体
-	public void jMenuItem14_actionPerformed(ActionEvent e) {
+	public void jMenuItem14_actionPerformed(ActionEvent e)
+	{
 		fontChooser1.showDialog();
-		if (fontChooser1.showDialog()) {
+		if (fontChooser1.showDialog())
+		{
 			jTextArea1.setFont(fontChooser1.getSelectedFont());
 		}
 	}
 }
 
-class Frame1_jMenuItem14_actionAdapter implements ActionListener {
-	private Frame1 adaptee;
+class Frame1_jMenuItem14_actionAdapter implements ActionListener
+{
+	private Frame1	adaptee;
 
-	Frame1_jMenuItem14_actionAdapter(Frame1 adaptee) {
+	Frame1_jMenuItem14_actionAdapter(Frame1 adaptee)
+	{
 		this.adaptee = adaptee;
 	}
 
-	public void actionPerformed(ActionEvent actionEvent) {
+	public void actionPerformed(ActionEvent actionEvent)
+	{
 		ActionEvent e = null;
 		adaptee.jMenuItem14_actionPerformed(e);
 	}
 }
 
-class Frame1_jMenuItem1_actionAdapter implements ActionListener {
-	private Frame1 adaptee;
+class Frame1_jMenuItem1_actionAdapter implements ActionListener
+{
+	private Frame1	adaptee;
 
-	Frame1_jMenuItem1_actionAdapter(Frame1 adaptee) {
+	Frame1_jMenuItem1_actionAdapter(Frame1 adaptee)
+	{
 		this.adaptee = adaptee;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		adaptee.jMenuItem1_actionPerformed(e);
 	}
 }
 
-class Frame1_jMenuItem2_actionAdapter implements ActionListener {
-	private Frame1 adaptee;
+class Frame1_jMenuItem2_actionAdapter implements ActionListener
+{
+	private Frame1	adaptee;
 
-	Frame1_jMenuItem2_actionAdapter(Frame1 adaptee) {
+	Frame1_jMenuItem2_actionAdapter(Frame1 adaptee)
+	{
 		this.adaptee = adaptee;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		adaptee.jMenuItem2_actionPerformed(e);
 	}
 }
 
-class Frame1_jMenuItem7_actionAdapter implements ActionListener {
-	private Frame1 adaptee;
+class Frame1_jMenuItem7_actionAdapter implements ActionListener
+{
+	private Frame1	adaptee;
 
-	Frame1_jMenuItem7_actionAdapter(Frame1 adaptee) {
+	Frame1_jMenuItem7_actionAdapter(Frame1 adaptee)
+	{
 		this.adaptee = adaptee;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		adaptee.jMenuItem7_actionPerformed(e);
 	}
 }
 
-class FontChooser {
-	public void setFrame(Frame1 frame1) {
+class FontChooser
+{
+	public void setFrame(Frame1 frame1)
+	{
 
 	}
 
-	public Font getSelectedFont() {
+	public Font getSelectedFont()
+	{
 		return null;
 	}
 
-	public boolean showDialog() {
+	public boolean showDialog()
+	{
 		return false;
 	}
 }
