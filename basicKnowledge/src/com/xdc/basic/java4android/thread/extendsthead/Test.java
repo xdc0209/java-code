@@ -1,4 +1,4 @@
-package com.xdc.basic.java4android.io.thread.extendsthead;
+package com.xdc.basic.java4android.thread.extendsthead;
 
 class Test
 {

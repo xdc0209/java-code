@@ -1,4 +1,4 @@
-package com.xdc.basic.java4android.io.thread.implrunable;
+package com.xdc.basic.java4android.thread.synclock;
 
 class Test
 {

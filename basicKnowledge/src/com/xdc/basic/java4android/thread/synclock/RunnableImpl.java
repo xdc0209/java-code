@@ -1,4 +1,4 @@
-package com.xdc.basic.java4android.io.thread.synclock;
+package com.xdc.basic.java4android.thread.synclock;
 
 class RunnableImpl implements Runnable
 {
