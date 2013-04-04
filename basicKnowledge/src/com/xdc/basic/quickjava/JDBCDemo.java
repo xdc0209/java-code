@@ -1,4 +1,4 @@
-package com.xdc.basic;
+package com.xdc.basic.quickjava;
 
 import java.sql.*;
 

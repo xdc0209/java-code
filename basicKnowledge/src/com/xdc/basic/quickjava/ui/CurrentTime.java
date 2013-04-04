@@ -1,4 +1,4 @@
-package com.xdc.basic.ui;
+package com.xdc.basic.quickjava.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

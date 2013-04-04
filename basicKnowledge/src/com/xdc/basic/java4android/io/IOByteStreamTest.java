@@ -8,14 +8,19 @@ class IOByteStreamTest
 {
 	public static void main(String[] args)
 	{
+		// 获取当前路径
+		String curClassName = new Throwable().getStackTrace()[0].getClassName();
+		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
+		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+
 		// 声明输入流、输出流引用
 		FileInputStream fis = null;
 		FileOutputStream fos = null;
 		try
 		{
 			// 生成代表输入流、输出流的对象
-			fis = new FileInputStream("src\\com\\xdc\\basic\\java4android\\io\\from.txt");
-			fos = new FileOutputStream("src\\com\\xdc\\basic\\java4android\\io\\to.txt");
+			fis = new FileInputStream(curPath + "from.txt");
+			fos = new FileOutputStream(curPath + "to.txt");
 			// 生成一个字节数组
 			byte[] buffer = new byte[1024];
 			int len;

@@ -3,6 +3,12 @@ package com.xdc.basic.java4android.collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 哈希映射测试类
+ * 
+ * @author xdc
+ * 
+ */
 public class HashMapTest
 {
 

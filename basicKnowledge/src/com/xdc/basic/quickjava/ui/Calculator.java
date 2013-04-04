@@ -1,4 +1,4 @@
-package com.xdc.basic.ui;
+package com.xdc.basic.quickjava.ui;
 
 /*
  *设计一个简单计算器，

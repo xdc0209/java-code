@@ -1,4 +1,4 @@
-package com.xdc.basic.thread;
+package com.xdc.basic.quickjava.thread;
 
 /**
  * @see Java书上 P312页 运用多线程技术解决“生产者&消费者”问题

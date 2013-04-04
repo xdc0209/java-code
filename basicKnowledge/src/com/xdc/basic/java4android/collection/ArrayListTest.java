@@ -1,7 +1,13 @@
-﻿package com.xdc.basic.java4android.collection;
+package com.xdc.basic.java4android.collection;
 
 import java.util.ArrayList;
 
+/**
+ * 数组列表测试类
+ * 
+ * @author xdc
+ * 
+ */
 public class ArrayListTest
 {
 

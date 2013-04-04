@@ -1,4 +1,4 @@
-package com.xdc.basic.ui;
+package com.xdc.basic.quickjava.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
