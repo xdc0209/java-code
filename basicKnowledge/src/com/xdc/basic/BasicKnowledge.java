@@ -57,5 +57,6 @@ public class BasicKnowledge
 		long start = System.currentTimeMillis();
 		long end = System.currentTimeMillis();
 		long elapsed = end - start;
+		System.out.println("用时：" + elapsed);
 	}
 }
