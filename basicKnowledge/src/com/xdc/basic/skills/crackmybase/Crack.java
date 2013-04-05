@@ -11,7 +11,6 @@ public class Crack
 
 	public static void main(String[] args)
 	{
-
 		// 获取当前路径
 		String curClassName = new Throwable().getStackTrace()[0].getClassName();
 		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
