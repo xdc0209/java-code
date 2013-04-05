@@ -15,7 +15,7 @@ public class BasicKnowledge
 
 		// 2. 获取系统属性
 		Properties p = System.getProperties(); // 得到所有属性值
-		// p.list(System.out);
+		p.list(System.out);
 		System.getProperty("file.separator"); // 文件分隔符（在 UNIX 系统中是“/”）
 		System.getProperty("path.separator"); // 路径分隔符（在 UNIX 系统中是“:”）
 		System.getProperty("line.separator"); // 行分隔符（在 UNIX 系统中是“/n”）

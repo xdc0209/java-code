@@ -49,8 +49,11 @@ class FortuneServer extends Thread
 				byte[] data = new byte[256];
 				// 创建接收数据包
 				DatagramPacket rPacket = new DatagramPacket(data, data.length);
+
+				System.out.println("等待客户端连接...");
 				// 等待接收数据包
 				ServerSocket.receive(rPacket);
+				System.out.println("已有客户端发来请求: " + rPacket.getAddress().getHostAddress() + ":" + rPacket.getPort());
 
 				// 读取待发送的内容
 				inStream = new FileInputStream(new File(curPath + "Fortunes.txt"));
@@ -76,5 +79,4 @@ class FortuneServer extends Thread
 			}
 		}
 	}
-
 }
