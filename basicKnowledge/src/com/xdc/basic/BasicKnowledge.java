@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
+import org.apache.commons.lang3.SystemUtils;
+
 public class BasicKnowledge
 {
 	public static void main(String[] args)
@@ -22,6 +24,9 @@ public class BasicKnowledge
 		System.getProperty("user.name"); // 用户的账户名称
 		System.getProperty("user.home"); // 用户的主目录
 		System.getProperty("user.dir"); // 用户的当前工作目录
+		// apache 类库
+		String LINE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
+		System.out.println(LINE_SEPARATOR);
 
 		// 4. StringBuffer(同步)和StringBuilder(非同步)
 		StringBuilder sb = new StringBuilder();
