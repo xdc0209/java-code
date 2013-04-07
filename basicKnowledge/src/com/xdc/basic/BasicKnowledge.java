@@ -1,5 +1,6 @@
 package com.xdc.basic;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.SystemUtils;
 
 public class BasicKnowledge
 {
+	@SuppressWarnings("unused")
 	public static void main(String[] args)
 	{
 		// 1. 获取环境变量
@@ -27,6 +29,10 @@ public class BasicKnowledge
 		// apache 类库
 		String LINE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
 		System.out.println(LINE_SEPARATOR);
+
+		// 3. 字节数据-->字符串
+		byte[] bytes = new byte[100];
+		String str = new String(bytes);
 
 		// 4. StringBuffer(同步)和StringBuilder(非同步)
 		StringBuilder sb = new StringBuilder();
@@ -50,6 +56,14 @@ public class BasicKnowledge
 		r.nextDouble();
 		r.nextInt();
 
+		// 47（参数类型为long） 为随机数种子，如果种子不变，产生的随机数序列不变。无参数时，取系统时间做种子
+		Random rand = new Random(47);
+		// 产生0~25的随机值
+		System.out.println(rand.nextInt(26));
+
+		// 产生0和1之间的（包括0，但不包括1）的一个double值
+		System.out.println(Math.random());
+
 		// 6. 日期和时间
 		Date today = new Date(); // 查看当前日期
 		// System.out.println(today);
@@ -63,5 +77,8 @@ public class BasicKnowledge
 		long end = System.currentTimeMillis();
 		long elapsed = end - start;
 		System.out.println("用时：" + elapsed);
+
+		// 获取Timestamp对象
+		new Timestamp(System.currentTimeMillis());
 	}
 }
