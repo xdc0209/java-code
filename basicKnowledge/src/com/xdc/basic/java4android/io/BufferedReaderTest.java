@@ -3,7 +3,12 @@ package com.xdc.basic.java4android.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-// 处理流示例
+/**
+ * 处理流示例
+ * 
+ * @author xdc
+ * 
+ */
 class BufferedReaderTest
 {
 	public static void main(String[] args)

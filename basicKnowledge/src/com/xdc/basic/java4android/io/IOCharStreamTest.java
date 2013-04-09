@@ -3,7 +3,12 @@ package com.xdc.basic.java4android.io;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-// io字符流测试
+/**
+ * io字符流测试
+ * 
+ * @author xdc
+ * 
+ */
 class IOCharStreamTest
 {
 	public static void main(String[] args)

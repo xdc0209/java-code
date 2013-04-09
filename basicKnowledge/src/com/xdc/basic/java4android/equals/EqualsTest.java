@@ -1,6 +1,11 @@
 package com.xdc.basic.java4android.equals;
 
-//测试代码
+/**
+ * equals方法测试类
+ * 
+ * @author xdc
+ * 
+ */
 public class EqualsTest
 {
 	public static void main(String[] args)

@@ -8,7 +8,6 @@ import java.io.FileWriter;
 
 public class Crack
 {
-
 	public static void main(String[] args)
 	{
 		// 获取当前路径

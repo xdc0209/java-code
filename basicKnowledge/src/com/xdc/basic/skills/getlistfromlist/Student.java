@@ -2,7 +2,6 @@ package com.xdc.basic.skills.getlistfromlist;
 
 public class Student
 {
-
 	private String	number;
 
 	private String	name;

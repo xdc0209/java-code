@@ -8,10 +8,6 @@ import com.google.common.collect.Lists;
 
 public class GetListFromList
 {
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args)
 	{
 		List<Student> students = new ArrayList<>();

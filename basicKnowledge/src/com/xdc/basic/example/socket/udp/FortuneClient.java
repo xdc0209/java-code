@@ -7,7 +7,6 @@ import java.net.UnknownHostException;
 
 class FortuneClient
 {
-
 	public String getMessage()
 	{
 		String fortune;

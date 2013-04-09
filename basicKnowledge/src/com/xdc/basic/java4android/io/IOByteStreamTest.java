@@ -3,7 +3,12 @@ package com.xdc.basic.java4android.io;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-// io字节流示例
+/**
+ * io字节流示例
+ * 
+ * @author xdc
+ * 
+ */
 class IOByteStreamTest
 {
 	public static void main(String[] args)
