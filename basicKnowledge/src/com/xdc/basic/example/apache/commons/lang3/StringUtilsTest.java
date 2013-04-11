@@ -31,5 +31,8 @@ public class StringUtilsTest
 		// 比较两字符串是相等
 		StringUtils.equals(lowerCaseName, name); // false
 		StringUtils.equals(lowerCaseName, "xudachao"); // true
+
+		// 忽略大小写，比较字符串
+		StringUtils.equalsIgnoreCase(lowerCaseName, name); // true
 	}
 }

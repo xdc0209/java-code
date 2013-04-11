@@ -1,11 +1,12 @@
 package com.xdc.basic.example.apache.commons.lang3.builder;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class Person
+public class Person implements Comparable<Person>
 {
 	String	name;
 	int	    age;
@@ -42,9 +43,8 @@ public class Person
 		{
 			return false;
 		}
-		Person other = (Person) obj;
-		return new EqualsBuilder().append(name, other.name).append(age, other.age).append(smoker, other.smoker)
-		        .isEquals();
+		Person that = (Person) obj;
+		return new EqualsBuilder().append(name, that.name).append(age, that.age).append(smoker, that.smoker).isEquals();
 	}
 
 	@Override
@@ -52,5 +52,16 @@ public class Person
 	{
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("name", name).append("age", age)
 		        .append("smoker", smoker).toString();
+	}
+
+	//Two Objects that compare equal using equals(Object) should normally also compare equal using compareTo(Object).
+	// 先比较年龄，再比较姓名，再比较是否抽烟
+	@Override
+	public int compareTo(Person o)
+	{
+		// 用不用判断null呢？
+		Person that = (Person) o;
+		return new CompareToBuilder().append(this.age, that.age).append(this.name, that.name)
+		        .append(this.smoker, that.smoker).toComparison();
 	}
 }
