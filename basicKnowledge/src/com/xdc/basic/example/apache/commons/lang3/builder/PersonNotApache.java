@@ -21,7 +21,7 @@ public class PersonNotApache
 		return "PersonNotApache [name=" + name + ", age=" + age + ", smoker=" + smoker + "]";
 	}
 
-	public String toString4()
+	public String toString2()
 	{
 		// 普通的方式，这种写法比eclipse生成的效率要高
 		StringBuilder sb = new StringBuilder();

@@ -43,8 +43,8 @@ public class Person
 			return false;
 		}
 		Person other = (Person) obj;
-		return new EqualsBuilder().appendSuper(super.equals(obj)).append(name, other.name).append(age, other.age)
-		        .append(smoker, other.smoker).isEquals();
+		return new EqualsBuilder().append(name, other.name).append(age, other.age).append(smoker, other.smoker)
+		        .isEquals();
 	}
 
 	@Override
