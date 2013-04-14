@@ -30,18 +30,23 @@ public class PersonReflection implements Comparable<PersonReflection>
 	public int hashCode()
 	{
 		return HashCodeBuilder.reflectionHashCode(this);
+		// 根据反射获取hashcode ,除去某些字段
+		// HashCodeBuilder.reflectionHashCode(this, new String[]{"age","smoker"})
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
 		return EqualsBuilder.reflectionEquals(this, obj);
+		// 根据反射比较对象 ,除去某些字段
+		// EqualsBuilder.reflectionEquals(this, obj, new String[]{"age","smoker"});
 	}
 
 	@Override
 	public String toString()
 	{
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+		// 不具有除去某些字段的功能，如果有需求请使用ReflectionToStringBuilder
 	}
 
 	// Two Objects that compare equal using equals(Object) should normally also compare equal using compareTo(Object).
