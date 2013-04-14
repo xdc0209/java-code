@@ -47,6 +47,20 @@ public class Person implements Comparable<Person>
 		return new EqualsBuilder().append(name, that.name).append(age, that.age).append(smoker, that.smoker).isEquals();
 	}
 
+	public boolean equals2(Object obj)
+	{
+		if (obj == this)
+		{
+			return true;
+		}
+		if (!(obj instanceof Person))
+		{
+			return false;
+		}
+		Person that = (Person) obj;
+		return new EqualsBuilder().append(name, that.name).append(age, that.age).append(smoker, that.smoker).isEquals();
+	}
+
 	@Override
 	public String toString()
 	{
