@@ -1,9 +1,9 @@
 package com.xdc.basic.example.jaxb;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,21 +21,16 @@ public class XMLConvertor
 
 	public Object xml2java(String xml) throws JAXBException
 	{
-		return this.xml2java(xml.getBytes());
-	}
-
-	public Object xml2java(byte[] xml) throws JAXBException
-	{
-		InputStream is = new ByteArrayInputStream(xml);
+		Reader rd = new StringReader(xml);
 		Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
-		return unmarshaller.unmarshal(is);
+		return unmarshaller.unmarshal(rd);
 	}
 
 	public String java2xml(Object obj) throws JAXBException
 	{
-		OutputStream os = new ByteArrayOutputStream();
+		Writer wt = new StringWriter();
 		Marshaller marshaller = this.jaxbContext.createMarshaller();
-		marshaller.marshal(obj, os);
-		return os.toString();
+		marshaller.marshal(obj, wt);
+		return wt.toString();
 	}
 }
