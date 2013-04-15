@@ -29,7 +29,6 @@ public class GetMapFromList
 		});
 
 		System.out.println(map);
-
 	}
 
 	private static <K, V> Map<K, V> getMapFromList(List<V> list, Func<V, K> func)
