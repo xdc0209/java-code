@@ -1,26 +1,25 @@
-/*´´½¨collegeÊı¾İ¿â*/
+/*åˆ›å»ºcollegeæ•°æ®åº“*/
 drop database if exists college;
 create database college;
 
-/*ÇĞ»»µ½collegeÊı¾İ¿â*/
+/*åˆ‡æ¢åˆ°collegeæ•°æ®åº“*/
 use college;
 
-/*´´½¨Ñ§Éú±í*/
+/*åˆ›å»ºå­¦ç”Ÿè¡¨*/
 CREATE TABLE student(
    id int NOT NULL AUTO_INCREMENT primary key,
-   name varchar(10) NOT NULL,/*ĞÕÃû*/
-   gender char(1) NOT NULL,/*ĞÔ±ğ*/
-   major varchar(20) NOT NULL,/*×¨Òµ*/
-   grade char(4) NOT NULL/*Äê¼¶*/
+   name varchar(10) NOT NULL,/*å§“å*/
+   gender char(1) NOT NULL,/*æ€§åˆ«*/
+   major varchar(20) NOT NULL,/*ä¸“ä¸š*/
+   grade char(4) NOT NULL/*å¹´çº§*/
 );
 
-/*ÊÚÓècollegeÓÃ»§·ÃÎÊcollegeÊı¾İ¿âµÄÈ«²¿È¨ÏŞ¡£
-Îª·½±ãÆğ¼û£¬ÓÃ»§ÃûÓëÊı¾İ¿âÍ¬Ãû¡£¸ÃÓÃ»§Èô²»´æÔÚÔò±»
-´´½¨£¬ÃÜÂëÎªabc123*/
+/*æˆäºˆcollegeç”¨æˆ·è®¿é—®collegeæ•°æ®åº“çš„å…¨éƒ¨æƒé™ã€‚ä¸ºæ–¹ä¾¿èµ·è§ï¼Œç”¨æˆ·åä¸æ•°æ®åº“åŒåã€‚
+è¯¥ç”¨æˆ·è‹¥ä¸å­˜åœ¨åˆ™è¢«åˆ›å»ºï¼Œå¯†ç ä¸º123456*/
 grant all privileges on college.* to college@'%' identified by '123456';
 flush privileges;
 
-/*Ìí¼Ó¼ÇÂ¼*/
-insert into student(name, gender, major, grade)values('Ğì´ó³¬','ÄĞ','¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ','2008');
-insert into student(name, gender, major, grade)values('Íõè÷Î¬','ÄĞ','¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ','2008');
-insert into student(name, gender, major, grade)values('³Â³å','Å®','¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ','2008');
+/*æ·»åŠ è®°å½•*/
+insert into student(name, gender, major, grade)values('å¾å¤§è¶…','ç”·','è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯','2008');
+insert into student(name, gender, major, grade)values('ç‹æ¢“ç»´','ç”·','è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯','2008');
+insert into student(name, gender, major, grade)values('é™ˆå†²','å¥³','è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯','2008');
