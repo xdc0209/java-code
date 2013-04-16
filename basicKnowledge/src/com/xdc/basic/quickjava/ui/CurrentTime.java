@@ -19,82 +19,83 @@ import javax.swing.JFrame;
  */
 public class CurrentTime extends JFrame implements ActionListener, Refreshable
 {
-	Date	         date;
+    private static final long serialVersionUID = -8408350066705935156L;
 
-	static TextField	time;
+    Date                      date;
+    static TextField          time;
+    TextField                 copytime;
 
-	TextField	     copytime;
+    CurrentTime()
+    {
+        super("计时时钟");
+        setLayout(new GridLayout(3, 5, 1, 10));
+        JButton currentTime = new JButton("CurrentTime");
+        /* currentTime.setBackground(Color.GREEN); */
+        currentTime.addActionListener(this);
+        time = new TextField(5);
+        copytime = new TextField(5);
 
-	CurrentTime()
-	{
-		super("计时时钟");
-		setLayout(new GridLayout(3, 5, 1, 10));
-		JButton currentTime = new JButton("CurrentTime");
-		/* currentTime.setBackground(Color.GREEN); */
-		currentTime.addActionListener(this);
-		time = new TextField(5);
-		copytime = new TextField(5);
+        add(time, BorderLayout.NORTH);
+        add(currentTime, BorderLayout.CENTER);
+        add(copytime, BorderLayout.SOUTH);
+        setVisible(true);
+        setSize(300, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+    }
 
-		add(time, BorderLayout.NORTH);
-		add(currentTime, BorderLayout.CENTER);
-		add(copytime, BorderLayout.SOUTH);
-		setVisible(true);
-		setSize(300, 150);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-	}
+    @SuppressWarnings("deprecation")
+    String refreshTime()
+    {
+        date = new Date();
+        String time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        return time;
 
-	String refreshTime()
-	{
-		date = new Date();
-		String time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-		return time;
+    }
 
-	}
+    public static void main(String[] args)
+    {
+        CurrentTime curTime = new CurrentTime();
+        while (true)
+        {
+            try
+            {
+                time.setText(curTime.refreshTime());
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            if (curTime.isCurrent())
+            {
+                try
+                {
+                    curTime.refresh();
+                }
+                catch (RefreshFailedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-	public static void main(String[] args)
-	{
-		CurrentTime curTime = new CurrentTime();
-		while (true)
-		{
-			try
-			{
-				time.setText(curTime.refreshTime());
-				Thread.sleep(1000);
-			}
-			catch (InterruptedException e)
-			{
-				e.printStackTrace();
-			}
-			if (curTime.isCurrent())
-			{
-				try
-				{
-					curTime.refresh();
-				}
-				catch (RefreshFailedException e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getActionCommand().equals("CurrentTime"))
+        {
+            copytime.setText(time.getText());
+        }
+    }
 
-	public void actionPerformed(ActionEvent e)
-	{
-		if (e.getActionCommand().equals("CurrentTime"))
-		{
-			copytime.setText(time.getText());
-		}
-	}
+    public boolean isCurrent()
+    {
+        return true;
+    }
 
-	public boolean isCurrent()
-	{
-		return true;
-	}
+    public void refresh() throws RefreshFailedException
+    {
 
-	public void refresh() throws RefreshFailedException
-	{
-
-	}
+    }
 }
