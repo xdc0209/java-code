@@ -1,7 +1,6 @@
 // 排序   
 1. 数组：Arrays.sort(strings);   
 2. List：Collections.sort(list);   
-
       
 // 两个接口   
 1. java.lang.Comparable: 提供对象的自然排序，内置于类中   
@@ -19,47 +18,6 @@ public class Clone1 implements Cloneable {
     }   
 }   
   
-  
-// 串行化对象   
-对象串行化，必须实现Serializable接口   
-// 保存数据到磁盘   
-ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(FILENAME)));   
-os.writeObject(serialObject);   
-os.close();   
-// 读出数据   
-ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILENAME));   
-is.readObject();   
-is.close();   
-  
-// 读写Jar或Zip文档   
-ZipFile zippy = new ZipFile("a.jar");   
-Enumeration all = zippy.entries();  // 枚举值列出所有文件清单   
-while (all.hasMoreElements()) {   
-    ZipEntry entry = (ZipEntry)all.nextElement();   
-    if (entry.isFile())   
-        println("Directory: " + entry.getName());   
-           
-    // 读写文件   
-    FileOutputStream os = new FileOutputStream(entry.getName());   
-    InputStream is = zippy.getInputStream(entry);   
-    int n = 0;   
-    byte[] b = new byte[8092];   
-    while ((n = is.read(b)) > 0) {   
-        os.write(b, 0, n);   
-        is.close();   
-        os.close();   
-    }   
-}   
-  
-// 读写gzip文档   
-FileInputStream fin = new FileInputStream(FILENAME);   
-GZIPInputStream gzis = new GZIPInputStream(fin);   
-InputStreamReader xover = new InputStreamReader(gzis);   
-BufferedReader is = new BufferedReader(xover);   
-String line;   
-while ((line = is.readLine()) != null)   
-    System.out.println("Read: " + line);  
- 
 11. 目录和文件操作
 Java代码  
 // 获取文件信息   
@@ -124,30 +82,6 @@ for (int i = 0; i < rootDir.length; i++) {
 new File("/home/ian/bin").mkdir();  // 如果"/home/ian"存在，则可以创建bin目录   
 new File("/home/ian/bin").mkdirs();  // 如果"/home/ian"不存在，会创建所有的目录  
  
- 
-16. 数据库访问 
-Java代码  
-// JDO   
-Properties p = new Properties();   
-p.load(new FileInputStream("jdo.properties"));   
-PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory(p);   
-PersistenceManager pm = pmf.getPersistenceManager();   
-
-  
-// 数据操作   
-Class clz = Class.forName("oracle.jdbc.driver.OracleDriver");   
-String dbUrl = "jdbc:oracle:thin:@192.168.0.23:1521#:nms";   
-Connection conn = DriverManager.getConnection(dbUrl, "su", "1234");   
-Statement stmt = conn.createStatement();   
-ResultSet rs = stmt.executeQuery("select * from pmtable");   
-while (rs.next()) {   
-    String name = rs.getString(1);   
-    String otherName = rs.getString("name");   
-}   
-  
-// 调用存储过程              
-CallableStatement cs = conn.prepareCall("{ call ListDefunctUsers }");   
-ResultSet rs = cs.executeQuery();   
            
 
 17. XML
@@ -397,13 +331,3 @@ String s;
 while ((s = br.readLine()) != null)   
     System.out.println(s);   
        
-// 调用Jython - 计算22.0/7   
-BSFManager manager = new BSFManager();   
-String[] fntypes = {".py"};   
-manager.registerScriptingEngine("jython", "org.apache.bsf.engines.jython.JythonEngine", fntypes);   
-Object r = manager.eval("jython", "testString", 0, 0, "22.0/7");   
-System.out.println("Result type is " + r.getClass().getName());   
-System.out.println("Result value is " + r);   
-  
-// 调用C++，使用JNI 
-
