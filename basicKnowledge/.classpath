@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="lib/mq/rabbitmq-client.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mybatis-3.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mysql-connector-java-5.1.24-bin.jar"/>
+	<classpathentry kind="lib" path="lib/mybatis/ojdbc6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
