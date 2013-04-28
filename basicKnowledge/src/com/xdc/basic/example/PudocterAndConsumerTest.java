@@ -13,7 +13,7 @@ class CubbyHole
 
     public synchronized int get()
     {
-        if (available == false)
+        if (!available)
         {
             try
             {
@@ -32,7 +32,7 @@ class CubbyHole
 
     public synchronized void put(int value)
     {
-        if (available == true)
+        if (available)
         {
             try
             {
