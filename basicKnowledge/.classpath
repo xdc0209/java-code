@@ -16,7 +16,7 @@
 	<classpathentry kind="lib" path="lib/apache/commons-jxpath-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="lib/apache/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons-logging-1.1.1.jar" sourcepath="libsrc/apache/commons-logging-1.1.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-logging-adapters-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-logging-api-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mq/commons-cli-1.1.jar"/>
@@ -47,5 +47,6 @@
 	<classpathentry kind="lib" path="lib/spring/spring-web-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/apache/log4j/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
