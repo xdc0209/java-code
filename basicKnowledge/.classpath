@@ -27,5 +27,25 @@
 	<classpathentry kind="lib" path="lib/mybatis/mybatis-3.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-aop-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-aspects-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-beans-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-build-src-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-context-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-context-support-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-core-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-expression-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-instrument-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-instrument-tomcat-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-jdbc-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-jms-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-orm-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-oxm-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-struts-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-test-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-tx-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-web-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-webmvc-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
