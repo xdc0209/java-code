@@ -40,5 +40,14 @@ public class StringUtilsTest
         {
             System.out.println(ip);
         }
+
+        // 获得之间的字符串
+        StringUtils.substringBetween("name[xudachao]", "[", "]");
+
+        // 去除前缀
+        StringUtils.removeStart("http://127.0.0.1", "http://");
+
+        // 去除前缀2
+        StringUtils.substringAfter("http://127.0.0.1", "http://");
     }
 }
