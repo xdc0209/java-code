@@ -1,8 +1,0 @@
-（1）用eclipse分别将两工程打包：
-方法一：导出--java--jar文件，写好文件名和选好Main类，其他默认。（推荐）
-方法二：导出--java--jar文件，写好文件名和选好启动配置，其他默认。
-方法三：手工执行jar打包，略。
-
-（2）在两个命令行窗口分别执行：
-	java -jar rmiServer
-	jave -jar rmiClient
