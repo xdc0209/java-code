@@ -7,6 +7,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * http://ketqi.blog.51cto.com/1130608/687681
  * 
  * @author xdc
  * 

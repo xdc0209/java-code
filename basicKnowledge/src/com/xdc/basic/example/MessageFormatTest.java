@@ -3,6 +3,12 @@ package com.xdc.basic.example;
 import java.text.MessageFormat;
 import java.util.Date;
 
+/**
+ * http://www.oschina.net/code/snippet_109139_5062
+ * 
+ * @author xdc
+ * 
+ */
 public class MessageFormatTest
 {
     public static void main(String[] args)
