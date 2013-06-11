@@ -48,5 +48,7 @@
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/apache/log4j/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/easymock-3.1.jar" sourcepath="libsrc/easymock-3.1-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
