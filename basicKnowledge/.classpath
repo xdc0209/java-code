@@ -50,5 +50,13 @@
 	<classpathentry kind="lib" path="lib/apache/log4j/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar" sourcepath="libsrc/easymock-3.1-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/classmate-0.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-2.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-api-2.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/jboss-logging-3.1.1.GA.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/hibernate-validator-5.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/hibernate-validator-annotation-processor-5.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator/hibernate-validator-cdi-5.0.1.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
