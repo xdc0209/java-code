@@ -24,26 +24,24 @@ public class RMBUtils
             throw new Exception("钱数超出范围！");
         }
 
-        StringBuilder resultSB = digits2RMB(rmb, positionCursor);
+        StringBuilder resultSB = new StringBuilder();
 
-        int index0Jiao = resultSB.indexOf("零角");
-        if (index0Jiao != -1)
-        {
-            resultSB.delete(index0Jiao, index0Jiao + 2);
-        }
+        digits2RMB(rmb, positionCursor, resultSB);
 
-        int index0Fen = resultSB.indexOf("零分");
-        if (index0Fen != -1)
-        {
-            resultSB.delete(index0Fen, index0Fen + 2);
-        }
+        handleDecimals(resultSB);
 
-        wipeUnitAfter0(resultSB);
+        handleIntegers(resultSB);
 
-        wipeRepeat0(resultSB);
+        postfix(resultSB);
 
-        wipe0BeforeYiWanYuan(resultSB);
+        return Prefix + resultSB.toString();
+    }
 
+    /**
+     * @param resultSB
+     */
+    private static void postfix(StringBuilder resultSB)
+    {
         if (resultSB.indexOf("元") == resultSB.length() - 1)
         {
             resultSB.append(Postfix);
@@ -56,8 +54,36 @@ public class RMBUtils
                 resultSB.delete(index0Yuan, index0Yuan + 2);
             }
         }
+    }
 
-        return Prefix + resultSB.toString();
+    /**
+     * @param resultSB
+     */
+    private static void handleIntegers(StringBuilder resultSB)
+    {
+        wipeUnitAfter0(resultSB);
+
+        wipeRepeat0(resultSB);
+
+        wipe0BeforeYiWanYuan(resultSB);
+    }
+
+    /**
+     * @param resultSB
+     */
+    private static void handleDecimals(StringBuilder resultSB)
+    {
+        int index0Jiao = resultSB.indexOf("零角");
+        if (index0Jiao != -1)
+        {
+            resultSB.delete(index0Jiao, index0Jiao + 2);
+        }
+
+        int index0Fen = resultSB.indexOf("零分");
+        if (index0Fen != -1)
+        {
+            resultSB.delete(index0Fen, index0Fen + 2);
+        }
     }
 
     /**
@@ -135,9 +161,8 @@ public class RMBUtils
      * @param positionCursor
      * @return
      */
-    private static StringBuilder digits2RMB(String rmb, int positionCursor)
+    private static void digits2RMB(String rmb, int positionCursor, StringBuilder resultSB)
     {
-        StringBuilder resultSB = new StringBuilder();
         for (int i = 0; i < rmb.length(); i++)
         {
             char c = rmb.charAt(i);
@@ -150,7 +175,6 @@ public class RMBUtils
             resultSB.append(Positions.charAt(positionCursor));
             positionCursor--;
         }
-        return resultSB;
     }
 
     private static int getPointIndex(String rmb)
