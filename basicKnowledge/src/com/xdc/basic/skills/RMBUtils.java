@@ -26,14 +26,22 @@ public class RMBUtils
 
         StringBuilder resultSB = new StringBuilder();
 
+        // 不做特殊判断，见阿拉伯数字转成中文
         digits2RMB(rmb, positionCursor, resultSB);
 
-        handleDecimals(resultSB);
+        // 去除零后面的单位，但不包括亿、万、元
+        wipeUnitAfter0(resultSB);
 
-        handleIntegers(resultSB);
+        // 去除重复零，变为一个
+        wipeRepeat0(resultSB);
 
+        // 去除亿、万、元前面的零，并清除末尾0
+        wipe0BeforeYiWanYuanAndLast(resultSB);
+
+        // 添加后缀
         postfix(resultSB);
 
+        // 添加前缀
         return Prefix + resultSB.toString();
     }
 
@@ -51,7 +59,15 @@ public class RMBUtils
             int index0Yuan = resultSB.indexOf("零元");
             if (index0Yuan != -1)
             {
-                resultSB.delete(index0Yuan, index0Yuan + 2);
+                // 这个用例：assertEquals("人民币壹分", RMBUtils.convert(0.01D));
+                if (resultSB.charAt(index0Yuan + 2) == '零')
+                {
+                    resultSB.delete(index0Yuan, index0Yuan + 3);
+                }
+                else
+                {
+                    resultSB.delete(index0Yuan, index0Yuan + 2);
+                }
             }
         }
     }
@@ -59,37 +75,7 @@ public class RMBUtils
     /**
      * @param resultSB
      */
-    private static void handleIntegers(StringBuilder resultSB)
-    {
-        wipeUnitAfter0(resultSB);
-
-        wipeRepeat0(resultSB);
-
-        wipe0BeforeYiWanYuan(resultSB);
-    }
-
-    /**
-     * @param resultSB
-     */
-    private static void handleDecimals(StringBuilder resultSB)
-    {
-        int index0Jiao = resultSB.indexOf("零角");
-        if (index0Jiao != -1)
-        {
-            resultSB.delete(index0Jiao, index0Jiao + 2);
-        }
-
-        int index0Fen = resultSB.indexOf("零分");
-        if (index0Fen != -1)
-        {
-            resultSB.delete(index0Fen, index0Fen + 2);
-        }
-    }
-
-    /**
-     * @param resultSB
-     */
-    private static void wipe0BeforeYiWanYuan(StringBuilder resultSB)
+    private static void wipe0BeforeYiWanYuanAndLast(StringBuilder resultSB)
     {
         for (int i = 0; i < resultSB.length(); i++)
         {
@@ -111,12 +97,27 @@ public class RMBUtils
             }
             if (resultSB.charAt(i) == '元')
             {
+                // 以零元开头不去除零
                 if (resultSB.charAt(i - 1) == '零' && i - 1 != 0)
                 {
                     resultSB.deleteCharAt(i - 1);
                 }
                 continue;
             }
+        }
+
+        // 这个用例：assertEquals("人民币壹仟亿零贰万元整", RMBUtils.convert(100000020000D));
+        int indexWanYi = resultSB.indexOf("亿万");
+        if (indexWanYi != -1)
+        {
+            resultSB.deleteCharAt(indexWanYi + 1);
+        }
+
+        // 这个用例： assertEquals("人民币壹元整", RMBUtils.convert(1D));
+        int last = resultSB.length() - 1;
+        if (resultSB.charAt(last) == '零')
+        {
+            resultSB.deleteCharAt(last);
         }
     }
 
@@ -129,9 +130,8 @@ public class RMBUtils
         {
             if (resultSB.charAt(i) == '零')
             {
-                while (resultSB.charAt(i + 1) == '零')
+                while (i + 1 < resultSB.length() && resultSB.charAt(i + 1) == '零')
                 {
-
                     resultSB.deleteCharAt(i + 1);
                 }
             }
@@ -196,6 +196,7 @@ public class RMBUtils
     @Test
     public void testConvert() throws Exception
     {
+        assertEquals("人民币壹仟亿零贰万元整", RMBUtils.convert(100000020000D));
         assertEquals("人民币壹仟贰佰叁拾肆亿伍仟陆佰柒拾捌万玖仟零壹拾贰元整", RMBUtils.convert(123456789012D));
         assertEquals("人民币玖仟玖佰玖拾玖亿玖仟玖佰玖拾玖万玖仟玖佰玖拾玖元整", RMBUtils.convert(999999999999D));
         assertEquals("人民币伍拾陆万柒仟捌佰玖拾元整", RMBUtils.convert(567890D));
@@ -203,7 +204,7 @@ public class RMBUtils
         assertEquals("人民币壹元整", RMBUtils.convert(1D));
         assertEquals("人民币零元整", RMBUtils.convert(0D));
 
-        assertEquals("人民币壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾元壹分", RMBUtils.convert(1234567890.01D));
+        assertEquals("人民币壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾元零壹分", RMBUtils.convert(1234567890.01D));
         assertEquals("人民币玖拾玖亿玖仟玖佰玖拾玖万玖仟玖佰玖拾玖元壹角壹分", RMBUtils.convert(9999999999.11D));
         assertEquals("人民币伍拾陆万柒仟捌佰玖拾元玖角贰分", RMBUtils.convert(567890.92D));
         assertEquals("人民币壹佰元叁角玖分", RMBUtils.convert(100.39D));
