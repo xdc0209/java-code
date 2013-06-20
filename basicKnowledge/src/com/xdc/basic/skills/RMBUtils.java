@@ -196,7 +196,7 @@ public class RMBUtils
     @Test
     public void testConvert() throws Exception
     {
-        assertEquals("人民币壹仟亿零贰万元整", RMBUtils.convert(100000020000D));
+        assertEquals("人民币壹仟亿零贰佰元整", RMBUtils.convert(100000000200D));
         assertEquals("人民币壹仟贰佰叁拾肆亿伍仟陆佰柒拾捌万玖仟零壹拾贰元整", RMBUtils.convert(123456789012D));
         assertEquals("人民币玖仟玖佰玖拾玖亿玖仟玖佰玖拾玖万玖仟玖佰玖拾玖元整", RMBUtils.convert(999999999999D));
         assertEquals("人民币伍拾陆万柒仟捌佰玖拾元整", RMBUtils.convert(567890D));
@@ -209,7 +209,10 @@ public class RMBUtils
         assertEquals("人民币伍拾陆万柒仟捌佰玖拾元玖角贰分", RMBUtils.convert(567890.92D));
         assertEquals("人民币壹佰元叁角玖分", RMBUtils.convert(100.39D));
         assertEquals("人民币壹元贰角贰分", RMBUtils.convert(1.22D));
+        assertEquals("人民币壹元贰角", RMBUtils.convert(1.20D));
+        assertEquals("人民币壹元零贰分", RMBUtils.convert(1.02D));
         assertEquals("人民币玖角玖分", RMBUtils.convert(0.99D));
+        assertEquals("人民币壹角", RMBUtils.convert(0.1D));
         assertEquals("人民币壹分", RMBUtils.convert(0.01D));
     }
 }
