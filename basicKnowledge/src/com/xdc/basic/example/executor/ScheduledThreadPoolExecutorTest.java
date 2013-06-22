@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,17 +20,39 @@ public class ScheduledThreadPoolExecutorTest
     public static void main(String[] args)
     {
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
-        long initialDelay = 1000;
+
+        long initialDelay = 0;
         long period = 5000;
-
-        scheduleAtFixedRateNormal(exec, initialDelay, period);
-        scheduleAtFixedRateException(exec, initialDelay, period);
-        scheduleAtFixedRateCatchException(exec, initialDelay, period);
-
+        scheduleAtFixedRate(exec, initialDelay, period);
         scheduleWithFixedDelay(exec, initialDelay, period);
 
-        long delay = 5000;
+        long delay = 10000;
         schedule(exec, delay);
+
+        cancelSchedule(exec, initialDelay, period);
+
+        try
+        {
+            Thread.sleep(50000);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        exec.shutdown();
+        System.out.println("定时器关闭！");
+    }
+
+    private static void cancelSchedule(ScheduledExecutorService exec, long initialDelay, long period)
+    {
+        ScheduledFuture<?> scheduledFuture = exec.scheduleAtFixedRate(new Runnable()
+        {
+            public void run()
+            {
+                System.out.println("cancelSchedule: " + format.format(new Date()));
+            }
+        }, initialDelay, period, TimeUnit.MILLISECONDS);
 
         try
         {
@@ -39,7 +62,9 @@ public class ScheduledThreadPoolExecutorTest
         {
             e.printStackTrace();
         }
-        exec.shutdown();
+
+        scheduledFuture.cancel(false);
+        System.out.println("cancelSchedule: the schedule has been canceled!" + format.format(new Date()));
     }
 
     /**
@@ -47,7 +72,7 @@ public class ScheduledThreadPoolExecutorTest
      * @param initialDelay
      * @param period
      */
-    private static void scheduleAtFixedRateNormal(ScheduledExecutorService exec, long initialDelay, long period)
+    private static void scheduleAtFixedRate(ScheduledExecutorService exec, long initialDelay, long period)
     {
         /**
          * 每隔一段时间打印系统时间，互不影响的<br/>
@@ -59,49 +84,7 @@ public class ScheduledThreadPoolExecutorTest
         {
             public void run()
             {
-                System.out.println(format.format(new Date()));
-            }
-        }, initialDelay, period, TimeUnit.MILLISECONDS);
-    }
-
-    /**
-     * @param exec
-     * @param initialDelay
-     * @param period
-     */
-    private static void scheduleAtFixedRateException(ScheduledExecutorService exec, long initialDelay, long period)
-    {
-        //开始执行后就触发异常,next周期将不会运行
-        exec.scheduleAtFixedRate(new Runnable()
-        {
-            public void run()
-            {
-                System.out.println("RuntimeException no catch,next time can't run");
-                throw new RuntimeException();
-            }
-        }, initialDelay, period, TimeUnit.MILLISECONDS);
-    }
-
-    /**
-     * @param exec
-     * @param initialDelay
-     * @param period
-     */
-    private static void scheduleAtFixedRateCatchException(ScheduledExecutorService exec, long initialDelay, long period)
-    {
-        //虽然抛出了运行异常,当被拦截了,next周期继续运行
-        exec.scheduleAtFixedRate(new Runnable()
-        {
-            public void run()
-            {
-                try
-                {
-                    throw new RuntimeException();
-                }
-                catch (Exception e)
-                {
-                    System.out.println("RuntimeException catched,can run next");
-                }
+                System.out.println("scheduleAtFixedRate: " + format.format(new Date()));
             }
         }, initialDelay, period, TimeUnit.MILLISECONDS);
     }
@@ -121,7 +104,7 @@ public class ScheduledThreadPoolExecutorTest
         {
             public void run()
             {
-                System.out.println("scheduleWithFixedDelay:begin," + format.format(new Date()));
+                System.out.println("scheduleWithFixedDelay-begin: " + format.format(new Date()));
                 try
                 {
                     Thread.sleep(2000);
@@ -130,7 +113,7 @@ public class ScheduledThreadPoolExecutorTest
                 {
                     e.printStackTrace();
                 }
-                System.out.println("scheduleWithFixedDelay:end," + format.format(new Date()));
+                System.out.println("scheduleWithFixedDelay-end: " + format.format(new Date()));
             }
         }, initialDelay, period, TimeUnit.MILLISECONDS);
     }
