@@ -21,7 +21,7 @@ public class RMBUtils
         String RMB = digits2RMB(digits);
 
         // 去除零后面的单位，但不包括亿、万、元
-        RMB = wipeUnitAfter0(RMB);
+        RMB = wipeUnitAfter0ExceptYiWanYuan(RMB);
 
         // 去除重复零，变为一个
         RMB = wipeRepeat0(RMB);
@@ -72,7 +72,7 @@ public class RMBUtils
         return RMB.replaceAll("零+", "零");
     }
 
-    private static String wipeUnitAfter0(String RMB)
+    private static String wipeUnitAfter0ExceptYiWanYuan(String RMB)
     {
         return RMB.replaceAll("零[^元万亿]", "零");
     }
