@@ -9,7 +9,7 @@
 	<classpathentry kind="lib" path="lib/apache/commons-beanutils-core-1.8.3.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-codec-1.7.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/apache/commons-configuration-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons-configuration-1.9.jar" sourcepath="libsrc/apache/commons-configuration-1.9-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-digester3-3.2.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-exec-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-io-2.4.jar" sourcepath="libsrc/apache/commons-io-2.4-sources.jar"/>
