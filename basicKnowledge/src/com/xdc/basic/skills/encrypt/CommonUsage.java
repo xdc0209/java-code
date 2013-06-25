@@ -25,7 +25,7 @@ public class CommonUsage
         System.out.println("原文：" + source);
 
         // ==========================================================================
-        // A要与B通信，B生成密钥对，并将公钥发送给A ===================================
+        // A要发消息给B，B生成密钥对，并将公钥发送给A ===================================
         // ==========================================================================
         Map<String, String> keyPairMap = RSACodec.genKeyPair();
         String publicKey = RSACodec.getPublicKey(keyPairMap);
