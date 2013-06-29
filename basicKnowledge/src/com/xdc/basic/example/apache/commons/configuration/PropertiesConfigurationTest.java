@@ -12,7 +12,7 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
  * @author xdc
  * 
  */
-public class PropertiesConfigurationDemo
+public class PropertiesConfigurationTest
 {
     public static void main(String[] args) throws ConfigurationException, InterruptedException
     {

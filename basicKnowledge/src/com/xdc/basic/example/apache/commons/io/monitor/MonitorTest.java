@@ -6,7 +6,7 @@ import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 
-public class MonitorDemo
+public class MonitorTest
 {
     public static void main(String[] args) throws Exception
     {

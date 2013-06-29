@@ -10,7 +10,7 @@ import java.util.Set;
  * @author xdc
  * 
  */
-public class TestAnnotation
+public class AnnotationTest
 {
     /**
      * author lighter
