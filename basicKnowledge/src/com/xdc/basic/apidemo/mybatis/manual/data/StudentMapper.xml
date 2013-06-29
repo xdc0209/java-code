@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xdc.basic.example.mybatis.manual.data.StudentMapper">
+
+  <insert id="insert" parameterType="com.xdc.basic.example.mybatis.manual.model.Student">
+    insert into 
+      student (id, name, gender, major, grade)
+    values 
+      (#{id}, #{name}, #{gender}, #{major}, #{grade})
+  </insert>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from 
+      student 
+    where id = #{id}
+  </delete>
+
+  <update id="updateByPrimaryKey" parameterType="com.xdc.basic.example.mybatis.manual.model.Student">
+    update 
+      student
+    set 
+      name = #{name},
+      gender = #{gender},
+      major = #{major},
+      grade = #{grade}
+    where id = #{id}
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+    resultType="com.xdc.basic.example.mybatis.manual.model.Student">
+    select
+      id, name, gender, major, grade
+    from 
+      student
+    where id = #{id}
+  </select>
+
+</mapper>
