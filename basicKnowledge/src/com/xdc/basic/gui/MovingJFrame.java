@@ -1,4 +1,4 @@
-package com.xdc.basic.ui;
+package com.xdc.basic.gui;
 
 /**
  * @author xiaopeng1
