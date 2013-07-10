@@ -46,7 +46,7 @@ public class Base64Test
         String decodeStr = decodeStr(encodeStr, UTF8);
         System.out.println("decodeStr: " + decodeStr);
 
-        System.out.println("plainText==decodeStr?: " + plainText.equals(decodeStr));
+        System.out.println("plainText==decodeStr? : " + plainText.equals(decodeStr));
 
         System.out.println("字符集名称：");
         for (String charsetName : Charset.availableCharsets().keySet())
@@ -90,6 +90,9 @@ public class Base64Test
      */
     private static byte[] string2Bytes(String plainText, String charsetName)
     {
+        // apache提供了专门的方法去获取字符串的utf8编码的字节数组
+        // return StringUtils.getBytesUtf8(plainText);
+
         byte[] b = null;
         try
         {
@@ -111,6 +114,9 @@ public class Base64Test
      */
     private static String bytes2String(byte[] b, String charsetName)
     {
+        // apache提供了专门的方法从字节数组转换成utf8编码的字符串
+        // return StringUtils.newStringUtf8(b);
+
         String s = null;
         try
         {
