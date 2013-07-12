@@ -1,0 +1,6 @@
+I've bound the AntRun MOJO to the install phase in Maven. Therefore,
+to compile and run the Hello example, use Maven's install phase:
+
+% mvn install
+
+This will compile, test, JAR, and run the example.

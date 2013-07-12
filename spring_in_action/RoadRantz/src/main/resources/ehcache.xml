@@ -1,0 +1,15 @@
+<!-- 
+  The EHCache configuration from in Listing 5.12
+ -->
+<ehcache>
+  <defaultCache
+      maxElementsInMemory="500"
+      eternal="true"
+      overflowToDisk="false"
+      memoryStoreEvictionPolicy="LFU" />
+  <cache name="rantzCache"
+      maxElementsInMemory="500"
+      eternal="true"
+      overflowToDisk="false"
+      memoryStoreEvictionPolicy="LFU" />
+</ehcache>

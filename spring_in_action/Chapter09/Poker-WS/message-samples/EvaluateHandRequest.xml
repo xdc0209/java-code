@@ -1,0 +1,23 @@
+<EvaluateHandRequest 
+    xmlns="http://www.springinaction.com/poker/schemas">
+  <card>
+    <suit>HEARTS</suit>
+    <face>TEN</face>
+  </card>
+  <card>
+    <suit>SPADES</suit>
+    <face>KING</face>
+  </card>
+  <card>
+    <suit>HEARTS</suit>
+    <face>KING</face>
+  </card>
+  <card>
+    <suit>DIAMONDS</suit>
+    <face>TEN</face>
+  </card>
+  <card>
+    <suit>CLUBS</suit>
+    <face>TEN</face>
+  </card>
+</EvaluateHandRequest>

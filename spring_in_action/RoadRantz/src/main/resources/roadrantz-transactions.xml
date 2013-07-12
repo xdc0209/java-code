@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+  <!--
+    Configures annotation-driven transactions in Spring. From section 6.4.4,
+    page 244.
+
+    Note that the actual transaction managers are configured along with their
+    persistence mechanisms (in the roadrantz-data-*.xml files).
+   -->
+  <tx:annotation-driven/>
+
+
+  <!--
+    The original, pre-Spring 2.0, proxy for rantService to make it
+    transactional. As shown in Listing 6.3.
+
+    I only list it here for educational purposes. I no longer use
+    this and favor other mechanisms for declarative transaction such
+    as annotations.
+   -->
+  <!--
+  <bean id="rantService"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="target"
+        ref="rantServiceTarget" />
+    <property name="proxyInterfaces"
+        value="com.roadrantz.service.RantService" />
+    <property name="transactionManager"
+        ref="transactionManager" />
+    <property name="transactionAttributes">
+      <props>
+        <prop key="add*">PROPAGATION_REQUIRED</prop>
+        <prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+      </props>
+    </property>
+  </bean>
+  -->
+</beans>

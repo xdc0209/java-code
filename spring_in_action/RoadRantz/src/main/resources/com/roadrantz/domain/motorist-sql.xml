@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMap>
+  <select id="getMotoristById" parameterClass="java.lang.Integer"
+      resultClass="com.roadrantz.domain.Motorist">
+    select id, firstName, lastName, email
+    from motorist
+    where id = #value#
+  </select>
+  
+  <select id="findDriverByEmail" 
+      resultClass="com.roadrantz.domain.Motorist">    
+    select id, firstName, lastName, email
+    from motorist
+    where email = #value#
+  </select>
+  
+  <insert id="insertMotoris" parameterClass="com.roadrantz.domain.Motorist">
+	  	<selectKey keyProperty="id" resultClass="java.lang.Integer">
+			call identity()
+		</selectKey>	
+		
+    insert into Motorist (id, firstName, lastName, email, password)
+                values (null, #firstName#, #lastName#, #email#, #password#)
+  </insert>
+</sqlMap>

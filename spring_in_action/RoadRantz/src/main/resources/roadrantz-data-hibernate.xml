@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+               http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+      
+  <!-- 
+    Configures a Hibernate-based transaction manager, as described in 
+    section 6.2.2, page 227.
+   -->       
+  <bean id="transactionManager" 
+      class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>       
+
+  <!-- 
+    A HibernateTemplate bean, as configured in section 5.4.2, page 186.
+   -->
+  <!-- 
+  <bean id="hibernateTemplate"
+      class="org.springframework.orm.hibernate3.HibernateTemplate">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+  -->
+  
+   <!-- 
+     A LocalSessionFactoryBean for loading Hibernate mappings from XML, 
+     as described in section 5.4.2, page 187.
+    -->
+   <!--
+   <bean id="sessionFactory"
+         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="mappingResources">
+         <list>
+            <value>com/roadrantz/domain/Rant.hbm.xml</value>
+            <value>com/roadrantz/domain/Motorist.hbm.xml</value>
+            <value>com/roadrantz/domain/Vehicle.hbm.xml</value>
+         </list>
+      </property>
+      <property name="hibernateProperties">
+         <props>
+            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+         </props>
+      </property>
+   </bean>  
+   -->
+  
+  <!-- 
+    An AnnotationSessionFactoryBean for loading Hibernate mappings from
+    annotated domain classes. Described in section 5.4.2, page 188.
+   -->
+  <bean id="sessionFactory"
+      class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="annotatedClasses">
+      <list>
+        <value>com.roadrantz.domain.Rant</value>
+        <value>com.roadrantz.domain.Motorist</value>
+        <value>com.roadrantz.domain.Vehicle</value>
+      </list>
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+      </props>
+    </property>    
+  </bean>
+
+  <!-- 
+    Declares the HibernateRantDao. This was first shown on page 188 being
+    injected with a HibernateTemplate. It later evolved to this form where
+    it is injected with a reference to one of Spring's Hibernate session
+    factory beans. This form first appears on page 191.
+   -->  
+  <bean id="rantDao" class="com.roadrantz.dao.hibernate.HibernateRantDao">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+
+</beans>

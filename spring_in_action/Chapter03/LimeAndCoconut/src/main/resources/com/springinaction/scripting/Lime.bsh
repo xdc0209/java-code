@@ -1,0 +1,3 @@
+void drink() {
+  System.out.println("Called the doctor woke him up!");
+}

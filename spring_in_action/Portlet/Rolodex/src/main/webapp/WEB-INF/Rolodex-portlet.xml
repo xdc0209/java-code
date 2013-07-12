@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- Template for the Portlet Mode - Parameter Handler Mapping Beans -->
+  <bean id="portletModeParameterHandlerMapping" 
+      class="org.springframework.web.portlet.handler.PortletModeParameterHandlerMapping">
+    <property name="order" value="1" />
+    <property name="interceptors">
+      <list>
+        <ref bean="parameterMappingInterceptor"/>
+      </list>
+    </property>
+    <property name="portletModeParameterMap">
+      <map>
+        <entry key="view">
+          <map>
+            <entry key="contacts" 
+                value-ref="contactsController"/>
+            <entry key="editContact"  
+                value-ref="editContactController"/>
+            <entry key="contactDetail"  
+                value-ref="contactDetailController"/>
+            <entry key="deleteContact"  
+                value-ref="deleteContactController"/>
+            <entry key="searchContacts"  
+                value-ref="searchContactsController"/>
+          </map>
+        </entry>
+        <entry key="edit">
+          <map/>
+        </entry>
+        <entry key="help">
+          <map/>
+        </entry>
+      </map>
+    </property>
+   </bean>
+
+  <bean id="portletModeHandlerMapping" 
+      class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">        
+    <property name="order" value="2" />
+    <property name="portletModeMap">
+      <map>
+        <entry key="view" 
+            value-ref="contactsController"/>
+        <entry key="help" 
+            value-ref="modeNameViewController"/>
+        <entry key="edit" 
+            value-ref="preferencesController"/>
+      </map>
+    </property>
+  </bean>
+
+   <!-- Controllers -->
+  <bean id="rolodexControllerTemplate" 
+      abstract="true">
+    <property name="rolodexService" 
+        ref="rolodexService"/>
+  </bean>
+  
+  <bean id="contactsController"
+      class="com.springinaction.rolodex.controller.ContactsController"
+      parent="rolodexControllerTemplate" />
+      
+  <bean id="editContactController"
+      class="com.springinaction.rolodex.controller.EditContactController"
+      parent="rolodexControllerTemplate">
+    <property name="formView" value="editContact" />
+    <property name="successView" value="contactList" />
+  </bean>
+  
+  <bean id="contactDetailController"
+      class="com.springinaction.rolodex.controller.ContactDetailController"
+      parent="rolodexControllerTemplate"/>
+  
+  <bean id="deleteContactController"
+      class="com.springinaction.rolodex.controller.DeleteContactController"
+      parent="rolodexControllerTemplate"/>
+  
+  <bean id="searchContactsController"
+      class="com.springinaction.rolodex.controller.SearchContactsController"
+      parent="rolodexControllerTemplate"/>
+      
+  <bean id="preferencesController"
+      class="com.springinaction.rolodex.controller.PreferencesController">
+    <property name="formView" value="edit"/>
+<!--    <property name="successView" value="edit"/> -->
+  </bean>
+      
+  <bean id="modeNameViewController" 
+      class="org.springframework.web.portlet.mvc.PortletModeNameViewController"/>
+
+  <!-- Portlet Parameter-based Mapping Interceptor -->
+  <bean id="parameterMappingInterceptor" 
+      class="org.springframework.web.portlet.handler.ParameterMappingInterceptor"/>
+
+   
+  <!-- Default View Resolver -->
+  <bean id="viewResolver" 
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     <property name="cache" value="false" />
+     <property name="viewClass" 
+         value="org.springframework.web.servlet.view.JstlView" />
+     <property name="prefix" value="/WEB-INF/jsp/" />
+     <property name="suffix" value=".jsp" />
+  </bean>   
+   
+  <!-- Default Exception Handler Bean -->
+  <bean id="defaultExceptionHandler" 
+      class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+    <property name="defaultErrorView" 
+        value="defError" />
+    <property name="exceptionMappings">
+      <props>
+        <prop key="javax.portlet.PortletSecurityException">
+            notAuthorized</prop>
+        <prop key="javax.portlet.UnavailableException">
+            notAvailable</prop>
+      </props>
+    </property>  
+  </bean>  
+ 
+</beans>

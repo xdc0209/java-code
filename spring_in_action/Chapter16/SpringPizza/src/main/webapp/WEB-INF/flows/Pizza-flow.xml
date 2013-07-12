@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation=
+        "http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+
+  <var name="pizza" 
+      class="com.springinaction.pizza.domain.Pizza" 
+      scope="flow"/>
+
+  <start-state idref="chooseSize" />
+  
+  <view-state id="chooseSize" view="chooseSize">
+    <transition on="submit" to="chooseType">
+      <evaluate-action expression=
+          "flowScope.pizza.setSize(requestParameters.size)" />
+    </transition>
+  </view-state>
+
+  <view-state id="chooseType" view="chooseType">
+    <transition on="submit" to="checkType" />
+  </view-state>
+  
+  <decision-state id="checkType">
+    <if test="${requestParameters.pizzaType == 'BUILD'}"
+        then="chooseToppings"
+        else="createSpecialtyPizza" />
+  </decision-state>
+
+  <view-state id="chooseToppings" view="chooseToppings">
+    <transition on="submit" to="finish">
+      <evaluate-action expression=
+          "flowScope.pizza.setToppings(requestParameters.toppings)" />
+    </transition>
+  </view-state>
+  
+  <action-state id="createSpecialtyPizza">
+    <action bean="specialtyBuilder" />
+    <transition on="success" to="finish" />
+  </action-state>
+
+  <end-state id="finish">
+    <output-mapper>
+      <mapping source="flowScope.pizza" target="pizza"/>
+    </output-mapper>
+  </end-state> 
+     
+  <end-state id="cancelPizza" />
+     
+  <global-transitions>
+    <transition on="cancel" to="cancelPizza" />
+  </global-transitions>
+</flow>

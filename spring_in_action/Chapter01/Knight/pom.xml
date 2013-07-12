@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>Chapter01</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>Knight</artifactId>
+  <packaging>jar</packaging>
+  <name>Spring in Action 2E, Knight Example</name>
+  <url>http://www.springinaction.com</url>
+
+  <build>
+    <finalName>knight</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant-antlr</artifactId>
+            <version>1.6.5</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <configuration>
+              <tasks>
+                <echo>====================================================================</echo>
+                <echo>=============================== RUNNING ============================</echo>
+                <echo>====================================================================</echo>
+                <java classname="com.springinaction.chapter01.knight.KnightApp">
+                  <classpath>
+                    <path refid="maven.runtime.classpath" />
+                  </classpath> 
+                </java>
+                <echo>====================================================================</echo>
+                <echo>=============================== FINISHED ===========================</echo>
+                <echo>====================================================================</echo>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>      
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.5.3</version>
+      <scope>compile</scope>
+    </dependency>
+    
+    <!-- For some reason, Xerces is needed for the example
+         to run (using the Java task in antrun) on MacOS X.
+         Not clear as to why...and I've not taken the time
+         to figure it out. -->
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.8.1</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

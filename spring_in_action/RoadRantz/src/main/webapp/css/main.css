@@ -1,0 +1,46 @@
+body {
+  font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;
+  font-size: 9pt;
+  background-color: #000033;
+  margin-top: 0px;
+  text-align: center;
+}
+
+div#container {
+  margin-left: 10px;
+  text-align: left;
+}
+
+.header {
+  width:748px;
+  background-image: url("../images/traffic-strip3.jpg");
+  background-repeat: repeat-x;
+  background-color: #ffffff;
+  border-bottom: 1px, dotted, #660000;
+  font-size: 8pt;
+  color: #FFFFFF;
+}
+
+.menuBar {
+  background-color: #660000;
+  color: #FFFFFF;
+  width:748px;
+}
+
+.menuBar a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.contentArea {
+  background-color: #FFFFFF;
+  width:748px;
+}
+
+.footer {
+  width:748px;
+  background-color: #660000;
+  color: #FFFFFF;
+}

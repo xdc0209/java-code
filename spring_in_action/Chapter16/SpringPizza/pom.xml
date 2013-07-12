@@ -1,0 +1,93 @@
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>Chapter16</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>SpringPizza</artifactId>
+  <packaging>war</packaging>
+  <name>Spring in Action 2E, Spring Web Flow Example</name>
+  <url>http://www.springinaction.com</url>
+  
+  <build>
+    <finalName>SpringPizza</finalName>
+    <plugins>
+      <plugin> 
+	    <groupId>org.codehaus.cargo</groupId> 
+	    <artifactId>cargo-maven2-plugin</artifactId> 
+	    <configuration> 
+	      <container> 
+	        <containerId>tomcat5x</containerId> 
+	        <type>remote</type> 
+	      </container> 
+	      <configuration> 
+	        <type>runtime</type>
+	        <properties> 
+	          <cargo.hostname>localhost</cargo.hostname> 
+	          <cargo.servlet.port>8080</cargo.servlet.port> 
+	          <cargo.remote.username>admin2</cargo.remote.username> 
+	          <cargo.remote.password>password</cargo.remote.password> 
+	        </properties>
+	      </configuration> 
+        </configuration> 
+      </plugin> 
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>  
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>2.0.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflow</artifactId>
+      <version>1.0.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-binding</artifactId>
+      <version>1.0.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>ognl</groupId>
+      <artifactId>ognl</artifactId>
+      <version>2.6.9</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.1.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+      <scope>compile</scope>
+    </dependency>
+    
+  </dependencies>
+</project>
+

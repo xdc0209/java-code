@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- 
+    An XML payload-to-endpoint mapping.
+    
+    From Section 9.4.2, page 363.
+   -->
+  <bean id="payloadMapping" 
+      class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+    <property name="endpointMap">
+      <map>
+        <entry key="{http://www.springinaction.com/poker/schemas}EvaluateHandRequest" 
+            value-ref="evaluateHandEndpoint" />
+      </map>
+    </property>
+  </bean>
+
+   <!-- 
+     A marshaling poker hand evaluation endpoint.
+     
+     From section 9.4.3, page 364.
+    -->
+  <bean id="evaluateHandEndpoint" 
+      class="com.springinaction.poker.webservice.EvaluateHandMarshallingEndpoint">
+    <property name="marshaller" ref="marshaller" />
+    <property name="unmarshaller" ref="marshaller" />
+    <property name="pokerHandEvaluator" ref="pokerHandEvaluator" />
+  </bean>
+
+   <!-- 
+     A JDom-based poker hand evaluation endpoint.
+     
+     From section 9.4.3, page 364.
+    -->
+   <!-- 
+   <bean id="evaluateHandEndpoint" 
+      class="com.springinaction.poker.webservice.EvaluateHandJDomEndpoint">
+    <property name="pokerHandEvaluator" ref="pokerHandEvaluator" />      
+   </bean>
+   -->
+
+  <!-- 
+    A Castor-based payload marshaler. 
+    
+    From section 9.4.4, pages 365-366.
+   -->    
+  <bean id="marshaller" 
+      class="org.springframework.oxm.castor.CastorMarshaller">
+    <property name="mappingLocation" value="classpath:mapping.xml" />
+  </bean>    
+    
+  <!-- 
+    SoapFaultMappingExceptionResolver to map exceptions thrown from an
+    endpoint to SOAP faults.
+    
+    From section 9.4.5, page 368.
+   -->
+  <bean id="endpointExceptionResolver"
+      class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
+    <property name="defaultFault" 
+        value="RECEIVER,Server error" />
+    <property name="exceptionMappings">
+      <props>
+        <prop key="org.springframework.oxm.UnmarshallingException">
+             SENDER,Invalid request</prop>
+        <prop key="org.springframework.oxm.ValidationFailureException">
+             SENDER,Invalid request</prop>
+      </props>
+    </property>
+  </bean>
+				
+  <!-- 
+    SimpleWsdl11Definition to load a pre-defined WSDL. Assuming that
+    MessageDispatcherServlet's transformWsdlLocations init-param is set
+    to true, any location URLs in the pre-defined WSDL will be 
+    transformed to match the location where the MessageDispatcherServlet
+    is deployed.
+    
+    From section 9.4.6, page 372.
+   -->											
+  <bean id="poker" 
+      class="org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition">
+    <property name="wsdl" value="/PokerService.wsdl"/>
+  </bean>
+
+  <!-- 
+    DynamicWsdl11Definition to automagically generate WSDL from the messages'
+    XSD.
+    
+    From section 9.4.6, page 369.
+   -->
+  <!-- 
+  <bean id="poker"
+      class="org.springframework.ws.wsdl.wsdl11.DynamicWsdl11Definition">
+    <property name="builder">
+      <bean class="org.springframework.ws.wsdl.wsdl11.builder.XsdBasedSoap11Wsdl4jDefinitionBuilder">
+        <property name="schema" value="/PokerTypes.xsd"/>
+        <property name="portTypeName" value="Poker"/>
+        <property name="locationUri" value="http://localhost:8080/Poker-WS/services"/>
+      </bean>     
+    </property>
+  </bean>
+  -->
+</beans>

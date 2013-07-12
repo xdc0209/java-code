@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation=
+        "http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+
+  <start-state idref="promptForPaymentType" />
+  
+  <view-state id="promptForPaymentType" 
+      view="paymentType">
+    <transition on="creditcard" to="takeCreditCardInfo"/>
+    <transition on="*" to="finish"/>
+  </view-state>
+  
+  <view-state id="takeCreditCardInfo" view="creditCardForm">
+    <transition on="submit" to="processCreditCard"/>
+  </view-state>
+  
+  <action-state id="processCreditCard">
+    <bean-action bean="creditCardProcessor" 
+        method="processPayment">
+      <method-arguments>
+        <argument expression=
+            "${requestParameters.cardNumber}"/>
+        <argument expression=
+            "${requestParameters.expirationMonth}"/>
+        <argument expression=
+            "${requestParameters.expirationYear}"/>
+        <argument expression=
+            "${requestParameters.amount}"/>
+      </method-arguments>
+    </bean-action>
+    <transition on="success" to="finish" />
+  </action-state>
+
+  <end-state id="finish" />
+      
+  <global-transitions>
+    <transition on="cancel" to="finish" />
+  </global-transitions>      
+</flow>

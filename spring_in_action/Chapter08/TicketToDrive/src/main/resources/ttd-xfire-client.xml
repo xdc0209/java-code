@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- 
+    XFireClientFactoryBean to wire in a web service.
+    
+    From section 8.5.4, page 340. 
+   -->  
+  <bean id="citationService"
+      class="org.codehaus.xfire.spring.remoting.XFireClientFactoryBean">
+    <property name="wsdlDocumentUrl"
+        value="http://localhost:8080/citation/citationService?wsdl" />
+    <property name="serviceInterface"
+        value="com.tickettodrive.CitationService" />
+  </bean>
+
+</beans>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+           http://www.springframework.org/schema/lang 
+           http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+           
+  <!-- 
+  <bean id="coconut" class="com.springinaction.scripting.Coconut">
+    <property name="lime" ref="lime" />
+  </bean>
+  -->
+
+  <!-- ====================== GROOVY SCRIPTING ==================== -->
+  
+  <!-- 
+  <lang:groovy id="lime"
+      script-source="classpath:com/springinaction/scripting/Lime.groovy"  />
+  -->      
+
+  <!-- 
+  <lang:groovy id="lime" script-source=
+   "classpath:com/springinaction/scripting/LimeWithTextProperty.groovy">
+    <lang:property name="text" value="Called the doctor woke him up!" />
+  </lang:groovy>
+  -->
+ 
+  <!-- 
+  <lang:groovy id="lime">
+    <lang:inline-script><![CDATA[
+      class Lime implements com.springinaction.scripting.Lime {
+        void drink() {
+          print "Called the doctor woke him up!"
+        }
+      }
+      ]]>
+    </lang:inline-script>
+  </lang:groovy>
+  -->
+  
+  <!-- ====================== RUBY SCRIPTING ==================== -->
+  <lang:jruby id="lime"
+      script-source="classpath:com/springinaction/scripting/Lime.rb" 
+      script-interfaces="com.springinaction.scripting.Lime" />
+
+  <!-- 
+  <lang:jruby id="lime"
+      script-source="classpath:com/springinaction/scripting/Lime.rb" 
+      script-interfaces="com.springinaction.scripting.Lime" 
+      refresh-check-delay="5000"/>
+   -->
+
+  <!-- 
+  <lang:jruby id="lime"
+      script-source="classpath:com/springinaction/scripting/LimeWithTextProperty.rb" 
+      script-interfaces="com.springinaction.scripting.Lime">
+    <lang:property name="text" value="Called the doctor, woke him up!" />
+  </lang:jruby>
+  -->
+  
+  <!-- 
+  <lang:jruby id="lime"
+      script-interfaces="com.springinaction.scripting.Lime">
+    <lang:inline-script><![CDATA[
+      class Lime
+        def drink
+          puts "Called the doctor woke him up."
+        end
+      end
+      Lime.new
+      ]]>
+    </lang:inline-script>
+  </lang:jruby>
+  -->
+  
+  <!-- ==================== BEANSHELL SCRIPTING ================== -->
+<!-- 
+  <lang:bsh id="lime"
+      script-source="classpath:com/springinaction/scripting/Lime.bsh" 
+      script-interfaces="com.springinaction.scripting.Lime" />  
+-->
+
+  <!-- 
+  <lang:bsh id="lime"
+      script-source="classpath:com/springinaction/scripting/Lime.bsh" 
+      script-interfaces="com.springinaction.scripting.Lime" 
+      refresh-check-delay="5000" />  
+  -->
+      
+  <!-- 
+  <lang:bsh id="lime"
+      script-interfaces="com.springinaction.scripting.Lime">
+    <lang:inline-script><![CDATA[
+      void drink() {
+        System.out.println("Called the doctor woke him up!");
+      }
+      ]]>
+    </lang:inline-script>
+  </lang:bsh>  
+  -->
+
+<!-- 
+  <lang:bsh id="lime"
+      script-source="classpath:com/springinaction/scripting/LimeWithTextProperty.bsh" 
+      script-interfaces="com.springinaction.scripting.Lime">
+    <lang:property name="text" value="Call the doctor, woke him up!" />
+  </lang:bsh>  
+--> 
+
+<!-- ================== BIZARRO EXAMPLE ================== -->
+  <lang:groovy id="coconut"
+      script-source="classpath:com/springinaction/scripting/Coconut.groovy">
+    <lang:property name="lime" ref="lime" />
+  </lang:groovy>
+      
+<!-- <bean id="lime" class="com.springinaction.scripting.LimeImpl" /> -->
+</beans>

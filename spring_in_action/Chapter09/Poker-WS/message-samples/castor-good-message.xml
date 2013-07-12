@@ -1,0 +1,15 @@
+<!-- REFORMATTED FOR READABILITY -->
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope 
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header></soapenv:Header>
+  <soapenv:Body>
+    <tns:EvaluateHandResponse xmlns:tns="http://www.habuma.com/poker/schemas">
+      <tns:handName 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:type="java:java.lang.String">
+        FLUSH
+      </tns:handName>
+    </tns:EvaluateHandResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

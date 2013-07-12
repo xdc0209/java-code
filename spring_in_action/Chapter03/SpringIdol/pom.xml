@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>Chapter03</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>springidol-ch3</artifactId>
+  <packaging>jar</packaging>
+  <name>Spring in Action 2E, Spring Idol Example</name>
+  <url>http://www.springinaction.com</url>
+
+  <build>
+    <finalName>springidol</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant-antlr</artifactId>
+            <version>1.6.5</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <configuration>
+              <tasks>
+                <echo>====================================================================</echo>
+                <echo>=============================== RUNNING ============================</echo>
+                <echo>====================================================================</echo>
+                <java classname="com.springinaction.springidol.SpringIdolMain">
+                  <classpath>
+                    <path refid="maven.runtime.classpath" />
+                  </classpath> 
+                </java>
+                <java classname="com.springinaction.springidol.SpringIdolConfiguredMain" fork="true">
+                  <classpath>
+                    <path refid="maven.runtime.classpath" />
+                  </classpath> 
+                  <jvmarg line="-javaagent:lib/aspectjweaver.jar" />
+                </java>
+                <echo>====================================================================</echo>
+                <echo>=============================== FINISHED ===========================</echo>
+                <echo>====================================================================</echo>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>      
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.5.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-full</artifactId>
+      <version>2.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

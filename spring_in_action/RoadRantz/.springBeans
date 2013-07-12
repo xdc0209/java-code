@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<configExtensions>
+		<configExtension>xml</configExtension>
+	</configExtensions>
+	<configs>
+		<config>src/main/resources/roadrantz-data-jdbc.xml</config>
+		<config>src/main/resources/roadrantz-cache.xml</config>
+		<config>src/main/resources/roadrantz-jms.xml</config>
+		<config>src/main/resources/roadrantz-mbeans.xml</config>
+		<config>src/main/resources/roadrantz-data-hibernate.xml</config>
+		<config>src/main/resources/roadrantz-services.xml</config>
+		<config>src/main/resources/roadrantz-security.xml</config>
+		<config>src/main/resources/roadrantz-servlet.xml</config>
+		<config>src/main/resources/roadrantz-views.xml</config>
+		<config>src/main/resources/roadrantz-data-ibatis.xml</config>
+		<config>src/main/resources/roadrantz-data.xml</config>
+		<config>src/main/resources/roadrantz-data-jpa.xml</config>
+	</configs>
+	<configSets>
+		<configSet>
+			<name>Servlet, service, and data</name>
+			<allowBeanDefinitionOverriding>false</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/roadrantz-data.xml</config>
+				<config>src/main/resources/roadrantz-services.xml</config>
+				<config>src/main/resources/roadrantz-servlet.xml</config>
+			</configs>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

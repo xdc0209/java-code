@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  This XML file defines beans for caching, as depicted in section 5.7.
+  
+  Note that although these caching beans seem to work at runtime, you
+  may see some errors in the XML in your editor...if your editor is
+  XML/XSD-savvy. That's because the Spring Modules XSD files are not
+  actually located at http://www.springmodules.org, as they claim to be.
+  
+  This is a known issue and has been entered into the Spring Modules
+  issue tracking system at http://opensource.atlassian.com/projects/spring/browse/MOD-329.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:ehcache="http://www.springmodules.org/schema/ehcache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springmodules.org/schema/ehcache
+            http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd">
+
+  <!-- 
+    Loads the ehcache.xml configuration. From section 5.7.1, page 213. 
+   -->
+  <ehcache:config 
+     configLocation="classpath:ehcache.xml" />
+	 
+  
+  <!-- 
+    Configures the cache proxy, as described in section 5.7.2, page 215.
+    I discontinued use of it in favor of the annotation-based caching.
+   -->  
+  <!--
+  <ehcache:proxy id="rantDao"
+      refId="rantDaoTarget">
+    <ehcache:caching
+        methodName="getRantsForDay"
+        cacheName="rantzCache" />
+  </ehcache:proxy>
+  -->
+    
+  <!-- 
+    Configures annotation-based caching, as described in section 5.7.3.
+   -->
+  <ehcache:annotations>
+    <ehcache:caching id="rantzCacheModel" cacheName="rantzCache" />
+  </ehcache:annotations>  
+</beans>

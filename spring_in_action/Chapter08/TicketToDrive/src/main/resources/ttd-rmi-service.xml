@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+        
+  <bean id="citationService" class="com.tickettodrive.CitationServiceImpl" />
+  
+  <!-- 
+    An RMI service exporter, as discussed in section 8.2.2 and shown on 
+    page 315.
+   -->
+  <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="service" ref="citationService"/>
+    <property name="serviceName" value="CitationService"/>
+    <property name="serviceInterface"
+        value="com.tickettodrive.CitationService"/>
+  </bean>
+</beans>

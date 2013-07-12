@@ -1,0 +1,9 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" 
+    version="1.0">
+  <persistence-unit name="rantzPU">
+    <class>com.roadrantz.domain.Motorist</class>
+    <class>com.roadrantz.domain.Rant</class>
+    <class>com.roadrantz.domain.Vehicle</class>
+    <class>com.roadrantz.domain.MotoristPrivilege</class>
+  </persistence-unit>
+</persistence>

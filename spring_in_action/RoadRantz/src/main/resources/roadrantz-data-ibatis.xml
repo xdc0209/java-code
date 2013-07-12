@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+               http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+       
+  <!-- 
+    An iBATIS SqlMapClientFactoryBean, as discussed in section 5.6.1, page
+    204.
+   -->
+  <bean id="sqlMapClient" 
+      class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+    <property name="configLocation" value="sql-map-config.xml" />
+    <property name="dataSource" ref="dataSource" />
+  </bean>  
+
+  <!-- 
+    An iBATIS SqlMapClientTemplate, as discussed in section 5.6.1, page 204.
+    This was orignally wired into IBatisRantDao, but its use was discontinued
+    after IBatisRantDao evolved to extend SqlMapClientDaoSupport.
+   -->
+  <!-- 
+  <bean id="sqlMapClientTemplate" 
+      class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+    <property name="sqlMapClient" ref="sqlMapClient" />
+  </bean>
+  -->
+  
+  <bean id="transactionManager" 
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+  
+  <!-- 
+    The iBATIS-based RantDao, as described in section 5.6. It was originally
+    injected with sqlMapClientTemplate (page 206), but was later changed
+    to exten SqlMapClientDaoSupport and to be injected with sqlMapClient
+    (sectiong 5.6.2, page 207-208).
+   -->
+  <bean id="rantDao" class="com.roadrantz.dao.ibatis.IBatisRantDao">
+    <property name="sqlMapClient" ref="sqlMapClient" />
+  </bean>
+ </beans>

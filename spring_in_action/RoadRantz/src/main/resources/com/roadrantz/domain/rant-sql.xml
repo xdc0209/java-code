@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  The iBATIS mapping for the Rant domain object, as mentioned in Listing 5.11
+ -->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMap namespace="RoadRantz">
+  <resultMap id="rantResult" class="com.roadrantz.domain.Rant">
+    <result property="id" column="id" />
+    <result property="rantText" column="rantText" />
+    <result property="postedDate" column="postedDate" />
+    <result property="vehicle" column="vehicle_id" select="getVehicleById" />
+  </resultMap>
+
+  <select id="getAllRants" 
+      resultMap="rantResult">
+    <![CDATA[
+      select id, postedDate, rantText, vehicle_id
+        from rant
+    ]]>
+  </select>
+  
+  <select id="getRantsForDay" 
+      resultMap="rantResult">
+    <![CDATA[
+      select id, postedDate, rantText, vehicle_id
+        from rant
+       where postedDate = #VALUE#
+    ]]>
+  </select>
+  
+  <insert id="insertRant" parameterClass="com.roadrantz.domain.Rant">
+  	  	<selectKey keyProperty="id" resultClass="java.lang.Integer">
+			call identity()
+		</selectKey>	
+  
+    insert into Rant (id, rantText, postedDate, vehicle_id) 
+              values (null, #rantText#, #postedDate#, #vehicle.id#)
+  </insert>
+</sqlMap>

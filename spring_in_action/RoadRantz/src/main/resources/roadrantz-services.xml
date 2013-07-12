@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean id="rantService"
+      class="com.roadrantz.service.RantServiceImpl">
+    <property name="rantDao" ref="rantDao" />
+
+    <property name="mailSender" ref="mailSender" /> <!-- Added in section 12.2.1, page 453 -->
+    <property name="mailMessage" ref="mailMessage" /> <!-- Added in section 12.2.2, page 455 -->
+    <!--
+    <property name="notificationPublisher"
+        ref="notificationPublisher" />
+        -->
+  </bean>
+</beans>

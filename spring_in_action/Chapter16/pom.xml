@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>sia</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>Chapter16</artifactId>
+  <packaging>pom</packaging>
+  <name>Spring in Action 2E, Chapter 16 Examples</name>
+  <url>http://www.springinaction.com</url>
+
+  <modules>
+    <module>SpringPizza</module>
+  </modules>
+</project>

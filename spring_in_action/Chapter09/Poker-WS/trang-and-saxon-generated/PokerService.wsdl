@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:schema="http://www.habuma.com/poker/schemas"
+                  xmlns:tns="http://www.habuma.com/poker/schemas"
+                  name=""
+                  targetNamespace="http://www.habuma.com/poker/schemas">
+   <wsdl:types>
+      <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:schemas="http://www.habuma.com/poker/schemas"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://www.habuma.com/poker/schemas">
+         <xs:element name="EvaluateHandRequest">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" ref="schemas:card"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="card">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element ref="schemas:suit"/>
+                  <xs:element ref="schemas:face"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="suit" type="xs:NCName"/>
+         <xs:element name="face" type="xs:NCName"/>
+         <xs:element name="EvaluateHandResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element ref="schemas:handName"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="handName" type="xs:string"/>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:message name="EvaluateHandRequestMessage">
+      <wsdl:part name="body" element="schema:EvaluateHandRequest"/>
+   </wsdl:message>
+   <wsdl:message name="cardMessage">
+      <wsdl:part name="body" element="schema:card"/>
+   </wsdl:message>
+   <wsdl:message name="suitMessage">
+      <wsdl:part name="body" element="schema:suit"/>
+   </wsdl:message>
+   <wsdl:message name="faceMessage">
+      <wsdl:part name="body" element="schema:face"/>
+   </wsdl:message>
+   <wsdl:message name="EvaluateHandResponseMessage">
+      <wsdl:part name="body" element="schema:EvaluateHandResponse"/>
+   </wsdl:message>
+   <wsdl:message name="handNameMessage">
+      <wsdl:part name="body" element="schema:handName"/>
+   </wsdl:message>
+   <wsdl:portType name="PortType">
+      <wsdl:operation name="EvaluateHand">
+         <wsdl:input name="EvaluateHandInput" message="tns:EvaluateHandRequestMessage"/>
+         <wsdl:output name="EvaluateHandOutput" message="tns:EvaluateHandResponseMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="Binding" type="tns:PortType">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="EvaluateHand">
+         <wsdlsoap:operation soapAction="http://www.habuma.com/poker/schemas/EvaluateHand"/>
+         <wsdl:input name="EvaluateHandInput">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="EvaluateHandOutput">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="Service">
+      <wsdl:port name="Port" binding="tns:Binding">
+         <wsdlsoap:address location=""/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

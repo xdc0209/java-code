@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+               http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean id="messageSource" class=
+      "org.springframework.context.support.ResourceBundleMessageSource">
+    <property name="basenames">
+      <list>
+        <value>messages</value>
+        <value>errors</value>
+      </list>
+    </property>
+  </bean>
+  
+  <bean id="homePageController"
+      class="com.roadrantz.mvc.HomePageController">
+    <property name="rantService" ref="rantService" />
+  </bean>
+
+  <bean id="rantsForVehicleController"
+      class="com.roadrantz.mvc.RantsForVehicleController">
+    <property name="rantService" ref="rantService" />
+  </bean>
+
+  <bean id="rantsForDayController"
+      class="com.roadrantz.mvc.RantsForDayController" scope="prototype">
+    <property name="rantService" ref="rantService" />
+  </bean>
+  
+  <bean id="errorController" 
+      class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+  
+  <bean id="addRantController" 
+      class="com.roadrantz.mvc.AddRantFormController">
+    <property name="formView" value="addRant" />
+    <property name="successView" value="rantAdded" />
+    <property name="rantService" ref="rantService" />
+<!--     <property name="validator" ref="beanValidator" />  -->
+  </bean>
+  
+  <bean id="registerMotoristController"
+      class="com.roadrantz.mvc.MotoristRegistrationController">
+    <property name="rantService" ref="rantService" />
+    <property name="pages">
+      <list>
+        <value>motoristDetailForm</value>
+        <value>motoristVehicleForm</value>
+        <value>motoristConfirmation</value>
+        <value>redirect:home.htm</value>
+      </list>
+    </property>
+  </bean>
+  
+  <bean id="simpleHandler"
+      class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+ 
+  <bean id="throwawayHandler"
+      class="org.springframework.web.servlet.mvc.throwaway.ThrowawayControllerHandlerAdapter"/>
+
+<!-- 
+  <bean id="urlMapping" 
+      class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+-->
+
+  <bean id="loginController" 
+      class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+  <bean id="urlMapping"
+      class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings">
+      <props>
+        <prop key="/login.htm">loginController</prop>
+        <prop key="/home.htm">homePageController</prop>
+        <prop key="/error.htm">errorController</prop>
+        <prop key="/rantsForVehicle.htm">rantsForVehicleController</prop>
+        <prop key="/rantsForVehicle.rss">rantsForVehicleController</prop>
+        <prop key="/rantsForVehicle.xls">rantsForVehicleController</prop>
+        <prop key="/rantsForVehicle.pdf">rantsForVehicleController</prop>
+        <prop key="/rantsForDay.htm">rantsForDayController</prop>
+        <prop key="/register.htm">registerMotoristController</prop>
+        <prop key="/addRant.htm">addRantController</prop>
+      </props>
+    </property>
+  </bean>
+   
+  <bean id="specialViewResolver"
+      class="org.springframework.web.servlet.view.XmlViewResolver">
+    <property name="location" value="classpath:roadrantz-views.xml" />
+    <property name="order" value="0" />
+  </bean>
+
+<!--    
+  <bean id="jspViewResolver" 
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass"
+      value="org.springframework.web.servlet.view.InternalResourceView" />
+    <property name="prefix" value="/WEB-INF/jsp/" />
+    <property name="suffix" value=".jsp" />
+  </bean>
+-->
+
+  <!-- FOR TILES -->
+	<bean id="tilesConfigurer" 
+	    class="org.springframework.web.servlet.view.tiles.TilesConfigurer">
+	  <property name="definitions">
+	    <list>
+	      <value>/WEB-INF/roadrantz-tiles.xml</value>
+	    </list>
+	  </property>
+	</bean>
+	
+	<bean id="viewResolver" 
+	    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  <property name="viewClass"
+	      value="org.springframework.web.servlet.view.tiles.TilesJstlView"/>
+	</bean>
+	
+
+  <!-- FOR VELOCITY VIEWS -->
+  <!--
+	<bean id="velocityConfigurer" class=
+	   "org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+	  <property name="resourceLoaderPath" value="WEB-INF/velocity/" />
+	</bean>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+	  <property name="suffix" value=".vm" />
+	  <property name="exposeSpringMacroHelpers" value="true" />
+	</bean>
+	-->
+  
+  <!-- FOR FREEMARKER VIEWS -->
+<!-- 
+  <bean id="freemarkerConfig" 
+      class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"> 
+    <property name="templateLoaderPath" value="WEB-INF/freemarker/" />
+  </bean> 
+  
+  <bean id="viewResolver" 
+      class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+    <property name="suffix" value=".ftl" />
+	  <property name="exposeSpringMacroHelpers" value="true" />
+  </bean>
+-->
+  
+  
+  <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory" >
+    <property name="validationConfigLocations">
+      <list>
+        <value>WEB-INF/validator-rules.xml</value>
+        <value>WEB-INF/validation.xml</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="beanValidator" class="org.springmodules.validation.commons.DefaultBeanValidator">
+    <property name="validatorFactory" ref="validatorFactory" />
+  </bean>   
+</beans>

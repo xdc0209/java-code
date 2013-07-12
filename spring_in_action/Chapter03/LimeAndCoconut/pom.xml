@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>Chapter03</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>LimeAndCoconut</artifactId>
+  <packaging>jar</packaging>
+  <name>Spring in Action 2E, Scripted Bean Example</name>
+  <url>http://www.springinaction.com</url>
+
+  <build>
+    <finalName>limeandcoconut</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant-antlr</artifactId>
+            <version>1.6.5</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <configuration>
+              <tasks>
+                <echo>====================================================================</echo>
+                <echo>=============================== RUNNING ============================</echo>
+                <echo>====================================================================</echo>
+                <java classname="com.springinaction.scripting.ScriptingMain">
+                  <classpath>
+                    <path refid="maven.runtime.classpath" />
+                  </classpath> 
+                </java>
+                <echo>====================================================================</echo>
+                <echo>=============================== FINISHED ===========================</echo>
+                <echo>====================================================================</echo>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>      
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.beanshell</groupId>
+      <artifactId>bsh</artifactId>
+      <version>2.0b4</version>
+    </dependency>
+    <dependency>
+      <groupId>groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jruby</groupId>
+      <artifactId>jruby</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlrall</artifactId>
+      <version>2.7.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-full</artifactId>
+      <version>2.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

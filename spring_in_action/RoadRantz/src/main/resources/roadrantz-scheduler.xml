@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!--
+    The DailyRantEmailTask, as shown in section 12.3.1, page 458.
+   -->
+  <!--
+  <bean id="dailyRantEmailTask"
+      class="com.roadrantz.service.DailyRantEmailTask">
+    <property name="rantService" ref="rantService" />
+  </bean>
+  -->
+
+  <!--
+    The ScheduledTimerTask that triggers the dailyRantEmailTask.
+
+    As shown in section 12.3.1, page 458.
+   -->
+  <!--
+  <bean id="scheduledEmailTask"
+      class="org.springframework.scheduling.timer.ScheduledTimerTask">
+    <property name="timerTask" ref="dailyRantEmailTask" />
+    <property name="period" value="86400000" />
+  </bean>
+  -->
+
+  <!--
+    The TimerFactoryBean that starts the scheduledEmailTask.
+
+    As shown in section 12.3.1, page 459.
+   -->
+  <!--
+  <bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+    <property name="scheduledTimerTasks">
+      <list>
+        <ref bean="scheduledEmailTask" />
+      </list>
+    </property>
+  </bean>
+  -->
+
+  <!--
+    A Quartz Job Detail bean, as shown in section 12.3.2, page 461.
+   -->
+  <!--
+  <bean id="dailyRantEmailJob"
+      class="org.springframework.scheduling.quartz.JobDetailBean">
+    <property name="jobClass"
+        value="com.roadrantz.service.DailyRantEmailJob" />
+    <property name="jobDataAsMap">
+      <map>
+        <entry key="rantService" value-ref="rantService" />
+      </map>
+    </property>
+  </bean>
+  -->
+
+  <!--
+    A JobDetailFactoryBean to schedule a call to sendDailyRantEmails on the
+    rantService bean, using Quartz.
+
+    As shown in section 12.3.3, page 465.
+   -->
+  <bean id="dailyRantEmailJob"
+      class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    <property name="targetObject" ref="rantService"/>
+    <property name="targetMethod" value="sendDailyRantEmails" />
+  </bean>
+
+  <!--
+    A CronTriggerBean, as shown in section 12.3.2, page 463.
+   -->
+  <bean id="cronEmailTrigger"
+      class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="dailyRantEmailJob"/>
+    <property name="cronExpression" value="0 59 23 * * ?" />
+  </bean>
+
+   <!--
+     A SchedulerFactoryBean to start the cronEmailTrigger.
+
+     As shown in section 12.3.2, page 464.
+    -->
+	 <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	  <property name="triggers">
+	    <list>
+	      <ref bean="cronEmailTrigger"/>
+	    </list>
+	  </property>
+	</bean>
+</beans>

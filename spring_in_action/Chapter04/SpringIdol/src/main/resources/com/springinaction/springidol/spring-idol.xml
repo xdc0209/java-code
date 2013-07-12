@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+  <bean id="bo"
+      class="com.springinaction.springidol.Singer">
+    <constructor-arg value="Bo Bice" />
+    <property name="song" value="Sweet Home Alabama" />
+  </bean>
+  
+  <bean id="william"
+      class="com.springinaction.springidol.Singer">
+    <constructor-arg value="William Hung" index="0" />
+  </bean>
+  
+  <bean id="carrie"
+      class="com.springinaction.springidol.Singer">
+    <constructor-arg value="Carrie Underwood" />
+    <property name="song" value="Jesus Take the Wheel" />    
+  </bean>
+
+  <!--  OLD SCHOOL SPRING AOP  -->
+<!--   <bean id="audience" class="com.springinaction.springidol.Audience" /> -->
+
+<!-- 
+  <aop:config>
+    <aop:pointcut 
+        id="performance"
+        expression="execution(* *.perform(..))" />
+ -->
+<!-- 
+    <aop:aspect ref="audience">
+      <aop:around
+          method="aroundAdvice"
+          pointcut-ref="performance" />
+ -->
+     
+      <!-- 
+      <aop:before
+          method="takeSeats"
+          pointcut-ref="performance" />
+
+      <aop:before
+          method="turnOffCellPhones"
+          pointcut-ref="performance" />
+          
+      <aop:after-returning
+          method="applaud"
+          pointcut-ref="performance" />
+          
+      <aop:after-throwing
+          method="demandRefund"
+          pointcut-ref="performance" />
+      -->
+<!-- 
+    </aop:aspect>
+  </aop:config>
+ -->
+  <!-- 
+  <bean id="audienceAdvice" 
+      class="com.springinaction.springidol.AudienceAdvice">
+    <property name="audience" ref="audience" />
+  </bean>
+
+  <bean id="audienceAdvisor" 
+      class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <property name="advice" ref="audienceAdvice" />
+    <property name="pattern" value=".*perform" />
+  </bean>
+  -->
+  <!-- 
+  <bean id="audienceAdvisor"
+      class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+    <property name="advice" ref="audienceAdvice" />
+    <property name="expression" value="execution(* *.perform(..))" />
+  </bean>
+  
+  <bean id="audienceAdvisor"
+      class="org.springframework.aop.support.DefaultPointcutAdvisor">
+    <property name="advice" ref="audienceAdvice" />
+    <property name="pointcut" ref="audiencePointcut" />
+  </bean>
+  
+  <bean id="audiencePointcut" 
+      class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+    <property name="pattern" value=".*perform" />
+  </bean>
+   
+  <bean id="audiencePointcut"
+      class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+    <property name="expression" value="execution(* *.perform(..))" />
+  </bean>
+  -->
+    
+  <!-- 
+  <bean id="bo"
+      class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="target" ref="boTarget" />
+    <property name="proxyInterfaces"
+        value="com.springinaction.springidol.Performer" />
+    <property name="interceptorNames" value="audienceAdvisor" />
+  </bean>
+  -->
+
+  <!--   
+  <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+  -->  
+  <!-- 
+  <bean id="bo"
+      class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="target" ref="boTarget" />
+    <property name="proxyInterfaces" 
+        value="com.springinaction.springidol.Performer" />
+    <property name="interceptorNames" value="simon" />
+  </bean>
+  
+  <bean id="judgedPerfomerProxyTemplate"
+      class="org.springframework.aop.framework.ProxyFactoryBean"
+      lazy-init="true">
+    <property name="proxyInterfaces" 
+        value="com.springinaction.springidol.Performer" />
+    <property name="interceptorNames" value="simon" />
+  </bean>      
+  
+  <bean id="william"
+      parent="judgedPerfomerProxyTemplate">
+    <property name="target" ref="williamTarget" />
+  </bean>
+  -->
+
+  <bean id="paula"
+      class="com.springinaction.springidol.NiceJudge" />
+  
+  <aop:config>
+    <aop:aspect ref="paula">
+      <aop:before 
+          pointcut="execution(* *.perform(..))"
+          method="greetPerformer"/>
+      <aop:after-returning
+          pointcut="execution(* *.perform(..))"
+          method="saySomethingNice"/>
+      <aop:after-throwing
+          pointcut="execution(* *.perform(..))"
+          method="saySomethingNiceAnyway"/>
+    </aop:aspect>
+    
+  </aop:config>
+
+<!--   
+  <bean id="randy"
+      class="com.springinaction.springidol.ObjectiveJudge" />
+
+    <aop:aspectj-autoproxy />  -->
+
+
+  <!-- 
+  <bean class="com.springinaction.springidol.JudgeAspect"
+      factory-method="aspectOf">
+    <property name="criticismEngine" ref="criticismEngine" />
+  </bean>
+  -->
+  
+
+  <bean id="criticismEngine"
+      class="com.springinaction.springidol.CriticismEngineImpl">
+    <property name="criticismPool">
+      <list>
+        <value>I'm not being rude, but that was appalling.</value>
+        <value>You may be the least talented person in this show.</value>
+        <value>Do everyone a favor and keep your day job.</value>
+      </list>
+    </property>
+  </bean>
+</beans>

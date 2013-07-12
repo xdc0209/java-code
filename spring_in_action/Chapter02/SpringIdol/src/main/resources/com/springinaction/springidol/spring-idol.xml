@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <alias alias="dukeAlias" name="duke" />
+
+  <!-- ==================================================================== -->
+  <!-- Spring Idol talent compitition class                                 -->
+  <!-- ==================================================================== -->
+  <bean id="springIdol" class="com.springinaction.springidol.SpringIdol">
+    <property name="performers">
+      <list>
+        <ref bean="duke" />
+        <ref bean="kenny"  />
+        <ref bean="hank"  />
+      </list>
+    </property>
+  </bean>
+
+  <!-- ==================================================================== -->
+  <!-- Instruments performers can use                                       -->
+  <!-- ==================================================================== -->
+  <bean id="harmonica" class="com.springinaction.springidol.Harmonica" />
+  <bean id="cymbal" class="com.springinaction.springidol.Cymbal" />
+  <bean id="guitar" class="com.springinaction.springidol.Guitar" />
+  <bean id="saxophone" class="com.springinaction.springidol.Saxophone" />
+
+  <!-- ==================================================================== -->
+  <!-- Performers                                                           -->
+  <!-- ==================================================================== -->
+  <bean id="hank" class="com.springinaction.springidol.OneManBand">
+    <property name="instruments">
+      <!-- 
+      <list>
+	      <ref bean="guitar" />
+	      <ref bean="saxophone" />
+	      <ref bean="cymbal" />
+	      <ref bean="cymbal" />
+      </list>
+      -->
+      <!-- 
+      <props>
+        <prop key="GUITAR">STRUM STRUM STRUM</prop>
+        <prop key="CYMBAL">CRASH CRASH CRASH</prop>
+        <prop key="HARMONICA">HUM HUM HUM</prop>
+      </props>
+      -->
+      <map>
+        <entry key="GUITAR" value="STRUM STRUM STRUM" />
+      </map>
+    </property>
+  </bean>
+
+  <bean id="duke" 
+      class="com.springinaction.springidol.PoeticJuggler"
+      autowire="constructor">
+<!--     <constructor-arg ref="sonnet29" />  -->
+  </bean>
+  
+  <bean id="sonnet29" class="com.springinaction.springidol.Sonnet29" />
+
+  <bean id="baseSaxophonist" 
+      class="com.springinaction.springidol.Instrumentalist" 
+      abstract="true">
+    <property name="song" value="Jingle Bells" /> 
+    <property name="instrument" ref="saxophone" />    
+  </bean>
+      
+  <bean id="kenny" parent="baseSaxophonist" />
+  
+</beans>

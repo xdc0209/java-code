@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns=
+        "http://www.springframework.org/schema/webflow"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation=
+        "http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+
+  <!-- Placeholder for the Order, as described on page 592 -->
+  <var name="order" 
+      class="com.springinaction.pizza.domain.Order" 
+      scope="flow"/>
+
+  <start-state idref="getCustomerInfo" />
+  
+  <!-- 
+    Flip to customer info subflow.
+    
+    As originally shown on page 617
+   -->
+  <subflow-state id="getCustomerInfo" 
+      flow="CustomerInfo-flow">
+    <attribute-mapper>
+      <output-mapper>
+        <mapping source="customer" 
+            target="requestScope.customer" /> <!-- Can this be request or flash??? -->
+      </output-mapper>
+    </attribute-mapper>
+    <transition on="finish" to="showOrder">
+      <evaluate-action expression=
+   "flowScope.order.setCustomer(requestScope.customer)" />
+    </transition>
+  </subflow-state>
+    
+  <view-state id="showOrder" view="orderDetails">
+    <transition on="addPizza" to="choosePizza" />
+    <transition on="continue" to="takePayment" />
+  </view-state>
+  
+  <subflow-state id="choosePizza" flow="Pizza-flow">
+    <attribute-mapper>
+      <output-mapper>
+        <mapping source="pizza" 
+            target="flowScope.pizza" />
+      </output-mapper>
+    </attribute-mapper>
+    <transition on="finish" to="showOrder">
+      <evaluate-action expression=
+          "flowScope.order.addPizza(flowScope.pizza)" />
+    </transition>
+    <transition on="cancelPizza" to="showOrder" />
+  </subflow-state>
+  
+  <!-- 
+    View state to take payment info from a customer.
+    
+    Shown on pages 605-606
+   -->
+  <subflow-state id="takePayment" flow="Payment-flow">
+    <attribute-mapper>
+      <input-mapper>
+        <mapping source="flowScope.order.total" 
+            target="orderTotal" />
+      </input-mapper>
+    </attribute-mapper>
+    <transition on="finish" to="finish" />
+  </subflow-state>
+    
+  <action-state id="saveOrder">
+    <bean-action bean="orderService" method="saveOrder">
+      <method-arguments>
+        <argument expression=
+            "${flowScope.order}"/>
+      </method-arguments>
+    </bean-action>
+    <transition on="*" to="finish" />
+  </action-state>
+    
+  <!-- 
+    Originally defined on page 593. Then later, on page 593, tweaked to restart the
+    flow from the beginning.
+   -->
+  <end-state id="finish" 
+      view="flowRedirect:Order-flow" />
+
+  <!-- 
+    Globally transition "cancel" to the "finish" state
+    
+    As shown on page 608
+   -->      
+  <global-transitions>
+    <transition on="cancel" to="finish" />
+  </global-transitions>
+</flow>

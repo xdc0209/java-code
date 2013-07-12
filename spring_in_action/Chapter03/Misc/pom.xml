@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>Chapter03</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>misc</artifactId>
+  <packaging>jar</packaging>
+  <name>Spring in Action 2E, Misc Chapter 3 Examples</name>
+  <url>http://www.springinaction.com</url>
+
+  <build>
+    <finalName>misc</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant-antlr</artifactId>
+            <version>1.6.5</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <configuration>
+              <tasks>
+                <echo>====================================================================</echo>
+                <echo>=============================== RUNNING ============================</echo>
+                <echo>====================================================================</echo>
+                <java classname="com.springinaction.chapter03.propeditor.PropertyEditorMain">
+                  <classpath>
+                    <path refid="maven.runtime.classpath" />
+                  </classpath> 
+                </java>
+                <java classname="com.springinaction.chapter03.postprocessor.FuddMain">
+                  <classpath>
+                    <path refid="maven.runtime.classpath" />
+                  </classpath> 
+                </java>
+                <echo>====================================================================</echo>
+                <echo>=============================== FINISHED ===========================</echo>
+                <echo>====================================================================</echo>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>      
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.5.3</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

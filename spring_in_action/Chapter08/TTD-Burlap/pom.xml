@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project>
+  <parent>
+    <groupId>com.springinaction</groupId>
+    <artifactId>Chapter08</artifactId>
+    <version>2.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springinaction</groupId>
+  <artifactId>TTD-Burlap</artifactId>
+  <packaging>war</packaging>
+  <name>Spring in Action 2E, TicketToDrive Burlap Service Example</name>
+  <version>2.0</version>
+  <url>http://www.springinaction.com</url>
+
+  <build>
+    <finalName>citation</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin> 
+    </plugins>
+  </build>
+  
+  <dependencies>
+    <dependency>
+     <groupId>com.springinaction</groupId>
+     <artifactId>TicketToDrive</artifactId>
+     <version>2.0</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>burlap</groupId>
+      <artifactId>burlap</artifactId>
+      <version>2.1.7</version>
+    </dependency> 
+  </dependencies>
+</project>

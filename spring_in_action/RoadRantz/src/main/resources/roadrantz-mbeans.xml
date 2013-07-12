@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- The original incarnation of MBeanExporter, as shown in
+       section 12.4.1, page 468.  -->
+  <!--
+  <bean class="org.springframework.jmx.export.MBeanExporter">
+    <property name="beans">
+      <map>
+        <entry key="rantz:name=emailSchedule"
+            value-ref="cronEmailTrigger"/>
+      </map>
+    </property>
+  </bean>
+  -->
+
+
+
+  <!-- MBean exporter specifying an assembler, as shown on page 470  -->
+  <!--
+  <bean class="org.springframework.jmx.export.MBeanExporter">
+    <property name="beans">
+      <map>
+        <entry key="rantz:name=emailSchedule" value-ref="cronEmailTrigger"/>
+        <entry key="rantz:name=rantService" value-ref="rantService"/>
+      </map>
+    </property>
+    <property name="assembler" ref="assembler" />
+  </bean>
+  -->
+
+  <!-- The metadata-driven MBeanExporter, as shown on page 475. -->
+  <bean class="org.springframework.jmx.export.MBeanExporter">
+    <property name="namingStrategy" ref="namingStrategy" />
+ 	  <property name="assembler" ref="assembler" />
+    <property name="autodetectModeName" value="AUTODETECT_ASSEMBLER" />
+  </bean>
+
+  <!-- A meta-data based naming strategy, as shown on page 476 -->
+  <bean id="namingStrategy"
+      class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+    <property name="attributeSource" ref="attributeSource" />
+  </bean>
+
+
+  <!-- A Java 5 annotation-based JMX attribute source, as shown on page 474 -->
+  <bean id="attributeSource"
+      class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource" />
+
+
+<!-- ===========================
+        MBean Info Assemblers
+     =========================== -->
+
+  <!-- A meta-data based assembler, as shown on page 474 -->
+  <!--
+  <bean id="assembler"
+      class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+    <property name="attributeSource" ref="attributeSource" />
+  </bean>
+  -->
+
+  <!-- A method name based assembler, as shown on page 471 -->
+  <!--
+  <bean id="assembler"
+      class="org.springframework.jmx.export.assembler.MethodNameBasedMBeanInfoAssembler">
+    <property name="managedMethods"
+        value="setText,setSubject,setFrom,getText,getSubject,getFrom,getCronExpression,setCronExpression" />
+  </bean>
+  -->
+
+  <!-- An interface-based assembler, as shown on page 473 -->
+  <bean id="assembler"
+      class="org.springframework.jmx.export.assembler.InterfaceBasedMBeanInfoAssembler">
+    <property name="managedInterfaces">
+      <list>
+        <value>com.roadrantz.service.mbean.ManagedRantService</value>
+        <value>com.roadrantz.service.mbean.ManagedCronTrigger</value>
+      </list>
+    </property>
+  </bean>
+</beans>

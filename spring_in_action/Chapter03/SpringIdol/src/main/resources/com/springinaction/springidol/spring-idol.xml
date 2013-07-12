@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <alias alias="dukeAlias" name="duke" />
+  
+  <!-- ==================================================================== -->
+  <!-- Spring Idol talent compitition class                                 -->
+  <!-- ==================================================================== -->
+  <bean id="springIdol" class="com.springinaction.springidol.SpringIdol">
+    <property name="performers">
+      <list>
+        <ref bean="harry" />
+        <ref bean="miStevie" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- ==================================================================== -->
+  <!-- Instruments performers can use                                       -->
+  <!-- ==================================================================== -->
+  <bean id="guitar" class="com.springinaction.springidol.Guitar" />
+  <bean id="saxophone" class="com.springinaction.springidol.Saxophone" />
+
+  <!-- ==================================================================== -->
+  <!-- Abstract Performers                                                  -->
+  <!-- ==================================================================== -->
+  <bean id="baseSaxophonist" 
+      class="com.springinaction.springidol.Instrumentalist" 
+      abstract="true">
+    <property name="song" value="Jingle Bells" /> 
+    <property name="instrument" ref="saxophone" />    
+  </bean>
+      
+  <!-- @Configurable Instrumentalist -->
+  <bean id="pianist" 
+      class="com.springinaction.springidol.Instrumentalist"
+      abstract="true">
+    <property name="song" value="Chopsticks" />
+    <property name="instrument">
+      <bean class="com.springinaction.springidol.Piano" />
+    </property>
+  </bean>
+
+  <!-- ==================================================================== -->
+  <!-- Performers                                                           -->
+  <!-- ==================================================================== -->
+  <bean id="stevie" class="com.springinaction.springidol.Instrumentalist">
+    <property name="instrument" ref="guitar" />
+  </bean>
+
+  <bean id="kenny" parent="baseSaxophonist" />
+  <bean id="david" parent="baseSaxophonist" />
+  
+  <bean id="frank" parent="baseSaxophonist">
+    <property name="song" value="Mary had a little lamb" />
+  </bean>
+  
+  <bean id="harry" class="com.springinaction.springidol.Magician">
+    <property name="magicBox" ref="magicBox" />
+    <property name="magicWords" value="Bippity boppity boo" />
+  </bean>
+  
+  <bean id="magicBox" class="com.springinaction.springidol.MagicBoxImpl">
+    <replaced-method name="getContents" replacer="tigerReplacer" />
+  </bean>
+  
+  <bean id="tigerReplacer" 
+      class="com.springinaction.springidol.TigerReplacer" />
+      
+  <bean id="miStevie"
+      class="com.springinaction.springidol.MethodInjectedInstrumentalist">
+    <lookup-method name="getInstrument" bean="guitar" />
+    <property name="song" value="Greensleeves" />
+  </bean>
+  
+</beans>

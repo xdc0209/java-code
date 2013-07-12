@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!--
+    A JavaMail implementation of MailSender.
+
+    As discussed in section 12.2.1, page 451.
+   -->
+  <bean id="mailSender"
+      class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="mail.roadrantz.com" />
+  </bean>
+
+  <!--
+    A simple mail message bean.
+
+    As discussed in section 12.2.2, page 454.
+   -->
+  <bean id="mailMessage"
+      class="org.springframework.mail.SimpleMailMessage">
+    <property name="from">
+      <value><![CDATA[RoadRantz <craig@habuma.com>]]></value>
+    </property>
+    <property name="subject" value="You've got new Rantz!" />
+    <property name="text">
+      <value>
+        <![CDATA[
+Someone's been ranting about you! Log in to RoadRantz.com or
+click on the link below to see what they had to say.
+
+http://www.roadrantz.com/rantsForVehicle.htm?state=%STATE%&plateNumber=%PLATE%
+        ]]>
+      </value>
+    </property>
+  </bean>
+</beans>

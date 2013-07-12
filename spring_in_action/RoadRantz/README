@@ -1,0 +1,171 @@
+WHAT THE HECK IS ROADRANTZ?
+===========================
+If you've been reading the book, you're probably wondering what RoadRantz is.
+Well, I had intended to write a short "About RoadRantz" segment to fit nicely
+in between chapters 4 and 5. Unfortunately, due to size and time constraints
+that never happened. 
+
+In some attempt to make up for it, I'm going to attempt to settle the question
+of what RoadRantz is with this file.
+
+It started that day I almost died
+---------------------------------
+Like many people in today's workforce, I have spent a large portion of my
+life driving to and from work. The reality is that most of my jobs have been
+nowhere near my home and I've been required to commute up to an hour and a
+half each way (worst case). 
+
+Whether you realize it or not, we share the road with a bunch of complete
+idiots. I generally don't have any bias against idiots--they can't help it
+that their brain capacity is low. But if you're an idiot, I really wish that
+you'd recognize your limitations and not try to do more than one thing while
+you're driving. And, in fact, I'd really prefer it if that one thing was to
+focus on driving your car.
+
+But apparently idiots (because they're idiots) don't take their limits
+into consideration and attempt to do all kinds of things while behind the
+wheel. I've seen things ranging from the basic cell-phone talker to the
+woman who emptied an entire can of hair spray while engaged in a hopeless
+attempt to beautify herself. In all cases, the motorists were putting
+themselves and others on the road in danger.
+
+In short, if you're busy doing anything other than driving, you're not
+going to be able to drive that well. Not to mention, that much hair spray 
+creates a blinding haze that limits your visibility.
+
+Anyway, on one particular day, one of those idiots almost broad-sided me,
+swerving at the last second. I was certain that I had almost died--they were
+certain that they had just lost their cell signal.
+
+At that time, I decided there needed to be a way for me and other drivers to 
+vent about those idiots on the road that fail to recognize that they're
+endangering others lives with their reckless commute-time habits.
+
+And so on that day, the idea of RoadRantz was born.
+
+Because I thought that the internet could use another community site
+--------------------------------------------------------------------
+RoadRantz is a community site in the same vein as MySpace or Facebook. The
+big difference is that instead of building a community of friends (Why do
+you need that? If they're you're friends you should just call them or go
+get pizza or something.) you're building a community of people you've
+encountered in traffic. 
+
+The idea started simple enough: Take note of an idiot's license plate number
+and then go online to tell anyone and everyone how this particular motorist
+really needs to pull his head out of whatever orifice it has been placed in.
+If the driver in question is really that bad, they'll probably rack up a
+lengthy list of rants on RoadRantz.
+
+Then the idea grew a little. It's certainly fun to let off some steam by
+ranting about a fellow motorist. But RoadRantz could also be used for more
+friendly encounters. Let's say you just pulled up next to a rather toothsome
+driver at a red light. It could also be fun to leave a message for him/her
+to let them know that they caught your eye.
+
+The opportunities to hook-up on RoadRantz are endless. Whether you're angry
+with a fellow road-hog or simply want to arrange another traffic-light
+encounter, RoadRantz can be a lot of fun.
+
+What's in this project
+----------------------
+I decided that RoadRantz would be a fun example for Spring in Action, 2E.
+That's because it covers so much of the ground that would also be covered
+in the book. No example is perfect and I couldn't easily use RoadRantz for 
+all sections in the book. But I think it does a good job of demonstrating
+most of the topics in SiA2.
+
+What you'll find in this project is a large portion of the RoadRantz
+application. But not all of the application is here. That's because I've
+had to focus my energy on getting the book done. Therefore, I've built just
+enough of the RoadRantz application to demonstrate the concepts in the book
+and only a little more than that.
+
+The problem with trying to demonstrate a wealth of Spring techniques in 
+a simple application is that you end up with a hammer in search of nails.
+That is, I needed to demonstrate something, so in some cases I shoe-horned
+an example into the RoadRantz application, even if I probably wouldn't
+actually use that example in the real RoadRantz application.
+
+Now that the book is done, I intend to continue working on the RoadRantz
+application as a toy project. That means that I'll continue to add
+functionality and will continue to evolve the design. I'll also clean up
+the application, removing some of the examples that don't quite fit.
+And eventually I'll deploy it for public consumption. 
+
+If you want to follow along with the changes I make, you can check out the 
+code from svn://svn.geekisp.com/SiA. The new changes will be made on the 
+trunk, but you can always retrieve the original book version of the code
+from the BOOK-1.0 tag.
+
+The basic design of RaodRantz
+-----------------------------
+Lately, I've become captivated by the idea of Domain Driven Design, as
+presented at length in Erik Evans' "Domain Driven Design: Tackling Complexity
+in the Heart of Software" and other related books and writings. 
+
+Unfortunately, that interest in DDD came too late to impact the design of
+the RoadRantz application. 
+
+So, RoadRantz follows a fairly basic layered approach consisting of a
+presentation layer, a business layer, and a persistence layer. Transcending
+all of those layers is a handful of domain objects, although not exactly
+the same rich domain-layer you might find discussed in Eric Evans' book. 
+
+In the presentation layer you'll find things like Spring MVC and, to a
+lesser extent, Struts, WebWork, Tapestry, and JSF.
+
+The business layer consists of the RantService interface and its
+implementation. The primary role Spring plays in this layer is to provide
+declarative transactions for the service methods. But there are also other
+service-related items such as e-mail support that show up here.
+
+The persistence layer is where you'll find Spring simplifying JDBC, JPA,
+Hibernate, and iBATIS to access the database. You'll also find the Spring
+Modules' cache implementation playing a part in improving the performance
+for frequently performed queries.
+
+I've come to believe that no matter how much work I put into a design, I'll
+always have regrets and end up wishing I had another chance to do it better.
+But the 2nd edition is printed and there's little I can do to change that
+now. If I do a 3rd edition of Spring in Action, then I suppose I can correct
+the design of RoadRantz to fit the DDD approach. Until then, you can follow
+along as I rework RoadRantz by checking out the latest code from the trunk
+of the Subversion repository (see above).
+
+Building RoadRantz
+------------------
+I'm using Maven 2 to build the RoadRantz application. Everything you need
+should already be in the pom.xml file, so you'll only need to type this
+to build a WAR file:
+
+   % mvn package
+
+When it's done, there'll be a RoadRantz.war file in the target directory.
+I don't anticipate any problems deploying this in any JEE web container,
+but I have only tried it in Tomcat (5.5.x and 6.0.x). If you run into any
+trouble getting it to run in any other container, let me know. Even better,
+since I may not have access to your container, any patch you can submit to
+fix it to work in your container would be welcome.
+
+Another thing: You'll need a database. In the db directory, you'll find
+a create-tables.sql file which includes SQL for creating the tables in
+Hypersonic. You'll need to tweak those in order to use a different database.
+
+The RantService tests (RantServiceTest*.java) are excluded from normal
+test execution in the Maven pom.xml file. That's because they're not 
+really unit-tests and because they require a database to be setup and
+running in order to test the RantService implementation. If you want to
+run those tests, you'll need to specify the "itest" Maven profile, as
+follows:
+
+   % mvc -P itest test
+
+At the moment, you'll need a running database to run those integration
+tests against RantServiceImpl. I intend to eventually rework those tests to 
+use an in-memory Hypersonic database so they won't need a database otherwise.
+But for now, be sure to have a DB going.
+
+One final detail: Once you've got the database setup, you'll want to tweak
+the database connection properties. Those are setup in the db.properties file.
+

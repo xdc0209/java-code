@@ -1,0 +1,15 @@
+<html>
+  <head><title>Rantz For Vehicle</title></head>
+
+  <body>
+    <h2>Rantz for: ${vehicle.state} ${vehicle.plateNumber}</h2>
+    
+    <ul>
+    #foreach($rant in $rants)  
+    <li>${rant.vehicle.state}/
+        ${rant.vehicle.plateNumber} -- 
+        ${rant.rantText}
+    #end
+    </ul>
+  </body>
+</html>
