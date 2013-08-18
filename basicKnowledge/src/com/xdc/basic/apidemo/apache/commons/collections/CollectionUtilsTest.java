@@ -1,10 +1,12 @@
 package com.xdc.basic.apidemo.apache.commons.collections;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -19,13 +21,13 @@ public class CollectionUtilsTest
 		List<String> a = Arrays.asList(arrayA);
 		List<String> b = Arrays.asList(arrayB);
 
-		// 并集      
+		// 并集
 		Collection<String> union = CollectionUtils.union(a, b);
-		// 交集      
+		// 交集
 		Collection<String> intersection = CollectionUtils.intersection(a, b);
-		// 交集的补集      
+		// 交集的补集
 		Collection<String> disjunction = CollectionUtils.disjunction(a, b);
-		// 集合相减      
+		// 集合相减
 		Collection<String> subtract = CollectionUtils.subtract(a, b);
 
 		// 排序
@@ -41,6 +43,13 @@ public class CollectionUtilsTest
 		System.out.println("Intersection(A, B): " + ArrayUtils.toString(intersection.toArray()));
 		System.out.println("Disjunction(A, B): " + ArrayUtils.toString(disjunction.toArray()));
 		System.out.println("Subtract(A, B): " + ArrayUtils.toString(subtract.toArray()));
-	}
 
+		// 查找
+		List<Person> persons = new ArrayList<>();
+		persons.add(new Person("xudachao", 25, false));
+		persons.add(new Person("gengxue", 24, false));
+		Person person = (Person) CollectionUtils.find(persons, new BeanPropertyValueEqualsPredicate("name", "xudachao",
+				true));
+		System.out.println(person);
+	}
 }
