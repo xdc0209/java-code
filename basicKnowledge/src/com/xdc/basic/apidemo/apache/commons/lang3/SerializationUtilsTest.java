@@ -11,14 +11,13 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.SerializationUtils;
 
+import com.xdc.basic.skills.GetCurPath;
+
 public class SerializationUtilsTest
 {
 	public static void main(String[] args)
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		// =========================================================================
 		Date date = new Date();

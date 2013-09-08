@@ -3,6 +3,8 @@ package com.xdc.basic.apidemo.java4android.io;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import com.xdc.basic.skills.GetCurPath;
+
 /**
  * io字节流示例
  * 
@@ -13,10 +15,7 @@ class IOByteStreamTest
 {
 	public static void main(String[] args)
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		// 声明输入流、输出流引用
 		FileInputStream fis = null;

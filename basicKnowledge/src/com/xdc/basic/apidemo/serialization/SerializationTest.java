@@ -5,16 +5,15 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import com.xdc.basic.skills.GetCurPath;
+
 public class SerializationTest
 {
 	public static void main(String[] args)
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
-		//Object serialization
+		// Object serialization
 		try
 		{
 			Student student1 = new Student("xdc", 25);
@@ -34,7 +33,7 @@ public class SerializationTest
 			System.exit(0);
 		}
 
-		//Object deserialization
+		// Object deserialization
 		try
 		{
 			Student student2;

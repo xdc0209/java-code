@@ -3,6 +3,8 @@ package com.xdc.basic.apidemo.java4android.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import com.xdc.basic.skills.GetCurPath;
+
 /**
  * 处理流示例
  * 
@@ -13,10 +15,7 @@ class BufferedReaderTest
 {
 	public static void main(String[] args)
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;

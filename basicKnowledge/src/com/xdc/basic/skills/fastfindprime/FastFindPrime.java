@@ -5,16 +5,15 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
+import com.xdc.basic.skills.GetCurPath;
+
 public class FastFindPrime
 {
 	public static void main(String[] args)
 	{
 		// 求1--1000000之间的素数
 
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		long startTime;
 		long endTime;

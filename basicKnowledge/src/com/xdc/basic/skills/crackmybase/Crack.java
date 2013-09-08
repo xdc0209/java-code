@@ -6,14 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import com.xdc.basic.skills.GetCurPath;
+
 public class Crack
 {
 	public static void main(String[] args)
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;

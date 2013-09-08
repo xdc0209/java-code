@@ -8,6 +8,8 @@ import java.net.SocketException;
 
 import org.apache.commons.io.IOUtils;
 
+import com.xdc.basic.skills.GetCurPath;
+
 class FortuneServer extends Thread
 {
 	DatagramSocket	ServerSocket;
@@ -35,10 +37,7 @@ class FortuneServer extends Thread
 
 	public void run()
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		FileInputStream inStream = null;
 		while (true)

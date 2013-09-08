@@ -11,14 +11,13 @@ import org.apache.commons.io.filefilter.CanReadFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.lang.SystemUtils;
 
+import com.xdc.basic.skills.GetCurPath;
+
 public class FileUtilsTest
 {
 	public static void main(String[] args)
 	{
-		// 获取当前路径
-		String curClassName = new Throwable().getStackTrace()[0].getClassName();
-		String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-		String curPath = "src\\" + curPackage.replace(".", "\\") + "\\";
+		String curPath = GetCurPath.getCurPath();
 
 		File fromFile = FileUtils.getFile(curPath + "from.txt");
 		File toFile = FileUtils.getFile(curPath + "to.txt");
