@@ -8,10 +8,10 @@ public class HexTest
 {
 	public static void main(String[] args)
 	{
-		byte[] originalBytes = StringUtils.getBytesUtf8("You're my baby!");
+		byte[] raw = StringUtils.getBytesUtf8("You're my baby!");
 
-		char[] encodeHex = Hex.encodeHex(originalBytes);
-		String encodeHexString = Hex.encodeHexString(originalBytes);
+		char[] encodeHex = Hex.encodeHex(raw);
+		String encodeHexString = Hex.encodeHexString(raw);
 
 		try
 		{
