@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.CanReadFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang.SystemUtils;
 
 public class FileUtilsTest
@@ -23,17 +24,17 @@ public class FileUtilsTest
 		File toFile = FileUtils.getFile(curPath + "to.txt");
 
 		// 列出指定目录的所有目录和文件
-		IOFileFilter fileFilter = TrueFileFilter.INSTANCE;
-		IOFileFilter dirFilter = TrueFileFilter.INSTANCE;
+		IOFileFilter fileFilter = CanReadFileFilter.CAN_READ;
+		IOFileFilter dirFilter = CanReadFileFilter.READ_ONLY;
 		Collection<File> listFilesAndDirs = FileUtils.listFilesAndDirs(new File(curPath), fileFilter, dirFilter);
 		System.out.println(listFilesAndDirs);
 
 		try
 		{
-			String fileString = FileUtils.readFileToString(fromFile, "UTF-8");
-			FileUtils.writeStringToFile(toFile, fileString, "UTF-8", false);
+			String fileString = FileUtils.readFileToString(fromFile, Charsets.UTF_8);
+			FileUtils.writeStringToFile(toFile, fileString, Charsets.UTF_8, false);
 
-			List<String> lines = FileUtils.readLines(fromFile, "UTF-8");
+			List<String> lines = FileUtils.readLines(fromFile, Charsets.UTF_8);
 			FileUtils.writeLines(toFile, "UTF-8", lines, SystemUtils.LINE_SEPARATOR, false);
 
 			// linux下的touch命令
