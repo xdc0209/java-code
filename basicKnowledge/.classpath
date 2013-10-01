@@ -11,7 +11,7 @@
 	<classpathentry kind="lib" path="lib/apache/commons-collections-3.2.1.jar" sourcepath="libsrc/apache/commons-collections-3.2.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-configuration-1.9.jar" sourcepath="libsrc/apache/commons-configuration-1.9-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-digester3-3.2.jar"/>
-	<classpathentry kind="lib" path="lib/apache/commons-exec-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons-exec-1.1.jar" sourcepath="libsrc/apache/commons-exec-1.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-io-2.4.jar" sourcepath="libsrc/apache/commons-io-2.4-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-jxpath-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-lang-2.6.jar"/>
