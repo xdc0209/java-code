@@ -1,8 +1,9 @@
 package com.xdc.basic.apidemo.jaxb;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.io.Writer;
 
 import javax.xml.bind.JAXBContext;
@@ -12,25 +13,44 @@ import javax.xml.bind.Unmarshaller;
 
 public class XMLConvertor
 {
-	private JAXBContext	jaxbContext	= null;
+	private JAXBContext		jaxbContext		= null;
+	private Marshaller		marshaller		= null;
+	private Unmarshaller	unmarshaller	= null;
 
 	public XMLConvertor(String conextPath) throws JAXBException
 	{
-		this.jaxbContext = JAXBContext.newInstance(conextPath);
+		jaxbContext = JAXBContext.newInstance(conextPath);
+		marshaller = jaxbContext.createMarshaller();
+		unmarshaller = jaxbContext.createUnmarshaller();
 	}
 
-	public Object xml2java(String xml) throws JAXBException
+	public Object xml2java(Reader rd) throws JAXBException
 	{
-		Reader rd = new StringReader(xml);
-		Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
 		return unmarshaller.unmarshal(rd);
 	}
 
-	public String java2xml(Object obj) throws JAXBException
+	public void java2xml(Object obj, Writer wt) throws JAXBException
 	{
-		Writer wt = new StringWriter();
-		Marshaller marshaller = this.jaxbContext.createMarshaller();
 		marshaller.marshal(obj, wt);
-		return wt.toString();
+	}
+
+	public Object xml2java(InputStream is) throws JAXBException
+	{
+		return unmarshaller.unmarshal(is);
+	}
+
+	public void java2xml(Object obj, OutputStream os) throws JAXBException
+	{
+		marshaller.marshal(obj, os);
+	}
+
+	public Object xml2java(File file) throws JAXBException
+	{
+		return unmarshaller.unmarshal(file);
+	}
+
+	public void java2xml(Object obj, File file) throws JAXBException
+	{
+		marshaller.marshal(obj, file);
 	}
 }
