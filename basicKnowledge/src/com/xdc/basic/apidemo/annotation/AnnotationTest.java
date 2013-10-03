@@ -13,12 +13,11 @@ import java.util.Set;
 public class AnnotationTest
 {
     /**
-     * author lighter
-     * 说明:具体关天Annotation的API的用法请参见javaDoc文档
+     * author lighter 说明:具体关天Annotation的API的用法请参见javaDoc文档
      */
     public static void main(String[] args) throws Exception
     {
-        String CLASS_NAME = "com.xdc.basic.example.annotation.JavaEyer";
+        String CLASS_NAME = "com.xdc.basic.apidemo.annotation.JavaEyer";
         Class<?> test = Class.forName(CLASS_NAME);
         Method[] method = test.getMethods();
         boolean flag = test.isAnnotationPresent(Description.class);
@@ -29,7 +28,7 @@ public class AnnotationTest
             System.out.println("-----------------");
         }
 
-        //把JavaEyer这一类有利用到@Name的全部方法保存到Set中去
+        // 把JavaEyer这一类有利用到@Name的全部方法保存到Set中去
         Set<Method> set = new HashSet<Method>();
         for (int i = 0; i < method.length; i++)
         {
