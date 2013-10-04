@@ -45,7 +45,7 @@ public class QuickStart {
     public static void main(String[] args) throws Exception {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
-            HttpGet httpGet = new HttpGet("http://targethost/homepage");
+            HttpGet httpGet = new HttpGet("http://www.baidu.com/");
             CloseableHttpResponse response1 = httpclient.execute(httpGet);
             // The underlying HTTP connection is still held by the response object
             // to allow the response content to be streamed directly from the network socket.
@@ -58,7 +58,9 @@ public class QuickStart {
                 HttpEntity entity1 = response1.getEntity();
                 // do something useful with the response body
                 // and ensure it is fully consumed
-                EntityUtils.consume(entity1);
+                String body = EntityUtils.toString(entity1);
+                System.out.println(body);
+                // EntityUtils.consume(entity1);
             } finally {
                 response1.close();
             }
