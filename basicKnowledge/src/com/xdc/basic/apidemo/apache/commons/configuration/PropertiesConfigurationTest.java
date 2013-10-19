@@ -16,9 +16,10 @@ public class PropertiesConfigurationTest
 {
     public static void main(String[] args) throws ConfigurationException, InterruptedException
     {
-        PropertiesConfiguration config = new PropertiesConfiguration("src/common-logging.properties");
+        PropertiesConfiguration config = new PropertiesConfiguration();
         config.setReloadingStrategy(new FileChangedReloadingStrategy());
-        config.setEncoding("UFT-8");
+        config.setEncoding("UTF-8");
+        config.setFileName("src/common-logging.properties");
 
         // 读取属性
         String log = config.getString("org.apache.commons.logging.Log");
