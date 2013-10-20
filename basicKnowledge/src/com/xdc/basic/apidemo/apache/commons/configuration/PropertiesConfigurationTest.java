@@ -18,6 +18,7 @@ public class PropertiesConfigurationTest
     {
         PropertiesConfiguration config = new PropertiesConfiguration();
         config.setReloadingStrategy(new FileChangedReloadingStrategy());
+        config.addConfigurationListener(new ConfigurationLogListener());
         config.setEncoding("UTF-8");
         config.setFileName("src/common-logging.properties");
 
@@ -37,7 +38,7 @@ public class PropertiesConfigurationTest
             String curLog = config.getString("org.apache.commons.logging.Log");
             System.out.println("当前使用的日志: " + curLog + " 时间: " + new Date());
 
-            Thread.sleep(100);
+            Thread.sleep(1000L);
         }
     }
 }
