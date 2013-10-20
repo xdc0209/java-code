@@ -20,6 +20,40 @@ public class CompareTest
         students.add(new Student("xudachao", 100, 25));
         students.add(new Student("wangzhiwei", 88, 24));
         students.add(new Student("gengxue", 98, 24));
+
+        listSort(students);
+
+        // 数组
+        Student[] studentArr = students.toArray(new Student[students.size()]);
+
+        arraySort(studentArr);
+    }
+
+    private static void arraySort(Student[] studentArr)
+    {
+        // 方式一
+        Arrays.sort(studentArr, new Comparator<Student>()
+        {
+            @Override
+            public int compare(Student o1, Student o2)
+            {
+                int scoreDiff = o1.getScore() - o2.getScore();
+                if (scoreDiff != 0)
+                    return scoreDiff;
+
+                int ageDiff = o1.getAge() - o2.getAge();
+                return ageDiff;
+            }
+        });
+
+        // 方式二
+        Arrays.sort(studentArr);
+
+        System.out.println(Arrays.toString(studentArr));
+    }
+
+    private static void listSort(List<Student> students)
+    {
         // 方式一
         Collections.sort(students, new Comparator<Student>()
         {
@@ -34,27 +68,10 @@ public class CompareTest
                 return ageDiff;
             }
         });
+
         // 方式二
         Collections.sort(students);
+
         System.out.println(students);
-
-        // 数组
-        Student[] studentArr = students.toArray(new Student[students.size()]);
-        Arrays.sort(studentArr, new Comparator<Student>()
-        {
-            @Override
-            public int compare(Student o1, Student o2)
-            {
-                int scoreDiff = o1.getScore() - o2.getScore();
-                if (scoreDiff != 0)
-                    return scoreDiff;
-
-                int ageDiff = o1.getAge() - o2.getAge();
-                return ageDiff;
-            }
-        });
-        // 方式二
-        Arrays.sort(studentArr);
-        System.out.println(Arrays.toString(studentArr));
     }
 }

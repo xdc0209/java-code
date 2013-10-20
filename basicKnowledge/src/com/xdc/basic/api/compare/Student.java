@@ -16,10 +16,6 @@ public class Student implements Comparable<Student>
         this.setName(name);
         this.setScore(score);
         this.setAge(age);
-        {
-            // ComparableComparator
-            // ComparatorUtils
-        }
     }
 
     public String getName()
