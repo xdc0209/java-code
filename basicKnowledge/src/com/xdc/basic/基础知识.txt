@@ -1,15 +1,3 @@
-// 排序   
-1. 数组：Arrays.sort(strings);   
-2. List：Collections.sort(list);   
-      
-// 两个接口   
-1. java.lang.Comparable: 提供对象的自然排序，内置于类中   
-   int compareTo(Object o);   
-    boolean equals(Object o2);   
-2. java.util.Comparator: 提供特定的比较方法   
-   int compare(Object o1, Object o2)   
-
-  
 // Clone方法   
 要克隆对象，必须先做两步: 1. 覆盖对象的clone()方法; 2. 实现空的Cloneable接口   
 public class Clone1 implements Cloneable {   
@@ -17,4 +5,3 @@ public class Clone1 implements Cloneable {
         return super.clone();   
     }   
 }   
-
