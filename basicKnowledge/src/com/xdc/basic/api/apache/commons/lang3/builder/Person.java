@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class Person implements Comparable<Object>
+public class Person implements Comparable<Person>
 {
     String  name;
     int     age;
@@ -68,13 +68,14 @@ public class Person implements Comparable<Object>
                 .append("smoker", smoker).toString();
     }
 
-    //Two Objects that compare equal using equals(Object) should normally also compare equal using compareTo(Object).
+    // Two Objects that compare equal using equals(Object) should normally also
+    // compare equal using compareTo(Object).
     // 先比较年龄，再比较姓名，再比较是否抽烟
     @Override
-    public int compareTo(Object o)
+    public int compareTo(Person o)
     {
         // 用不用判断null呢？
-        Person that = (Person) o;
+        Person that = o;
         return new CompareToBuilder().append(this.age, that.age).append(this.name, that.name)
                 .append(this.smoker, that.smoker).toComparison();
     }

@@ -1,7 +1,0 @@
-// Clone方法   
-要克隆对象，必须先做两步: 1. 覆盖对象的clone()方法; 2. 实现空的Cloneable接口   
-public class Clone1 implements Cloneable {   
-    public Object clone() {   
-        return super.clone();   
-    }   
-}   
