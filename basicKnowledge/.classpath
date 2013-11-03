@@ -63,5 +63,8 @@
 	<classpathentry kind="lib" path="lib/apache/http/httpclient-cache-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-client-4.3-src.zip"/>
 	<classpathentry kind="lib" path="lib/apache/http/httpcore-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-core-4.3-src.zip"/>
 	<classpathentry kind="lib" path="lib/apache/http/httpmime-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-client-4.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/json/lib/asm-1.0-RC3.jar"/>
+	<classpathentry kind="lib" path="lib/json/lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/json/json-smart-2.0-RC3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
