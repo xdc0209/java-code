@@ -1,4 +1,4 @@
-package com.xdc.basic.api.json;
+package com.xdc.basic.api.json.jsonsmart;
 
 import java.util.List;
 

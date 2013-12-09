@@ -1,4 +1,4 @@
-package com.xdc.basic.api.json;
+package com.xdc.basic.api.json.jsonsmart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,6 +110,7 @@ public class JsonDemo
         String json1 = "{'car':{'color':'blue'}}";
         String json2 = "{'car':{'size':'3.5m'}}";
 
+        @SuppressWarnings("deprecation")
         JSONParser p = new JSONParser();
         JSONObject o1 = (JSONObject) p.parse(json1);
         JSONObject o2 = (JSONObject) p.parse(json2);
