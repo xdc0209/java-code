@@ -28,7 +28,7 @@ public class LogTest
         //        log.debug("debug.");
         //        log.trace("trace.");
 
-        List<Person> nums = new ArrayList<>();
+        List<Person> nums = new ArrayList<Person>();
         for (int i = 0; i < 2; i++)
         {
             nums.add(new Person("xdc-" + i, i, false));
@@ -39,7 +39,7 @@ public class LogTest
     public static List<Person> getTop3(List<Person> nums)
     {
         log.info("Get top 3 bigin.");
-        List<Person> result = new ArrayList<>();
+        List<Person> result = new ArrayList<Person>();
         result.addAll(nums);
 
         if (nums.size() < 3)

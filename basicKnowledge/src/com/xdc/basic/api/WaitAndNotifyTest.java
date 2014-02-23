@@ -6,7 +6,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class WaitAndNotifyTest
 {
-    Vector<String> data = new Vector<>();
+    Vector<String> data = new Vector<String>();
 
     void addData()
     {

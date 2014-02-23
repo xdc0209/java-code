@@ -13,37 +13,37 @@ import java.util.Map;
  */
 public class GetMapFromList
 {
-	public static void main(String[] args)
-	{
-		List<Student> tallStudents = new ArrayList<>();
-		tallStudents.add(new Student("20082889", "wangziwei"));
-		tallStudents.add(new Student("20082890", "xudachao"));
+    public static void main(String[] args)
+    {
+        List<Student> tallStudents = new ArrayList<Student>();
+        tallStudents.add(new Student("20082889", "wangziwei"));
+        tallStudents.add(new Student("20082890", "xudachao"));
 
-		Map<String, Student> map = getMapFromList(tallStudents, new Func<Student, String>()
-		{
-			@Override
-			public String apply(Student v)
-			{
-				return v.getNumber();
-			}
-		});
+        Map<String, Student> map = getMapFromList(tallStudents, new Func<Student, String>()
+        {
+            @Override
+            public String apply(Student v)
+            {
+                return v.getNumber();
+            }
+        });
 
-		System.out.println(map);
-	}
+        System.out.println(map);
+    }
 
-	private static <K, V> Map<K, V> getMapFromList(List<V> list, Func<V, K> func)
-	{
-		Map<K, V> result = new HashMap<>();
+    private static <K, V> Map<K, V> getMapFromList(List<V> list, Func<V, K> func)
+    {
+        Map<K, V> result = new HashMap<K, V>();
 
-		for (V v : list)
-		{
-			result.put(func.apply(v), v);
-		}
-		return result;
-	}
+        for (V v : list)
+        {
+            result.put(func.apply(v), v);
+        }
+        return result;
+    }
 
-	private interface Func<V, K>
-	{
-		public K apply(V v);
-	}
+    private interface Func<V, K>
+    {
+        public K apply(V v);
+    }
 }

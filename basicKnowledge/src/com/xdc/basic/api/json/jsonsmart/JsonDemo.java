@@ -76,7 +76,7 @@ public class JsonDemo
     public void DecodingJsonText2() throws ParseException
     {
         Student student = new Student("xudachao", 100, 25);
-        List<String> goodFriends = new ArrayList<>();
+        List<String> goodFriends = new ArrayList<String>();
         goodFriends.add("chenchong");
         goodFriends.add("duquan");
         student.setGoodFriends(goodFriends);

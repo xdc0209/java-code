@@ -15,7 +15,7 @@ public class BlockingQueueTest
 {
     public static void main(String[] args)
     {
-        BlockingQueue<String> dataQueue = new ArrayBlockingQueue<>(1, true);
+        BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(1, true);
 
         ExecutorService pool = Executors.newCachedThreadPool();
         pool.submit(new Producer(dataQueue));

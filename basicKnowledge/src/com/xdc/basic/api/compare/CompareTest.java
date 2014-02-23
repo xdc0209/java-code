@@ -16,7 +16,7 @@ public class CompareTest
     public static void main(String[] args)
     {
         // 列表
-        List<Student> students = new ArrayList<>();
+        List<Student> students = new ArrayList<Student>();
         students.add(new Student("xudachao", 100, 25));
         students.add(new Student("wangzhiwei", 88, 24));
         students.add(new Student("gengxue", 98, 24));

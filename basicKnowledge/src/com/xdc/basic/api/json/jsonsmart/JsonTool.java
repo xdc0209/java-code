@@ -15,7 +15,7 @@ public class JsonTool
     {
         // json object
         Student student = new Student("xudachao", 100, 25);
-        List<String> goodFriends = new ArrayList<>();
+        List<String> goodFriends = new ArrayList<String>();
         goodFriends.add("chenchong");
         goodFriends.add("duquan");
         student.setGoodFriends(goodFriends);
@@ -27,7 +27,7 @@ public class JsonTool
         System.out.println(parsedStudent);
 
         // json array
-        List<Student> students = new ArrayList<>();
+        List<Student> students = new ArrayList<Student>();
         students.add(student);
         students.add(student);
 
@@ -50,7 +50,7 @@ public class JsonTool
 
     public static <T> List<T> parseArray(String s, Class<T> clazz)
     {
-        List<T> result = new ArrayList<>();
+        List<T> result = new ArrayList<T>();
         Object object = JSONValue.parse(s);
         if (object instanceof JSONArray)
         {
