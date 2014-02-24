@@ -32,8 +32,8 @@ public class BasicKnowledge
 
         // sun.jnu.encoding 影响文件名的创建、 cmd命令行的当前编码
         // file.encoding 影响到文件内容
-        System.out.println("sun.jnu.encoding");
-        System.out.println("file.encoding");
+        System.getProperty("sun.jnu.encoding");
+        System.getProperty("file.encoding");
 
         // 3. 字节数据-->字符串
         byte[] bytes = new byte[100];
