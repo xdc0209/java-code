@@ -15,34 +15,37 @@ import com.xdc.basic.skills.GetCurPath;
 
 public class FileUtilsTest
 {
-	public static void main(String[] args)
-	{
-		String curPath = GetCurPath.getCurPath();
+    public static void main(String[] args)
+    {
+        String curPath = GetCurPath.getCurPath();
 
-		File fromFile = FileUtils.getFile(curPath + "from.txt");
-		File toFile = FileUtils.getFile(curPath + "to.txt");
+        File fromFile = FileUtils.getFile(curPath + "from.txt");
+        File toFile = FileUtils.getFile(curPath + "to.txt");
 
-		// 列出指定目录的所有目录和文件
-		IOFileFilter fileFilter = CanReadFileFilter.CAN_READ;
-		IOFileFilter dirFilter = CanReadFileFilter.READ_ONLY;
-		Collection<File> listFilesAndDirs = FileUtils.listFilesAndDirs(new File(curPath), fileFilter, dirFilter);
-		System.out.println(listFilesAndDirs);
+        // 列出指定目录的所有目录和文件
+        IOFileFilter fileFilter = CanReadFileFilter.CAN_READ;
+        IOFileFilter dirFilter = CanReadFileFilter.READ_ONLY;
+        //        IOFileFilter fileFilter = TrueFileFilter.INSTANCE;
+        //        IOFileFilter dirFilter = FalseFileFilter.INSTANCE;
 
-		try
-		{
-			String fileString = FileUtils.readFileToString(fromFile, Charsets.UTF_8);
-			FileUtils.writeStringToFile(toFile, fileString, Charsets.UTF_8, false);
+        Collection<File> listFilesAndDirs = FileUtils.listFilesAndDirs(new File(curPath), fileFilter, dirFilter);
+        System.out.println(listFilesAndDirs);
 
-			List<String> lines = FileUtils.readLines(fromFile, Charsets.UTF_8);
-			FileUtils.writeLines(toFile, "UTF-8", lines, SystemUtils.LINE_SEPARATOR, false);
+        try
+        {
+            String fileString = FileUtils.readFileToString(fromFile, Charsets.UTF_8);
+            FileUtils.writeStringToFile(toFile, fileString, Charsets.UTF_8, false);
 
-			// linux下的touch命令
-			FileUtils.touch(toFile);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+            List<String> lines = FileUtils.readLines(fromFile, Charsets.UTF_8);
+            FileUtils.writeLines(toFile, "UTF-8", lines, SystemUtils.LINE_SEPARATOR, false);
 
-	}
+            // linux下的touch命令
+            FileUtils.touch(toFile);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 }
