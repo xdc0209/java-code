@@ -29,11 +29,11 @@ public class XMLTest
         XMLConvertor xmlConvertor = new XMLConvertor(XML_MODEL_MEMBER);
 
         StringReader stringReader = new StringReader(usersXML);
-        Users users = (Users) xmlConvertor.xml2java(stringReader);
+        Users users = (Users) xmlConvertor.xml2Java(stringReader);
         System.out.println(users);
 
         StringWriter stringWriter = new StringWriter();
-        xmlConvertor.java2xml(users, stringWriter);
+        xmlConvertor.java2Xml(users, stringWriter);
         System.out.println(stringWriter);
     }
 
@@ -45,11 +45,11 @@ public class XMLTest
         XMLConvertor xmlConvertor = new XMLConvertor(XML_MODEL_MEMBER);
 
         ByteArrayInputStream inputStream = new ByteArrayInputStream(usersXML.getBytes());
-        Users users = (Users) xmlConvertor.xml2java(inputStream);
+        Users users = (Users) xmlConvertor.xml2Java(inputStream);
         System.out.println(users);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        xmlConvertor.java2xml(users, outputStream);
+        xmlConvertor.java2Xml(users, outputStream);
         System.out.println(outputStream.toString());
     }
 }
