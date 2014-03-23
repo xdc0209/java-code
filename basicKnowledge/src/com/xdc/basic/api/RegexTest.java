@@ -14,7 +14,6 @@ public class RegexTest
         @SuppressWarnings("resource")
         Scanner cin = new Scanner(System.in);
 
-        // \s：代表空白，-？：代表0个或一个减号，\d:代表数字
         String regex = "^\\s*(-?\\d+)\\s*([+*])\\s*(-?\\d+)\\s*$";
         Pattern pattern = Pattern.compile(regex);
 
