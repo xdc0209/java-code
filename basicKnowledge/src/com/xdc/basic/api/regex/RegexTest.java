@@ -85,8 +85,8 @@ public class RegexTest
         // 常量-----------------------等价的内嵌标志表达式--意义
         // Pattern.CASE_INSENSITIVE  (?i)                启用不区分大小写匹配。默认情况下，仅匹配 US-ASCII 字符集中的字符。
         // Pattern.COMMENTS          (?x)                模式中允许存在空白和注释。在这种模式下，空白和以#开始的直到行尾的内嵌注释会被忽略。
-        // Pattern.MULTILINE         (?m)                启用 dotall 模式。在 dotall 模式下，表达式.匹配包括行结束符在内的任意字符。
-        // Pattern.DOTALL            (?s)                启用多行（multiline）模式。在多行模式下，表达式^和$分别匹配输入序列行结束符前面和行结束符的前面。默认情况下，表达式仅匹配整个输入序列的开始和结尾。
+        // Pattern.MULTILINE         (?m)                启用多行（multiline）模式。在多行模式下，表达式^和$分别匹配输入序列行结束符前面和行结束符的前面。默认情况下，表达式仅匹配整个输入序列的开始和结尾。
+        // Pattern.DOTALL            (?s)                启用 dotall 模式。在 dotall 模式下，表达式.匹配包括行结束符在内的任意字符。
         // Pattern.UNICODE_CASE      (?u)                配合CASE_INSENSITIVE标志来启用，使 Unicode字符不区分大小写匹配
 
         int flags = Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE;
