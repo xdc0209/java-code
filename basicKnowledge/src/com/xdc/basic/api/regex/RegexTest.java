@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 
 public class RegexTest
@@ -99,12 +100,37 @@ public class RegexTest
         String regex = "\\d";
         String input = "one9two4three7four1five";
 
-        Pattern p = Pattern.compile(regex);
-        String[] items = p.split(input);
+        Pattern pattern = Pattern.compile(regex);
+        String[] items = pattern.split(input);
         for (String item : items)
         {
             System.out.println(item);
         }
+    }
+
+    /**
+     * 比matcher.replaceAll(replacement)灵活，可以在每个匹配出替换为不同的值。 用哪个是需求而定。
+     */
+    @Test
+    public void matcherReplacement()
+    {
+        String regex = "\\d";
+        String input = "one9two4three7four1five";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input); // 获得匹配器对象
+
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find())
+        {
+            String replace = RandomStringUtils.random(1, "!@#$");
+            // 处理特殊字符\和$,在前面添加转义符\
+            replace = Matcher.quoteReplacement(replace);
+            System.out.println("Random char: " + replace);
+            matcher.appendReplacement(sb, replace);
+        }
+        matcher.appendTail(sb);
+        System.out.println(sb.toString());
     }
 
     private void regexSearch(String regex, String input)
