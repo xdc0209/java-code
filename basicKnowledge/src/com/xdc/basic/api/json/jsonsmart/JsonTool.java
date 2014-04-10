@@ -13,29 +13,39 @@ public class JsonTool
     @Test
     public void jsonTest()
     {
-        // json object
+        // ----------------------------------------------------------
+        // json object ----------------------------------------------
         Student student = new Student("xudachao", 100, 25);
         List<String> goodFriends = new ArrayList<String>();
         goodFriends.add("chenchong");
         goodFriends.add("duquan");
         student.setGoodFriends(goodFriends);
 
+        // object --> json string
         String studentString = JsonTool.toJSONString(student);
         System.out.println(studentString);
 
+        // json string --> object
         Student parsedStudent = JsonTool.parse(studentString, Student.class);
         System.out.println(parsedStudent);
 
-        // json array
+        // ----------------------------------------------------------
+        // json array -----------------------------------------------
         List<Student> students = new ArrayList<Student>();
         students.add(student);
         students.add(student);
 
+        // array --> json string
         String studentsString = JSONValue.toJSONString(students);
         System.out.println(studentsString);
 
+        // json string --> array
         List<Student> parsedArray = JsonTool.parseArray(studentsString, Student.class);
         System.out.println(parsedArray);
+
+        // json string --> array
+        Student[] parsedStudents = JsonTool.parse(studentsString, Student[].class);
+        System.out.println(parsedStudents);
     }
 
     public static String toJSONString(Object o)

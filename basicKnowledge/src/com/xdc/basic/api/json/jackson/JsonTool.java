@@ -1,6 +1,7 @@
 package com.xdc.basic.api.json.jackson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -19,12 +20,31 @@ public class JsonTool
 
     public static void main(String[] args)
     {
+        // ----------------------------------------------------------
+        // json object ----------------------------------------------
         String jsonString = "{\"name\":{\"first\":\"Joe\",\"last\":\"Sixpack\"},\"gender\":\"MALE\",\"verified\":false,\"userImage\":\"Rm9vYmFyIQ==\"}";
+
+        // json string --> object
         User user = JsonTool.parse(jsonString, User.class);
         System.out.println(user);
 
+        // object --> json string
         String jsonString2 = JsonTool.toJSONString(user);
         System.out.println(jsonString2);
+
+        // ----------------------------------------------------------
+        // json array -----------------------------------------------
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user);
+        users.add(user);
+
+        // array --> json string
+        String jsonString3 = JsonTool.toJSONString(users);
+        System.out.println(jsonString3);
+
+        // json string --> array
+        User[] parsedUsers = JsonTool.parse(jsonString3, User[].class);
+        System.out.println(parsedUsers);
     }
 
     public static String toJSONString(Object o)
