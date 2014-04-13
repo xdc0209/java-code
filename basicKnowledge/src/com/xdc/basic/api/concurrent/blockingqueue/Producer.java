@@ -20,8 +20,8 @@ class Producer implements Runnable
             for (int i = 0; i < 10; i++)
             {
                 String data = RandomStringUtils.randomAlphanumeric(6);
-                System.out.println(data + " is putted!");
                 dataQueue.put(data);
+                System.out.println(data + " is putted!");
             }
 
             dataQueue.put("END");
