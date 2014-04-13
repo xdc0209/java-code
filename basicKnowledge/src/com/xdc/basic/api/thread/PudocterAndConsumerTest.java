@@ -1,19 +1,12 @@
 package com.xdc.basic.api.thread;
 
-/**
- * 感觉此程序有问题
- * 
- * @author xdc
- * 
- */
 class CubbyHole
 {
-    private int     content;
-    private boolean available = false;
+    private Integer data = null;
 
     public synchronized int get()
     {
-        if (!available)
+        if (data == null)
         {
             try
             {
@@ -24,15 +17,18 @@ class CubbyHole
                 e.printStackTrace();
             }
         }
-        available = false;
         notifyAll();
-        System.out.println("Consumer " + "got: " + content);
-        return content;
+        System.out.println("Consumer " + "got: " + data);
+
+        Integer result = data;
+        data = null;
+
+        return result;
     }
 
     public synchronized void put(int value)
     {
-        if (available)
+        if (data != null)
         {
             try
             {
@@ -43,10 +39,11 @@ class CubbyHole
                 e.printStackTrace();
             }
         }
-        content = value;
-        available = true;
+
+        data = value;
         notifyAll();
-        System.out.println("Producer " + "put: " + content);
+
+        System.out.println("Producer " + "put: " + data);
     }
 }
 

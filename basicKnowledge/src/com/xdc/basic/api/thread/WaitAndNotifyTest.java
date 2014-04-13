@@ -36,6 +36,9 @@ public class WaitAndNotifyTest
                 System.out.println(name + " no data to remove, try to wait");
                 try
                 {
+                    // 临时释放锁,并阻塞当前线程,好让其他使用同一把锁的线程有机会执行.
+                    // 其他线程在执行到一定地方后用notify()通知wait()的线程,
+                    // 待notify()所在的同步块运行完之后,wait所在的线程就可以继续执行.
                     data.wait();
                     System.out.println(name + " wake up");
                 }
