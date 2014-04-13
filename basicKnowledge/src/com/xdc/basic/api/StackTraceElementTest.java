@@ -23,48 +23,47 @@ package com.xdc.basic.api;
  */
 public class StackTraceElementTest
 {
+    public static void main(String[] args)
+    {
+        System.out.println("line1: " + new Throwable().getStackTrace()[0].getLineNumber());
+        System.out.println("line2: " + getLineInfo());
+        System.out.println("line3: " + getTraceInfo());
 
-	public static void main(String[] args)
-	{
-		System.out.println("line1: " + new Throwable().getStackTrace()[0].getLineNumber());
-		System.out.println("line2: " + getLineInfo());
-		System.out.println("line3: " + getTraceInfo());
+        // output all related info of the existing stack traces
+        StackTraceElement[] steArray = Thread.currentThread().getStackTrace();
+        int steArrayLength = steArray.length;
+        if (steArrayLength == 0)
+        {
+            System.err.println("No Stack Trace.");
+        }
+        else
+        {
+            for (int i = 0; i < steArrayLength; i++)
+            {
+                System.out.println("Stack Trace-" + i);
+                StackTraceElement ste = steArray[i];
+                String s = ste.getFileName() + ": Line " + ste.getLineNumber();
+                System.out.println(s);
+            }
+        }
+    }
 
-		// output all related info of the existing stack traces
-		StackTraceElement[] steArray = Thread.currentThread().getStackTrace();
-		int steArrayLength = steArray.length;
-		if (steArrayLength == 0)
-		{
-			System.err.println("No Stack Trace.");
-		}
-		else
-		{
-			for (int i = 0; i < steArrayLength; i++)
-			{
-				System.out.println("Stack Trace-" + i);
-				StackTraceElement ste = steArray[i];
-				String s = ste.getFileName() + ": Line " + ste.getLineNumber();
-				System.out.println(s);
-			}
-		}
-	}
+    public static String getTraceInfo()
+    {
+        StringBuffer sb = new StringBuffer();
 
-	public static String getTraceInfo()
-	{
-		StringBuffer sb = new StringBuffer();
+        // 返回的数据组大小为2： [0] getTraceInfo(), [1] main()
+        StackTraceElement[] stacks = new Throwable().getStackTrace();
 
-		// 返回的数据组大小为2： [0] getTraceInfo(), [1] main()
-		StackTraceElement[] stacks = new Throwable().getStackTrace();
+        sb.append("class: ").append(stacks[1].getClassName()).append("; method: ").append(stacks[1].getMethodName())
+                .append("; number: ").append(stacks[1].getLineNumber());
 
-		sb.append("class: ").append(stacks[1].getClassName()).append("; method: ").append(stacks[1].getMethodName())
-		        .append("; number: ").append(stacks[1].getLineNumber());
+        return sb.toString();
+    }
 
-		return sb.toString();
-	}
-
-	public static String getLineInfo()
-	{
-		StackTraceElement ste = new Throwable().getStackTrace()[1];
-		return ste.getFileName() + ": Line " + ste.getLineNumber();
-	}
+    public static String getLineInfo()
+    {
+        StackTraceElement ste = new Throwable().getStackTrace()[1];
+        return ste.getFileName() + ": Line " + ste.getLineNumber();
+    }
 }
