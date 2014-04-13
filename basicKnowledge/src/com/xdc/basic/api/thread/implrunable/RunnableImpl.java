@@ -1,4 +1,4 @@
-package com.xdc.basic.api.java4android.thread.implrunable;
+package com.xdc.basic.api.thread.implrunable;
 
 class RunnableImpl implements Runnable
 {

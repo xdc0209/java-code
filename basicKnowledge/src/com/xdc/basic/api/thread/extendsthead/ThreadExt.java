@@ -1,4 +1,4 @@
-package com.xdc.basic.api.java4android.thread.extendsthead;
+package com.xdc.basic.api.thread.extendsthead;
 
 class ThreadExt extends Thread{
 	public void run(){
