@@ -20,5 +20,8 @@ public class BlockingQueueTest
         ExecutorService pool = Executors.newCachedThreadPool();
         pool.submit(new Producer(dataQueue));
         pool.submit(new Consumer(dataQueue));
+
+        // 执行后关闭线程池
+        pool.shutdown();
     }
 }
