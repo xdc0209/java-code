@@ -1,3 +1,6 @@
+int startNum = 2;
+int endNum = 1000000;
+
 1. 最原始的方法
 运行时间: 90909ms
 

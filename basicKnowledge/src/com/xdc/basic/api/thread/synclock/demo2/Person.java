@@ -97,4 +97,8 @@ public class Person
             e.printStackTrace();
         }
     }
+
+    // Ps: synchronized void f() { /* body */ }
+    // 和 void f() { synchronized(this) { /* body */ } }
+    // 是完全等价的。
 }

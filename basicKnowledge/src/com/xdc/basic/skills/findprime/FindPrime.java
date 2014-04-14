@@ -59,20 +59,23 @@ public class FindPrime
             ansArrayList.add(new Element(begin, end));
         }
 
+        ArrayList<Thread> threads = new ArrayList<Thread>();
         for (Element element : ansArrayList)
         {
             RunnableImpl r = new RunnableImpl(element);
             Thread t = new Thread(r);
             t.start();
+
+            threads.add(t);
         }
 
         int aliveNum = 0;
         do
         {
             aliveNum = 0;
-            for (Element element : ansArrayList)
+            for (Thread t : threads)
             {
-                if (element.isAlive)
+                if (t.isAlive())
                 {
                     aliveNum++;
                 }
@@ -100,7 +103,7 @@ public class FindPrime
             wr.write("ans:\r\n");
             for (Element element : ansArrayList)
             {
-                for (Integer integer : element.primeArrayList)
+                for (Integer integer : element.getPrimeArrayList())
                 {
                     wr.write(integer.toString() + "\r\n");
                 }
