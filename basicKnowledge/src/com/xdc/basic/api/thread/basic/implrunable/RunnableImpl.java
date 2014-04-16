@@ -1,4 +1,4 @@
-package com.xdc.basic.api.thread.implrunable;
+package com.xdc.basic.api.thread.basic.implrunable;
 
 class RunnableImpl implements Runnable
 {
