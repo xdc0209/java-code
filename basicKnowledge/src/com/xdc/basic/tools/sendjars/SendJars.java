@@ -1,4 +1,4 @@
-package com.xdc.basic.skills.sendjars;
+package com.xdc.basic.tools.sendjars;
 
 import java.io.File;
 import java.util.Collection;

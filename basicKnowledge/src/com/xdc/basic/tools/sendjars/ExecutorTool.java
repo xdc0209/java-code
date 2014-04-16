@@ -1,4 +1,4 @@
-package com.xdc.basic.skills.sendjars;
+package com.xdc.basic.tools.sendjars;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
