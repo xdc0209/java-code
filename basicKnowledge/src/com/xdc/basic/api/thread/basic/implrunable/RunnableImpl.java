@@ -28,8 +28,12 @@ class RunnableImpl implements Runnable
     //        }
     //        catch (Throwable e)
     //        {
-    //            // log and throw    
+    //            // log and throw
     //            throw e;
+    //        }
+    //        finally
+    //        {
+    //            // do some cleaning, close io and so on
     //        }
     //    }
 }

@@ -20,14 +20,14 @@ public class DeadLockTest
         t2.start();
         t3.start();
         t4.start();
-
     }
 }
 
 class MyThread extends Thread
 {
     private DeadlockRisk dead;
-    private int          a, b;
+    private int          a;
+    private int          b;
 
     MyThread(DeadlockRisk dead, int a, int b)
     {

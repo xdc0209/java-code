@@ -4,8 +4,10 @@ import javax.net.ssl.SSLContext;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
@@ -65,7 +67,7 @@ public class RestClient
 
     public Response handldeRequset(Request req) throws RestClientException
     {
-        HttpUriRequest request = null;
+        HttpRequestBase request = null;
 
         String url = getUrl(req);
 
@@ -91,14 +93,14 @@ public class RestClient
             throw new UnsupportedOperationException("Method " + method + " is not support.");
         }
 
-        setHeader(req, request);
+        configRequest(req, request);
 
         CloseableHttpResponse response = execute(request);
         Response rsp = convertResponse(response);
         return rsp;
     }
 
-    private void setHeader(Request req, HttpUriRequest request)
+    private void configRequest(Request req, HttpRequestBase request)
     {
         if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.json))
         {
@@ -119,6 +121,10 @@ public class RestClient
         {
             request.addHeader(HttpConstants.AUTH, authorization);
         }
+
+        // 设置请求和传输超时时间5s
+        RequestConfig requestconfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+        request.setConfig(requestconfig);
     }
 
     private String getUrl(Request req)
@@ -182,7 +188,7 @@ public class RestClient
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            handleException(e);
         }
         return response;
     }
