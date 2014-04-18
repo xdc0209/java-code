@@ -1,55 +1,71 @@
-package com.xdc.basic.api.thread;
+package com.xdc.basic.api.thread.lockfree.databuffer;
 
 import java.util.Vector;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-public class WaitAndNotifyTest
+public class DataBufferSync
 {
-    Vector<String> data = new Vector<String>();
+    Vector<String> dataBuffer = new Vector<String>(); // 数据缓冲区
+    final int      MAX_SIZE   = 3;                   // 设置缓冲区大小
 
     void addData()
     {
-        synchronized (data)
+        synchronized (dataBuffer)
         {
             String name = Thread.currentThread().getName();
             System.out.println(name + " enter addData()");
 
-            String s = "value-" + RandomStringUtils.randomNumeric(2);
-            data.add(s);
-            data.notifyAll();
-
-            System.out.println(name + " adds " + s + ", ramains " + data.size());
-            System.out.println(name + " leave addData()");
-        }
-    }
-
-    void removeData()
-    {
-        synchronized (data)
-        {
-            String name = Thread.currentThread().getName();
-            System.out.println(name + " enter removeData()");
-
-            while (data.size() == 0)
+            while (dataBuffer.size() == MAX_SIZE)
             {
-                System.out.println(name + " no data to remove, try to wait");
                 try
                 {
-                    // 临时释放锁,并阻塞当前线程,好让其他使用同一把锁的线程有机会执行.
-                    // 其他线程在执行到一定地方后用notify()通知wait()的线程,
-                    // 待notify()所在的同步块运行完之后,wait所在的线程就可以继续执行.
-                    data.wait();
-                    System.out.println(name + " wake up");
+                    System.out.println(name + " data buffer is full, try to wait");
+                    dataBuffer.wait();
+                    System.out.println(name + " wake up, continue to add data");
                 }
                 catch (InterruptedException e)
                 {
                     e.printStackTrace();
                 }
             }
-            String s = data.remove(0);
 
-            System.out.println(name + " removes " + s + ", ramains " + data.size());
+            String data = "value-" + RandomStringUtils.randomNumeric(2);
+            dataBuffer.add(data);
+            dataBuffer.notifyAll();
+
+            System.out.println(name + " adds " + data + ", ramains " + dataBuffer.size());
+            System.out.println(name + " leave addData()");
+        }
+    }
+
+    void removeData()
+    {
+        synchronized (dataBuffer)
+        {
+            String name = Thread.currentThread().getName();
+            System.out.println(name + " enter removeData()");
+
+            while (dataBuffer.size() == 0)
+            {
+                try
+                {
+                    // 临时释放锁,并阻塞当前线程,好让其他使用同一把锁的线程有机会执行.
+                    // 其他线程在执行到一定地方后用notify()通知wait()的线程,
+                    // 待notify()所在的同步块运行完之后,wait所在的线程就可以继续执行.
+                    System.out.println(name + " data buffer is empty, try to wait");
+                    dataBuffer.wait();
+                    System.out.println(name + " wake up, continue to remove data");
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            String data = dataBuffer.remove(0);
+            dataBuffer.notifyAll();
+
+            System.out.println(name + " removes " + data + ", ramains " + dataBuffer.size());
             System.out.println(name + " leave removeData()");
         }
     }
@@ -64,15 +80,15 @@ public class WaitAndNotifyTest
 
     public static void main(String[] args)
     {
-        WaitAndNotifyTest wn = new WaitAndNotifyTest();
+        DataBufferSync wn = new DataBufferSync();
         wn.start();
     }
 
     class Producer extends Thread
     {
-        WaitAndNotifyTest synObject;
+        DataBufferSync synObject;
 
-        Producer(WaitAndNotifyTest synObject)
+        Producer(DataBufferSync synObject)
         {
             this.synObject = synObject;
         }
@@ -98,9 +114,9 @@ public class WaitAndNotifyTest
 
     class Consumer extends Thread
     {
-        WaitAndNotifyTest synObject;
+        DataBufferSync synObject;
 
-        Consumer(WaitAndNotifyTest synObject)
+        Consumer(DataBufferSync synObject)
         {
             this.synObject = synObject;
         }
