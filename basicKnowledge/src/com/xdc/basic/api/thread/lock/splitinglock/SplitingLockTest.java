@@ -15,7 +15,7 @@ public class SplitingLockTest
 
         final BankService bankService = new BankService();
 
-        List<Future<?>> futures = new ArrayList<>();
+        List<Future<?>> futures = new ArrayList<Future<?>>();
         for (int i = 0; i < 1000; i++)
         {
             Future<?> future = pool.submit(new Runnable()
@@ -23,9 +23,7 @@ public class SplitingLockTest
                 @Override
                 public void run()
                 {
-                    System.out.println(Thread.currentThread().getName() + " 开始： " + bankService);
                     bankService.deposit("xdc", 100);
-                    System.out.println(Thread.currentThread().getName() + " 结束： " + bankService);
                 }
             });
 
@@ -36,8 +34,8 @@ public class SplitingLockTest
         {
             future.get();
         }
+        System.out.println("最终结果： " + bankService.getBank());
 
         pool.shutdown();
-        System.out.println("最终结果： " + bankService);
     }
 }

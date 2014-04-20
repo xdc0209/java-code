@@ -5,9 +5,6 @@ import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 /**
  * 分拆锁
  * 
@@ -79,17 +76,5 @@ public class SplitingLock<T>
         {
             this.count--;
         }
-
-        @Override
-        public String toString()
-        {
-            return "CountLock [count=" + count + "]";
-        }
-    }
-
-    @Override
-    public String toString()
-    {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

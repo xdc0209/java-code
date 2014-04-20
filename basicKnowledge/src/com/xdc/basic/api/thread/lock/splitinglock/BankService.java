@@ -3,9 +3,6 @@ package com.xdc.basic.api.thread.lock.splitinglock;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 public class BankService
 {
     private Map<String, User>    bank = new HashMap<String, User>();
@@ -14,8 +11,11 @@ public class BankService
     public BankService()
     {
         super();
-        bank.put("xdc", new User("xdc", 0));
-        bank.put("cc", new User("cc", 0));
+    }
+
+    public Map<String, User> getBank()
+    {
+        return bank;
     }
 
     /**
@@ -29,7 +29,16 @@ public class BankService
         try
         {
             User user = bank.get(userId);
+            if (user == null)
+            {
+                user = new User(userId, 0);
+                bank.put(userId, user);
+            }
+
+            System.out.println(Thread.currentThread().getName() + " : " + userId + " 开始存入 " + money + "元。当前值：" + user);
             user.deposit(money);
+            System.out.println(Thread.currentThread().getName() + " : " + userId + " 完成存入 " + money + "元。当前值：" + user);
+
             try
             {
                 Thread.sleep(10L);
@@ -56,17 +65,18 @@ public class BankService
         try
         {
             User user = bank.get(userId);
+            if (user == null)
+            {
+                return;
+            }
+
+            System.out.println(Thread.currentThread().getName() + " : " + userId + " 开始取出 " + money + "元。当前值：" + user);
             user.withdrawing(money);
+            System.out.println(Thread.currentThread().getName() + " : " + userId + " 开始取出 " + money + "元。当前值：" + user);
         }
         finally
         {
             lock.unlock(userId);
         }
-    }
-
-    @Override
-    public String toString()
-    {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
