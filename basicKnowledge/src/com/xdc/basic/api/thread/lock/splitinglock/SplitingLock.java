@@ -1,7 +1,7 @@
 package com.xdc.basic.api.thread.lock.splitinglock;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -16,47 +16,68 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class SplitingLock<T>
 {
-    private ConcurrentMap<T, CountLock> locks = new ConcurrentHashMap<T, CountLock>();
+    private Map<T, CountLock> locks = new HashMap<T, CountLock>();
 
     void lock(T key)
     {
-        CountLock lock = getLock(key);
-        lock.lock();
+        CountLock lock = null;
+        synchronized (locks)
+        {
+            lock = locks.get(key);
+            if (lock == null)
+            {
+                lock = new CountLock();
+                locks.put(key, lock);
+            }
+            lock.increaseCount();
+        }
+
+        lock.getLock().lock();
     }
 
     void unlock(T key)
     {
-        CountLock lock = getLock(key);
-        lock.unlock();
-    }
-
-    private CountLock getLock(T key)
-    {
         CountLock lock = locks.get(key);
         if (lock == null)
         {
-            locks.putIfAbsent(key, new CountLock());
-            lock = locks.get(key);
+            return;
         }
+        lock.getLock().unlock();
 
-        return lock;
+        synchronized (locks)
+        {
+            lock.decreaseCount();
+            if (lock.getCount() == 0)
+            {
+                locks.remove(key);
+            }
+        }
     }
 
     class CountLock
     {
         private Lock         lock  = new ReentrantLock();
+
         private volatile int count = 0;
 
-        void lock()
+        public Lock getLock()
         {
-            count++;
-            lock.lock();
+            return lock;
         }
 
-        void unlock()
+        public int getCount()
         {
-            lock.unlock();
-            count--;
+            return count;
+        }
+
+        void increaseCount()
+        {
+            this.count++;
+        }
+
+        void decreaseCount()
+        {
+            this.count--;
         }
 
         @Override
