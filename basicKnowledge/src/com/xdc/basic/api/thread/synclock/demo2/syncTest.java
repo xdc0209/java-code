@@ -20,7 +20,6 @@ public class syncTest
                 while (true)
                 {
                     person.listenMusic();
-
                 }
             }
         });
