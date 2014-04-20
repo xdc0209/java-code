@@ -67,12 +67,22 @@ public class BankService
             User user = bank.get(userId);
             if (user == null)
             {
-                return;
+                user = new User(userId, 0);
+                bank.put(userId, user);
             }
 
             System.out.println(Thread.currentThread().getName() + " : " + userId + " 开始取出 " + money + "元。当前值：" + user);
             user.withdrawing(money);
             System.out.println(Thread.currentThread().getName() + " : " + userId + " 开始取出 " + money + "元。当前值：" + user);
+
+            try
+            {
+                Thread.sleep(10L);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
         }
         finally
         {

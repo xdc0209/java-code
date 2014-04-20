@@ -26,7 +26,36 @@ public class SplitingLockTest
                     bankService.deposit("xdc", 100);
                 }
             });
+            futures.add(future);
 
+            future = pool.submit(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    bankService.withdrawing("xdc", 100);
+                }
+            });
+            futures.add(future);
+
+            future = pool.submit(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    bankService.deposit("gx", 100);
+                }
+            });
+            futures.add(future);
+
+            future = pool.submit(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    bankService.withdrawing("gx", 100);
+                }
+            });
             futures.add(future);
         }
 

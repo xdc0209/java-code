@@ -6,7 +6,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 分拆锁
+ * 分拆锁, 根据资源id，通过维护相应的锁，实现更细化的控制，资源之间不会干扰
  * 
  * @author xdc
  * 
