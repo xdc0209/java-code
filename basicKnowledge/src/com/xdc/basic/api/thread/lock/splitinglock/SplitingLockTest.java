@@ -11,12 +11,14 @@ public class SplitingLockTest
 {
     public static void main(String[] args) throws InterruptedException, ExecutionException
     {
-        ExecutorService pool = Executors.newCachedThreadPool();
+        // 此处若改为使用Executors.newCachedThreadPool(),下面的其他代码保持不变，不到一会内存将被占满，机器卡死。
+        // 这就能看出了两种方法的不同。
+        ExecutorService pool = Executors.newFixedThreadPool(20);
 
         final BankService bankService = new BankService();
 
         List<Future<?>> futures = new ArrayList<Future<?>>();
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 100000; i++)
         {
             Future<?> future = pool.submit(new Runnable()
             {
