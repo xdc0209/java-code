@@ -3,15 +3,20 @@ package com.xdc.basic.tools.restclient;
 import javax.net.ssl.SSLContext;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -74,19 +79,25 @@ public class RestClient
         String method = req.getMethod();
         if (HttpMethod.GET.toString().equalsIgnoreCase(method))
         {
-            request = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(url);
+            request = httpGet;
         }
         else if (HttpMethod.POST.toString().equalsIgnoreCase(method))
         {
-            throw new UnsupportedOperationException("Method " + method + " is not support.");
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setEntity(new StringEntity(req.getBody(), Charsets.UTF_8));
+            request = httpPost;
         }
         else if (HttpMethod.PUT.toString().equalsIgnoreCase(method))
         {
-            throw new UnsupportedOperationException("Method " + method + " is not support.");
+            HttpPut httpPut = new HttpPut(url);
+            httpPut.setEntity(new StringEntity(req.getBody(), Charsets.UTF_8));
+            request = httpPut;
         }
         else if (HttpMethod.DELETL.toString().equalsIgnoreCase(method))
         {
-            throw new UnsupportedOperationException("Method " + method + " is not support.");
+            HttpDelete httpDelete = new HttpDelete(url);
+            request = httpDelete;
         }
         else
         {

@@ -13,12 +13,12 @@ public class Main
             Request req = new Request();
             req.setMethod(HttpMethod.GET.toString());
             req.setUrl("/data/sk/101010100.html");
-            System.out.println(req);
+            System.out.println("Send rest requst: " + req);
 
             RestClient restClient = RestClientFactory.createHttpRestClient("www.weather.com.cn", null, null, null);
 
             Response rsp = restClient.handldeRequset(req);
-            System.out.println(rsp);
+            System.out.println("Receive rest response: " + rsp);
         }
         catch (Exception e)
         {
