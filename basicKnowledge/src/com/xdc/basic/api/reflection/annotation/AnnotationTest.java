@@ -17,13 +17,12 @@ public class AnnotationTest
      */
     public static void main(String[] args) throws Exception
     {
-        String CLASS_NAME = "com.xdc.basic.apidemo.annotation.JavaEyer";
-        Class<?> test = Class.forName(CLASS_NAME);
-        Method[] method = test.getMethods();
-        boolean flag = test.isAnnotationPresent(Description.class);
+        Class<?> clazz = JavaEyer.class;
+        Method[] method = clazz.getMethods();
+        boolean flag = clazz.isAnnotationPresent(Description.class);
         if (flag)
         {
-            Description des = (Description) test.getAnnotation(Description.class);
+            Description des = clazz.getAnnotation(Description.class);
             System.out.println("描述:" + des.value());
             System.out.println("-----------------");
         }
