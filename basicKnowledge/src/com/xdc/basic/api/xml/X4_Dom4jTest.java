@@ -7,13 +7,13 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class X4_Dom4jTest
 {
     public static void main(String arge[])
     {
-        String curPath = GetCurPath.getCurPath();
+        String curPath = GetPath.getRelativePath();
         File file = new File(curPath + "students.xml");
         try
         {

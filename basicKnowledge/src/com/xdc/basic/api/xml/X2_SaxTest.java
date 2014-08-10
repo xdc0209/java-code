@@ -6,13 +6,13 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class X2_SaxTest extends DefaultHandler
 {
     public static void main(String[] args) throws Exception
     {
-        String curPath = GetCurPath.getCurPath();
+        String curPath = GetPath.getRelativePath();
         InputSource is = new InputSource(curPath + "students.xml");
         SAXParserFactory parserFactory = SAXParserFactory.newInstance();
         SAXParser parser = parserFactory.newSAXParser();

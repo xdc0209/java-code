@@ -3,6 +3,9 @@ package com.xdc.basic.api.hibernate.orm;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+import com.xdc.basic.skills.GetPath;
 
 public class HibernateUtil
 {
@@ -13,7 +16,14 @@ public class HibernateUtil
         try
         {
             // Create the SessionFactory from hibernate.cfg.xml
-            return new Configuration().configure().buildSessionFactory(new StandardServiceRegistryBuilder().build());
+            // return new Configuration().configure().buildSessionFactory(new
+            // StandardServiceRegistryBuilder().build());
+            String curPath = GetPath.getPackagePath();
+            Configuration configuration = new Configuration().configure(curPath + "hibernate.cfg.xml");
+            // Configuration configuration = new Configuration().configure();
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+                    configuration.getProperties()).build();
+            return configuration.buildSessionFactory(serviceRegistry);
         }
         catch (Throwable ex)
         {

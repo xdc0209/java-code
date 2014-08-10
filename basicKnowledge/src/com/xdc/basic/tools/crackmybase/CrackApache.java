@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class CrackApache
 {
 	public static void main(String[] args) throws IOException
 	{
-		String curPath = GetCurPath.getCurPath();
+		String curPath = GetPath.getRelativePath();
 
 		FileReader input = new FileReader(curPath + "nyfedit.ini");
 		List<String> lines = IOUtils.readLines(input);

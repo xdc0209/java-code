@@ -17,7 +17,8 @@ public class Event
         return id;
     }
 
-    public void setId(Long id)
+    @SuppressWarnings("unused")
+    private void setId(Long id)
     {
         this.id = id;
     }

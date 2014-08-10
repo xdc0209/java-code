@@ -9,13 +9,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class X1_DomTest
 {
     public static void main(String arge[])
     {
-        String curPath = GetCurPath.getCurPath();
+        String curPath = GetPath.getRelativePath();
         File file = new File(curPath + "students.xml");
         try
         {

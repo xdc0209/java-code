@@ -10,13 +10,13 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class X5_xmlPullTest
 {
     public static void main(String[] args)
     {
-        String curPath = GetCurPath.getCurPath();
+        String curPath = GetPath.getRelativePath();
         try
         {
             XmlPullParserFactory pullParserFactory = XmlPullParserFactory.newInstance();

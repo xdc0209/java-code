@@ -3,7 +3,7 @@ package com.xdc.basic.api.java4android.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 /**
  * 处理流示例
@@ -15,7 +15,7 @@ class BufferedReaderTest
 {
 	public static void main(String[] args)
 	{
-		String curPath = GetCurPath.getCurPath();
+		String curPath = GetPath.getRelativePath();
 
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;

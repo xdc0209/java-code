@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class FindSame
 {
 	public static void main(String[] args) throws IOException
 	{
-		String curPath = GetCurPath.getCurPath();
+		String curPath = GetPath.getRelativePath();
 
 		FileReader fr1 = null;
 		FileReader fr2 = null;

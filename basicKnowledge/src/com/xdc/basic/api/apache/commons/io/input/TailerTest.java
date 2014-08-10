@@ -4,13 +4,13 @@ import java.io.File;
 
 import org.apache.commons.io.input.Tailer;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class TailerTest
 {
 	public static void main(String[] args)
 	{
-		String curPath = GetCurPath.getCurPath();
+		String curPath = GetPath.getRelativePath();
 
 		Tailer tailer = Tailer.create(new File(curPath + "from.txt"), new MyTailerListener());
 

@@ -8,7 +8,7 @@ import java.net.SocketException;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 class FortuneServer extends Thread
 {
@@ -37,7 +37,7 @@ class FortuneServer extends Thread
 
 	public void run()
 	{
-		String curPath = GetCurPath.getCurPath();
+		String curPath = GetPath.getRelativePath();
 
 		FileInputStream inStream = null;
 		while (true)

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class SendJars
 {
@@ -49,7 +49,7 @@ public class SendJars
 
     private static Collection<File> getFilesToSend()
     {
-        String curPath = GetCurPath.getCurPath();
+        String curPath = GetPath.getRelativePath();
         Collection<File> filesToSend = FileUtils.listFiles(new File(curPath), new String[] { "jar" }, false);
         return filesToSend;
     }

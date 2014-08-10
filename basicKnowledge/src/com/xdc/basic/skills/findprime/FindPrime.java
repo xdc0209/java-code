@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class FindPrime
 {
@@ -23,7 +23,7 @@ public class FindPrime
         // int threadNum = Integer.parseInt(args[2]);
         // String outPath = args[3];
 
-        String curPath = GetCurPath.getCurPath();
+        String curPath = GetPath.getRelativePath();
 
         int beginNum = 2;
         int endNum = 100000;

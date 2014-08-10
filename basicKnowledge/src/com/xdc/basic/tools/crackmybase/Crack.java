@@ -6,13 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class Crack
 {
 	public static void main(String[] args)
 	{
-		String curPath = GetCurPath.getCurPath();
+		String curPath = GetPath.getRelativePath();
 
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;

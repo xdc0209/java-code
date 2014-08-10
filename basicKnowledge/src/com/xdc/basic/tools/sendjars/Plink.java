@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.exec.CommandLine;
 
-import com.xdc.basic.skills.GetCurPath;
+import com.xdc.basic.skills.GetPath;
 
 public class Plink
 {
@@ -15,7 +15,7 @@ public class Plink
     public Plink(Authentication authentication)
     {
         super();
-        this.exePath = GetCurPath.getCurPath() + "plink.exe";
+        this.exePath = GetPath.getRelativePath() + "plink.exe";
         this.authentication = authentication;
         this.executorTool = new ExecutorTool();
     }
