@@ -69,5 +69,6 @@
 	<classpathentry kind="lib" path="lib/xml/xmlpull/xmlpull_1_1_3_4c.jar"/>
 	<classpathentry kind="lib" path="lib/xml/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/xml/jdom-2.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons/commons-chain-1.2.jar" sourcepath="libsrc/apache/commons/commons-chain-1.2-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
