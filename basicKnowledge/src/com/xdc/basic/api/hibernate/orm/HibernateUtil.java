@@ -13,17 +13,13 @@ public class HibernateUtil
 
     private static SessionFactory buildSessionFactory()
     {
+        String curPath = GetPath.getPackagePath();
         try
         {
             // Create the SessionFactory from hibernate.cfg.xml
-            // return new Configuration().configure().buildSessionFactory(new
-            // StandardServiceRegistryBuilder().build());
-            String curPath = GetPath.getPackagePath();
-            Configuration configuration = new Configuration().configure(curPath + "hibernate.cfg.xml");
-            // Configuration configuration = new Configuration().configure();
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                    configuration.getProperties()).build();
-            return configuration.buildSessionFactory(serviceRegistry);
+            Configuration cfg = new Configuration().configure(curPath + "hibernate.cfg.xml");
+            ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
+            return cfg.buildSessionFactory(sr);
         }
         catch (Throwable ex)
         {

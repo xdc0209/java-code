@@ -5,9 +5,15 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+/**
+ * TODO 初样 需要优化
+ * 
+ * @author xdc
+ * 
+ */
 public class EventManager
 {
-
+    @SuppressWarnings("rawtypes")
     public static void main(String[] args)
     {
         EventManager mgr = new EventManager();
@@ -24,6 +30,7 @@ public class EventManager
         HibernateUtil.getSessionFactory().close();
     }
 
+    @SuppressWarnings("rawtypes")
     private List listEvents()
     {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();

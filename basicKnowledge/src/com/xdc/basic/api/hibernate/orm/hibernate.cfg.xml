@@ -4,7 +4,6 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-
 	<session-factory>
 
 		<!-- Database connection settings -->
@@ -35,5 +34,4 @@
 		<mapping resource="com/xdc/basic/api/hibernate/orm/Event.hbm.xml" />
 
 	</session-factory>
-
 </hibernate-configuration>

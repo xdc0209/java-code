@@ -17,6 +17,11 @@ public class Event
         return id;
     }
 
+    /**
+     * 由hibernate自动生成，设置成私有就可以了
+     * 
+     * @param id
+     */
     @SuppressWarnings("unused")
     private void setId(Long id)
     {
