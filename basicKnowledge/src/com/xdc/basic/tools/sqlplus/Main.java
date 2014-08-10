@@ -58,6 +58,7 @@ public class Main
                 }
             }
         }
+
         if (arguments.containsKey(Option.FILE.getOption()) && arguments.containsKey(Option.SQL.getOption()))
         {
             errors.add("Must contains one of : " + Option.FILE + "and " + Option.SQL);
@@ -66,6 +67,7 @@ public class Main
         {
             errors.add("Must contains one of : " + Option.FILE + " and " + Option.SQL);
         }
+
         if (!errors.isEmpty())
         {
             for (String error : errors)
@@ -109,6 +111,7 @@ public class Main
                 errors.add("Unknow option: " + args[i]);
             }
         }
+
         if (!errors.isEmpty())
         {
             for (String error : errors)
@@ -119,6 +122,7 @@ public class Main
             usage();
             System.exit(-1);
         }
+
         return arguments;
     }
 }
