@@ -1,5 +1,8 @@
 package com.xdc.basic.tools.sqlplus;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Option
 {
     /** * 输入为文件，可选，带参数 */
@@ -26,9 +29,9 @@ public enum Option
     /** * 以dba角色登陆oralce，可选，不带参数 */
     DBA("--dba", false, false);
 
-    private String  option;
-    private boolean required;
-    private boolean withArgument;
+    private final String  option;
+    private final boolean required;
+    private final boolean withArgument;
 
     private Option(String option, boolean required, boolean withArgument)
     {
@@ -42,29 +45,14 @@ public enum Option
         return option;
     }
 
-    public void setOption(String option)
-    {
-        this.option = option;
-    }
-
     public boolean isRequired()
     {
         return required;
     }
 
-    public void setRequired(boolean required)
-    {
-        this.required = required;
-    }
-
     public boolean isWithArgument()
     {
         return withArgument;
-    }
-
-    public void setWithArgument(boolean withArgument)
-    {
-        this.withArgument = withArgument;
     }
 
     @Override
@@ -73,15 +61,20 @@ public enum Option
         return option;
     }
 
-    public static Option fromString(String str)
+    // Implementing a fromString method on an enum type
+    private static final Map<String, Option> stringToEnum = new HashMap<String, Option>();
+    static
     {
-        for (Option option : Option.values())
+        // Initialize map from constant name to enum constant
+        for (Option op : values())
         {
-            if (option.option.equalsIgnoreCase(str))
-            {
-                return option;
-            }
+            stringToEnum.put(op.toString(), op);
         }
-        return null;
+    }
+
+    // Returns Operation for string, or null if string is invalid
+    public static Option fromString(String symbol)
+    {
+        return stringToEnum.get(symbol);
     }
 }

@@ -12,7 +12,9 @@ public class Main
     public static void main(String[] args) throws SQLException, IOException
     {
         Map<String, String> arguments = parseCommandLine(args);
+
         checkArguments(arguments);
+
         SQLPlus.excute(arguments);
     }
 
@@ -75,6 +77,7 @@ public class Main
                 println(error);
             }
             println();
+
             usage();
             System.exit(-1);
         }
@@ -119,6 +122,7 @@ public class Main
                 println(error);
             }
             println();
+
             usage();
             System.exit(-1);
         }
