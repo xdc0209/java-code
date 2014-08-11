@@ -1,0 +1,96 @@
+Bookmarks
+
+书签栏
+
+38
+100
+华为
+
+团队空间
+
+[基础框架快快通3]基于表驱动的通用状态自动机 - CloudCube研发团队 - 3ms知识管理社区
+一键解决“远程登录时IP忘记了、IP变化了”的问题！在线查自己的IP！ - 刘爱华的博客 - 研发知识共享平台
+存储的一些基本概念（HBA、LUN） - 软件维优之家 - 3ms知识管理社区
+转：姓名词库_2012-在搜狗输入法里输入拼音，自动联想公司员工中文姓名 - 论坛
+2012年度最佳产品设计 - 文飞豹的博客
+vCenter Client 虚拟机出现孤立状态解决办法 - CloudCube研发团队 - 3ms知识管理社区
+java性能问题定位分析 - CloudCube研发团队 - 3ms知识管理社区
+Infusion整改之Data Class - 编程技术大会 - 3ms知识管理社区
+☆腾讯海量服务下的分布式架构分享于7月27日圆满落幕☆ - 架构设计能力提升学习交流专区 - 3ms知识管理社区
+讲道理更要讲故事 —— 产品漫画故事设计反思（转） - UCD Center - 3ms知识管理社区
+如何在WIKI发表效率提升小故事？ - 软件BU研发效率提升团队空间 - 3ms知识管理社区
+盘点诺基亚手机的十六款经典之作，总有一款你拥有过 - The World of Wizard(创新团队) - 3ms知识管理社区
+【案例】Win 7的 桌面图标 和 任务栏图标 错乱 - 桌面云用户社区 - 3ms知识管理社区
+程序员的样子_知识库_博客园
+“你最喜欢的程序员漫画”精选 - 论坛
+CIE通信异常定位 - ATAE团队 - 3ms知识管理社区
+CIE安装典型问题与解决方法案例集V1.0(持续更新...) - ATAE团队 - 3ms知识管理社区
+CIE启动判断方法 - ATAE团队 - 3ms知识管理社区
+【Linux年度大作】--Linux问题定位指导大全 - 电信硬件&云构件PDU - 3ms知识管理社区
+你觉得我们的代码能改进不？ - CloudCube研发团队 - 3ms知识管理社区
+如何查找ATAE 文档资料中提到的默认用户和默认密码？ - ATAE团队 - 3ms知识管理社区
+ATAE V300R001C30资料包归档路径及说明 - ATAE团队 - 3ms知识管理社区
+linux性能分析及调优 . - 电信硬件&云构件PDU - 3ms知识管理社区
+12306：分布式内存数据GemFire - 软件系统可靠性 - 3ms知识管理社区
+生活中的处世哲学！ - CloudCube研发团队 - 3ms知识管理社区
+【网盘的空间】百度是如何给每个人免费提供2TB存储空间的？ - 电信媒体与计算 - 3ms知识管理社区
+JAVA进程的内存分布与溢出分析 - ATAE团队 - 3ms知识管理社区
+公司内部NTP服务器地址 - 熊皓的博客
+关于CIE的日志格式的思考 - ATAE团队 - 3ms知识管理社区
+VI编辑器常用快捷键 . - 电信硬件&云构件PDU - 3ms知识管理社区
+关于如何写日志的一些分享 - IT PaaS研发团队 - 3ms知识管理社区
+想用开源组件，没有外网权限，怎么破？ - 编程技术大会 - 3ms知识管理社区
+心声社区
+
+【原创+转图】他走的静悄悄
+唯美情境人像作品
+拍照姿势大全，教你拍出好照片（拍照时只会表情僵硬的摆V姿势的ds们来看看）
+动漫与真人，差距咋这么大
+那些年，我们一起追过的女明星
+89湖南MM真诚征友，华为单身GG速度
+qcc
+
+QCC学习_百度文库
+雷达图_百度百科
+改进建议
+开源扫描
+
+开源扫描软件官方地址
+
+setuptools 0.6c11 : Python Package Index
+Chandler Wiki : Me Too Crypto
+greenlet 0.3.1 : Python Package Index
+产品数据管理系统
+开源软件添加到PDM系统中的流程 - 开源软件中心 - 3ms知识管理社区
+开源软件信息入库PDM状态查询 - 开源软件中心 - 3ms知识管理社区
+办公问题
+
+NS产品支持中心
+iSafe-iSafe Process Platform
+办公设备维修电子流(BS库)
+关于公司2014年节假日放假及调休安排的通知 - W3信息发布
+关于公司2013年节假日放假及调休安排的通知 Notice on the Company’s holiday calendar of 2013 - W3 信息发布中心
+下午茶信息 - W3信息发布
+需求相关
+
+ipsan
+
+Managed Object Browser
+Managed Object Browser
+Managed Object Browser
+Managed Object Browser
+support
+
+oracle安装工具 技术支持 - 欢迎访问华为公司网站
+oracle 安装包 ADMS(O)11g_R2_62_x86_64.iso 技术支持 - 欢迎访问华为公司网站
+cie通信矩阵
+
+VMware KB: TCP and UDP Ports required to access VMware vCenter Server, VMware ESXi and ESX hosts, and other network components
+VMware KB: Required ports for vCenter Server 5.1.x
+借助VMware Log Insight工具分析系统日志_软件与服务_比特网
+TMSS客户端下载 - HUTAF
+c3环境信息
+
+
+
+
