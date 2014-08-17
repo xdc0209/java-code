@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm;
+package com.xdc.basic.api.hibernate.orm.demo.config;
 
 import java.util.Date;
 
@@ -18,9 +18,7 @@ public class Event
     }
 
     /**
-     * 由hibernate自动生成，设置成私有就可以了
-     * 
-     * @param id
+     * 由hibernate自动生成，设置成私有就可以了。
      */
     @SuppressWarnings("unused")
     private void setId(Long id)

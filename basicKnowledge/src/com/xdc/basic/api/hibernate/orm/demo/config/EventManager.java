@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm;
+package com.xdc.basic.api.hibernate.orm.demo.config;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 /**
- * TODO 初样 需要优化
+ * TODO 初样 需要优化 优化
  * 
  * @author xdc
  * 

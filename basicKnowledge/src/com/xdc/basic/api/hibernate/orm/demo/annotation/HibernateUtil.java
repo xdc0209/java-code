@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm;
+package com.xdc.basic.api.hibernate.orm.demo.annotation;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
