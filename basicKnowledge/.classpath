@@ -70,15 +70,15 @@
 	<classpathentry kind="lib" path="lib/xml/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/xml/jdom-2.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-chain-1.2.jar" sourcepath="libsrc/apache/commons/commons-chain-1.2-sources.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/jandex-1.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/javassist-3.18.1-GA.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/jboss-logging-3.1.3.GA.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/jboss-logging-annotations-1.2.0.Beta1.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/lib/required/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/hibernate-commons-annotations-4.0.5.Final.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/hibernate-core-4.3.6.Final.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-orm/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/jandex-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/jboss-logging-3.1.3.GA.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/jboss-logging-annotations-1.2.0.Beta1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/lib/required/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/hibernate-commons-annotations-4.0.5.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/hibernate-core-4.3.6.Final.jar" sourcepath="libsrc/hibernate-orm/orm4/hibernate-core-4.3.6.Final-sources.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

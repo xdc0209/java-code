@@ -3,7 +3,7 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.xdc.basic.api.hibernate.orm.demo.config">
+<hibernate-mapping package="com.xdc.basic.api.hibernate.orm4.demo.config">
 	<class name="Event" table="EVENTS">
 		<id name="id" column="EVENT_ID">
 			<generator class="native" />
