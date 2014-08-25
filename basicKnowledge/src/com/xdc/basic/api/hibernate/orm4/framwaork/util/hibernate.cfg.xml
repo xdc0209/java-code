@@ -33,7 +33,7 @@
 		
 		<property name="connection.autocommit">true</property> 
 
-		<mapping class="com.xdc.basic.api.hibernate.orm3.entity.Event" />
+		<mapping class="com.xdc.basic.api.hibernate.orm4.framwaork.entity.Event" />
 
 	</session-factory>
 </hibernate-configuration>

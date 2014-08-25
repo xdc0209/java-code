@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm3.dao;
+package com.xdc.basic.api.hibernate.orm3.framwaork.dao;
 
 import java.io.Serializable;
 import java.util.Collection;

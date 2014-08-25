@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm3.dao.impl;
+package com.xdc.basic.api.hibernate.orm3.framwaork.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -16,7 +16,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.metadata.ClassMetadata;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.xdc.basic.api.hibernate.orm3.dao.BaseDao;
+import com.xdc.basic.api.hibernate.orm3.framwaork.dao.BaseDao;
 
 public class BaseDaoImpl<T extends Serializable, PK extends Serializable> extends HibernateDaoSupport implements
         BaseDao<T, PK>
@@ -214,7 +214,6 @@ public class BaseDaoImpl<T extends Serializable, PK extends Serializable> extend
 
         Example example = Example.create(entity);
         example.excludeZeroes(); // exclude zero valued properties
-
         if (ArrayUtils.isNotEmpty(propertyNames))
         {
             ClassMetadata classMetadata = getSessionFactory().getClassMetadata(entityClass);
@@ -236,8 +235,8 @@ public class BaseDaoImpl<T extends Serializable, PK extends Serializable> extend
                 }
             }
         }
-
         criteria.add(example);
+
         return criteria.list();
     }
 
@@ -257,7 +256,6 @@ public class BaseDaoImpl<T extends Serializable, PK extends Serializable> extend
         example.excludeZeroes(); // exclude zero valued properties
         example.ignoreCase(); // perform case insensitive string comparisons
         example.enableLike(); // use like for string comparisons
-
         if (ArrayUtils.isNotEmpty(propertyNames))
         {
             ClassMetadata classMetadata = getSessionFactory().getClassMetadata(entityClass);
@@ -279,8 +277,8 @@ public class BaseDaoImpl<T extends Serializable, PK extends Serializable> extend
                 }
             }
         }
-
         criteria.add(example);
+
         return criteria.list();
     }
 

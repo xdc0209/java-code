@@ -1,15 +1,16 @@
-package com.xdc.basic.api.hibernate.orm3.util;
+package com.xdc.basic.api.hibernate.orm4.framwaork.util;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import com.xdc.basic.skills.GetPath;
 
-public class Hibernate3Util
+public class HibernateUtil
 {
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    @SuppressWarnings("deprecation")
     private static SessionFactory buildSessionFactory()
     {
         String curPath = GetPath.getPackagePath();
@@ -17,7 +18,8 @@ public class Hibernate3Util
         {
             // Create the SessionFactory from hibernate.cfg.xml
             Configuration cfg = new Configuration().configure(curPath + "hibernate.cfg.xml");
-            return cfg.buildSessionFactory();
+            ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
+            return cfg.buildSessionFactory(sr);
         }
         catch (Throwable ex)
         {

@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm3;
+package com.xdc.basic.api.hibernate.orm4.framwaork;
 
 import java.util.Collection;
 import java.util.Date;
@@ -15,9 +15,8 @@ import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.common.collect.Lists;
-import com.xdc.basic.api.hibernate.orm3.dao.impl.EventDaoImpl;
-import com.xdc.basic.api.hibernate.orm3.entity.Event;
-import com.xdc.basic.api.hibernate.orm3.util.Hibernate3Util;
+import com.xdc.basic.api.hibernate.orm4.framwaork.dao.impl.EventDaoImpl;
+import com.xdc.basic.api.hibernate.orm4.framwaork.entity.Event;
 
 public class HibernateDaoTest
 {
@@ -28,7 +27,6 @@ public class HibernateDaoTest
         // 初始化dao
         // //////////////////////////////
         EventDaoImpl eventDao = new EventDaoImpl();
-        eventDao.setSessionFactory(Hibernate3Util.getSessionFactory());
 
         // //////////////////////////////
         // 初始化数据
@@ -104,7 +102,6 @@ public class HibernateDaoTest
         List<Event> idGreaterThan = eventDao.idGreaterThan(10L);
 
         List<Event> searchTitle = eventDao.searchTitle("xdc");
-
     }
 
     /**

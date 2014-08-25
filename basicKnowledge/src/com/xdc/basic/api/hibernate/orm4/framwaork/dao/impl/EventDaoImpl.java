@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm3.dao.impl;
+package com.xdc.basic.api.hibernate.orm4.framwaork.dao.impl;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import com.xdc.basic.api.hibernate.orm3.dao.EventDao;
-import com.xdc.basic.api.hibernate.orm3.entity.Event;
+import com.xdc.basic.api.hibernate.orm4.framwaork.dao.EventDao;
+import com.xdc.basic.api.hibernate.orm4.framwaork.entity.Event;
 
 public class EventDaoImpl extends BaseDaoImpl<Event, Long> implements EventDao
 {

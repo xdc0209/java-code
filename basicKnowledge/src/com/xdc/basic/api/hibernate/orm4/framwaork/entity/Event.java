@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm3.entity;
+package com.xdc.basic.api.hibernate.orm4.framwaork.entity;
 
 import java.io.Serializable;
 import java.util.Date;
