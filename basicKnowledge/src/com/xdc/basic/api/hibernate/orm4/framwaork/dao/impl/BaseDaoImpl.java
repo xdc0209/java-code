@@ -20,7 +20,7 @@ import org.hibernate.metadata.ClassMetadata;
 import com.xdc.basic.api.hibernate.orm4.framwaork.dao.BaseDao;
 import com.xdc.basic.api.hibernate.orm4.framwaork.util.HibernateUtil;
 
-public class BaseDaoImpl<T extends Serializable, PK extends Serializable> implements BaseDao<T, PK>
+public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializable> implements BaseDao<T, PK>
 {
     private static final Log log = LogFactory.getLog(BaseDaoImpl.class);
 

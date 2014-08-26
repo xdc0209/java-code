@@ -18,8 +18,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.xdc.basic.api.hibernate.orm3.framwaork.dao.BaseDao;
 
-public class BaseDaoImpl<T extends Serializable, PK extends Serializable> extends HibernateDaoSupport implements
-        BaseDao<T, PK>
+public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializable> extends HibernateDaoSupport
+        implements BaseDao<T, PK>
 {
     // 实体类类型(由构造方法自动赋值)
     private Class<T> entityClass;
