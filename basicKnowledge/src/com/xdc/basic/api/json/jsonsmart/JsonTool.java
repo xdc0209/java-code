@@ -2,8 +2,10 @@ package com.xdc.basic.api.json.jsonsmart;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
 import org.junit.Test;
@@ -28,6 +30,10 @@ public class JsonTool
         // json string --> object
         Student parsedStudent = JsonTool.parse(studentString, Student.class);
         System.out.println(parsedStudent);
+
+        // json string --> object
+        Map<String, Object> parseToMap = JsonTool.parseToMap(studentString);
+        System.out.println(parseToMap);
 
         // ----------------------------------------------------------
         // json array -----------------------------------------------
@@ -58,12 +64,26 @@ public class JsonTool
         return JSONValue.parse(s, clazz);
     }
 
+    @SuppressWarnings("unchecked")
+    public static Map<String, Object> parseToMap(String s)
+    {
+        Map<String, Object> result = null;
+        Object object = JSONValue.parse(s);
+        if (object instanceof JSONObject)
+        {
+            // JSONObject继承自HashMap
+            result = (Map<String, Object>) object;
+        }
+        return result;
+    }
+
     public static <T> List<T> parseArray(String s, Class<T> clazz)
     {
-        List<T> result = new ArrayList<T>();
+        List<T> result = null;
         Object object = JSONValue.parse(s);
         if (object instanceof JSONArray)
         {
+            result = new ArrayList<T>();
             JSONArray jsonArray = (JSONArray) object;
             for (Object object2 : jsonArray)
             {
