@@ -41,6 +41,8 @@ public class ReflectionTest
         // getConstructor(Class[] parameterTypes)：获得类的特定构造方法，parameterTypes参数指定构造方法的参数类型。
         // newInstance()：通过类的不带参数的构造方法创建这个类的一个对象。
 
+        // PS: declare的意思是声明，所以带declared的方法才是获得类中定义的相关属性和方法。
+
         Class<Student> clazz = Student.class;
 
         String name = clazz.getName();
