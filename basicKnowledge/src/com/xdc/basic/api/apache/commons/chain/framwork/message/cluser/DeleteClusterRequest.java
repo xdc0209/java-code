@@ -1,6 +1,8 @@
 package com.xdc.basic.api.apache.commons.chain.framwork.message.cluser;
 
-public class DeleteClusterRequest
+import com.xdc.basic.api.apache.commons.chain.framwork.message.Request;
+
+public class DeleteClusterRequest extends Request
 {
 
 }

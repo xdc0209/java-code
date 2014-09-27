@@ -1,6 +1,8 @@
 package com.xdc.basic.api.apache.commons.chain.framwork.message.cluser;
 
-public class DeleteClusterResponse
+import com.xdc.basic.api.apache.commons.chain.framwork.message.Response;
+
+public class DeleteClusterResponse extends Response
 {
 
 }

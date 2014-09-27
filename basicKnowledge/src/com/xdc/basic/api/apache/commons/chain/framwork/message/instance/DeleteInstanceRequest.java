@@ -1,6 +1,8 @@
 package com.xdc.basic.api.apache.commons.chain.framwork.message.instance;
 
-public class DeleteInstanceRequest
+import com.xdc.basic.api.apache.commons.chain.framwork.message.Request;
+
+public class DeleteInstanceRequest extends Request
 {
 
 }

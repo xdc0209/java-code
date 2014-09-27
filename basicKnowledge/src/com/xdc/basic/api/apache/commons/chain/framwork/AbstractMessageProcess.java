@@ -1,5 +1,7 @@
 package com.xdc.basic.api.apache.commons.chain.framwork;
 
+import java.util.concurrent.ThreadFactory;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -36,4 +38,6 @@ public abstract class AbstractMessageProcess implements Runnable
     }
 
     public abstract void handle();
+
+    public abstract ThreadFactory getThreadFactory();
 }

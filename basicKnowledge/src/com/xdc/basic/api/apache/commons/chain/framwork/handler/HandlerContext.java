@@ -13,6 +13,12 @@ public class HandlerContext extends ContextBase
 
     private Response          response;
 
+    public HandlerContext(Request request)
+    {
+        super();
+        this.request = request;
+    }
+
     public HandlerContext(Request request, Response response)
     {
         super();

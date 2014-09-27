@@ -38,24 +38,24 @@ public class HandlerFactory
             registerHander(CustomizeInstanceRequest.class, CustomizeInstanceHandler.class);
             registerHander(DeleteInstanceRequest.class, DeleteInstanceHandler.class);
         }
-        catch (Exception e)
+        catch (Throwable e)
         {
             log.error(e);
         }
     }
 
+    @SafeVarargs
     private static void registerHander(Class<?> requestClazz, Class<? extends Command> handlerClazz,
-            Class<?>... remainHandlerClazzes)
+            Class<? extends Command>... remainHandlerClazzes)
     {
-
-        ArrayList<Class<?>> HandlerClazzes = new ArrayList<Class<?>>();
+        ArrayList<Class<? extends Command>> HandlerClazzes = new ArrayList<Class<? extends Command>>();
         HandlerClazzes.add(handlerClazz);
-        for (Class<?> clazz : remainHandlerClazzes)
+        for (Class<? extends Command> clazz : remainHandlerClazzes)
         {
             HandlerClazzes.add(clazz);
         }
 
-        // map.put(requestClazz, HandlerClazzes);
+        map.put(requestClazz, HandlerClazzes);
     }
 
     public static List<Command> getHanders(Class<?> requestClazz)

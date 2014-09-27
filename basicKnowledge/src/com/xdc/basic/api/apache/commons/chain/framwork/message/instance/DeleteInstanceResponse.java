@@ -1,6 +1,8 @@
 package com.xdc.basic.api.apache.commons.chain.framwork.message.instance;
 
-public class DeleteInstanceResponse
+import com.xdc.basic.api.apache.commons.chain.framwork.message.Response;
+
+public class DeleteInstanceResponse extends Response
 {
 
 }

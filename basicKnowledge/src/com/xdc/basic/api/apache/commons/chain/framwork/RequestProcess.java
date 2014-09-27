@@ -1,19 +1,23 @@
 package com.xdc.basic.api.apache.commons.chain.framwork;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.chain.Chain;
-import org.apache.commons.chain.Context;
+import org.apache.commons.chain.Command;
 import org.apache.commons.chain.impl.ChainBase;
-import org.apache.commons.chain.impl.ContextBase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.xdc.basic.api.apache.commons.chain.framwork.handler.HandlerContext;
+import com.xdc.basic.api.apache.commons.chain.framwork.handler.HandlerFactory;
 import com.xdc.basic.api.apache.commons.chain.framwork.message.Request;
+import com.xdc.basic.api.apache.commons.chain.framwork.message.Response;
 import com.xdc.basic.api.apache.commons.chain.framwork.queue.RequestQueue;
+import com.xdc.basic.api.apache.commons.chain.framwork.queue.ResponseQueue;
 
 public class RequestProcess extends AbstractMessageProcess
 {
@@ -33,16 +37,19 @@ public class RequestProcess extends AbstractMessageProcess
     {
         Request request = RequestQueue.getInstance().take();
 
+        final HandlerContext handlerContext = new HandlerContext(request);
+
+        List<Command> handers = HandlerFactory.getHanders(request.getClass());
+        final Chain chain = new ChainBase(handers);
+
         executor.execute(new Runnable()
         {
             @Override
             public void run()
             {
-                Chain chain = new ChainBase();
-                Context ctx = new ContextBase();
                 try
                 {
-                    chain.execute(ctx);
+                    chain.execute(handlerContext);
                 }
                 catch (Exception e)
                 {
@@ -50,6 +57,25 @@ public class RequestProcess extends AbstractMessageProcess
                 }
             }
         });
+
+        Response response = handlerContext.getResponse();
+
+        ResponseQueue.getInstance().put(response);
+    }
+
+    @Override
+    public ThreadFactory getThreadFactory()
+    {
+        return new ThreadFactory()
+        {
+            @Override
+            public Thread newThread(Runnable r)
+            {
+                Thread t = new Thread(r);
+                t.setName("RequestProcess");
+                return t;
+            }
+        };
     }
 }
 
