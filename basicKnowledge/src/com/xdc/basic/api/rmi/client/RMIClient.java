@@ -17,41 +17,38 @@ import com.xdc.basic.api.rmi.intf.IHelloRMI;
 public class RMIClient
 {
 
-	public static void main(String[] args)
-	{
-		Scanner cin = new Scanner(System.in);
-		try
-		{
-			String ip = new String();
-			int port;
-			System.out.print("请输入服务器ip：");
-			ip = cin.nextLine();
-			System.out.print("请输入服务器端口号：");
-			port = cin.nextInt();
+    public static void main(String[] args)
+    {
+        Scanner cin = new Scanner(System.in);
+        try
+        {
+            String ip = new String();
+            int port;
+            System.out.print("请输入服务器ip：");
+            ip = cin.nextLine();
+            System.out.print("请输入服务器端口号：");
+            port = cin.nextInt();
 
-			com.xdc.basic.api.rmi.intf.IHelloRMI iRmi = (IHelloRMI) Naming.lookup("rmi://" + ip + ":" + port
-			        + "/My_RMI");
+            IHelloRMI iRmi = (IHelloRMI) Naming.lookup(String.format("rmi://%s:%s/My_RMI", ip, port));
 
-			System.out.println(iRmi.sayHello());
+            System.out.println(iRmi.sayHello());
 
-		}
-		catch (MalformedURLException e)
-		{
-			e.printStackTrace();
-		}
-		catch (RemoteException e)
-		{
-			e.printStackTrace();
-		}
-		catch (NotBoundException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			cin.close();
-		}
-
-	}
-
+        }
+        catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        catch (NotBoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            cin.close();
+        }
+    }
 }
