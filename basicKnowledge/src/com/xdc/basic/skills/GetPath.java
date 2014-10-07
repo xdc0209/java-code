@@ -3,7 +3,7 @@ package com.xdc.basic.skills;
 public class GetPath
 {
     /**
-     * 获得当前类包名一致的路径
+     * 获得与当前类包名一致的路径
      * 
      * @return
      */
