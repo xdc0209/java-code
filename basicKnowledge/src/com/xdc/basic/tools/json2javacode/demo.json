@@ -1,0 +1,34 @@
+{
+    "name": {
+        "first": "Joe",
+        "last": "Sixpack"
+    },
+    "gender": "MALE",
+    "age": 25,
+    "smoked": false,
+    "phone": 18682158004,
+    "hobbies": [
+        "football",
+        "basketball"
+    ],
+    "goodFriends": [
+        {
+            "name": "chenchong",
+            "phone": 18682158005
+        },
+        {
+            "name": "duquan",
+            "phone": 18682158006
+        }
+    ],
+    "vm": {
+        "cpu": {
+            "core": 1,
+            "price": 100
+        },
+        "mem": {
+            "size": 1000,
+            "price": 200
+        }
+    }
+}
