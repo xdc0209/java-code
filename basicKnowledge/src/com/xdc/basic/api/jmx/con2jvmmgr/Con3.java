@@ -1,0 +1,70 @@
+// 在eclipse中不能引用jdk的一些类，除非特别设置eclipse，但不建议。因此注释掉此类，使用反射避免了直接引用。
+//package com.xdc.basic.api.jmx.con2jvmmgr;
+//
+//import java.io.File;
+//import java.io.IOException;
+//import java.lang.management.ManagementFactory;
+//import java.lang.management.RuntimeMXBean;
+//import java.util.List;
+//import java.util.Properties;
+//import java.util.Scanner;
+//
+//import javax.management.MBeanServerConnection;
+//import javax.management.remote.JMXConnector;
+//import javax.management.remote.JMXConnectorFactory;
+//import javax.management.remote.JMXServiceURL;
+//
+//import com.sun.tools.attach.AgentInitializationException;
+//import com.sun.tools.attach.AgentLoadException;
+//import com.sun.tools.attach.AttachNotSupportedException;
+//import com.sun.tools.attach.VirtualMachine;
+//import com.sun.tools.attach.VirtualMachineDescriptor;
+//
+//public class Con3
+//{
+//    // 3.监控应用与被监控应用不位于同一JVM但在同一物理主机上(2的特化情况，通过进程Attach)
+//    //   我们使用JDK工具，如jmap、jstack等的时候，工具所在的JVM当然与被监控的JVM不是同一个，所以不能使用方式1，被监控的JVM一般也不会在启动参数中增加JMX的支持，所以方式2也没有办法。
+//    //   还好Sun JVM给我们提供了第3种非标准的方式，就是通过Attach到被监控的JVM进程，并在被监控的JVM中启动一个JMX代理，然后使用该代理通过2的方式连接到被监控的JVM的JMX上。
+//    //   下面是一个使用范例，由于里面使用到的知识涉及到Java Instrument(JVMTI的一个技术的Java实现)和Attach API，因此此处不做详细解析，在后续看完Java Instrument和Attach API自然就会明白。
+//    //   （注意，仅在JDK6+中支持，另外，运行需要jdk的tools.jar包）
+//    public static void main(String[] args) throws IOException, AgentLoadException, AgentInitializationException,
+//            AttachNotSupportedException
+//    {
+//        System.out.printf("%-8s%s\n", "pid", "displayName");
+//        List<VirtualMachineDescriptor> AttachableVMs = VirtualMachine.list();
+//        for (VirtualMachineDescriptor vmd : AttachableVMs)
+//        {
+//            System.out.printf("%-8s%s\n", vmd.id(), vmd.displayName());
+//        }
+//
+//        System.out.println("请输入VmPid:");
+//        Scanner scanner = new Scanner(System.in);
+//        String vmId = scanner.nextLine();
+//        scanner.close();
+//
+//        // Attach到JVM进程上，后续Attach API再讲解
+//        VirtualMachine virtualmachine = VirtualMachine.attach(vmId);
+//
+//        // 让JVM加载jmx Agent，后续讲到Java Instrument再讲解
+//        String javaHome = virtualmachine.getSystemProperties().getProperty("java.home");
+//        String jmxAgent = javaHome + File.separator + "lib" + File.separator + "management-agent.jar";
+//        virtualmachine.loadAgent(jmxAgent, "com.sun.management.jmxremote");
+//
+//        // 获得连接地址
+//        Properties properties = virtualmachine.getAgentProperties();
+//        String address = (String) properties.get("com.sun.management.jmxremote.localConnectorAddress");
+//
+//        // Detach
+//        virtualmachine.detach();
+//
+//        JMXServiceURL url = new JMXServiceURL(address);
+//
+//        JMXConnector jmxc = JMXConnectorFactory.connect(url);
+//        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+//        RuntimeMXBean rmxb = ManagementFactory.newPlatformMXBeanProxy(mbsc, "java.lang:type=Runtime",
+//                RuntimeMXBean.class);
+//
+//        System.out.println(rmxb.getName());
+//    }
+//
+//}

@@ -1,0 +1,28 @@
+virgo 连接参数：
+192.168.227.135:9875 admin springsource
+
+连接问题解决：使用JCONSOLE监控远程LINUX运行的JAVA进程，总是在报连接失败的错误。
+方法1：
+    发现了一篇有价值的文章谈到这个问题，是服务器端解释机器名的问题，如果服务器端hostname -i被定向到127.0.0.1则会出现连接失败的问题。
+    修改/etc/hosts文件，使hostname -i 指向正确的IP，JConsole终于可以正常连接。
+    这篇文章链接如下：
+    http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6209663
+
+方法2：
+    修改java启动参数：
+    -Djava.rmi.server.hostname=192.168.227.135
+    -Dcom.sun.management.jmxremote
+    -Dcom.sun.management.jmxremote.port=9875
+    -Dcom.sun.management.jmxremote.authenticate=true
+    -Dcom.sun.management.jmxremote.ssl=true
+    -Dcom.sun.management.jmxremote.authenticate=false
+    比如说我需要了解在压力测试过程中Linux系统中virgo服务器的资源占用情况，那么我就可以在virgo的启动项中加入上述信息，这样通过本机Windows中JDK的Jconsole来监控了。
+    其中第一个参数可以用来设置欲连接的Linux机器的IP地址，该项必须设置，否则远程连接会因为解析到127.0.0.1出现连接失败的情况。
+    如果不设置该项，也可以通过修改Linux的/etc/hosts文件，使hostname -i指向正确的IP，所以还是该选项更为方便。
+
+
+另外：如下viro启动失败问题的原因也是/etc/hosts文件里没有主机名。
+xdc0209@ubuntu:~/xdc_tmp/virgo-kernel-3.6.2.RELEASE/bin$ ./startup.sh
+The JAVA_HOME environment variable is not defined. Using PATH instead.
+Error: Exception thrown by the agent : java.net.MalformedURLException: Local host name unknown: java.net.UnknownHostException: ubuntu: ubuntu: Name or service not known
+xdc0209@ubuntu:~/xdc_tmp/virgo-kernel-3.6.2.RELEASE/bin$ ./startup.sh
