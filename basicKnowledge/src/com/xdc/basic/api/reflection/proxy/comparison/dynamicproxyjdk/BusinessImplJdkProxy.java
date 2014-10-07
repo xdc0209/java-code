@@ -43,7 +43,7 @@ class BusinessImplJdkProxy implements InvocationHandler
         ClassLoader classLoader = clazz.getClassLoader();
         Class<?>[] interfaces = clazz.getInterfaces();
 
-        //取得代理对象, 要绑定接口(这是jdk动态代理的一个缺陷，cglib动态代理弥补了这一缺陷) 
+        // 取得代理对象, 要绑定到接口(这是jdk动态代理的一个缺陷，cglib动态代理弥补了这一缺陷) 
         return Proxy.newProxyInstance(classLoader, interfaces, new BusinessImplJdkProxy(obj));
     }
 }
