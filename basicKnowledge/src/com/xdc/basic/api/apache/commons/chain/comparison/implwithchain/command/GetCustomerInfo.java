@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.commons.chain;
+package com.xdc.basic.api.apache.commons.chain.comparison.implwithchain.command;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;

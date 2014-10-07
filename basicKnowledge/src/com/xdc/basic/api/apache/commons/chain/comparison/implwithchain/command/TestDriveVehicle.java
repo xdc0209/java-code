@@ -1,14 +1,14 @@
-package com.xdc.basic.api.apache.commons.chain;
+package com.xdc.basic.api.apache.commons.chain.comparison.implwithchain.command;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 
-public class NegotiateSale implements Command
+public class TestDriveVehicle implements Command
 {
     @Override
     public boolean execute(Context ctx) throws Exception
     {
-        System.out.println("Negotiate sale");
+        System.out.println("Test drive the vehicle");
         return false;
     }
 }

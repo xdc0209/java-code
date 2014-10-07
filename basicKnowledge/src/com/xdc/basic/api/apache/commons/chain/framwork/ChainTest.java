@@ -19,6 +19,5 @@ public class ChainTest
         RequestQueue.getInstance().put(new CreateInstanceRequest());
         RequestQueue.getInstance().put(new DeleteInstanceRequest());
         System.out.println();
-
     }
 }

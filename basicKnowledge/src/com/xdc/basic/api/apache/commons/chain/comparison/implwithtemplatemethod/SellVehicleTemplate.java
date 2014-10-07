@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.commons.chain.implwhittemplatemethod;
+package com.xdc.basic.api.apache.commons.chain.comparison.implwithtemplatemethod;
 
 public abstract class SellVehicleTemplate
 {
