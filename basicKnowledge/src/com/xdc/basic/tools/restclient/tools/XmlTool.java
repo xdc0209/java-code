@@ -22,6 +22,8 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+import com.xdc.basic.tools.restclient.message.RestClientException;
+
 public class XmlTool
 {
     private JAXBContext  jaxbContext  = null;
@@ -91,7 +93,7 @@ public class XmlTool
         return outputStream.toByteArray();
     }
 
-    public static String format(String xmlString)
+    public static String format(String xmlString) throws RestClientException
     {
         SAXBuilder builder = new SAXBuilder();
 
@@ -103,11 +105,11 @@ public class XmlTool
         }
         catch (JDOMException e)
         {
-            e.printStackTrace();
+            throw new RestClientException(e);
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            throw new RestClientException(e);
         }
 
         // Output the document, use standard formatter

@@ -94,7 +94,7 @@ public class RestClient
             httpPut.setEntity(new StringEntity(req.getBody(), Charsets.UTF_8));
             request = httpPut;
         }
-        else if (HttpMethod.DELETL.toString().equalsIgnoreCase(method))
+        else if (HttpMethod.DELETE.toString().equalsIgnoreCase(method))
         {
             HttpDelete httpDelete = new HttpDelete(url);
             request = httpDelete;

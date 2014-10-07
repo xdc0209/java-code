@@ -9,12 +9,13 @@ import org.junit.Test;
 import com.xdc.basic.tools.restclient.constants.Constants;
 import com.xdc.basic.tools.restclient.constants.HttpMethod;
 import com.xdc.basic.tools.restclient.message.Request;
+import com.xdc.basic.tools.restclient.message.RestClientException;
 import com.xdc.basic.tools.restclient.tools.JsonTool;
 
 public class RequestHelper
 {
     @Test
-    public void saveReqest() throws IOException
+    public void saveReqest() throws IOException, RestClientException
     {
         Request req = new Request();
         req.setMethod(HttpMethod.GET.toString());
@@ -29,7 +30,7 @@ public class RequestHelper
     }
 
     @Test
-    public void readReqest() throws IOException
+    public void readReqest() throws IOException, RestClientException
     {
         String reqFile = "demo.req";
         String reqStr = FileUtils.readFileToString(FileUtils.getFile(reqFile), Charsets.UTF_8);

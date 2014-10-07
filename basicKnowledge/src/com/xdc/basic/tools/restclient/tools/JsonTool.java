@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xdc.basic.tools.restclient.message.RestClientException;
 
 public class JsonTool
 {
@@ -16,7 +17,7 @@ public class JsonTool
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
-    public static String toJSONString(Object o)
+    public static String toJSONString(Object o) throws RestClientException
     {
         String s = null;
         try
@@ -26,12 +27,12 @@ public class JsonTool
         }
         catch (JsonProcessingException e)
         {
-            e.printStackTrace();
+            throw new RestClientException(e);
         }
         return s;
     }
 
-    public static <T> T parse(String s, Class<T> clazz)
+    public static <T> T parse(String s, Class<T> clazz) throws RestClientException
     {
         T t = null;
         try
@@ -40,20 +41,20 @@ public class JsonTool
         }
         catch (JsonParseException e)
         {
-            e.printStackTrace();
+            throw new RestClientException(e);
         }
         catch (JsonMappingException e)
         {
-            e.printStackTrace();
+            throw new RestClientException(e);
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            throw new RestClientException(e);
         }
         return t;
     }
 
-    public static String format(String s)
+    public static String format(String s) throws RestClientException
     {
         Object o = JsonTool.parse(s, Object.class);
         return JsonTool.toJSONString(o);
