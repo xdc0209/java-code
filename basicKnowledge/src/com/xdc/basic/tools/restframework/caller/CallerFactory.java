@@ -7,7 +7,7 @@ import com.xdc.basic.tools.restframework.core.CallProxy;
 
 public class CallerFactory
 {
-    private static Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
+    private static final Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
 
     static
     {
