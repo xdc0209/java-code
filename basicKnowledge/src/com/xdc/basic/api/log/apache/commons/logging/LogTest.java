@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.commons.logging;
+package com.xdc.basic.api.log.apache.commons.logging;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,8 +16,8 @@ public class LogTest
     {
         //        log.isFatalEnabled(); // true
         //        log.isErrorEnabled(); // true
-        //        log.isWarnEnabled(); // true
-        //        log.isInfoEnabled(); // true
+        //        log.isWarnEnabled();  // true
+        //        log.isInfoEnabled();  // true
         //        log.isDebugEnabled(); // false
         //        log.isTraceEnabled(); // false
         //

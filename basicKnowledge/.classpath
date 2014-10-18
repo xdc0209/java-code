@@ -43,7 +43,7 @@
 	<classpathentry kind="lib" path="lib/spring/spring-web-3.2.2.RELEASE.jar" sourcepath="libsrc/spring/spring-web-3.2.2.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-3.2.2.RELEASE.jar" sourcepath="libsrc/spring/spring-webmvc-3.2.2.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar" sourcepath="libsrc/spring/spring-webmvc-portlet-3.2.2.RELEASE-sources.jar"/>
-	<classpathentry kind="lib" path="lib/apache/log4j/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar" sourcepath="libsrc/easymock-3.1-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/classmate-0.8.0.jar"/>
@@ -80,5 +80,9 @@
 	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/hibernate-commons-annotations-4.0.5.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/hibernate-core-4.3.6.Final.jar" sourcepath="libsrc/hibernate-orm/orm4/hibernate-core-4.3.6.Final-sources.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-orm/orm4/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j/slf4j-api-1.7.7.jar" sourcepath="libsrc/slf4j/slf4j-api-1.7.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j/slf4j-log4j12-1.7.7.jar" sourcepath="libsrc/slf4j/slf4j-log4j12-1.7.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons/commons-cli-1.2.jar" sourcepath="libsrc/apache/commons/commons-cli-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="lib/args4j-2.0.21.jar" sourcepath="libsrc/args4j-2.0.21-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
