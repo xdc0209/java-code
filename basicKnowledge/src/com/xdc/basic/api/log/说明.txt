@@ -1,0 +1,1 @@
+Log4j有两种配置方式，一种是xml格式，一种是properties格式。都是放置到classpath下面。默认名称分别是：log4j.xml和log4j.properties
