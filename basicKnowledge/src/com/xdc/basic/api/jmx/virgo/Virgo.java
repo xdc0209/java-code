@@ -23,9 +23,25 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Virgo
 {
+    // 需要引入jmxremote_optional.jar以支持jmxmp协议
+    // java.net.MalformedURLException: Unsupported protocol: jmxmp
+
+    // 为了安全，virgo的jmx端口开在127.0.0.1:19875上，这时如果想在其他机器上连接virgo的jmx服务，可通过端口转发实现。
+
+    // 启动端口转发(在virgo所在的服务器执行)
+    // linux:~ # ssh -NTf -L 0.0.0.0:9875:127.0.0.1:19875 root@127.0.0.1
+
+    // 关闭端口转发
+    // linux:~ # PID=$(ps -eo pid,args | grep "ssh -NTf -L 0.0.0.0:9875:127.0.0.1:19875 root@127.0.0.1" | grep -v grep | cut -c1-6)
+    // linux:~ # [ -n "$PID" ] && echo "kill -9 $PID" && kill -9 $PID && unset PID
+
     public static void main(String[] args) throws IOException, InstanceNotFoundException, MBeanException,
             ReflectionException, MalformedObjectNameException, IntrospectionException, AttributeNotFoundException
     {
+        // virgo的服务器可能使用rmi协议，也可能使用jmxmp协议，具体是那种你的virgo怎么配置的，格式样例分别如下：
+        // rmi:   service:jmx:rmi:///jndi/rmi://Virgo_Server_IP_Address:9875/jmxrmi
+        // jmxmp: service:jmx:jmxmp://Virgo_Server_IP_Address:9875
+
         JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://192.168.227.135:9875/jmxrmi");
 
         Map<String, Object> env = new HashMap<String, Object>();
