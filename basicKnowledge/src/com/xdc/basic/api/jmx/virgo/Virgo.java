@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
@@ -13,16 +14,15 @@ import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
-import javax.management.openmbean.CompositeData;
+import javax.management.openmbean.CompositeDataSupport;
 import javax.management.openmbean.TabularData;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class Virgo
 {
+
     // 需要引入jmxremote_optional.jar以支持jmxmp协议
     // java.net.MalformedURLException: Unsupported protocol: jmxmp
 
@@ -54,77 +54,167 @@ public class Virgo
         printPlanState(mbsc);
 
         printBundleState(mbsc);
-
     }
 
     private static void printPlanState(MBeanServerConnection mbsc) throws IOException, AttributeNotFoundException,
-            InstanceNotFoundException, MBeanException, ReflectionException
+            InstanceNotFoundException, MBeanException, ReflectionException, MalformedObjectNameException
     {
         System.out.printf("%-12s%s\n", "State", "Plan");
-        Set<ObjectName> queryNames = mbsc.queryNames(null, null);
+
+        ObjectName planObjectName = new ObjectName(
+                "org.eclipse.virgo.kernel:type=ArtifactModel,artifact-type=plan,name=*,version=*,region=*");
+
+        Set<ObjectName> queryNames = mbsc.queryNames(planObjectName, null);
         for (ObjectName objectName : queryNames)
         {
-            if (StringUtils.containsIgnoreCase(objectName.getCanonicalName(), "artifact-type=plan"))
-            {
-                Object name = mbsc.getAttribute(objectName, "Name");
-                Object state = mbsc.getAttribute(objectName, "State");
-                Object version = mbsc.getAttribute(objectName, "Version");
-                System.out.printf("%-12s%s_%s\n", state, name, version);
-            }
+            Object name = mbsc.getAttribute(objectName, "Name");
+            Object state = mbsc.getAttribute(objectName, "State");
+            Object version = mbsc.getAttribute(objectName, "Version");
+            System.out.printf("%-12s%s_%s\n", state, name, version);
         }
         System.out.println();
     }
 
     private static void printBundleState(MBeanServerConnection mbsc) throws MalformedObjectNameException,
-            InstanceNotFoundException, MBeanException, ReflectionException, IOException
+            InstanceNotFoundException, MBeanException, ReflectionException, IOException, AttributeNotFoundException
     {
+        System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
 
-        ObjectName kernelObjectName = new ObjectName(
-                "osgi.core:version=1.5,type=bundleState,region=org.eclipse.equinox.region.kernel");
-        ObjectName userObjectName = new ObjectName(
-                "osgi.core:version=1.5,type=bundleState,region=org.eclipse.virgo.region.user");
+        ObjectName bundleObjectName = new ObjectName(
+                "org.eclipse.virgo.kernel:type=ArtifactModel,artifact-type=bundle,name=*,version=*,region=*");
 
-        Object listKernelBundlesResult = mbsc.invoke(kernelObjectName, "listBundles", null, null);
-        Object listUserBundlesResult = mbsc.invoke(userObjectName, "listBundles", null, null);
+        // 使用treeMap保存，结果按自动按bundleId排序
+        Map<Integer, Bundle> map = new TreeMap<Integer, Bundle>();
 
-        if (listKernelBundlesResult instanceof TabularData && listUserBundlesResult instanceof TabularData)
+        Set<ObjectName> queryNames = mbsc.queryNames(bundleObjectName, null);
+        for (ObjectName objectName : queryNames)
         {
-            TabularData kernelTabularData = (TabularData) listKernelBundlesResult;
-            TabularData userTabularData = (TabularData) listUserBundlesResult;
+            Object name = mbsc.getAttribute(objectName, "Name");
+            Object version = mbsc.getAttribute(objectName, "Version");
+            Object state = mbsc.getAttribute(objectName, "State");
 
-            System.out.println("==== Kernel Bundles State ====");
-            System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
-            for (Object o : kernelTabularData.values())
-            {
-                if (o instanceof CompositeData)
-                {
-                    CompositeData compositeData = (CompositeData) o;
+            Object properties = mbsc.getAttribute(objectName, "Properties");
+            Integer bundleId = parseBundleId(properties);
 
-                    Object identifier = compositeData.get("Identifier");
-                    Object state = compositeData.get("State");
-                    Object symbolicName = compositeData.get("SymbolicName");
-                    Object version = compositeData.get("Version");
-                    System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
-                }
-            }
-            System.out.println();
-
-            System.out.println("==== User Bundles State ====");
-            System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
-            for (Object o : userTabularData.values())
-            {
-                if (o instanceof CompositeData)
-                {
-                    CompositeData compositeData = (CompositeData) o;
-
-                    Object identifier = compositeData.get("Identifier");
-                    Object state = compositeData.get("State");
-                    Object symbolicName = compositeData.get("SymbolicName");
-                    Object version = compositeData.get("Version");
-                    System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
-                }
-            }
-            System.out.println();
+            Bundle bundle = new Bundle(bundleId, name, version, state);
+            map.put(bundleId, bundle);
         }
+
+        for (Bundle bundle : map.values())
+        {
+            Integer bundleId = bundle.getBundleId();
+            Object name = bundle.getName();
+            Object version = bundle.getVersion();
+            Object state = bundle.getState();
+
+            System.out.printf("%-5s%-12s%s_%s\n", bundleId, state, name, version);
+        }
+
+        System.out.println();
+    }
+
+    /**
+     * 从复杂的表结构中解析出bunleId
+     */
+    private static Integer parseBundleId(Object properties)
+    {
+        TabularData tabularData = (TabularData) properties;
+        CompositeDataSupport compositeData = (CompositeDataSupport) tabularData.get(new String[] { "Bundle Id" });
+        Object bundleId = compositeData.get("value");
+        return Integer.valueOf(String.valueOf(bundleId));
+    }
+
+    //    /**
+    //     * 通过osgi.core中的listBundles方法获取bundle状态，但是不同版virgo可能没有此域，兼容性不好，不用此方法。
+    //     */
+    //    private static void printBundleStatef(MBeanServerConnection mbsc) throws MalformedObjectNameException,
+    //            InstanceNotFoundException, MBeanException, ReflectionException, IOException
+    //    {
+    //
+    //        ObjectName kernelObjectName = new ObjectName(
+    //                "osgi.core:version=1.5,type=bundleState,region=org.eclipse.equinox.region.kernel");
+    //        ObjectName userObjectName = new ObjectName(
+    //                "osgi.core:version=1.5,type=bundleState,region=org.eclipse.virgo.region.user");
+    //
+    //        Object listKernelBundlesResult = mbsc.invoke(kernelObjectName, "listBundles", null, null);
+    //        Object listUserBundlesResult = mbsc.invoke(userObjectName, "listBundles", null, null);
+    //
+    //        if (listKernelBundlesResult instanceof TabularData && listUserBundlesResult instanceof TabularData)
+    //        {
+    //            TabularData kernelTabularData = (TabularData) listKernelBundlesResult;
+    //            TabularData userTabularData = (TabularData) listUserBundlesResult;
+    //
+    //            System.out.println("==== Kernel Bundles State ====");
+    //            System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
+    //            for (Object o : kernelTabularData.values())
+    //            {
+    //                if (o instanceof CompositeData)
+    //                {
+    //                    CompositeData compositeData = (CompositeData) o;
+    //
+    //                    Object identifier = compositeData.get("Identifier");
+    //                    Object state = compositeData.get("State");
+    //                    Object symbolicName = compositeData.get("SymbolicName");
+    //                    Object version = compositeData.get("Version");
+    //                    System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
+    //                }
+    //            }
+    //            System.out.println();
+    //
+    //            System.out.println("==== User Bundles State ====");
+    //            System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
+    //            for (Object o : userTabularData.values())
+    //            {
+    //                if (o instanceof CompositeData)
+    //                {
+    //                    CompositeData compositeData = (CompositeData) o;
+    //
+    //                    Object identifier = compositeData.get("Identifier");
+    //                    Object state = compositeData.get("State");
+    //                    Object symbolicName = compositeData.get("SymbolicName");
+    //                    Object version = compositeData.get("Version");
+    //                    System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
+    //                }
+    //            }
+    //            System.out.println();
+    //        }
+    //    }
+
+}
+
+class Bundle
+{
+    private Integer bundleId;
+    private Object  name;
+    private Object  version;
+    private Object  state;
+
+    public Bundle(Integer bundleId, Object name, Object version, Object state)
+    {
+        super();
+        this.bundleId = bundleId;
+        this.name = name;
+        this.version = version;
+        this.state = state;
+    }
+
+    public Integer getBundleId()
+    {
+        return bundleId;
+    }
+
+    public Object getName()
+    {
+        return name;
+    }
+
+    public Object getVersion()
+    {
+        return version;
+    }
+
+    public Object getState()
+    {
+        return state;
     }
 }
