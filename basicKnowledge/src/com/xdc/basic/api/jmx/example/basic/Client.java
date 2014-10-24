@@ -15,6 +15,7 @@ import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
+import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
 import javax.management.remote.JMXConnector;
@@ -56,6 +57,8 @@ public class Client
         // Get MBean count
         echo("MBean count = " + mbsc.getMBeanCount());
 
+        // Query MBeans
+        Set<ObjectInstance> queryMBeans = mbsc.queryMBeans(null, null);
         // Query MBean names
         Set<ObjectName> names = mbsc.queryNames(null, null);
 
