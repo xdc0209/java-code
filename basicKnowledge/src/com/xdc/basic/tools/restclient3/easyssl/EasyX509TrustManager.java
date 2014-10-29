@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3;
+package com.xdc.basic.tools.restclient3.easyssl;
 
 /*   **********************************************************************  **
  **                                                                          **

@@ -22,7 +22,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import com.xdc.basic.tools.restclient.message.RestClientException;
+import com.xdc.basic.tools.restclient3.message.RestClientException;
 
 public class XmlTool
 {
