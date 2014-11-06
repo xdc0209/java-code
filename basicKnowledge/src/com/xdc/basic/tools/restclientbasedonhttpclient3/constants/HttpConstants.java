@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.constants;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.constants;
 
 public interface HttpConstants
 {
@@ -30,6 +30,6 @@ public interface HttpConstants
 
     interface Charset
     {
-        String UTF_8 = "charset=UTF-8";
+        String UTF8 = "charset=UTF-8";
     }
 }

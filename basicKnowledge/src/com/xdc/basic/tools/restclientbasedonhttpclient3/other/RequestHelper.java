@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.other;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.other;
 
 import java.io.IOException;
 

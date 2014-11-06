@@ -1,8 +1,8 @@
-package com.xdc.basic.tools.restclient3;
+package com.xdc.basic.tools.restclientbasedonhttpclient3;
 
-import com.xdc.basic.tools.restclient3.constants.HttpMethods;
-import com.xdc.basic.tools.restclient3.message.Request;
-import com.xdc.basic.tools.restclient3.message.Response;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpMethodType;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Request;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Response;
 
 public class Main
 {
@@ -11,7 +11,7 @@ public class Main
         try
         {
             Request req = new Request();
-            req.setMethod(HttpMethods.GET.toString());
+            req.setMethod(HttpMethodType.GET.toString());
             req.setUrl("/data/sk/101010100.html");
             System.out.println("Send rest requst: " + req);
 

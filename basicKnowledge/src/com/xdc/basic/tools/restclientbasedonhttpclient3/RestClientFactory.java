@@ -1,6 +1,6 @@
-package com.xdc.basic.tools.restclient3;
+package com.xdc.basic.tools.restclientbasedonhttpclient3;
 
-import com.xdc.basic.tools.restclient3.constants.HttpProtocol;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpProtocol;
 
 public class RestClientFactory
 {

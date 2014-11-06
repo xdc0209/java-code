@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.tools;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
 
 import java.io.UnsupportedEncodingException;
 
@@ -15,6 +15,7 @@ public class BytesUtil
     {
         // apache提供了专门的方法去获取字符串的utf8编码的字节数组
         // return StringUtils.getBytesUtf8(plainText);
+
         byte[] b = null;
         try
         {
@@ -27,11 +28,18 @@ public class BytesUtil
         return b;
     }
 
-    /** * 根据指定编码将字节数组转换成字符串 * * @param charsetName * @param b * @return */
+    /**
+     * 根据指定编码将字节数组转换成字符串
+     * 
+     * @param b
+     * @param charsetName
+     * @return
+     */
     public static String bytes2String(byte[] b, String charsetName)
     {
         // apache提供了专门的方法从字节数组转换成utf8编码的字符串
         // return StringUtils.newStringUtf8(b);
+
         String s = null;
         try
         {

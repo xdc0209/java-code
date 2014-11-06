@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3;
+package com.xdc.basic.tools.restclientbasedonhttpclient3;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -13,19 +13,19 @@ import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xdc.basic.tools.restclient3.constants.Constants;
-import com.xdc.basic.tools.restclient3.constants.HttpConstants;
-import com.xdc.basic.tools.restclient3.constants.HttpMethods;
-import com.xdc.basic.tools.restclient3.constants.HttpProtocol;
-import com.xdc.basic.tools.restclient3.easyssl.EasySSLProtocolSocketFactory;
-import com.xdc.basic.tools.restclient3.message.Request;
-import com.xdc.basic.tools.restclient3.message.Response;
-import com.xdc.basic.tools.restclient3.message.RestClientException;
-import com.xdc.basic.tools.restclient3.tools.Base64Util;
-import com.xdc.basic.tools.restclient3.tools.BytesUtil;
-import com.xdc.basic.tools.restclient3.tools.IpTool;
-import com.xdc.basic.tools.restclient3.tools.JsonTool;
-import com.xdc.basic.tools.restclient3.tools.XmlTool;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.Constants;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpConstants;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpMethodType;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpProtocol;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.easyssl.EasySSLProtocolSocketFactory;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Request;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Response;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.RestClientException;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.Base64Util;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.BytesUtil;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.IpTool;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.JsonTool;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.XmlTool;
 
 public class RestClient
 {
@@ -47,6 +47,11 @@ public class RestClient
             throw new IllegalArgumentException("Port is not leagal. Port should be in [1,65535]. Port = " + port);
         }
 
+        if (StringUtils.isBlank(port))
+        {
+            port = protocol.getDefaultPort();
+        }
+
         this.protocol = protocol;
         this.host = host;
         this.port = port;
@@ -60,7 +65,7 @@ public class RestClient
             return null;
         }
 
-        String encodeStr = Base64Util.encodeStr(user + ":" + password, "UTF-8");
+        String encodeStr = Base64Util.encodeStr(user + ":" + password, Constants.Charset.UTF8);
         return HttpConstants.AUTH_BASIC + " " + encodeStr;
     }
 
@@ -71,18 +76,18 @@ public class RestClient
         String url = getUrl(req);
 
         String method = req.getMethod();
-        if (HttpMethods.GET.toString().equalsIgnoreCase(method))
+        if (HttpMethodType.GET.toString().equalsIgnoreCase(method))
         {
             GetMethod getMethod = new GetMethod(url);
             httpMethod = getMethod;
         }
-        else if (HttpMethods.POST.toString().equalsIgnoreCase(method))
+        else if (HttpMethodType.POST.toString().equalsIgnoreCase(method))
         {
             PostMethod postMethod = new PostMethod(url);
             StringRequestEntity requestEntity = null;
             try
             {
-                requestEntity = new StringRequestEntity(req.getBody(), null, "UTF-8");
+                requestEntity = new StringRequestEntity(req.getBody(), null, Constants.Charset.UTF8);
             }
             catch (UnsupportedEncodingException e)
             {
@@ -91,13 +96,13 @@ public class RestClient
             postMethod.setRequestEntity(requestEntity);
             httpMethod = postMethod;
         }
-        else if (HttpMethods.PUT.toString().equalsIgnoreCase(method))
+        else if (HttpMethodType.PUT.toString().equalsIgnoreCase(method))
         {
             PutMethod putMethod = new PutMethod(url);
             StringRequestEntity requestEntity = null;
             try
             {
-                requestEntity = new StringRequestEntity(req.getBody(), null, "UTF-8");
+                requestEntity = new StringRequestEntity(req.getBody(), null, Constants.Charset.UTF8);
             }
             catch (UnsupportedEncodingException e)
             {
@@ -106,7 +111,7 @@ public class RestClient
             putMethod.setRequestEntity(requestEntity);
             httpMethod = putMethod;
         }
-        else if (HttpMethods.DELETE.toString().equalsIgnoreCase(method))
+        else if (HttpMethodType.DELETE.toString().equalsIgnoreCase(method))
         {
             DeleteMethod deleteMethod = new DeleteMethod(url);
             httpMethod = deleteMethod;
@@ -122,6 +127,8 @@ public class RestClient
 
         Response rsp = convertResponse(httpMethod);
 
+        httpMethod.releaseConnection();
+
         return rsp;
     }
 
@@ -130,12 +137,12 @@ public class RestClient
         if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.json))
         {
             httpMethod.setRequestHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.JSON + ";"
-                    + HttpConstants.Charset.UTF_8);
+                    + HttpConstants.Charset.UTF8);
         }
         else if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.xml))
         {
             httpMethod.setRequestHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.XML + ";"
-                    + HttpConstants.Charset.UTF_8);
+                    + HttpConstants.Charset.UTF8);
         }
         else
         {
@@ -177,7 +184,7 @@ public class RestClient
         {
             handleException(e);
         }
-        String body = BytesUtil.bytes2String(responseBody, Base64Util.UTF8);
+        String body = BytesUtil.bytes2String(responseBody, Constants.Charset.UTF8);
 
         String bodyType = null;
         if (StringUtils.contains(httpMethod.getResponseHeader(HttpConstants.CONTENT_TYPE).getValue(),
@@ -212,8 +219,6 @@ public class RestClient
             httpClient.getParams().setSoTimeout(5000);
 
             httpClient.executeMethod(httpMethod);
-
-            httpMethod.releaseConnection();
         }
         catch (Exception e)
         {

@@ -116,12 +116,12 @@ public class RestClient
         if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.json))
         {
             request.addHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.JSON + ";"
-                    + HttpConstants.Charset.UTF_8);
+                    + HttpConstants.Charset.UTF8);
         }
         else if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.xml))
         {
             request.addHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.XML + ";"
-                    + HttpConstants.Charset.UTF_8);
+                    + HttpConstants.Charset.UTF8);
         }
         else
         {

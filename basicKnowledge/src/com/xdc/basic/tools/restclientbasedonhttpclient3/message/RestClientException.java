@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.message;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.message;
 
 public class RestClientException extends Exception
 {

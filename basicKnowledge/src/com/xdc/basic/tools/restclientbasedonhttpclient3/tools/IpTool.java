@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.tools;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;

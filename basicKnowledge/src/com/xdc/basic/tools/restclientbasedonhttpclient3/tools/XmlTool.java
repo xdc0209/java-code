@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.tools;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,7 +22,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import com.xdc.basic.tools.restclient3.message.RestClientException;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.RestClientException;
 
 public class XmlTool
 {

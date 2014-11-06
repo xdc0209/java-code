@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.tools;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xdc.basic.tools.restclient3.message.RestClientException;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.RestClientException;
 
 public class JsonTool
 {

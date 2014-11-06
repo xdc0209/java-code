@@ -30,6 +30,6 @@ public interface HttpConstants
 
     interface Charset
     {
-        String UTF_8 = "charset=UTF-8";
+        String UTF8 = "charset=UTF-8";
     }
 }

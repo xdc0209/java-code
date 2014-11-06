@@ -1,38 +1,35 @@
-package com.xdc.basic.tools.restclient3.message;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.message;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class Request
+public class Response
 {
-    private String method;
-    private String url;
+    private int    statusCode;
     private String bodyType;
     private String body;
 
-    public Request()
+    public Response()
     {
         super();
     }
 
-    public String getMethod()
+    public Response(int statusCode, String bodyType, String body)
     {
-        return method;
+        super();
+        this.statusCode = statusCode;
+        this.bodyType = bodyType;
+        this.body = body;
     }
 
-    public void setMethod(String method)
+    public int getStatusCode()
     {
-        this.method = method;
+        return statusCode;
     }
 
-    public String getUrl()
+    public void setStatusCode(int statusCode)
     {
-        return url;
-    }
-
-    public void setUrl(String url)
-    {
-        this.url = url;
+        this.statusCode = statusCode;
     }
 
     public String getBodyType()

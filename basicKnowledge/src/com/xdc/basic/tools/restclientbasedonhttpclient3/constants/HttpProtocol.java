@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclient3.constants;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.constants;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,11 +1,9 @@
-package com.xdc.basic.tools.restclient3.tools;
+package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
 
 import org.apache.commons.codec.binary.Base64;
 
 public class Base64Util
 {
-    public static final String  UTF8   = "UTF-8";     // UTF8和UTF-8一样 
-    public static final String  GBK    = "GBK";
     private static final Base64 base64 = new Base64();
 
     /**
