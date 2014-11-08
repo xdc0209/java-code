@@ -45,7 +45,7 @@
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar" sourcepath="libsrc/spring/spring-webmvc-portlet-3.2.2.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar" sourcepath="libsrc/easymock-3.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/apache/http-3.1/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/apache/http-3.1/commons-httpclient-3.1.jar" sourcepath="libsrc/apache/http-3.1/commons-httpclient-3.1-src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/classmate-0.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-2.2.4.jar"/>
@@ -55,11 +55,11 @@
 	<classpathentry kind="lib" path="lib/hibernate-validator/hibernate-validator-5.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/hibernate-validator-annotation-processor-5.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/hibernate-validator-cdi-5.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="lib/apache/http/fluent-hc-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-client-4.3-src.zip"/>
-	<classpathentry kind="lib" path="lib/apache/http/httpclient-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-client-4.3-src.zip"/>
-	<classpathentry kind="lib" path="lib/apache/http/httpclient-cache-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-client-4.3-src.zip"/>
-	<classpathentry kind="lib" path="lib/apache/http/httpcore-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-core-4.3-src.zip"/>
-	<classpathentry kind="lib" path="lib/apache/http/httpmime-4.3.jar" sourcepath="libsrc/apache/http/httpcomponents-client-4.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/apache/http-4.3/fluent-hc-4.3.jar" sourcepath="libsrc/apache/http-4.3/httpcomponents-client-4.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/apache/http-4.3/httpclient-4.3.jar" sourcepath="libsrc/apache/http-4.3/httpcomponents-client-4.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/apache/http-4.3/httpclient-cache-4.3.jar" sourcepath="libsrc/apache/http-4.3/httpcomponents-client-4.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/apache/http-4.3/httpcore-4.3.jar" sourcepath="libsrc/apache/http-4.3/httpcomponents-core-4.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/apache/http-4.3/httpmime-4.3.jar" sourcepath="libsrc/apache/http-4.3/httpcomponents-client-4.3-src.zip"/>
 	<classpathentry kind="lib" path="lib/json/jsonsmart/lib/asm-1.0-RC3.jar"/>
 	<classpathentry kind="lib" path="lib/json/jsonsmart/lib/asm-3.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/json/jsonsmart/json-smart-2.0-RC3.jar"/>
