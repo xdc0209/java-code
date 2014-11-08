@@ -1,2 +1,6 @@
 如果是编写的一个通用的客户端，可以用于支持访问所有的HTTP及HTTPS协议请求，这个时候SSL自签名就非常管用了，如soupUI，它是一款用于WEBSERVICE的性能及压力测试工具，可以访问所有的HTTPS请求，并且不需要我们指定trustStore。通过查看其源代码，原来它使用的就是SSL自签名的实现类org.apache.commons.httpclient.contrib.ssl.EasySSLProtocolSocketFactory，有了它，在访问任何HTTPS的时候都不需要指定trustStore了。
 当然这个是有安全问题的，这个自签名的API中也有明确的提示，尽量不要用于生产环境，用于平时的测试过程中是可以的。使用是非常简单的，只需要在发起请求前将SSL自签名API注册到Protocol中即可：
+
+代码引自：
+http://www.verysource.com/code/777060_1/easyx509trustmanager.java.html
+http://www.verysource.com/code/777059_1/easysslprotocolsocketfactory.java.html

@@ -72,11 +72,17 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
         }
     }
 
+    /**
+     * @see ProtocolSocketFactory#createSocket(java.lang.String,int)
+     */
     public Socket createSocket(String host, int port) throws IOException, UnknownHostException
     {
         return getSSLContext().getSocketFactory().createSocket(host, port);
     }
 
+    /**
+     * @see ProtocolSocketFactory#createSocket(java.lang.String,int,java.net.InetAddress,int)
+     */
     public Socket createSocket(String host, int port, InetAddress clientHost, int clientPort) throws IOException,
             UnknownHostException
     {
@@ -107,30 +113,46 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
             final HttpConnectionParams params) throws IOException, UnknownHostException, ConnectTimeoutException
     {
         if (params == null)
+        {
             throw new IllegalArgumentException("Parameters may not be null");
+        }
+
         int timeout = params.getConnectionTimeout();
         if (timeout == 0)
+        {
             return createSocket(host, port, localAddress, localPort);
+        }
+
         /** To be eventually deprecated when migrated to Java 1.4 or above */
         return ControllerThreadSocketFactory.createSocket(this, host, port, localAddress, localPort, timeout);
     }
 
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     public boolean equals(Object obj)
     {
         return ((obj != null) && obj.getClass().equals(EasySSLProtocolSocketFactory.class));
     }
 
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     public int hashCode()
     {
         return EasySSLProtocolSocketFactory.class.hashCode();
     }
 
+    /**
+     * @return The SSLContext
+     */
     private SSLContext getSSLContext()
     {
         if (this.sslcontext == null)
         {
             this.sslcontext = createEasySSLContext();
         }
+
         return this.sslcontext;
     }
 }
