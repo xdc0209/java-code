@@ -4,45 +4,25 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 import org.apache.commons.io.IOUtils;
 
 import com.xdc.basic.skills.GetPath;
 
-class FortuneServer extends Thread
+class FortuneServer
 {
-    DatagramSocket ServerSocket;
-
-    public FortuneServer()
-    {
-        super("FortuneServer");
-        try
-        {
-            ServerSocket = new DatagramSocket(1114);
-            System.out.println("FortuneServer up and running...");
-        }
-        catch (SocketException e)
-        {
-            System.err.println("Exception: couldn't create datagram sockter");
-            System.exit(1);
-        }
-    }
-
     public static void main(String args[])
-    {
-        FortuneServer server = new FortuneServer();
-        server.start();
-    }
-
-    public void run()
     {
         String curPath = GetPath.getRelativePath();
 
+        DatagramSocket ServerSocket = null;
         FileInputStream inStream = null;
-        while (true)
+        try
         {
-            try
+            // 创建绑定到1114端口的ServerSocket对象
+            ServerSocket = new DatagramSocket(1114);
+
+            while (true)
             {
                 // 创建缓冲区
                 byte[] data = new byte[256];
@@ -66,16 +46,15 @@ class FortuneServer extends Thread
                 // 发送报文
                 ServerSocket.send(sPacket);
             }
-            catch (Exception e)
-            {
-                System.err.println("Exception: " + e);
-                e.printStackTrace();
-            }
-            finally
-            {
-                // 大师鸟悄的关闭输入流
-                IOUtils.closeQuietly(inStream);
-            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            IOUtils.closeQuietly(ServerSocket);
+            IOUtils.closeQuietly(inStream);
         }
     }
 }

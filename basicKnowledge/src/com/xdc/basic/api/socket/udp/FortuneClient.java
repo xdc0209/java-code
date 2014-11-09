@@ -3,13 +3,11 @@ package com.xdc.basic.api.socket.udp;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 class FortuneClient
 {
-    public String getMessage()
+    public static void main(String args[])
     {
-        String fortune;
         try
         {
             // 创建数据报套接字
@@ -28,26 +26,15 @@ class FortuneClient
             socket.receive(resivePacket);
 
             // 将数据内容由字节转换成字符
-            fortune = new String(resivePacket.getData());
+            String fortune = new String(resivePacket.getData());
+            System.out.println(fortune);
+
             // 关闭套接字
             socket.close();
-        }
-        catch (UnknownHostException e)
-        {
-            System.err.println("Exception: host could not be found!");
-            return null;
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            return null;
         }
-        return fortune;
-    }
-
-    public static void main(String args[])
-    {
-        FortuneClient client = new FortuneClient();
-        System.out.println(client.getMessage());
     }
 }
