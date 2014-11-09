@@ -1,0 +1,21 @@
+在SSL通信协议中，我们都知道首先服务端必须有一个数字证书，当客户端连接到服务端时，会得到这个证书，然后客户端会判断这个证书是否是可信的，如果是，则交换信道加密密钥，进行通信。如果不信任这个证书，则连接失败。 
+
+因此，我们首先要为服务端生成一个数字证书。Java环境下，数字证书是用keytool生成的，这些证书被存储在store的概念中，就是证书仓库。我们来调用keytool命令为服务端生成数字证书和保存它使用的证书仓库。
+
+有了服务端，我们原来的客户端就不能使用了，必须要走SSL协议。由于服务端的证书是我们自己生成的，没有任何受信任机构的签名，所以客户端是无法验证服务端证书的有效性的，通信必然会失败。所以我们需要为客户端创建一个保存所有信任证书的仓库，然后把服务端证书导进这个仓库。这样，当客户端连接服务端时，会发现服务端的证书在自己的信任列表中，就可以正常通信了。 
+
+简要步骤如下：
+第一步 - 生成一个含有一个私钥的keystore文件  （PS: 密码设置为123456）
+keytool -genkeypair -alias certificatekey -keyalg RSA -validity 7 -keystore keystore.jks
+
+第二步 – 验证新生成的keystor而文件
+keytool -list -v -keystore keystore.jks
+
+第三步 - 导出凭证文件
+keytool -export -alias certificatekey -keystore keystore.jks -rfc -file selfsignedcert.cer
+
+第四步 – 把认凭证件导入到truststore文件
+keytool -import -alias certificatekey -file selfsignedcert.cer  -keystore truststore.jks
+
+第五步 – 验证新创建的truststore文件 
+keytool -list -v -keystore truststore.jks

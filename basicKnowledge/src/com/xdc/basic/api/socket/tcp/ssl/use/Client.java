@@ -15,7 +15,7 @@ public class Client
     public static void main(String[] args) throws Exception
     {
         // Set the trust store to use for validating the server cert.
-        System.setProperty("javax.net.ssl.trustStore", GetPath.getRelativePath() + "truststore.jks");
+        System.setProperty("javax.net.ssl.trustStore", GetPath.getRelativePath() + "keystore/truststore.jks");
 
         // 开启调试模式
         // System.setProperty("javax.net.debug", "ssl,handshake");

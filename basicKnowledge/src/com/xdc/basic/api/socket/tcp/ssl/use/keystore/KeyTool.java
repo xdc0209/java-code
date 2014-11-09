@@ -1,4 +1,4 @@
-package com.xdc.basic.api.keystore;
+package com.xdc.basic.api.socket.tcp.ssl.use.keystore;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

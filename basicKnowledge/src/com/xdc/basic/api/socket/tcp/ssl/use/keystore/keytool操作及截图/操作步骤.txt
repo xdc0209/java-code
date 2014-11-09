@@ -1,3 +1,5 @@
+用keytool创建Keystore和Truststore文件
+
 第一步 - 生成一个含有一个私钥的keystore文件  （PS: 密码设置为123456）
 keytool -genkeypair -alias certificatekey -keyalg RSA -validity 7 -keystore keystore.jks
 

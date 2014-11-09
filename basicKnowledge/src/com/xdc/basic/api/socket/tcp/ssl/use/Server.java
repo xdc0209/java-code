@@ -25,7 +25,7 @@ public class Server
 {
     public static void main(String[] args) throws Exception
     {
-        String keystorePath = GetPath.getRelativePath() + "keystore.jks";
+        String keystorePath = GetPath.getRelativePath() + "keystore/keystore.jks";
         String keystorePass = "123456";
 
         ServerSocket serverSocket = createSSLServerSocket(8443, keystorePath, keystorePass);
