@@ -1,0 +1,3 @@
+args4j : Java command line arguments parser
+It makes command line parsing very easy by using annotations
+Designed to parse javac like options, as opposed to GNU-style (where ls -lR is considered to have two options l and R
