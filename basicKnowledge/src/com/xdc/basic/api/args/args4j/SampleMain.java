@@ -20,7 +20,6 @@ import org.kohsuke.args4j.spi.BooleanOptionHandler;
  */
 public class SampleMain
 {
-
     @Option(name = "-r", usage = "recursively run something")
     private boolean      recursive;
 

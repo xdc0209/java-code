@@ -9,7 +9,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        args = new String[] { "-o", "dd" };
+        // args = new String[] { "-o", "dd" };
 
         BusinessCommand businessCommand = new BusinessCommand();
 
