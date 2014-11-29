@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randwom;
+package com.xdc.basic.api.args.args4j.randombasedonargs4j2021;
 
 public enum RandomMode
 {
