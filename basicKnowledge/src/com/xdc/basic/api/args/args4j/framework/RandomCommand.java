@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.framework;
+package com.xdc.basic.api.args.args4j.framework;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +42,6 @@ public class RandomCommand extends AbstractCommand
     private List<String> arguments = new ArrayList<String>();
 
     @Override
-    @SuppressWarnings("deprecation")
     protected void complexArgsCheck(CmdLineParser parser) throws CmdLineException
     {
         super.complexArgsCheck(parser);

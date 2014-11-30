@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.subcommand.sqlcommand;
+package com.xdc.basic.api.args.args4j.subcommand.sqlcommand;
 
 import java.io.File;
 
@@ -7,7 +7,7 @@ import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.spi.BooleanOptionHandler;
 
-import com.xdc.basic.api.args.args4j.randombasedonargs4j2021.subcommand.core.AbstractAtomCommand;
+import com.xdc.basic.api.args.args4j.subcommand.core.AbstractAtomCommand;
 
 public class OracleCommand extends AbstractAtomCommand
 {
@@ -36,7 +36,6 @@ public class OracleCommand extends AbstractAtomCommand
     private boolean dba = false;
 
     @Override
-    @SuppressWarnings("deprecation")
     protected void complexArgsCheck(CmdLineParser parser) throws CmdLineException
     {
         super.complexArgsCheck(parser);

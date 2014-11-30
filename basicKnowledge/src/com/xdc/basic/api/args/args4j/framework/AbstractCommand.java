@@ -1,10 +1,9 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.framework;
+package com.xdc.basic.api.args.args4j.framework;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.ExampleMode;
 
-@SuppressWarnings("deprecation")
 public abstract class AbstractCommand implements Command
 {
     @Override

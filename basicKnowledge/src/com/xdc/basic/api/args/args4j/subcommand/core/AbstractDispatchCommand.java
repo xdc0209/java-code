@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.subcommand.core;
+package com.xdc.basic.api.args.args4j.subcommand.core;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

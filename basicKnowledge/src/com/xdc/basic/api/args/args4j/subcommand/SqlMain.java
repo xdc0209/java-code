@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2029.subcommand;
+package com.xdc.basic.api.args.args4j.subcommand;
 
 /**
  * 实现简单sql客户端，用java执行sql语句
