@@ -1,11 +1,14 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.framework;
+package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.subcommand.core;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.ExampleMode;
 
+/**
+ * 子命令抽象类
+ */
 @SuppressWarnings("deprecation")
-public abstract class AbstractCommand implements Command
+public abstract class AbstractAtomCommand implements Command
 {
     @Override
     public void parseAndExec(String[] args)

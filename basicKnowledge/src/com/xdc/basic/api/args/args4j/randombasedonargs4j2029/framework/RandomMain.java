@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.framework;
+package com.xdc.basic.api.args.args4j.randombasedonargs4j2029.framework;
 
 /**
  * 随机数生成器，主要用于展示参数解析框架

@@ -1,4 +1,4 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.framework;
+package com.xdc.basic.api.args.args4j.randombasedonargs4j2029.demo;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,15 +8,12 @@ import java.util.List;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.kohsuke.args4j.Argument;
-import org.kohsuke.args4j.CmdLineException;
-import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.spi.BooleanOptionHandler;
 
-public class RandomCommand extends AbstractCommand
+public class RandomCommand implements Command
 {
     @Option(name = "-c", aliases = { "--count" }, usage = "the length of random string to create", required = true, metaVar = "<count>")
     private int          count;
@@ -40,19 +37,6 @@ public class RandomCommand extends AbstractCommand
     @Argument
     // no useful in this example, just to show usage
     private List<String> arguments = new ArrayList<String>();
-
-    @Override
-    @SuppressWarnings("deprecation")
-    protected void complexArgsCheck(CmdLineParser parser) throws CmdLineException
-    {
-        super.complexArgsCheck(parser);
-
-        // 复杂校验框架不支持，要自己写
-        if (mode == RandomMode.Custom && StringUtils.isEmpty(string))
-        {
-            throw new CmdLineException(parser, "Option \"-s (--string)\" is required, when mode is Custom");
-        }
-    }
 
     @Override
     public void excute()

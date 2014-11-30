@@ -1,10 +1,10 @@
-package com.xdc.basic.api.args.args4j.randombasedonargs4j2021.demo;
+package com.xdc.basic.api.args.args4j.randombasedonargs4j2029.demo;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
-import org.kohsuke.args4j.ExampleMode;
+import org.kohsuke.args4j.OptionHandlerFilter;
 
 @SuppressWarnings("deprecation")
 public class RandomMain
@@ -19,7 +19,7 @@ public class RandomMain
             CmdLineParser parser = new CmdLineParser(command);
 
             // if you have a wider console, you could increase the value; default 80.
-            parser.setUsageWidth(150);
+            parser.getProperties().withUsageWidth(150);
 
             parser.parseArgument(args);
 
@@ -63,8 +63,8 @@ public class RandomMain
 
             System.err.println("Example:");
             // print option sample. This is useful some time
-            System.err.println(parser.printExample(ExampleMode.ALL));
-            System.err.println(parser.printExample(ExampleMode.REQUIRED));
+            System.err.println(parser.printExample(OptionHandlerFilter.ALL));
+            System.err.println(parser.printExample(OptionHandlerFilter.REQUIRED));
             System.err.println();
 
             System.exit(1);

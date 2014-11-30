@@ -84,7 +84,7 @@
 	<classpathentry kind="lib" path="lib/slf4j/slf4j-api-1.7.7.jar" sourcepath="libsrc/slf4j/slf4j-api-1.7.7-sources.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j/slf4j-log4j12-1.7.7.jar" sourcepath="libsrc/slf4j/slf4j-log4j12-1.7.7-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-cli-1.2.jar" sourcepath="libsrc/apache/commons/commons-cli-1.2-sources.jar"/>
-	<classpathentry kind="lib" path="lib/args4j-2.0.21.jar" sourcepath="libsrc/args4j-2.0.21-sources.jar"/>
+	<classpathentry kind="lib" path="lib/args4j-2.0.29.jar" sourcepath="libsrc/args4j-2.0.29-sources.jar"/>
 	<classpathentry kind="lib" path="lib/jmxremote_optional.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
