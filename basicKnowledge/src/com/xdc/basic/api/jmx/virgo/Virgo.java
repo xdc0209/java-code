@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.management.Attribute;
+import javax.management.AttributeList;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
 import javax.management.IntrospectionException;
@@ -22,7 +24,6 @@ import javax.management.remote.JMXServiceURL;
 
 public class Virgo
 {
-
     // 需要引入jmxremote_optional.jar以支持jmxmp协议
     // java.net.MalformedURLException: Unsupported protocol: jmxmp
 
@@ -68,8 +69,9 @@ public class Virgo
         for (ObjectName objectName : queryNames)
         {
             Object name = mbsc.getAttribute(objectName, "Name");
-            Object state = mbsc.getAttribute(objectName, "State");
             Object version = mbsc.getAttribute(objectName, "Version");
+            Object state = mbsc.getAttribute(objectName, "State");
+
             System.out.printf("%-12s%s_%s\n", state, name, version);
         }
         System.out.println();
@@ -89,11 +91,15 @@ public class Virgo
         Set<ObjectName> queryNames = mbsc.queryNames(bundleObjectName, null);
         for (ObjectName objectName : queryNames)
         {
-            Object name = mbsc.getAttribute(objectName, "Name");
-            Object version = mbsc.getAttribute(objectName, "Version");
-            Object state = mbsc.getAttribute(objectName, "State");
+            //由于bundle一般较多，批量查询需要的属性，提高性能
+            String[] attributeArr = new String[] { "Name", "Version", "State", "Properties" };
+            AttributeList attributes = mbsc.getAttributes(objectName, attributeArr);
 
-            Object properties = mbsc.getAttribute(objectName, "Properties");
+            Object name = ((Attribute) (attributes.get(0))).getValue();
+            Object version = ((Attribute) (attributes.get(1))).getValue();
+            Object state = ((Attribute) (attributes.get(2))).getValue();
+
+            Object properties = ((Attribute) (attributes.get(3))).getValue();
             Integer bundleId = parseBundleId(properties);
 
             Bundle bundle = new Bundle(bundleId, name, version, state);
@@ -179,15 +185,14 @@ public class Virgo
     //            System.out.println();
     //        }
     //    }
-
 }
 
 class Bundle
 {
-    private Integer bundleId;
-    private Object  name;
-    private Object  version;
-    private Object  state;
+    private final Integer bundleId;
+    private final Object  name;
+    private final Object  version;
+    private final Object  state;
 
     public Bundle(Integer bundleId, Object name, Object version, Object state)
     {
