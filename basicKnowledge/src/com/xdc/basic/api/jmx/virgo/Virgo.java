@@ -91,7 +91,7 @@ public class Virgo
         Set<ObjectName> queryNames = mbsc.queryNames(bundleObjectName, null);
         for (ObjectName objectName : queryNames)
         {
-            //由于bundle一般较多，批量查询需要的属性，提高性能
+            // 由于bundle一般较多，批量查询需要的属性，提高性能
             String[] attributeArr = new String[] { "Name", "Version", "State", "Properties" };
             AttributeList attributes = mbsc.getAttributes(objectName, attributeArr);
 
