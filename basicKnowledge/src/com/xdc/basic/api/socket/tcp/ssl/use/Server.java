@@ -11,6 +11,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,6 +20,8 @@ import javax.net.ServerSocketFactory;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocket;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 import com.xdc.basic.skills.GetPath;
 
@@ -64,6 +68,82 @@ public class Server
         // 使用单向验证，服务端不必校验客户端身份
         ((SSLServerSocket) serverSocket).setNeedClientAuth(false);
 
+        // 提高安全，使用安全的协议和套件
+        setEnabledProtocols((SSLServerSocket) serverSocket);
+        setEnabledCipherSuites((SSLServerSocket) serverSocket);
+
         return (SSLServerSocket) serverSocket;
+    }
+
+    private static void setEnabledProtocols(SSLServerSocket serverSocket)
+    {
+        // 支持的协议
+        String[] supportedProtocols = serverSocket.getSupportedProtocols();
+
+        // 安全的协议
+        List<String> safeProtocols = new ArrayList<String>();
+        safeProtocols.add("TLSv1");
+        safeProtocols.add("TLSv1.1");
+        safeProtocols.add("TLSv1.2");
+
+        List<String> protocolsToUse = new ArrayList<String>();
+        for (String safeProtocol : safeProtocols)
+        {
+            if (ArrayUtils.contains(supportedProtocols, safeProtocol))
+            {
+                protocolsToUse.add(safeProtocol);
+            }
+        }
+        if (protocolsToUse.isEmpty())
+        {
+            println("No availalbe safe ssl protocols to use, use default: "
+                    + ArrayUtils.toString(serverSocket.getEnabledProtocols()));
+            return;
+        }
+
+        String[] enabledProtocols = protocolsToUse.toArray(new String[protocolsToUse.size()]);
+        println("Change enabled ssl protocols to: " + ArrayUtils.toString(enabledProtocols));
+
+        serverSocket.setEnabledProtocols(enabledProtocols);
+    }
+
+    private static void setEnabledCipherSuites(SSLServerSocket serverSocket)
+    {
+        // 支持的加密套件
+        String[] supportedCipherSuites = serverSocket.getSupportedCipherSuites();
+
+        // 安全的加密套件 
+        List<String> safeCipherSuites = new ArrayList<String>();
+        safeCipherSuites.add("SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA");
+        safeCipherSuites.add("SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA");
+        safeCipherSuites.add("SSL_RSA_WITH_3DES_EDE_CBC_SHA");
+        safeCipherSuites.add("TLS_DHE_DSS_WITH_AES_128_CBC_SHA");
+        safeCipherSuites.add("TLS_DHE_RSA_WITH_AES_128_CBC_SHA");
+        safeCipherSuites.add("TLS_RSA_WITH_AES_128_CBC_SHA");
+
+        List<String> cipherSuitesToUse = new ArrayList<String>();
+        for (String safeCipherSuite : safeCipherSuites)
+        {
+            if (ArrayUtils.contains(supportedCipherSuites, safeCipherSuite))
+            {
+                cipherSuitesToUse.add(safeCipherSuite);
+            }
+        }
+        if (cipherSuitesToUse.isEmpty())
+        {
+            println("No availalbe safe ssl cipher suites to use, use default: "
+                    + ArrayUtils.toString(serverSocket.getEnabledCipherSuites()));
+            return;
+        }
+
+        String[] enabledCipherSuites = cipherSuitesToUse.toArray(new String[cipherSuitesToUse.size()]);
+        println("Change enabled ssl cipher suites to: " + ArrayUtils.toString(enabledCipherSuites));
+
+        serverSocket.setEnabledCipherSuites(enabledCipherSuites);
+    }
+
+    private static void println(String x)
+    {
+        System.out.println(x);
     }
 }
