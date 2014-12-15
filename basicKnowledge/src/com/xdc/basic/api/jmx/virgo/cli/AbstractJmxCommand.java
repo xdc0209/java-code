@@ -8,6 +8,7 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
+import com.xdc.basic.api.jmx.virgo.cli.config.JmxConfig;
 import com.xdc.basic.api.jmx.virgo.cli.core.AbstractAtomCommand;
 
 public abstract class AbstractJmxCommand extends AbstractAtomCommand
@@ -17,10 +18,11 @@ public abstract class AbstractJmxCommand extends AbstractAtomCommand
         MBeanServerConnection mbsc = null;
         try
         {
-            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://192.168.227.135:9875/jmxrmi");
+            JMXServiceURL url = new JMXServiceURL(String.format(JmxConfig.getUrl(), JmxConfig.getIp(),
+                    JmxConfig.getPort()));
 
             Map<String, Object> env = new HashMap<String, Object>();
-            env.put(JMXConnector.CREDENTIALS, new String[] { "admin", "springsource" });
+            env.put(JMXConnector.CREDENTIALS, new String[] { JmxConfig.getUser(), JmxConfig.getPassword() });
 
             JMXConnector jmxc = JMXConnectorFactory.connect(url, env);
 

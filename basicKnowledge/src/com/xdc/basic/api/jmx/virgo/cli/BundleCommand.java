@@ -1,5 +1,6 @@
 package com.xdc.basic.api.jmx.virgo.cli;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -18,19 +19,19 @@ import com.xdc.basic.api.jmx.virgo.cli.core.Option;
 public class BundleCommand extends AbstractJmxCommand
 {
     // 名称，可选，带参数
-    private Option nameOption    = new Option("-n", false, true);
+    private Option nameOption    = new Option("-n", false, true, "query bundle with name");
 
     // 版本，可选，带参数
-    private Option versionOption = new Option("-v", false, true);
+    private Option versionOption = new Option("-v", false, true, "query bundle with version");
 
     // 状态，可选，带参数
-    private Option stateOption   = new Option("-s", false, true);
+    private Option stateOption   = new Option("-s", false, true, "query bundle with state");
 
     // 总数，可选，不带参数 
-    private Option totalOption   = new Option("-t", false, false);
+    private Option totalOption   = new Option("-t", false, false, "total of result bundles");
 
     @Override
-    protected void initOptions()
+    protected void initOptions(Map<String, Option> options)
     {
         options.put(nameOption.getOption(), nameOption);
         options.put(versionOption.getOption(), versionOption);
@@ -39,7 +40,7 @@ public class BundleCommand extends AbstractJmxCommand
     }
 
     @Override
-    protected void excute()
+    protected void excute(Map<String, String> parsedOptions, List<String> parsedArguments)
     {
         try
         {

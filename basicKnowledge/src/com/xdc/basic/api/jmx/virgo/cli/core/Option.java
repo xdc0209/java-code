@@ -5,18 +5,20 @@ public class Option
     private String  option;
     private boolean required;
     private boolean withArgument;
+    private String  usage;
 
     public Option()
     {
         super();
     }
 
-    public Option(String option, boolean required, boolean withArgument)
+    public Option(String option, boolean required, boolean withArgument, String usage)
     {
         super();
         this.option = option;
         this.required = required;
         this.withArgument = withArgument;
+        this.usage = usage;
     }
 
     public String getOption()
@@ -47,5 +49,15 @@ public class Option
     public void setWithArgument(boolean withArgument)
     {
         this.withArgument = withArgument;
+    }
+
+    public String getUsage()
+    {
+        return usage;
+    }
+
+    public void setUsage(String usage)
+    {
+        this.usage = usage;
     }
 }
