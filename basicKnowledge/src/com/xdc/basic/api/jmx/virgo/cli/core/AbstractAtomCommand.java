@@ -5,24 +5,33 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 子命令抽象类
  */
 public abstract class AbstractAtomCommand implements Command
 {
-    // 使用LinkedHashMap，保存放入顺序
+    // 存放解析完成的选项，使用LinkedHashMap，保存放入顺序
     private Map<String, String> parsedOptions   = new LinkedHashMap<String, String>();
 
+    // 存放解析完成的参数
     private List<String>        parsedArguments = new ArrayList<String>();
 
-    // 使用LinkedHashMap，保存放入顺序
+    // 存放命令的选项，使用LinkedHashMap，保存放入顺序
     private Map<String, Option> options         = new LinkedHashMap<String, Option>();
+
+    // 帮助选项，可选，不带参数 
+    private Option              helpOption      = new Option("-h", false, false, "display this help");
 
     @Override
     public void parseAndExec(String[] args)
     {
         // 初始化选项
         initOptions(options);
+
+        // 初始化帮助选项
+        options.put(helpOption.getOption(), helpOption);
 
         // 进行参数解析，此时args4j会进行进本的参数校验
         parse(args);
@@ -31,6 +40,9 @@ public abstract class AbstractAtomCommand implements Command
         excute(parsedOptions, parsedArguments);
     }
 
+    /**
+     * 初始化选项，需在子类中实现
+     */
     protected abstract void initOptions(Map<String, Option> options);
 
     /**
@@ -47,8 +59,6 @@ public abstract class AbstractAtomCommand implements Command
 
     /**
      * 进行参数解析
-     * 
-     * @param args
      */
     private void parse(String[] args)
     {
@@ -87,6 +97,12 @@ public abstract class AbstractAtomCommand implements Command
             }
         }
 
+        // 如果包含帮助选项，则显示帮助并退出
+        if (parsedOptions.containsKey(helpOption.getOption()))
+        {
+            handleError(null);
+        }
+
         // 检查必选的参数
         for (Option option : options.values())
         {
@@ -105,7 +121,12 @@ public abstract class AbstractAtomCommand implements Command
      */
     private void handleError(String error)
     {
-        System.err.println(error);
+        if (StringUtils.isNotBlank(error))
+        {
+            System.err.println(error);
+            System.err.println();
+        }
+
         help();
         System.exit(1);
     }
@@ -115,10 +136,19 @@ public abstract class AbstractAtomCommand implements Command
      */
     private void help()
     {
+        // determine the max length of the option first
+        int len = 0;
+        for (Option option : options.values())
+        {
+            int curLen = option.getOption().length();
+            len = Math.max(len, curLen);
+        }
+        String optionsFormater = "  %-" + len + "s : %s";
+
         System.err.println("Usage:");
         for (Option option : options.values())
         {
-            System.err.println(String.format(" %5s : %s", option.getOption(), option.getUsage()));
+            System.err.println(String.format(optionsFormater, option.getOption(), option.getUsage()));
         }
         System.err.println();
     }
