@@ -10,7 +10,7 @@ public class RandomMain
 {
     public static void main(String[] args)
     {
-        args = new String[] { "arg1", "-c", "10", "-m", "custom", "arg2", "-s", "xdc0209", "arg3" };
+        // args = new String[] { "arg1", "-c", "10", "-m", "custom", "arg2", "-s", "xdc0209", "arg3" };
 
         try
         {

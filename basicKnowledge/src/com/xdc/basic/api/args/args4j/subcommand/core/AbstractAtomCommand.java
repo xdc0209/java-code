@@ -24,9 +24,6 @@ public abstract class AbstractAtomCommand implements Command
 
     /**
      * 进行参数解析
-     * 
-     * @param parser
-     * @param args
      */
     private void parse(CmdLineParser parser, String[] args)
     {
@@ -64,9 +61,6 @@ public abstract class AbstractAtomCommand implements Command
 
     /**
      * 进行复杂的参数检验，默认空实现，如果需要，子类覆写此方法即可
-     * 
-     * @param parser
-     * @throws CmdLineException
      */
     protected void complexArgsCheck(CmdLineParser parser) throws CmdLineException
     {
@@ -79,8 +73,6 @@ public abstract class AbstractAtomCommand implements Command
 
     /**
      * 输出帮助信息
-     * 
-     * @param parser
      */
     protected void help(CmdLineParser parser)
     {

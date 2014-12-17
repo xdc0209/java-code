@@ -22,7 +22,7 @@ public abstract class AbstractAtomCommand implements Command
     private Map<String, Option> options         = new LinkedHashMap<String, Option>();
 
     // 帮助选项，可选，不带参数 
-    private Option              helpOption      = new Option("-h", false, false, "display this help");
+    protected Option            helpOption      = new Option("-h", false, false, "display this help");
 
     @Override
     public void parseAndExec(String[] args)

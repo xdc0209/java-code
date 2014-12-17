@@ -10,15 +10,13 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public abstract class AbstractDispatchCommand implements Command
 {
-    protected Map<String, Class<? extends AbstractAtomCommand>> subcommands = new LinkedHashMap<String, Class<? extends AbstractAtomCommand>>();
-
-    protected abstract void initSubcommmands();
+    private Map<String, Class<? extends AbstractAtomCommand>> subcommands = new LinkedHashMap<String, Class<? extends AbstractAtomCommand>>();
 
     @Override
     public void parseAndExec(String[] args)
     {
         // 初始化子命令
-        initSubcommmands();
+        initSubcommmands(subcommands);
 
         // 获取子命令
         Command command = getSubcommand(args);
@@ -27,11 +25,7 @@ public abstract class AbstractDispatchCommand implements Command
         executeSubcommand(command, args);
     }
 
-    private void executeSubcommand(Command command, String[] args)
-    {
-        String[] subcommandArgs = ArrayUtils.subarray(args, 1, args.length);
-        command.parseAndExec(subcommandArgs);
-    }
+    protected abstract void initSubcommmands(Map<String, Class<? extends AbstractAtomCommand>> subcommands);
 
     private Command getSubcommand(String[] args)
     {
@@ -66,6 +60,12 @@ public abstract class AbstractDispatchCommand implements Command
             System.exit(1);
         }
         return command;
+    }
+
+    private void executeSubcommand(Command command, String[] args)
+    {
+        String[] subcommandArgs = ArrayUtils.subarray(args, 1, args.length);
+        command.parseAndExec(subcommandArgs);
     }
 
     private void help()

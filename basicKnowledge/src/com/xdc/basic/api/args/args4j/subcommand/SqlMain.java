@@ -10,8 +10,7 @@ public class SqlMain
 {
     public static void main(String[] args)
     {
-        args = new String[] { "mysql", "-H", "127.0.0.1", "-P", "8086", "-u", "root", "-p", "123456", "-s",
-                "select * from dual" };
+        // args = new String[] { "mysql", "-H", "127.0.0.1", "-P", "8086", "-u", "root", "-p", "123456", "-s", "select * from dual" };
 
         try
         {
