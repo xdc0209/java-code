@@ -2,6 +2,8 @@ package com.xdc.basic.skills;
 
 public class GetPath
 {
+    private static String fileSpt = System.getProperty("file.separator");
+
     /**
      * 获得与当前类包名一致的路径
      * 
@@ -12,7 +14,7 @@ public class GetPath
         // 获取当前路径
         String curClassName = new Throwable().getStackTrace()[1].getClassName();
         String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-        String packagePath = curPackage.replace(".", "\\") + "\\";
+        String packagePath = curPackage.replace(".", fileSpt) + fileSpt;
         return packagePath;
     }
 
@@ -26,10 +28,10 @@ public class GetPath
         // 获取当前路径
         String curClassName = new Throwable().getStackTrace()[1].getClassName();
         String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-        String packagePath = curPackage.replace(".", "\\") + "\\";
+        String packagePath = curPackage.replace(".", fileSpt) + fileSpt;
 
         // 获得相对路径
-        String relativePath = "src\\" + packagePath;
+        String relativePath = "src" + fileSpt + packagePath;
         return relativePath;
     }
 
@@ -43,15 +45,15 @@ public class GetPath
         // 获取当前路径
         String curClassName = new Throwable().getStackTrace()[1].getClassName();
         String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
-        String packagePath = curPackage.replace(".", "\\") + "\\";
+        String packagePath = curPackage.replace(".", fileSpt) + fileSpt;
 
         // 获得相对路径
-        String relativePath = "src\\" + packagePath;
+        String relativePath = "src" + fileSpt + packagePath;
 
         // 用户的当前工作目录
         String userDir = System.getProperty("user.dir");
 
-        String absolutePath = userDir + "\\" + relativePath;
+        String absolutePath = userDir + fileSpt + relativePath;
         return absolutePath;
     }
 
