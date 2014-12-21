@@ -34,10 +34,10 @@ public class TimeKnowledge
         return cal.getTime();
     }
 
-    public static String utc2Local(String utcTime, String utcTimePatten, String localTimePatten)
+    public static String utc2Local(String utcTime)
     {
-        // utcTimePatten = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-        // localTimePatten = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ"; // jdk bug, 时区中小时和分钟中间不支持有冒号
+        String utcTimePatten = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        String localTimePatten = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ"; // jdk bug, 时区中小时和分钟中间不支持有冒号
         try
         {
             SimpleDateFormat utcFormater = new SimpleDateFormat(utcTimePatten);
@@ -47,6 +47,8 @@ public class TimeKnowledge
             SimpleDateFormat localFormater = new SimpleDateFormat(localTimePatten);
             localFormater.setTimeZone(TimeZone.getDefault());
             String localTime = localFormater.format(utcDate.getTime());
+            // 手工添加冒号，符合通用的iso格式
+            localTime = localTime.replaceAll("([-+][0-9][0-9])([0-9][0-9])$", "$1:$2");
 
             return localTime;
         }
