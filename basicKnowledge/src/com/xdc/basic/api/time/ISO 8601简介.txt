@@ -1,0 +1,65 @@
+摘自：http://zh.wikipedia.org/wiki/ISO_8601
+
+ISO 8601简介
+    国际标准ISO 8601是日期和时间的表示方法。以消除含糊不清的标准方式。例如，北美洲习惯将月份写在日期的的前面，而欧洲国家则是将日期写在月份的前面，如"30.3.1998"表示1998年3月30号。不同国家使用在日期数字之间的分隔符也是各有不同的。
+
+日期表示法:
+    年由4位数字组成YYYY，月、日用两位数字表示：MM、DD。
+    只使用数字为基本格式。使用短横线"-"间隔开年、月、日为扩展格式。
+    基本格式 20141219
+    扩展格式 2014-12-19
+
+日的时间表示法:
+    只使用数字为基本格式。使用冒号":"间隔开小时hh、分mm、秒ss的为扩展格式。小时、分和秒都用2位数表示。
+    基本格式 152746     152746.5
+    扩展格式 15:27:46   15:27:46.5
+
+    对协调世界时的时间最后加一个大写字母Z,如UTC时间下午2点30分5秒表示为14:30:05Z或143005Z
+    其他时区用实际时间加时差表示，当时的UTC+8时间表示为22:30:05+08:00或223005+0800，也可以简化成223005+08
+
+日期和时间的组合表示法
+    合并表示时，要在时间前面加一大写字母T，如要表示北京时间2004年5月3日下午5点30分8秒，可以写成2004-05-03T17:30:08+08:00或20040503T173008+08。
+
+PS：
+http://zh.wikipedia.org/wiki/ISO_8601的网页前面有标准的UTC时间表示法
+当前的UTC时间是2014-12-19T13:19Z
+（ISO 8601 表示法。）
+
+==============================================================
+摘自：http://blog.csdn.net/oxware/article/details/71203
+
+A Summary of the International Standard Date and Time Notation
+
+Date
+    The international standard date notation is
+        YYYY-MM-DD
+    where YYYY is the year in the usual Gregorian calendar, MM is the month of the year between 01 (January) and 12 (December), and DD is the day of the month between 01 and 31.
+    For example, the fourth day of February in the year 1995 is written in the standard notation as
+        1995-02-04
+
+Time of Day
+    The international standard notation for the time of day is
+        hh:mm:ss
+    where hh is the number of complete hours that have passed since midnight (00-24), mm is the number of complete minutes that have passed since the start of the hour (00-59), and ss is the number of complete seconds since the start of the minute (00-60).
+    An example time is
+        23:59:59
+
+    It is also possible to add fractions of a second after a decimal dot or comma, for instance the time 5.8 ms before midnight can be written as
+        23:59:59.9942 or 235959.9942
+
+    If a date and a time are displayed on the same line, then always write the date in front of the time. If a date and a time value are stored together in a single data field, then ISO 8601 suggests that they should be separated by a latin capital letter T, as in 19951231T235959.
+
+Time Zone
+    Without any further additions, a date and time as written above is assumed to be in some local time zone. In order to indicate that a time is measured in Universal Time (UTC), you can append a capital letter Z to a time as in
+        23:59:59Z or 2359Z
+    The Z stands for the "zero meridian", which goes through Greenwich in London.
+
+    The strings
+        +hh:mm, +hhmm, or +hh
+    can be added to the time to indicate that the used local time zone is hh hours and mm minutes ahead of UTC. For time zones west of the zero meridian, which are behind UTC, the notation
+        -hh:mm, -hhmm, or -hh
+    is used instead. For example, Central European Time (CET) is +0100 and U.S./Canadian Eastern Standard Time (EST) is -0500. The following strings all indicate the same point of time:
+        12:00Z = 13:00+01:00 = 0700-0500
+
+    关于时区（重要）：时区最好使用数字表示，原因如下：（1）字母缩写重复（2）夏令时可以计算到时区偏移里去
+    There exists no international standard that specifies abbreviations for civil time zones like CET, EST, etc. and sometimes the same abbreviation is even used for two very different time zones. In addition, politicians enjoy modifying the rules for civil time zones, especially for daylight saving times, every few years, so the only really reliable way of describing a local time zone is to specify numerically the difference of local time to UTC. Better use directly UTC as your only time zone where this is possible and then you do not have to worry about time zones and daylight saving time changes at all.

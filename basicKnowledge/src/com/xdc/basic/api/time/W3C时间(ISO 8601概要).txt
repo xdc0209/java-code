@@ -1,0 +1,42 @@
+摘自：http://www.w3.org/TR/NOTE-datetime
+摘自：http://blog.csdn.net/oxware/article/details/71203#
+
+日期与时间格式
+
+摘要：
+    本文档定义一个ISO 8601（国际标准日期时间表示法）的概要。
+    ISO 8601定义了大量的日期时间格式，为了减小犯错的可能和软件的复杂性，限制所支持的格式数量是很有用的。
+    本文档定义了几个日期/时间格式,可能满足大多数需求。
+    
+格式：
+    格式如下，展示的组件都要完整的展现，尤其是标点符号。字符T表明时间元素的开始，正如ISO 8601规定的那样。
+    Year:
+       YYYY (eg 1997)
+    Year and month:
+       YYYY-MM (eg 1997-07)
+    Complete date:
+       YYYY-MM-DD (eg 1997-07-16)
+    Complete date plus hours and minutes:
+       YYYY-MM-DDThh:mmTZD (eg 1997-07-16T19:20+01:00)
+    Complete date plus hours, minutes and seconds:
+       YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00)
+    Complete date plus hours, minutes, seconds and a decimal fraction of a second
+       YYYY-MM-DDThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00)
+
+where:
+    YYYY = four-digit year
+    MM   = two-digit month (01=January, etc.)
+    DD   = two-digit day of month (01 through 31)
+    hh   = two digits of hour (00 through 23) (am/pm NOT allowed)
+    mm   = two digits of minute (00 through 59)
+    ss   = two digits of second (00 through 59)
+    s    = one or more digits representing a decimal fraction of a second
+    TZD  = time zone designator (Z or +hh:mm or -hh:mm)
+
+本文档定义了两种处理时区偏移的方法：
+1. 以UTC形式表示时间： 时间接着一个特殊的UTC标识符（"Z"）表示。
+2. 以本地形式表示时间：时间接着时区偏移量一起表示。
+
+例子：
+1994-11-05T08:15:30-05:00 corresponds to November 5, 1994, 8:15:30 am, US Eastern Standard Time.
+1994-11-05T13:15:30Z corresponds to the same instant.
