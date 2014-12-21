@@ -1,12 +1,8 @@
 package com.xdc.basic.api.jmx.virgo.cli.config;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
-
-import com.xdc.basic.skills.GetPath;
 
 public class JmxConfig
 {
@@ -14,17 +10,17 @@ public class JmxConfig
 
     private static Properties getProperties()
     {
+        // Class.getResourceAsStream(String path) ：
+        // path 不以’/'开头时默认是从此类所在的包下取资源，
+        // 以’/'开头则是从ClassPath根下获取。
+        InputStream in = JmxConfig.class.getResourceAsStream("jmx-access.properties");
+
         if (p == null)
         {
             try
             {
                 p = new Properties();
-                p.load(new FileInputStream(new File(GetPath.getRelativePath() + "jmx-access.properties")));
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-                System.exit(1);
+                p.load(in);
             }
             catch (IOException e)
             {
