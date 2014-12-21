@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,9 @@ public class LogTest
 
     public static void main(String[] args)
     {
+        // 指定配置文件位置，默认的存放路径是src\log4j.properties
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "\\src\\log4j.properties");
+
         //        log.isFatalEnabled(); // true
         //        log.isErrorEnabled(); // true
         //        log.isWarnEnabled();  // true
