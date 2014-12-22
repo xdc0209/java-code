@@ -24,6 +24,7 @@ public class JmxConfig
             }
             catch (IOException e)
             {
+                System.out.println("ERROR: Read config failed.");
                 e.printStackTrace();
                 System.exit(1);
             }

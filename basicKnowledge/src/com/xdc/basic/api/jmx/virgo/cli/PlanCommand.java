@@ -103,6 +103,7 @@ public class PlanCommand extends AbstractJmxCommand
         }
         catch (Exception e)
         {
+            System.err.println("ERROR: Invoke jmx func failed.");
             e.printStackTrace();
             System.exit(1);
         }

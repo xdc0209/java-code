@@ -30,6 +30,7 @@ public abstract class AbstractJmxCommand extends AbstractAtomCommand
         }
         catch (Exception e)
         {
+            System.err.println("ERROR: The Server could not be reached, it may already be stopped.");
             e.printStackTrace();
             System.exit(1);
         }
