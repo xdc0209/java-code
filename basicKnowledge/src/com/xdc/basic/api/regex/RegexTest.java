@@ -10,6 +10,26 @@ import org.junit.Test;
 public class RegexTest
 {
     @Test
+    public void checkInput()
+    {
+        // 一般网页中名称的检验：中文、字母、数字、点、中划线、下划线
+        String regex = "^[\\u4E00-\\u9FA5a-zA-Z0-9\\.\\-_]+$";
+        String input = "我是个符合的字符串abcABC.-_";
+
+        regexSearch(regex, input);
+    }
+
+    @Test
+    public void searchChinese()
+    {
+        // 匹配中文（注意：String中的正则表达式相关的方法匹配中文无效，原因不清楚）
+        String regex = "[\\u4E00-\\u9FA5]+";
+        String input = "I love 中华 --徐大超";
+
+        regexSearch(regex, input);
+    }
+
+    @Test
     public void searchWord()
     {
         String word = "there";
