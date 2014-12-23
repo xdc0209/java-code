@@ -10,13 +10,15 @@ public class JmxConfig
 
     private static Properties getProperties()
     {
-        // Class.getResourceAsStream(String path) ：
-        // path 不以’/'开头时默认是从此类所在的包下取资源，
-        // 以’/'开头则是从ClassPath根下获取。
-        InputStream in = JmxConfig.class.getResourceAsStream("jmx-access.properties");
-
         if (p == null)
         {
+            InputStream in = JmxConfig.class.getResourceAsStream("jmx-access.properties");
+            if (in == null)
+            {
+                System.err.println("ERROR: Config file [jmx-access.properties] not found.");
+                System.exit(1);
+            }
+
             try
             {
                 p = new Properties();
@@ -24,7 +26,7 @@ public class JmxConfig
             }
             catch (IOException e)
             {
-                System.out.println("ERROR: Read config failed.");
+                System.err.println("ERROR: Read config failed.");
                 e.printStackTrace();
                 System.exit(1);
             }
