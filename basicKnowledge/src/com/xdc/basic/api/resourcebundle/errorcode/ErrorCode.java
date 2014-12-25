@@ -1,9 +1,8 @@
 package com.xdc.basic.api.resourcebundle.errorcode;
 
 import java.text.MessageFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
-
-import com.xdc.basic.api.resourcebundle.language.LocaleConfig;
 
 /**
  * 错误码国际化
@@ -14,8 +13,10 @@ public enum ErrorCode
 {
     PHONE_NUMBER_NOT_VALID("1001"), SERVICE_BUSY("1002");
 
-    // 静态成员，所以对象使用此成员访问文件
+    // 静态成员，所以对象使用此成员访问国际化文件
     private static ResourceBundle rb;
+
+    private static Locale         locale = Locale.getDefault();
 
     private final String          code;
 
@@ -39,21 +40,24 @@ public enum ErrorCode
             {
                 if (rb == null)
                 {
-                    rb = ResourceBundle.getBundle(ErrorCode.class.getName(), LocaleConfig.getLocale());
+                    rb = ResourceBundle.getBundle(ErrorCode.class.getName(), locale);
                 }
             }
         }
         return MessageFormat.format(rb.getString(getCode()), args);
     }
 
-    public static void reset()
+    public static void changeLacale(Locale locale)
     {
-        if (rb != null)
+        if (locale == null)
         {
-            synchronized (ErrorCode.class)
-            {
-                rb = null;
-            }
+            return;
+        }
+
+        synchronized (ErrorCode.class)
+        {
+            ErrorCode.locale = locale;
+            rb = ResourceBundle.getBundle(ErrorCode.class.getName(), locale);
         }
     }
 }

@@ -21,6 +21,11 @@ public class LocaleConfig
         LocaleConfig.locale = locale;
     }
 
+    public static void setLocale_default()
+    {
+        LocaleConfig.locale = Locale.getDefault();
+    }
+
     public static void setLocale_zh_CN()
     {
         // 等效写法 LocaleConfig.locale = new Locale("zh", "CN");
