@@ -71,4 +71,3 @@ public class InterruptTest2 implements Runnable
         System.out.println("处理完事儿---");
     }
 }
-

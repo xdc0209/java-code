@@ -11,19 +11,19 @@ public class GetIpResponse
 
     private Integer end;
 
-    private String country;
+    private String  country;
 
-    private String province;
+    private String  province;
 
-    private String city;
+    private String  city;
 
-    private String district;
+    private String  district;
 
-    private String isp;
+    private String  isp;
 
-    private String type;
+    private String  type;
 
-    private String desc;
+    private String  desc;
 
     public Integer getRet()
     {

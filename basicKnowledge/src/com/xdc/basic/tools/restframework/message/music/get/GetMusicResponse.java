@@ -10,29 +10,29 @@ import java.util.List;
 
 public class GetMusicResponse
 {
-    private Integer album_offset;
+    private Integer       album_offset;
 
-    private List<Albums> albums;
+    private List<Albums>  albums;
 
-    private Integer artist_offset;
+    private Integer       artist_offset;
 
     private List<Artists> artists;
 
-    private Integer dm_error;
+    private Integer       dm_error;
 
-    private String error_msg;
+    private String        error_msg;
 
-    private Integer recommend;
+    private Integer       recommend;
 
-    private Integer total_albums;
+    private Integer       total_albums;
 
-    private Integer total_artists;
+    private Integer       total_artists;
 
-    private Integer total_tracks;
+    private Integer       total_tracks;
 
-    private Integer track_offset;
+    private Integer       track_offset;
 
-    private List<Tracks> tracks;
+    private List<Tracks>  tracks;
 
     public Integer getAlbum_offset()
     {

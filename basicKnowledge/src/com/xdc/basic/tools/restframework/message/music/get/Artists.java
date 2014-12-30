@@ -8,13 +8,13 @@ public class Artists
 {
     private Integer id;
 
-    private String name;
+    private String  name;
 
     private Integer num_albums;
 
     private Integer num_tracks;
 
-    private String portrait;
+    private String  portrait;
 
     private Boolean valid;
 

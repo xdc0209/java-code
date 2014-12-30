@@ -82,8 +82,7 @@ public class FindPrime
             }
             System.out.println("子线程存活个数：" + aliveNum);
             Thread.sleep(2000);
-        }
-        while (aliveNum > 0);
+        } while (aliveNum > 0);
 
         endTime = System.currentTimeMillis(); // 获取结束时间
 

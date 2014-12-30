@@ -7,67 +7,67 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Person
 {
-	String	name;
-	int		age;
-	boolean	smoker;
-	Date	birth;
+    String  name;
+    int     age;
+    boolean smoker;
+    Date    birth;
 
-	public Person()
-	{
-	}
+    public Person()
+    {
+    }
 
-	public Person(String name, int age, boolean smoker, Date birth)
-	{
-		super();
-		this.name = name;
-		this.age = age;
-		this.smoker = smoker;
-		this.birth = birth;
-	}
+    public Person(String name, int age, boolean smoker, Date birth)
+    {
+        super();
+        this.name = name;
+        this.age = age;
+        this.smoker = smoker;
+        this.birth = birth;
+    }
 
-	public String getName()
-	{
-		return name;
-	}
+    public String getName()
+    {
+        return name;
+    }
 
-	public void setName(String name)
-	{
-		this.name = name;
-	}
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-	public int getAge()
-	{
-		return age;
-	}
+    public int getAge()
+    {
+        return age;
+    }
 
-	public void setAge(int age)
-	{
-		this.age = age;
-	}
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
 
-	public boolean isSmoker()
-	{
-		return smoker;
-	}
+    public boolean isSmoker()
+    {
+        return smoker;
+    }
 
-	public void setSmoker(boolean smoker)
-	{
-		this.smoker = smoker;
-	}
+    public void setSmoker(boolean smoker)
+    {
+        this.smoker = smoker;
+    }
 
-	public Date getBirth()
-	{
-		return birth;
-	}
+    public Date getBirth()
+    {
+        return birth;
+    }
 
-	public void setBirth(Date birth)
-	{
-		this.birth = birth;
-	}
+    public void setBirth(Date birth)
+    {
+        this.birth = birth;
+    }
 
-	@Override
-	public String toString()
-	{
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-	}
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

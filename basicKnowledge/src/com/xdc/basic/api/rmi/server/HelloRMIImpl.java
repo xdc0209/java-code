@@ -14,17 +14,17 @@ import com.xdc.basic.api.rmi.intf.IHelloRMI;
 public class HelloRMIImpl extends UnicastRemoteObject implements IHelloRMI
 {
 
-	private static final long	serialVersionUID	= 1455115818555556704L;
+    private static final long serialVersionUID = 1455115818555556704L;
 
-	public HelloRMIImpl() throws RemoteException
-	{
-		super();
-	}
+    public HelloRMIImpl() throws RemoteException
+    {
+        super();
+    }
 
-	@Override
-	public String sayHello() throws RemoteException
-	{
-		return "Hello RMI";
-	}
+    @Override
+    public String sayHello() throws RemoteException
+    {
+        return "Hello RMI";
+    }
 
 }

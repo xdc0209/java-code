@@ -33,7 +33,7 @@ import org.apache.commons.codec.binary.Base64;
  * @see 关于AES的更多详细介绍,可以参考此爷的博客http://blog.csdn.net/kongqz/article/category/800296 
  * @create Jul 17, 2012 6:35:36 PM 
  * @author 玄玉(http://blog.csdn/net/jadyer) 
- */  
+ */
 public class AESCodec
 {
     // 字符串与字节数组互转时指定编码

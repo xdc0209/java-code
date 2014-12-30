@@ -29,111 +29,111 @@ import org.apache.commons.codec.binary.StringUtils;
  */
 public class Base64Test
 {
-	public static final String	UTF8	= "UTF-8";		// UTF8和UTF-8一样
-	public static final String	GBK		= "GBK";		// 迅雷要用这个
+    public static final String  UTF8   = "UTF-8";     // UTF8和UTF-8一样
+    public static final String  GBK    = "GBK";       // 迅雷要用这个
 
-	private static final Base64	base64	= new Base64();
+    private static final Base64 base64 = new Base64();
 
-	public static void main(String[] args)
-	{
-		String plainText = "I love you, but couldn't let you know. So, encode this. --徐大超 ";
-		System.out.println("plainText: " + plainText);
+    public static void main(String[] args)
+    {
+        String plainText = "I love you, but couldn't let you know. So, encode this. --徐大超 ";
+        System.out.println("plainText: " + plainText);
 
-		// 加密
-		String encodeStr = encodeStr(plainText, UTF8);
-		System.out.println("encodeStr: " + encodeStr);
+        // 加密
+        String encodeStr = encodeStr(plainText, UTF8);
+        System.out.println("encodeStr: " + encodeStr);
 
-		// 解密
-		String decodeStr = decodeStr(encodeStr, UTF8);
-		System.out.println("decodeStr: " + decodeStr);
+        // 解密
+        String decodeStr = decodeStr(encodeStr, UTF8);
+        System.out.println("decodeStr: " + decodeStr);
 
-		System.out.println("plainText==decodeStr? : " + plainText.equals(decodeStr));
+        System.out.println("plainText==decodeStr? : " + plainText.equals(decodeStr));
 
-		// 简单方式，流程如上
-		encodeStr = Base64.encodeBase64String(StringUtils.getBytesUtf8(plainText));
-		System.out.println("encodeStr: " + encodeStr);
-		decodeStr = StringUtils.newStringUtf8(Base64.decodeBase64(encodeStr));
-		System.out.println("decodeStr: " + decodeStr);
-		System.out.println("plainText==decodeStr? : " + plainText.equals(decodeStr));
+        // 简单方式，流程如上
+        encodeStr = Base64.encodeBase64String(StringUtils.getBytesUtf8(plainText));
+        System.out.println("encodeStr: " + encodeStr);
+        decodeStr = StringUtils.newStringUtf8(Base64.decodeBase64(encodeStr));
+        System.out.println("decodeStr: " + decodeStr);
+        System.out.println("plainText==decodeStr? : " + plainText.equals(decodeStr));
 
-		System.out.println("字符集名称：");
-		for (String charsetName : Charset.availableCharsets().keySet())
-		{
-			System.out.println(charsetName);
-		}
-	}
+        System.out.println("字符集名称：");
+        for (String charsetName : Charset.availableCharsets().keySet())
+        {
+            System.out.println(charsetName);
+        }
+    }
 
-	/**
-	 * 使用Base64加密
-	 * 
-	 * @param plainText
-	 * @return
-	 */
-	public static String encodeStr(String plainText, String charsetName)
-	{
-		byte[] b = string2Bytes(plainText, charsetName);
-		b = base64.encode(b);
-		return bytes2String(b, charsetName);
-	}
+    /**
+     * 使用Base64加密
+     * 
+     * @param plainText
+     * @return
+     */
+    public static String encodeStr(String plainText, String charsetName)
+    {
+        byte[] b = string2Bytes(plainText, charsetName);
+        b = base64.encode(b);
+        return bytes2String(b, charsetName);
+    }
 
-	/**
-	 * 使用Base64解密
-	 * 
-	 * @param encodeStr
-	 * @return
-	 */
-	public static String decodeStr(String encodeStr, String charsetName)
-	{
-		byte[] b = string2Bytes(encodeStr, charsetName);
-		b = base64.decode(b);
-		return bytes2String(b, charsetName);
-	}
+    /**
+     * 使用Base64解密
+     * 
+     * @param encodeStr
+     * @return
+     */
+    public static String decodeStr(String encodeStr, String charsetName)
+    {
+        byte[] b = string2Bytes(encodeStr, charsetName);
+        b = base64.decode(b);
+        return bytes2String(b, charsetName);
+    }
 
-	/**
-	 * 根据指定编码将字符串转换成字节数组
-	 * 
-	 * @param plainText
-	 * @param charsetName
-	 * @return
-	 */
-	private static byte[] string2Bytes(String plainText, String charsetName)
-	{
-		// apache提供了专门的方法去获取字符串的utf8编码的字节数组
-		// return StringUtils.getBytesUtf8(plainText);
+    /**
+     * 根据指定编码将字符串转换成字节数组
+     * 
+     * @param plainText
+     * @param charsetName
+     * @return
+     */
+    private static byte[] string2Bytes(String plainText, String charsetName)
+    {
+        // apache提供了专门的方法去获取字符串的utf8编码的字节数组
+        // return StringUtils.getBytesUtf8(plainText);
 
-		byte[] b = null;
-		try
-		{
-			b = plainText.getBytes(charsetName);
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
-		return b;
-	}
+        byte[] b = null;
+        try
+        {
+            b = plainText.getBytes(charsetName);
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        return b;
+    }
 
-	/**
-	 * 根据指定编码将字节数组转换成字符串
-	 * 
-	 * @param charsetName
-	 * @param b
-	 * @return
-	 */
-	private static String bytes2String(byte[] b, String charsetName)
-	{
-		// apache提供了专门的方法从字节数组转换成utf8编码的字符串
-		// return StringUtils.newStringUtf8(b);
+    /**
+     * 根据指定编码将字节数组转换成字符串
+     * 
+     * @param charsetName
+     * @param b
+     * @return
+     */
+    private static String bytes2String(byte[] b, String charsetName)
+    {
+        // apache提供了专门的方法从字节数组转换成utf8编码的字符串
+        // return StringUtils.newStringUtf8(b);
 
-		String s = null;
-		try
-		{
-			s = new String(b, charsetName);
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
-		return s;
-	}
+        String s = null;
+        try
+        {
+            s = new String(b, charsetName);
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        return s;
+    }
 }

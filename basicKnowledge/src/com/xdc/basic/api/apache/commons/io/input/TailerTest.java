@@ -8,23 +8,23 @@ import com.xdc.basic.skills.GetPath;
 
 public class TailerTest
 {
-	public static void main(String[] args)
-	{
-		String curPath = GetPath.getRelativePath();
+    public static void main(String[] args)
+    {
+        String curPath = GetPath.getRelativePath();
 
-		Tailer tailer = Tailer.create(new File(curPath + "from.txt"), new MyTailerListener());
+        Tailer tailer = Tailer.create(new File(curPath + "from.txt"), new MyTailerListener());
 
-		try
-		{
-			Thread.sleep(100000L);
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			tailer.stop();
-		}
-	}
+        try
+        {
+            Thread.sleep(100000L);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            tailer.stop();
+        }
+    }
 }

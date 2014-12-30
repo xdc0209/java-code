@@ -11,30 +11,30 @@ import java.util.List;
  */
 public class FineAndMove
 {
-	public static void main(String[] args)
-	{
-		List<String> names = new ArrayList<String>();
-		names.add("xdc");
-		names.add("gx");
-		names.add("cc");
-		String me = null;
+    public static void main(String[] args)
+    {
+        List<String> names = new ArrayList<String>();
+        names.add("xdc");
+        names.add("gx");
+        names.add("cc");
+        String me = null;
 
-		System.out.println(names);
-		for (String name : names)
-		{
-			if (name.equals("xdc"))
-			{
-				me = name;
-				break;
-			}
-		}
+        System.out.println(names);
+        for (String name : names)
+        {
+            if (name.equals("xdc"))
+            {
+                me = name;
+                break;
+            }
+        }
 
-		if (me != null)
-		{
-			names.remove(me);
-			names.add(me);
-		}
+        if (me != null)
+        {
+            names.remove(me);
+            names.add(me);
+        }
 
-		System.out.println(names);
-	}
+        System.out.println(names);
+    }
 }

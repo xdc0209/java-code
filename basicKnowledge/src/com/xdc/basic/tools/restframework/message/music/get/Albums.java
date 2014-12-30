@@ -11,21 +11,21 @@ public class Albums
 {
     private List<Artists> artists;
 
-    private Boolean available;
+    private Boolean       available;
 
-    private String company;
+    private String        company;
 
-    private String cover;
+    private String        cover;
 
-    private Integer id;
+    private Integer       id;
 
-    private String name;
+    private String        name;
 
-    private Integer num_tracks;
+    private Integer       num_tracks;
 
-    private String release_date;
+    private String        release_date;
 
-    private String type;
+    private String        type;
 
     public List<Artists> getArtists()
     {

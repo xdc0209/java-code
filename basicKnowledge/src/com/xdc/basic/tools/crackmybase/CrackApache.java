@@ -11,29 +11,29 @@ import com.xdc.basic.skills.GetPath;
 
 public class CrackApache
 {
-	public static void main(String[] args) throws IOException
-	{
-		String curPath = GetPath.getRelativePath();
+    public static void main(String[] args) throws IOException
+    {
+        String curPath = GetPath.getRelativePath();
 
-		FileReader input = new FileReader(curPath + "nyfedit.ini");
-		List<String> lines = IOUtils.readLines(input);
-		input.close();
+        FileReader input = new FileReader(curPath + "nyfedit.ini");
+        List<String> lines = IOUtils.readLines(input);
+        input.close();
 
-		String time = String.valueOf(System.currentTimeMillis() / 1000);
-		for (int i = 0; i < lines.size(); i++)
-		{
-			String line = lines.get(i);
-			if (line.startsWith("App.UserLic.FirstUseOn"))
-			{
-				System.out.println(line);
-				String newLine = line.replaceAll("[0-9]{10}", time);
-				System.out.println(newLine);
-				lines.set(i, newLine);
-			}
-		}
+        String time = String.valueOf(System.currentTimeMillis() / 1000);
+        for (int i = 0; i < lines.size(); i++)
+        {
+            String line = lines.get(i);
+            if (line.startsWith("App.UserLic.FirstUseOn"))
+            {
+                System.out.println(line);
+                String newLine = line.replaceAll("[0-9]{10}", time);
+                System.out.println(newLine);
+                lines.set(i, newLine);
+            }
+        }
 
-		FileWriter output = new FileWriter(curPath + "nyfedit.ini");
-		IOUtils.writeLines(lines, null, output);
-		output.close();
-	}
+        FileWriter output = new FileWriter(curPath + "nyfedit.ini");
+        IOUtils.writeLines(lines, null, output);
+        output.close();
+    }
 }

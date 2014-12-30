@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-public interface StudentMapper {
+public interface StudentMapper
+{
     int countByExample(StudentExample example);
 
     int deleteByExample(StudentExample example);

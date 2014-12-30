@@ -11,5 +11,5 @@ import java.rmi.RemoteException;
  */
 public interface IHelloRMI extends Remote
 {
-	public String sayHello() throws RemoteException;
+    public String sayHello() throws RemoteException;
 }

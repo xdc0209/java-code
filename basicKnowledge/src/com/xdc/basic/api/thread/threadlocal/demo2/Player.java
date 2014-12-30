@@ -1,6 +1,5 @@
 package com.xdc.basic.api.thread.threadlocal.demo2;
 
-
 public class Player extends Thread
 {
     private final int playerId;

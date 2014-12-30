@@ -47,43 +47,43 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Users
 {
 
-	@XmlElement(required = true)
-	protected List<User>	user;
+    @XmlElement(required = true)
+    protected List<User> user;
 
-	/**
-	 * Gets the value of the user property.
-	 * 
-	 * <p>
-	 * This accessor method returns a reference to the live list, not a
-	 * snapshot. Therefore any modification you make to the returned list will
-	 * be present inside the JAXB object. This is why there is not a
-	 * <CODE>set</CODE> method for the user property.
-	 * 
-	 * <p>
-	 * For example, to add a new item, do as follows:
-	 * 
-	 * <pre>
-	 * getUser().add(newItem);
-	 * </pre>
-	 * 
-	 * 
-	 * <p>
-	 * Objects of the following type(s) are allowed in the list {@link User }
-	 * 
-	 * 
-	 */
-	public List<User> getUser()
-	{
-		if (user == null)
-		{
-			user = new ArrayList<User>();
-		}
-		return this.user;
-	}
+    /**
+     * Gets the value of the user property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the user property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * 
+     * <pre>
+     * getUser().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list {@link User }
+     * 
+     * 
+     */
+    public List<User> getUser()
+    {
+        if (user == null)
+        {
+            user = new ArrayList<User>();
+        }
+        return this.user;
+    }
 
-	@Override
-	public String toString()
-	{
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-	}
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

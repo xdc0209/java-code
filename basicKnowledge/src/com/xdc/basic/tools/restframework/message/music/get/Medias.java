@@ -7,7 +7,7 @@ public class Medias
 {
     private Integer bitrate;
 
-    private String p2purl;
+    private String  p2purl;
 
     public Integer getBitrate()
     {

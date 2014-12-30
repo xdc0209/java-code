@@ -18,27 +18,27 @@ import java.util.Scanner;
  */
 public class RMIServer
 {
-	public static void main(String[] args)
-	{
-		Scanner cin = new Scanner(System.in);
-		try
-		{
-			int port;
-			System.out.print("请输入监听端口号：");
-			port = cin.nextInt();
-			HelloRMIImpl rmi = new HelloRMIImpl();
-			Registry r = LocateRegistry.createRegistry(port);
-			r.rebind("My_RMI", rmi);
-			System.out.println("服务运行中...");
-			System.out.println("服务端口号为：" + port);
-		}
-		catch (RemoteException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			cin.close();
-		}
-	}
+    public static void main(String[] args)
+    {
+        Scanner cin = new Scanner(System.in);
+        try
+        {
+            int port;
+            System.out.print("请输入监听端口号：");
+            port = cin.nextInt();
+            HelloRMIImpl rmi = new HelloRMIImpl();
+            Registry r = LocateRegistry.createRegistry(port);
+            r.rebind("My_RMI", rmi);
+            System.out.println("服务运行中...");
+            System.out.println("服务端口号为：" + port);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            cin.close();
+        }
+    }
 }

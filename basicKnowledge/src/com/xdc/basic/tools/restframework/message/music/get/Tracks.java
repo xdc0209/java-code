@@ -10,25 +10,25 @@ import java.util.List;
 
 public class Tracks
 {
-    private Album album;
+    private Album         album;
 
     private List<Artists> artists;
 
-    private String availability;
+    private String        availability;
 
-    private Integer id;
+    private Integer       id;
 
-    private List<Medias> medias;
+    private List<Medias>  medias;
 
-    private Integer mv;
+    private Integer       mv;
 
-    private String slyric;
+    private String        slyric;
 
-    private String title;
+    private String        title;
 
-    private String isdown;
+    private String        isdown;
 
-    private String isplay;
+    private String        isplay;
 
     public Album getAlbum()
     {

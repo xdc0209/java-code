@@ -10,16 +10,16 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class BasicArray2ObjectArray
 {
-	public static void main(String[] args)
-	{
-		int[] array = new int[] { 1, 2, 3 };
+    public static void main(String[] args)
+    {
+        int[] array = new int[] { 1, 2, 3 };
 
-		// 基本数组 --> 对象数组
-		Integer[] array2 = ArrayUtils.toObject(array);
+        // 基本数组 --> 对象数组
+        Integer[] array2 = ArrayUtils.toObject(array);
 
-		// 对象数组 --> 基本数组
-		int[] array3 = ArrayUtils.toPrimitive(array2);
+        // 对象数组 --> 基本数组
+        int[] array3 = ArrayUtils.toPrimitive(array2);
 
-		System.out.println(array3.length);
-	}
+        System.out.println(array3.length);
+    }
 }

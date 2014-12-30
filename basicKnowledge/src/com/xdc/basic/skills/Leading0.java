@@ -8,12 +8,12 @@ package com.xdc.basic.skills;
  */
 public class Leading0
 {
-	public static void main(String[] args)
-	{
-		for (int i = 1; i < 1001; i++)
-		{
-			String str = String.format("%04d", i);
-			System.out.println(str);
-		}
-	}
+    public static void main(String[] args)
+    {
+        for (int i = 1; i < 1001; i++)
+        {
+            String str = String.format("%04d", i);
+            System.out.println(str);
+        }
+    }
 }

@@ -51,90 +51,90 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class User
 {
 
-	@XmlElement(required = true)
-	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-	@XmlSchemaType(name = "NCName")
-	protected String	 name;
-	@XmlElement(required = true)
-	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-	@XmlSchemaType(name = "NCName")
-	protected String	 sex;
-	@XmlElement(required = true)
-	protected BigInteger	age;
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NCName")
+    protected String     name;
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NCName")
+    protected String     sex;
+    @XmlElement(required = true)
+    protected BigInteger age;
 
-	/**
-	 * Gets the value of the name property.
-	 * 
-	 * @return possible object is {@link String }
-	 * 
-	 */
-	public String getName()
-	{
-		return name;
-	}
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getName()
+    {
+        return name;
+    }
 
-	/**
-	 * Sets the value of the name property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link String }
-	 * 
-	 */
-	public void setName(String value)
-	{
-		this.name = value;
-	}
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setName(String value)
+    {
+        this.name = value;
+    }
 
-	/**
-	 * Gets the value of the sex property.
-	 * 
-	 * @return possible object is {@link String }
-	 * 
-	 */
-	public String getSex()
-	{
-		return sex;
-	}
+    /**
+     * Gets the value of the sex property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getSex()
+    {
+        return sex;
+    }
 
-	/**
-	 * Sets the value of the sex property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link String }
-	 * 
-	 */
-	public void setSex(String value)
-	{
-		this.sex = value;
-	}
+    /**
+     * Sets the value of the sex property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setSex(String value)
+    {
+        this.sex = value;
+    }
 
-	/**
-	 * Gets the value of the age property.
-	 * 
-	 * @return possible object is {@link BigInteger }
-	 * 
-	 */
-	public BigInteger getAge()
-	{
-		return age;
-	}
+    /**
+     * Gets the value of the age property.
+     * 
+     * @return possible object is {@link BigInteger }
+     * 
+     */
+    public BigInteger getAge()
+    {
+        return age;
+    }
 
-	/**
-	 * Sets the value of the age property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link BigInteger }
-	 * 
-	 */
-	public void setAge(BigInteger value)
-	{
-		this.age = value;
-	}
+    /**
+     * Sets the value of the age property.
+     * 
+     * @param value
+     *            allowed object is {@link BigInteger }
+     * 
+     */
+    public void setAge(BigInteger value)
+    {
+        this.age = value;
+    }
 
-	@Override
-	public String toString()
-	{
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-	}
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 
 }

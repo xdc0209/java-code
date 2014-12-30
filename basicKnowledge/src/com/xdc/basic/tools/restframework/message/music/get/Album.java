@@ -5,11 +5,11 @@ import java.lang.String;
 
 public class Album
 {
-    private String cover;
+    private String  cover;
 
     private Integer id;
 
-    private String name;
+    private String  name;
 
     public String getCover()
     {
