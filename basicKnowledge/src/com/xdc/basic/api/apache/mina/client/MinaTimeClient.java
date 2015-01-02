@@ -11,6 +11,9 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 public class MinaTimeClient
 {
+    // 除了java编写客户端，也可以直接使用Telnet作为客户端！
+    // 客户端：telnet 127.0.0.1 9123
+
     public static void main(String[] args)
     {
         // 创建客户端连接器
