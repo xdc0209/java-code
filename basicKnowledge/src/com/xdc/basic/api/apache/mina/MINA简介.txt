@@ -1,0 +1,34 @@
+摘自：http://www.iteye.com/topic/166596
+
+基于MINA框架快速开发网络应用程序
+ 
+1．MINA框架简介 
+MINA(Multipurpose Infrastructure for Network Applications)是用于开发高性能和高可用性的网络应用程序的基础框架。
+通过使用MINA框架可以可以省下处理底层I/O和线程并发等复杂工作，开发人员能够把更多的精力投入到业务设计和开发当中。
+MINA框架的应用比较广泛，应用的开源项目有Apache Directory、AsyncWeb、Apache Qpid、QuickFIX/J、Openfire、SubEthaSTMP、red5等。
+MINA框架当前稳定版本是1.1.6，最新的2.0版本目前已经发布了M1版本。 
+
+MINA框架的特点有：基于java NIO类库开发；采用非阻塞方式的异步传输；事件驱动；支持批量数据传输；支持TCP、UDP协议；
+                                  控制反转的设计模式（支持Spring）；采用优雅的松耦合架构；可灵活的加载过滤器机制；单元测试更容易实现；
+                                  可自定义线程的数量，以提高运行于多处理器上的性能；采用回调的方式完成调用，线程的使用更容易。 
+
+2．MINA框架的常用类 
+类NioSocketAcceptor  用于创建服务端监听； 
+类NioSocketConnector 用于创建客户端连接； 
+类IoSession          用来保存会话属性和发送消息； 
+类IoHandlerAdapter   用于定义业务逻辑，
+
+IoHandlerAdapter常用的方法有： 
+sessionCreated()  当会话创建时被触发 
+sessionOpened()   当会话开始时被触发 
+sessionClosed()   当会话关闭时被触发 
+sessionIdle()     当会话空闲时被触发 
+exceptionCaught() 当接口中其他方法抛出异常未被捕获时触发此方法 
+messageRecieved() 当接收到消息后被触发 
+messageSent()     当发送消息后被触发 
+
+3．总结 
+通过示例代码可以了解到：使用MINA框架来开发的网络应用程序代码结构更清晰；MINA框架完成了底层的线程管理；
+                       MINA内置的编码器可以满足大多数用户的需求，省去了开发人员消息编码解码的工作。
+                                             具称使用MINA开发服务器程序的性能已经逼近使用 C/C++ 语言开发的网络服务。
+                                             因此，建议在网络应用程序开发过程中尝试使用MINA框架来提高我们的开发效率和应用程序的执行效率。
