@@ -61,7 +61,7 @@ public interface TreeNode<T> extends Serializable
     public int getChildCount();
 
     /**
-     * 查询第index(从0开始)个子节点
+     * 查询第index(从0开始)个子节点, 如果index不在索引范围之内则返回null
      */
     public TreeNode<T> getChildAt(int index);
 

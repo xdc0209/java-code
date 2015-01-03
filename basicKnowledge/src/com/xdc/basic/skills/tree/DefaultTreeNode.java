@@ -84,20 +84,19 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     @Override
     public void append(TreeNode<T> node)
     {
-        assert node != null;
-
-        if (node != null)
+        if (node == null)
         {
-            TreeNode<T> oldParent = node.getParent();
-            if (oldParent != null)
-            {
-                oldParent.remove(node);
-            }
-            node.setParent(this);
-            childs.add(node);
+            return;
         }
 
-        assert (node == null) || ((node.getParent() == this) && (getIndex(node) >= 0));
+        TreeNode<T> oldParent = node.getParent();
+        if (oldParent != null)
+        {
+            oldParent.remove(node);
+        }
+
+        node.setParent(this);
+        childs.add(node);
     }
 
     /**
@@ -106,7 +105,10 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     @Override
     public void append(T nodeAttchment)
     {
-        assert nodeAttchment != null;
+        if (nodeAttchment == null)
+        {
+            return;
+        }
 
         append(new DefaultTreeNode<T>(nodeAttchment));
     }
@@ -119,23 +121,27 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     @Override
     public void insert(TreeNode<T> node, int index)
     {
-        assert node != null;
-
-        if (node != null)
+        if (node == null)
         {
-            node.setParent(this);
-            if (index < childs.size())
-            {
-                int realIndex = (index < 0) ? 0 : index;
-                childs.insertElementAt(node, realIndex);
-            }
-            else
-            {
-                childs.add(node);
-            }
+            return;
         }
 
-        assert (node == null) || ((node.getParent() == this) && (getIndex(node) >= 0));
+        TreeNode<T> oldParent = node.getParent();
+        if (oldParent != null)
+        {
+            oldParent.remove(node);
+        }
+
+        node.setParent(this);
+        if (index < childs.size())
+        {
+            int realIndex = (index < 0) ? 0 : index;
+            childs.insertElementAt(node, realIndex);
+        }
+        else
+        {
+            childs.add(node);
+        }
     }
 
     /**
@@ -146,7 +152,10 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     @Override
     public void insert(T nodeAttchment, int index)
     {
-        assert nodeAttchment != null;
+        if (nodeAttchment == null)
+        {
+            return;
+        }
 
         insert(new DefaultTreeNode<T>(nodeAttchment), index);
     }
@@ -170,21 +179,21 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     }
 
     /**
-     * 查询第<code>index</code>(从0开始)个子节点, 如果<code>index</code> 不在索引范围之内则返回null
+     * 查询第index(从0开始)个子节点, 如果index不在索引范围之内则返回null
      */
     @Override
     public TreeNode<T> getChildAt(int index)
     {
-        TreeNode<T> child = null;
-        if (index >= 0 && index < childs.size())
+        if (index < 0 || index >= childs.size())
         {
-            child = childs.get(index);
+            return null;
         }
-        return child;
+
+        return childs.get(index);
     }
 
     /**
-     * 查询目标节点<code>node</code>在子节点列表中的索引位置(从0开始), 如果 目标节点不是当前节点的子节点, 则返回-1
+     * 查询目标节点node在子节点列表中的索引位置(从0开始), 如果 目标节点不是当前节点的子节点, 则返回-1
      */
     @Override
     public int getIndex(TreeNode<T> node)
@@ -193,6 +202,7 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
         {
             return -1;
         }
+
         return childs.indexOf(node);
     }
 
@@ -206,6 +216,7 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
         {
             return;
         }
+
         childs.remove(node);
     }
 
@@ -219,6 +230,7 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
         {
             return;
         }
+
         childs.remove(index);
     }
 
