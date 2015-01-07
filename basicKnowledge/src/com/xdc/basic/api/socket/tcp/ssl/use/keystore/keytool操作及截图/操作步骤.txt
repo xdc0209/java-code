@@ -3,7 +3,7 @@
 第一步 - 生成一个含有一个私钥的keystore文件  （PS: 密码设置为123456）
 keytool -genkeypair -alias certificatekey -keyalg RSA -validity 7 -keystore keystore.jks
 
-第二步 – 验证新生成的keystor而文件
+第二步 – 验证新生成的keystore而文件
 keytool -list -v -keystore keystore.jks
 
 第三步 - 导出凭证文件
