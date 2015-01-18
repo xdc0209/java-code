@@ -2,7 +2,7 @@ package com.xdc.basic.skills;
 
 import java.io.Console;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class ReadConsolePassword
 {
@@ -26,13 +26,13 @@ public class ReadConsolePassword
             System.exit(1);
         }
 
-        String password = String.valueOf(console.readPassword(tips));
-        if (StringUtils.isBlank(password))
+        char[] password = console.readPassword(tips);
+        if (ArrayUtils.isEmpty(password))
         {
             System.out.println("Password could not be empty!");
             System.exit(1);
         }
 
-        return password;
+        return String.valueOf(password);
     }
 }
