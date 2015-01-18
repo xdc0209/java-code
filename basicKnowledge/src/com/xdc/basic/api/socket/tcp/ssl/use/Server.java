@@ -82,6 +82,7 @@ public class Server
 
         // 安全的协议
         List<String> safeProtocols = new ArrayList<String>();
+        safeProtocols.add("SSLv2Hello"); // 为了兼容性服务端需保留此协议，目前此协议还未发现漏洞
         safeProtocols.add("TLSv1");
         safeProtocols.add("TLSv1.1");
         safeProtocols.add("TLSv1.2");

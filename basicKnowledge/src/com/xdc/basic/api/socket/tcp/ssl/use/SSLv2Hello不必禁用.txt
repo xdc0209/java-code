@@ -1,0 +1,17 @@
+SSLv2Hello不必禁用：
+
+1. http://www.oracle.com/technetwork/java/javase/documentation/cve-2014-3566-2342133.html   
+SSLv2Hello，只是做为协商消息，目前并不没有发现有安全风险，参考oracle的官方禁掉SSV3的如下，对于server端也是可以enabled了SSLv2Hello。 
+
+Enabling "SSLv2Hello" on the server side allows the inbound connection to use either format.  If "SSLv2Hello" is specified as an enabled Protocol on the client side, the server MUST be prepared to accept it (i.e. "SSLv2Hello" or equivalent) or else the SSL/TLS negotiation WILL FAIL.  This applies for servers of any type, including those based on other SSL/TLS implementations.  See the appropriate documentation for the details on how to enable/disable the SSL 2.0-compatible ClientHello format on the client and/or server if necessary.
+
+JDK 5/6 enables SSLv2Hello by default on both the client and server sides.  (Will send and receive SSLv2Hellos)
+JDK 7-9 enables SSLv2Hello on the server side only.  (Will not send, but will accept SSLv2Hellos)
+
+2. http://www.gossamer-threads.com/lists/apache/users/441417
+
+Many SSL clients, notably JDK 6, use the SSLv2Hello protocol to handshake with the server. Using this protocol does *not* mean you are using SSL 2.0 or 3.0 for that matter; it is merely a handshake to determine *which* protocol to use. [http://tools.ietf.org/html/rfc5246#appendix-E.2] 
+
+However, in Apache, if you disable SSLv3 support, this apparently removes support for the SSLv2Hello protocol. Apache Tomcat has explicit support for SSLv2Hello; that is, you can enable that, but not enable SSLv3. 
+
+Is there any way to do this in Apache? 
