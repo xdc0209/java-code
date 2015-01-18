@@ -35,4 +35,13 @@ public class ReadConsolePassword
 
         return String.valueOf(password);
     }
+
+    // 命令行程序的调试方法
+    // java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=1989,suspend=y com/xdc/basic/skills/ReadConsolePassword
+    // java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=1989,suspend=y com.xdc.basic.skills.ReadConsolePassword
+    public static void main(String[] args)
+    {
+        String password = readConsolePassword("Enter password: ");
+        System.out.println(password);
+    }
 }
