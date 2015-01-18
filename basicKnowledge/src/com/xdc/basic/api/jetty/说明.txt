@@ -18,3 +18,8 @@ Add/Configure Connectors.
 Add/Configure Handlers and/or Contexts and/or Servlets.
 Start the Server.
 Wait on the server or do something else with your thread.
+
+==============================================================================================================
+简而言之，使用jetty搭建网页服务器的两种方式：
+1. 使用jetty作为web容器(servlet container)
+2. using Jetty as an embedded server
