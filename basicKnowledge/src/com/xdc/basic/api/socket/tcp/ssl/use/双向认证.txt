@@ -1,0 +1,36 @@
+摘自：jersey-examples-2.14-all.zip\jersey\examples\https-clientserver-grizzly\README.html
+
+First thing you have to do if you want to communicate with service via https is set up SSLContext which is basically providing keystore and truststore. 
+Keystore is used for storing own keys and truststore is used for storing certificates to which you have decided to trust.
+
+====================================================================================================
+Generated keystore and truststore files are already present:
+    generate client and server keys
+    generate client and server certificates
+    import certificates to corresponding truststores
+
+Client certificate is needed too because we're going to use server-side certificate authentication as well (yes, after this Http Basic authentication seems to be kind of redundant but there are some usecases where you might want to use them both).
+
+Generate client key and store it into keystore:
+keytool -genkey -keystore ./keystore_client -alias clientKey -dname "CN=Client, OU=Jersey, O=Oracle Corporation, L=Prague, ST=Czech Republic, C=CZ"
+
+Generate client certificate (this will generate self-signed certificate; if you have certification authority and want generate certificate request, use keytool -certreq):
+keytool -export -alias clientKey -rfc -keystore ./keystore_client > ./client.cert
+
+Import client certificate to servers truststore:
+keytool -import -alias clientCert -file ./client.cert -keystore ./truststore_server
+
+====================================================================================================
+These steps are similar for server side:
+keytool -genkey -keystore ./keystore_server -alias serverKey -dname "CN=localhost, OU=Jersey, O=Oracle Corporation, L=Prague, ST=Czech Republic, C=CZ"
+keytool -export -alias serverKey -rfc -keystore ./keystore_server > ./server.cert
+keytool -import -alias serverCert -file ./server.cert -keystore ./truststore_client
+
+====================================================================================================
+文件列表
+client.cert
+server.cert
+keystore_client
+keystore_server
+truststore_client
+truststore_server
