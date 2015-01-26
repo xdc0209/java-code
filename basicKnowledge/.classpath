@@ -108,5 +108,29 @@
 	<classpathentry kind="lib" path="lib/apache/mina/mina-transport-apr-2.0.9.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/embedding/jetty-all-9.3.0.M1.jar" sourcepath="libsrc/jetty/embedding/jetty-all-9.3.0.M1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/api/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/aopalliance-repackaged-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/asm-debug-all-5.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/hk2-api-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/hk2-locator-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/hk2-utils-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/javax.inject-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/jaxb-api-2.2.7.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/jersey-guava-2.14.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/ext/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/lib/jersey-client.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/lib/jersey-common.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/lib/jersey-container-servlet-core.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/lib/jersey-container-servlet.jar"/>
+	<classpathentry kind="lib" path="lib/restserver/jersey/lib/jersey-server.jar"/>
+	<classpathentry kind="lib" path="lib/json/jackson/jaxrs/jackson-jaxrs-base-2.5.0.jar" sourcepath="libsrc/json/jackson/jaxrs/jackson-jaxrs-base-2.5.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/json/jackson/jaxrs/jackson-jaxrs-json-provider-2.5.0.jar" sourcepath="libsrc/json/jackson/jaxrs/jackson-jaxrs-json-provider-2.5.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/json/jackson/jaxrs/jackson-jaxrs-xml-provider-2.5.0.jar" sourcepath="libsrc/json/jackson/jaxrs/jackson-jaxrs-xml-provider-2.5.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
