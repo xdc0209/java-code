@@ -1,4 +1,4 @@
-package com.xdc.basic.api.restserver.jersey.domain.application.resource.school;
+package com.xdc.basic.api.restserver.jersey.application.resource.school;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

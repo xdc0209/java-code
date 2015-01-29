@@ -1,13 +1,13 @@
-package com.xdc.basic.api.restserver.jersey.domain.application;
+package com.xdc.basic.api.restserver.jersey.application;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import com.xdc.basic.api.restserver.jersey.domain.application.resource.asyncdemo.BlockingPostChatResource;
-import com.xdc.basic.api.restserver.jersey.domain.application.resource.asyncdemo.FireAndForgetChatResource;
-import com.xdc.basic.api.restserver.jersey.domain.application.resource.asyncdemo.SimpleLongRunningResource;
+import com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo.BlockingPostChatResource;
+import com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo.FireAndForgetChatResource;
+import com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo.SimpleLongRunningResource;
 
 public class AsyncdemoApplication extends Application
 {

@@ -1,4 +1,4 @@
-package com.xdc.basic.api.restserver.jersey.domain.application;
+package com.xdc.basic.api.restserver.jersey.application;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.xdc.basic.api.restserver.jersey.domain.exceptionmapper.IdNotUniqueMapper;
-import com.xdc.basic.api.restserver.jersey.domain.exceptionmapper.ResourceNotExistMapper;
+import com.xdc.basic.api.restserver.jersey.application.exceptionmapper.common.IdNotUniqueMapper;
+import com.xdc.basic.api.restserver.jersey.application.exceptionmapper.common.ResourceNotExistMapper;
 
 public class CommonApplication extends Application
 {

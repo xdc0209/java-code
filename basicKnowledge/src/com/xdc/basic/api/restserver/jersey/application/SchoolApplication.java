@@ -1,13 +1,13 @@
-package com.xdc.basic.api.restserver.jersey.domain.application;
+package com.xdc.basic.api.restserver.jersey.application;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import com.xdc.basic.api.restserver.jersey.domain.application.resource.school.CourseResource;
-import com.xdc.basic.api.restserver.jersey.domain.application.resource.school.StudentResouce;
-import com.xdc.basic.api.restserver.jersey.domain.application.resource.school.TeacherResource;
+import com.xdc.basic.api.restserver.jersey.application.resource.school.CourseResource;
+import com.xdc.basic.api.restserver.jersey.application.resource.school.StudentResouce;
+import com.xdc.basic.api.restserver.jersey.application.resource.school.TeacherResource;
 
 public class SchoolApplication extends Application
 {

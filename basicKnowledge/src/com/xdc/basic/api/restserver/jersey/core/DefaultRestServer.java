@@ -1,6 +1,7 @@
 package com.xdc.basic.api.restserver.jersey.core;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.core.Application;
@@ -16,6 +17,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import com.xdc.basic.api.restserver.jersey.core.api.RestServer;
 import com.xdc.basic.api.restserver.jersey.core.api.ServerException;
 import com.xdc.basic.api.restserver.jersey.core.config.RestServerConfig;
+import com.xdc.basic.api.restserver.jersey.utils.ApplicationUtils;
 
 public class DefaultRestServer implements RestServer
 {
@@ -150,7 +152,17 @@ public class DefaultRestServer implements RestServer
             }
         }
 
-        return ResourceConfig.forApplication(new ApplicationWrapper(applications));
+        ApplicationWrapper application = new ApplicationWrapper(applications);
+
+        List<String> paths = ApplicationUtils.getPaths(application);
+        System.out.println("Paths:");
+        for (String path : paths)
+        {
+            System.out.println(path);
+        }
+        System.out.println();
+
+        return ResourceConfig.forApplication(application);
     }
 
     /**

@@ -38,12 +38,11 @@
  * holder.
  */
 
-package com.xdc.basic.api.restserver.jersey.domain.application.resource.asyncdemo;
+package com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo;
 
+import java.text.MessageFormat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -62,24 +61,21 @@ import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 @Produces("text/plain")
 public class SimpleLongRunningResource
 {
-
-    public static final String           NOTIFICATION_RESPONSE = "Hello async world!";
-    //
-    private static final Logger          LOGGER                = Logger.getLogger(SimpleLongRunningResource.class
-                                                                       .getName());
-    private static final int             SLEEP_TIME_IN_MILLIS  = 1000;
     private static final ExecutorService TASK_EXECUTOR         = Executors
                                                                        .newCachedThreadPool(new ThreadFactoryBuilder()
                                                                                .setNameFormat(
                                                                                        "long-running-resource-executor-%d")
                                                                                .build());
 
+    private static final int             SLEEP_TIME_IN_MILLIS  = 1000;
+
+    public static final String           NOTIFICATION_RESPONSE = "Hello async world!";
+
     @GET
     public void longGet(@Suspended final AsyncResponse ar)
     {
         TASK_EXECUTOR.submit(new Runnable()
         {
-
             @Override
             public void run()
             {
@@ -89,7 +85,7 @@ public class SimpleLongRunningResource
                 }
                 catch (InterruptedException ex)
                 {
-                    LOGGER.log(Level.SEVERE, "Response processing interrupted", ex);
+                    System.out.println(MessageFormat.format("Response processing interrupted", ex));
                 }
                 ar.resume(NOTIFICATION_RESPONSE);
             }

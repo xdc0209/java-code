@@ -37,14 +37,13 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package com.xdc.basic.api.restserver.jersey.domain.application.resource.asyncdemo;
+package com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo;
 
+import java.text.MessageFormat;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -70,45 +69,39 @@ import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 @Consumes(MediaType.TEXT_PLAIN)
 public class BlockingPostChatResource
 {
-
-    public static final String                 POST_NOTIFICATION_RESPONSE = "Message stored.";
-    //
-    private static final Logger                LOGGER                     = Logger.getLogger(BlockingPostChatResource.class
-                                                                                  .getName());
-    private static final Level                 DEBUG                      = Level.INFO;
-    //
     private static final ExecutorService       QUEUE_EXECUTOR             = Executors
                                                                                   .newCachedThreadPool(new ThreadFactoryBuilder()
                                                                                           .setNameFormat(
                                                                                                   "blocking-post-chat-resource-executor-%d")
                                                                                           .build());
+
     private static final BlockingQueue<String> messages                   = new ArrayBlockingQueue<String>(5);
 
-    //
+    public static final String                 POST_NOTIFICATION_RESPONSE = "Message stored.";
 
     @GET
     public void pickUpMessage(@Suspended final AsyncResponse ar, @QueryParam("id") final String messageId)
     {
-        LOGGER.log(DEBUG, "Received GET <{0}> with context {1} on thread {2}.", new Object[] { messageId,
-                ar.toString(), Thread.currentThread().getName() });
+        System.out.println(MessageFormat.format("Received GET <{0}> with context {1} on thread {2}.", new Object[] {
+                messageId, ar.toString(), Thread.currentThread().getName() }));
 
         QUEUE_EXECUTOR.submit(new Runnable()
         {
-
             @Override
             public void run()
             {
                 try
                 {
                     final String message = messages.take();
-                    LOGGER.log(DEBUG, "Resuming GET <{0}> context {1} with a message {2} on thread {3}.", new Object[] {
-                            messageId, ar.toString(), message, Thread.currentThread().getName() });
+                    System.out.println(MessageFormat.format(
+                            "Resuming GET <{0}> context {1} with a message {2} on thread {3}.", new Object[] {
+                                    messageId, ar.toString(), message, Thread.currentThread().getName() }));
                     ar.resume(message);
                 }
                 catch (InterruptedException ex)
                 {
-                    LOGGER.log(Level.SEVERE,
-                            "Waiting for a message pick-up interrupted. Cancelling context" + ar.toString(), ex);
+                    System.out.println(MessageFormat.format(
+                            "Waiting for a message pick-up interrupted. Cancelling context" + ar.toString(), ex));
                     ar.cancel(); // close the open connection
                 }
             }
@@ -118,26 +111,26 @@ public class BlockingPostChatResource
     @POST
     public void postMessage(@Suspended final AsyncResponse ar, final String message)
     {
-        LOGGER.log(DEBUG, "Received POST <{0}> with context {1} on thread {2}. Suspending the context.", new Object[] {
-                message, ar.toString(), Thread.currentThread().getName() });
+        System.out.println(MessageFormat.format(
+                "Received POST <{0}> with context {1} on thread {2}. Suspending the context.", new Object[] { message,
+                        ar.toString(), Thread.currentThread().getName() }));
         QUEUE_EXECUTOR.submit(new Runnable()
         {
-
             @Override
             public void run()
             {
                 try
                 {
                     messages.put(message);
-                    LOGGER.log(DEBUG,
+                    System.out.println(MessageFormat.format(
                             "POSTed message <{0}> successfully queued. Resuming POST with context {1} on thread {2}.",
-                            new Object[] { message, ar.toString(), Thread.currentThread().getName() });
+                            new Object[] { message, ar.toString(), Thread.currentThread().getName() }));
                     ar.resume(POST_NOTIFICATION_RESPONSE);
                 }
                 catch (InterruptedException ex)
                 {
-                    LOGGER.log(Level.SEVERE,
-                            "Waiting for a queueing a message '" + message + "' has been interrupted.", ex);
+                    System.out.println(MessageFormat.format("Waiting for a queueing a message '" + message
+                            + "' has been interrupted.", ex));
                     ar.resume(ex); // propagate info about the problem
                 }
             }

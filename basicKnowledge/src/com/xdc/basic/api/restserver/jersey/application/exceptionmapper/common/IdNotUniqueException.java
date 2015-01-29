@@ -1,4 +1,4 @@
-package com.xdc.basic.api.restserver.jersey.domain.exceptionmapper;
+package com.xdc.basic.api.restserver.jersey.application.exceptionmapper.common;
 
 public class IdNotUniqueException extends Exception
 {
