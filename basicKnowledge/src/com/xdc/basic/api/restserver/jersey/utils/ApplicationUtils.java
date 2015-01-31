@@ -18,7 +18,7 @@ public class ApplicationUtils
 {
     public static List<String> getPaths(Application application)
     {
-        List<String> paths = new ArrayList<>();
+        List<String> paths = new ArrayList<String>();
 
         Set<Class<?>> clazzes = application.getClasses();
         for (Class<?> clazz : clazzes)
@@ -81,7 +81,7 @@ public class ApplicationUtils
 
             String methodPath = StringUtils.EMPTY;
 
-            Path methodPathAnnotation = clazz.getAnnotation(Path.class);
+            Path methodPathAnnotation = m.getAnnotation(Path.class);
             if (methodPathAnnotation != null)
             {
                 methodPath = methodPathAnnotation.value();
