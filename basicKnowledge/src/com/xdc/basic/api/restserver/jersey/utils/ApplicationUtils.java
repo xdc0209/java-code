@@ -87,9 +87,9 @@ public class ApplicationUtils
                 methodPath = methodPathAnnotation.value();
             }
 
-            String fullPath = methodType + "/" + classPath + "/" + methodPath;
-
-            fullPath = fullPath.replace("//", "/");
+            String fullPath = String.format("%-8s/%s/%s", methodType, classPath, methodPath);
+            fullPath = StringUtils.replace(fullPath, "//", "/");
+            fullPath = StringUtils.removeEnd(fullPath, "/");
 
             paths.add(fullPath);
         }
