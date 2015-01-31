@@ -8,7 +8,7 @@ public class ReadConsolePassword
 {
     /**
      * 在Java 字符终端上获取输入有三种方式：
-     *
+     * 
      * 1、java.lang.System.in (目前JDK版本均支持)
      * 
      * 2、java.util.Scanner (JDK版本>=1.5)
