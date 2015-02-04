@@ -9,6 +9,8 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 /**
  * PropertiesConfiguration 这个类在内存中有缓存，设置文件改变策略后，当文件变化时会重新读取属性文件刷新内存
  * 
+ * 配置文件项的值支持使用\转义，规则同java 中文字符使用Unicode编码，如中文“中国”为\u4e2d\u56fd
+ * 
  * @author xdc
  * 
  */
