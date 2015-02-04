@@ -21,9 +21,9 @@ import com.xdc.basic.api.restserver.jersey.utils.ApplicationUtils;
 
 public class DefaultRestServer implements RestServer
 {
-    private Server                 server       = null;
+    private Server                                  server             = null;
 
-    private final Set<Application> applications = new HashSet<Application>();
+    private final Set<Class<? extends Application>> applicationClazzes = new HashSet<Class<? extends Application>>();
 
     @Override
     public synchronized void start() throws ServerException
@@ -34,7 +34,7 @@ public class DefaultRestServer implements RestServer
             return;
         }
 
-        ResourceConfig resourceConfig = createResourceConfig(applications);
+        ResourceConfig resourceConfig = createResourceConfig(applicationClazzes);
         server = createServer(resourceConfig);
 
         try
@@ -71,15 +71,15 @@ public class DefaultRestServer implements RestServer
     }
 
     @Override
-    public synchronized void bindApplication(Application application) throws ServerException
+    public synchronized void bindApplication(Class<? extends Application> applicationClazz) throws ServerException
     {
-        if (null == application)
+        if (null == applicationClazz)
         {
             System.out.println("Application is null, ignore it.");
             return;
         }
 
-        applications.add(application);
+        applicationClazzes.add(applicationClazz);
 
         // 如果server已经启动，需要重启，保证生效
         if (server != null && server.isRunning())
@@ -90,15 +90,15 @@ public class DefaultRestServer implements RestServer
     }
 
     @Override
-    public synchronized void unbindApplication(Application application) throws ServerException
+    public synchronized void unbindApplication(Class<? extends Application> applicationClazz) throws ServerException
     {
-        if (null == application)
+        if (null == applicationClazz)
         {
             System.out.println("Application is null, ignore it.");
             return;
         }
 
-        applications.remove(application);
+        applicationClazzes.remove(applicationClazz);
 
         // 如果server已经启动，需要重启，保证生效
         if (server != null && server.isRunning())
@@ -113,7 +113,7 @@ public class DefaultRestServer implements RestServer
      * 
      * @param applications
      */
-    private ResourceConfig createResourceConfig(Set<Application> applications)
+    private ResourceConfig createResourceConfig(Set<Class<? extends Application>> applicationClazzes)
     {
         /**
          * RS Application包装器，用于集成多个RS Application实现。
@@ -122,20 +122,32 @@ public class DefaultRestServer implements RestServer
          */
         class ApplicationWrapper extends Application
         {
-            Set<Application> applications = new HashSet<Application>();
+            Set<Class<? extends Application>> applicationClazzes = new HashSet<Class<? extends Application>>();
 
-            public ApplicationWrapper(Set<Application> applications)
+            public ApplicationWrapper(Set<Class<? extends Application>> applicationClazzes)
             {
-                this.applications.addAll(applications);
+                this.applicationClazzes.addAll(applicationClazzes);
             }
 
             @Override
             public Set<Class<?>> getClasses()
             {
                 Set<Class<?>> list = new HashSet<Class<?>>();
-                for (Application application : applications)
+                for (Class<? extends Application> applicationClazz : applicationClazzes)
                 {
-                    list.addAll(application.getClasses());
+                    try
+                    {
+                        Application application = applicationClazz.newInstance();
+                        list.addAll(application.getClasses());
+                    }
+                    catch (InstantiationException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (IllegalAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
                 return list;
             }
@@ -144,15 +156,27 @@ public class DefaultRestServer implements RestServer
             public Set<Object> getSingletons()
             {
                 Set<Object> list = new HashSet<Object>();
-                for (Application application : applications)
+                for (Class<? extends Application> applicationClazz : applicationClazzes)
                 {
-                    list.addAll(application.getSingletons());
+                    try
+                    {
+                        Application application = applicationClazz.newInstance();
+                        list.addAll(application.getSingletons());
+                    }
+                    catch (InstantiationException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (IllegalAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
                 return list;
             }
         }
 
-        ApplicationWrapper application = new ApplicationWrapper(applications);
+        ApplicationWrapper application = new ApplicationWrapper(applicationClazzes);
 
         List<String> paths = ApplicationUtils.getPaths(application);
         System.out.println("Paths:");

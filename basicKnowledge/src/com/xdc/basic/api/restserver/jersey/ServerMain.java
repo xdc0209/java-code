@@ -1,6 +1,6 @@
 package com.xdc.basic.api.restserver.jersey;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 import com.xdc.basic.api.restserver.jersey.application.AsyncdemoApplication;
 import com.xdc.basic.api.restserver.jersey.application.CommonApplication;
@@ -17,22 +17,38 @@ public class ServerMain
         {
             RestServer restServer = new DefaultRestServer();
 
-            restServer.bindApplication(new CommonApplication());
-            restServer.bindApplication(new AsyncdemoApplication());
-            restServer.bindApplication(new SchoolApplication());
+            restServer.bindApplication(CommonApplication.class);
+            restServer.bindApplication(AsyncdemoApplication.class);
+            restServer.bindApplication(SchoolApplication.class);
 
             restServer.start();
             System.out.println("Server is strated.");
+            System.out.println("Try http://127.0.0.1:8080/application.wadl");
+            PauseUtils.pressEnterToContinue();
 
-            System.out.println("Hit enter to stop it...");
-            System.in.read();
+            restServer.unbindApplication(SchoolApplication.class);
+            PauseUtils.pressEnterToContinue();
+
+            restServer.bindApplication(SchoolApplication.class);
+            PauseUtils.pressEnterToContinue();
 
             restServer.stop();
             System.out.println("Server is stopped.");
         }
-        catch (ServerException | IOException e)
+        catch (ServerException e)
         {
             e.printStackTrace();
         }
+    }
+}
+
+class PauseUtils
+{
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void pressEnterToContinue()
+    {
+        System.out.println("Press enter to continue...");
+        scanner.nextLine();
     }
 }

@@ -8,7 +8,7 @@ public interface RestServer
 
     void stop() throws ServerException;
 
-    void bindApplication(Application application) throws ServerException;
+    void bindApplication(Class<? extends Application> applicationClazz) throws ServerException;
 
-    void unbindApplication(Application application) throws ServerException;
+    void unbindApplication(Class<? extends Application> applicationClazz) throws ServerException;
 }
