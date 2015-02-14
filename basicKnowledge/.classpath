@@ -132,5 +132,15 @@
 	<classpathentry kind="lib" path="lib/json/jackson/jaxrs/jackson-jaxrs-base-2.5.0.jar" sourcepath="libsrc/json/jackson/jaxrs/jackson-jaxrs-base-2.5.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/json/jackson/jaxrs/jackson-jaxrs-json-provider-2.5.0.jar" sourcepath="libsrc/json/jackson/jaxrs/jackson-jaxrs-json-provider-2.5.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/json/jackson/jaxrs/jackson-jaxrs-xml-provider-2.5.0.jar" sourcepath="libsrc/json/jackson/jaxrs/jackson-jaxrs-xml-provider-2.5.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/poi-3.11-20141221.jar" sourcepath="libsrc/apache/poi/poi-src-3.11-20141221.zip"/>
+	<classpathentry kind="lib" path="lib/apache/poi/poi-excelant-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/poi-ooxml-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/poi-ooxml-schemas-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/poi-scratchpad-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/apache/poi/ooxml-lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
