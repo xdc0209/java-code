@@ -19,6 +19,9 @@ public abstract class Result
     private final List<String> warningDetails = new ArrayList<String>();
     private final List<String> errorDetails   = new ArrayList<String>();
 
+    /**
+     * 0：成功 1：警告 2：失败
+     */
     private int                result;
 
     private int                excelRowNum;
