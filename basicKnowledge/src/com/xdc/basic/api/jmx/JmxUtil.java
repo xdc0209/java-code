@@ -1,6 +1,6 @@
 // 在eclipse中不能引用jdk的一些类，除非特别设置eclipse，但不建议。因此注释掉此类，使用反射避免了直接引用。
-//package com.xdc.basic.api.jmx;
-//
+package com.xdc.basic.api.jmx;
+
 //import java.io.File;
 //import java.io.IOException;
 //import java.lang.management.ManagementFactory;
@@ -20,130 +20,130 @@
 //
 //import com.sun.tools.attach.VirtualMachine;
 //import com.sun.tools.attach.VirtualMachineDescriptor;
-//
-//public class JmxUtil
-//{
-//    private static final String LOCAL_CONNECTOR_ADDRESS = "com.sun.management.jmxremote.localConnectorAddress";
-//    private static final String MANAGEMENT_AGENT_JAR    = File.separator + "lib" + File.separator
-//                                                                + "management-agent.jar";
-//
-//    private static String getJVM()
-//    {
-//        return System.getProperty("java.vm.specification.vendor");
-//    }
-//
-//    private static boolean isSunJVM()
-//    {
-//        // need to check for Oracle as that is the name for Java7 onwards.
-//        return getJVM().equals("Sun Microsystems Inc.") || getJVM().startsWith("Oracle");
-//    }
-//
-//    /**
-//     * @return map[key: vmId entry: displayName]
-//     */
-//    public static Map<String, String> getAttachableVMs()
-//    {
-//        // 采用LinkedHashMap, 保持放入顺序
-//        Map<String, String> map = new LinkedHashMap<String, String>();
-//
-//        List<VirtualMachineDescriptor> AttachableVMs = VirtualMachine.list();
-//        for (VirtualMachineDescriptor vmd : AttachableVMs)
-//        {
-//            map.put(vmd.id(), vmd.displayName());
-//        }
-//
-//        System.out.printf("%-8s%s\n", "pid", "displayName");
-//        for (Entry<String, String> entry : map.entrySet())
-//        {
-//            String id = entry.getKey();
-//            String displayName = entry.getValue();
-//            System.out.printf("%-8s%s\n", id, displayName);
-//        }
-//
-//        return map;
-//    }
-//
-//    public static String findJMXUrlByProcessId(String pid)
-//    {
-//        if (!isSunJVM())
-//        {
-//            System.err.println("Failed to get Local JMX Address by Pid for it is not sun jvm.");
-//            return null;
-//        }
-//
-//        try
-//        {
-//            String localJmxAddress = ConnectorAddressLink.importFrom(Integer.valueOf(pid));
-//            if (localJmxAddress != null)
-//            {
-//                return localJmxAddress;
-//            }
-//
-//            VirtualMachine vm = VirtualMachine.attach(pid);
-//            localJmxAddress = vm.getAgentProperties().getProperty(LOCAL_CONNECTOR_ADDRESS);
-//            if (localJmxAddress != null)
-//            {
-//                vm.detach();
-//                return localJmxAddress;
-//            }
-//
-//            String javaHome = vm.getSystemProperties().getProperty("java.home");
-//            String agentPath = getAgentPath(javaHome);
-//
-//            vm.loadAgent(agentPath, "com.sun.management.jmxremote");
-//            localJmxAddress = vm.getAgentProperties().getProperty(LOCAL_CONNECTOR_ADDRESS);
-//            if (localJmxAddress != null)
-//            {
-//                vm.detach();
-//                return localJmxAddress;
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        System.err.println("Failed to get Local JMX Address by Pid.");
-//        return null;
-//    }
-//
-//    // Normally in ${java.home}/jre/lib/management-agent.jar but might be in ${java.home}/lib in build environments.
-//    private static String getAgentPath(String javaHome) throws IOException
-//    {
-//        String agentPath = javaHome + File.separator + "jre" + MANAGEMENT_AGENT_JAR;
-//        File f = new File(agentPath);
-//        if (!f.exists())
-//        {
-//            agentPath = javaHome + MANAGEMENT_AGENT_JAR;
-//            f = new File(agentPath);
-//            if (!f.exists())
-//            {
-//                throw new IOException("Management agent not found.");
-//            }
-//        }
-//        agentPath = f.getCanonicalPath();
-//        return agentPath;
-//    }
-//
-//    @SuppressWarnings("unused")
-//    public static void main(String[] args) throws IOException
-//    {
-//        Map<String, String> attachableVMs = JmxUtil.getAttachableVMs();
-//
-//        System.out.println("请输入VmPid:");
-//        Scanner scanner = new Scanner(System.in);
-//        String vmId = scanner.nextLine();
-//        scanner.close();
-//
-//        String localJmxAddress = JmxUtil.findJMXUrlByProcessId(vmId);
-//
-//        JMXServiceURL url = new JMXServiceURL(localJmxAddress);
-//
-//        JMXConnector jmxc = JMXConnectorFactory.connect(url);
-//        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
-//        RuntimeMXBean rmxb = ManagementFactory.newPlatformMXBeanProxy(mbsc, "java.lang:type=Runtime",
-//                RuntimeMXBean.class);
-//
-//        System.out.println(rmxb.getName());
-//    }
-//}
+
+public class JmxUtil
+{
+    //    private static final String LOCAL_CONNECTOR_ADDRESS = "com.sun.management.jmxremote.localConnectorAddress";
+    //    private static final String MANAGEMENT_AGENT_JAR    = File.separator + "lib" + File.separator
+    //                                                                + "management-agent.jar";
+    //
+    //    private static String getJVM()
+    //    {
+    //        return System.getProperty("java.vm.specification.vendor");
+    //    }
+    //
+    //    private static boolean isSunJVM()
+    //    {
+    //        // need to check for Oracle as that is the name for Java7 onwards.
+    //        return getJVM().equals("Sun Microsystems Inc.") || getJVM().startsWith("Oracle");
+    //    }
+    //
+    //    /**
+    //     * @return map[key: vmId entry: displayName]
+    //     */
+    //    public static Map<String, String> getAttachableVMs()
+    //    {
+    //        // 采用LinkedHashMap, 保持放入顺序
+    //        Map<String, String> map = new LinkedHashMap<String, String>();
+    //
+    //        List<VirtualMachineDescriptor> AttachableVMs = VirtualMachine.list();
+    //        for (VirtualMachineDescriptor vmd : AttachableVMs)
+    //        {
+    //            map.put(vmd.id(), vmd.displayName());
+    //        }
+    //
+    //        System.out.printf("%-8s%s\n", "pid", "displayName");
+    //        for (Entry<String, String> entry : map.entrySet())
+    //        {
+    //            String id = entry.getKey();
+    //            String displayName = entry.getValue();
+    //            System.out.printf("%-8s%s\n", id, displayName);
+    //        }
+    //
+    //        return map;
+    //    }
+    //
+    //    public static String findJMXUrlByProcessId(String pid)
+    //    {
+    //        if (!isSunJVM())
+    //        {
+    //            System.err.println("Failed to get Local JMX Address by Pid for it is not sun jvm.");
+    //            return null;
+    //        }
+    //
+    //        try
+    //        {
+    //            String localJmxAddress = ConnectorAddressLink.importFrom(Integer.valueOf(pid));
+    //            if (localJmxAddress != null)
+    //            {
+    //                return localJmxAddress;
+    //            }
+    //
+    //            VirtualMachine vm = VirtualMachine.attach(pid);
+    //            localJmxAddress = vm.getAgentProperties().getProperty(LOCAL_CONNECTOR_ADDRESS);
+    //            if (localJmxAddress != null)
+    //            {
+    //                vm.detach();
+    //                return localJmxAddress;
+    //            }
+    //
+    //            String javaHome = vm.getSystemProperties().getProperty("java.home");
+    //            String agentPath = getAgentPath(javaHome);
+    //
+    //            vm.loadAgent(agentPath, "com.sun.management.jmxremote");
+    //            localJmxAddress = vm.getAgentProperties().getProperty(LOCAL_CONNECTOR_ADDRESS);
+    //            if (localJmxAddress != null)
+    //            {
+    //                vm.detach();
+    //                return localJmxAddress;
+    //            }
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            e.printStackTrace();
+    //        }
+    //
+    //        System.err.println("Failed to get Local JMX Address by Pid.");
+    //        return null;
+    //    }
+    //
+    //    // Normally in ${java.home}/jre/lib/management-agent.jar but might be in ${java.home}/lib in build environments.
+    //    private static String getAgentPath(String javaHome) throws IOException
+    //    {
+    //        String agentPath = javaHome + File.separator + "jre" + MANAGEMENT_AGENT_JAR;
+    //        File f = new File(agentPath);
+    //        if (!f.exists())
+    //        {
+    //            agentPath = javaHome + MANAGEMENT_AGENT_JAR;
+    //            f = new File(agentPath);
+    //            if (!f.exists())
+    //            {
+    //                throw new IOException("Management agent not found.");
+    //            }
+    //        }
+    //        agentPath = f.getCanonicalPath();
+    //        return agentPath;
+    //    }
+    //
+    //    @SuppressWarnings("unused")
+    //    public static void main(String[] args) throws IOException
+    //    {
+    //        Map<String, String> attachableVMs = JmxUtil.getAttachableVMs();
+    //
+    //        System.out.println("请输入VmPid:");
+    //        Scanner scanner = new Scanner(System.in);
+    //        String vmId = scanner.nextLine();
+    //        scanner.close();
+    //
+    //        String localJmxAddress = JmxUtil.findJMXUrlByProcessId(vmId);
+    //
+    //        JMXServiceURL url = new JMXServiceURL(localJmxAddress);
+    //
+    //        JMXConnector jmxc = JMXConnectorFactory.connect(url);
+    //        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+    //        RuntimeMXBean rmxb = ManagementFactory.newPlatformMXBeanProxy(mbsc, "java.lang:type=Runtime",
+    //                RuntimeMXBean.class);
+    //
+    //        System.out.println(rmxb.getName());
+    //    }
+}
