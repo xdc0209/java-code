@@ -29,10 +29,10 @@ public class Client
         String dataSend = "hello";
         writer.println(dataSend);
         writer.flush();
-        System.out.println("客户端发送消息： " + dataSend);
+        System.out.println("客户端发送消息: " + dataSend);
 
         String dataResive = reader.readLine();
-        System.out.println("客户端接收消息：" + dataResive);
+        System.out.println("客户端接收消息: " + dataResive);
 
         writer.close();
         reader.close();
