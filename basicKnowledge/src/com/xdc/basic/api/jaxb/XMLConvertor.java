@@ -24,7 +24,10 @@ public class XMLConvertor
     public XMLConvertor(String conextPath) throws JAXBException
     {
         jaxbContext = JAXBContext.newInstance(conextPath);
+
         marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
         unmarshaller = jaxbContext.createUnmarshaller();
     }
 
