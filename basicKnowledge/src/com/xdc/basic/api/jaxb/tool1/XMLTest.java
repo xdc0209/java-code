@@ -1,4 +1,4 @@
-package com.xdc.basic.api.jaxb;
+package com.xdc.basic.api.jaxb.tool1;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

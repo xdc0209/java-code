@@ -1,4 +1,4 @@
-package com.xdc.basic.api.jaxb;
+package com.xdc.basic.api.jaxb.tool1;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,6 +24,16 @@ public class XMLConvertor
     public XMLConvertor(String conextPath) throws JAXBException
     {
         jaxbContext = JAXBContext.newInstance(conextPath);
+
+        marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        unmarshaller = jaxbContext.createUnmarshaller();
+    }
+
+    public XMLConvertor(Class<?>... clazzes) throws JAXBException
+    {
+        jaxbContext = JAXBContext.newInstance(clazzes);
 
         marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
