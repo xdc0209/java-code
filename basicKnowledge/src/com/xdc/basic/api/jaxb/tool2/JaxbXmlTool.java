@@ -23,48 +23,39 @@ public class JaxbXmlTool
     @SuppressWarnings("unchecked")
     public static <T> T xml2Java(Class<T> clazz, Reader rd) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Unmarshaller unmarshaller = createUnmarshaller(clazz);
         return (T) unmarshaller.unmarshal(rd);
     }
 
     public static <T> void java2Xml(Class<T> clazz, T t, Writer wt) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        Marshaller marshaller = createMarshaller(clazz);
         marshaller.marshal(t, wt);
     }
 
     @SuppressWarnings("unchecked")
     public static <T> T xml2Java(Class<T> clazz, InputStream is) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Unmarshaller unmarshaller = createUnmarshaller(clazz);
         return (T) unmarshaller.unmarshal(is);
     }
 
     public static <T> void java2Xml(Class<T> clazz, T t, OutputStream os) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        Marshaller marshaller = createMarshaller(clazz);
         marshaller.marshal(t, os);
     }
 
     @SuppressWarnings("unchecked")
     public static <T> T xml2Java(Class<T> clazz, File file) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Unmarshaller unmarshaller = createUnmarshaller(clazz);
         return (T) unmarshaller.unmarshal(file);
     }
 
     public static <T> void java2Xml(Class<T> clazz, T t, File file) throws JAXBException
     {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        Marshaller marshaller = createMarshaller(clazz);
         marshaller.marshal(t, file);
     }
 
@@ -92,5 +83,20 @@ public class JaxbXmlTool
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         java2Xml(clazz, t, outputStream);
         return outputStream.toByteArray();
+    }
+
+    private static <T> Unmarshaller createUnmarshaller(Class<T> clazz) throws JAXBException
+    {
+        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        return unmarshaller;
+    }
+
+    private static <T> Marshaller createMarshaller(Class<T> clazz) throws JAXBException
+    {
+        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        return marshaller;
     }
 }
