@@ -20,6 +20,21 @@ import javax.xml.bind.Unmarshaller;
  */
 public class JaxbXmlTool
 {
+    private static <T> Unmarshaller createUnmarshaller(Class<T> clazz) throws JAXBException
+    {
+        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        return unmarshaller;
+    }
+
+    private static <T> Marshaller createMarshaller(Class<T> clazz) throws JAXBException
+    {
+        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        return marshaller;
+    }
+
     @SuppressWarnings("unchecked")
     public static <T> T xml2Java(Class<T> clazz, Reader rd) throws JAXBException
     {
@@ -83,20 +98,5 @@ public class JaxbXmlTool
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         java2Xml(clazz, t, outputStream);
         return outputStream.toByteArray();
-    }
-
-    private static <T> Unmarshaller createUnmarshaller(Class<T> clazz) throws JAXBException
-    {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        return unmarshaller;
-    }
-
-    private static <T> Marshaller createMarshaller(Class<T> clazz) throws JAXBException
-    {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        return marshaller;
     }
 }
