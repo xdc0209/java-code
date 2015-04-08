@@ -20,6 +20,10 @@ import javax.xml.bind.Unmarshaller;
  */
 public class JaxbXmlTool
 {
+    private JaxbXmlTool()
+    {
+    }
+
     private static <T> Unmarshaller createUnmarshaller(Class<T> clazz) throws JAXBException
     {
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
