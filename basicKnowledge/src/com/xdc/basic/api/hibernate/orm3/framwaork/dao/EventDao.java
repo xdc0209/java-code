@@ -8,5 +8,7 @@ public interface EventDao extends BaseDao<Event, Long>
 {
     public List<Event> idGreaterThan(long id);
 
+    public List<Event> idBetween(long startId, long endId);
+
     public List<Event> searchTitle(String str);
 }

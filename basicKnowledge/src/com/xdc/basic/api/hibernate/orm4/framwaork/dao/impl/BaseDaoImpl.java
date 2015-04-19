@@ -11,6 +11,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
@@ -213,12 +214,12 @@ public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializabl
     @Override
     public List<T> findByCriteria(DetachedCriteria detachedCriteria)
     {
-        return findByCriteria(detachedCriteria, -1, -1);
+        return findByCriteria(-1, -1, detachedCriteria);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<T> findByCriteria(DetachedCriteria detachedCriteria, int firstResult, int maxResults)
+    public List<T> findByCriteria(int firstResult, int maxResults, DetachedCriteria detachedCriteria)
     {
         Session session = getSession();
         session.getTransaction().begin();
@@ -251,6 +252,39 @@ public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializabl
 
         session.getTransaction().commit();
         return count;
+    }
+
+    @Override
+    public List<T> findByCriterions(Criterion... criterions)
+    {
+        DetachedCriteria detachedCriteria = createDetachedCriteria();
+        for (Criterion criterion : criterions)
+        {
+            detachedCriteria.add(criterion);
+        }
+        return findByCriteria(detachedCriteria);
+    }
+
+    @Override
+    public List<T> findByCriterions(int firstResult, int maxResults, Criterion... criterions)
+    {
+        DetachedCriteria detachedCriteria = createDetachedCriteria();
+        for (Criterion criterion : criterions)
+        {
+            detachedCriteria.add(criterion);
+        }
+        return findByCriteria(firstResult, maxResults, detachedCriteria);
+    }
+
+    @Override
+    public int criterionsRowCount(Criterion... criterions)
+    {
+        DetachedCriteria detachedCriteria = createDetachedCriteria();
+        for (Criterion criterion : criterions)
+        {
+            detachedCriteria.add(criterion);
+        }
+        return criteriaRowCount(detachedCriteria);
     }
 
     @Override

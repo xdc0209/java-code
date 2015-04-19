@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 
 public interface BaseDao<T extends Serializable, PK extends Serializable>
@@ -62,10 +63,19 @@ public interface BaseDao<T extends Serializable, PK extends Serializable>
     public List<T> findByCriteria(DetachedCriteria detachedCriteria);
 
     // 使用指定的检索标准检索数据，返回部分记录
-    public List<T> findByCriteria(DetachedCriteria detachedCriteria, int firstResult, int maxResults);
+    public List<T> findByCriteria(int firstResult, int maxResults, DetachedCriteria detachedCriteria);
 
     // 使用指定的检索标准检索数据，返回指定范围的记录数目
     public int criteriaRowCount(DetachedCriteria detachedCriteria);
+
+    // 使用指定的检索标准检索数据
+    public List<T> findByCriterions(Criterion... criterions);
+
+    // 使用指定的检索标准检索数据，返回部分记录
+    public List<T> findByCriterions(int firstResult, int maxResults, Criterion... criterions);
+
+    // 使用指定的检索标准检索数据，返回指定范围的记录数目
+    public int criterionsRowCount(Criterion... criterions);
 
     // 使用指定的实体及属性检索(满足除主键外属性＝实体值)数据
     public List<T> findEqualByEntity(T entity);

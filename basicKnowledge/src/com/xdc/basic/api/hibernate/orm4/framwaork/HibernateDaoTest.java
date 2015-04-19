@@ -94,7 +94,7 @@ public class HibernateDaoTest
         detachedCriteria = congfigProjection(detachedCriteria);
 
         List<Event> findByCriteria = eventDao.findByCriteria(detachedCriteria);
-        List<Event> findByCriteriaPage = eventDao.findByCriteria(detachedCriteria, 1, 3);
+        List<Event> findByCriteriaPage = eventDao.findByCriteria(1, 3, detachedCriteria);
 
         List<Event> findEqualByEntity = eventDao.findEqualByEntity(event);
         List<Event> findLikeByEntity = eventDao.findLikeByEntity(event);

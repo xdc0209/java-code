@@ -24,6 +24,12 @@ public class EventDaoImpl extends BaseDaoImpl<Event, Long> implements EventDao
     }
 
     @Override
+    public List<Event> idBetween(long startId, long endId)
+    {
+        return findByCriterions(Restrictions.gt(ID, startId), Restrictions.lt(ID, endId));
+    }
+
+    @Override
     public List<Event> searchTitle(String str)
     {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
