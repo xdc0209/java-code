@@ -43,7 +43,7 @@ public interface BaseDao<T extends Serializable, PK extends Serializable>
     // 获取全部实体。
     public List<T> loadAll();
 
-    // 获取全部实体（分页）。
+    // 获取全部实体(分页)。
     public List<T> loadAll(int firstResult, int maxResults);
 
     public int allRowCount();
@@ -67,16 +67,16 @@ public interface BaseDao<T extends Serializable, PK extends Serializable>
     // 使用指定的检索标准检索数据，返回指定范围的记录
     public int criteriaRowCount(DetachedCriteria detachedCriteria);
 
-    // 使用指定的实体及属性检索（满足除主键外属性＝实体值）数据
+    // 使用指定的实体及属性检索(满足除主键外属性＝实体值)数据
     public List<T> findEqualByEntity(T entity);
 
-    // 使用指定的实体及属性检索（满足除主键外属性＝实体值）数据
+    // 使用指定的实体及属性检索(满足除主键外属性＝实体值)数据(参数propertyNames为需排除的属性)
     public List<T> findEqualByEntity(T entity, String[] propertyNames);
 
-    // 使用指定的实体及属性(非主键)检索（满足属性 like 串实体值）数据
+    // 使用指定的实体及属性(非主键)检索(满足属性 like 串实体值)数据
     public List<T> findLikeByEntity(T entity);
 
-    // 使用指定的实体及属性(非主键)检索（满足属性 like 串实体值）数据
+    // 使用指定的实体及属性(非主键)检索(满足属性 like 串实体值)数据(参数propertyNames为需排除的属性)
     public List<T> findLikeByEntity(T entity, String[] propertyNames);
 
     // 使用指定的检索标准检索数据，返回指定统计值(max,min,avg,sum)
