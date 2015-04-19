@@ -64,7 +64,7 @@ public interface BaseDao<T extends Serializable, PK extends Serializable>
     // 使用指定的检索标准检索数据，返回部分记录
     public List<T> findByCriteria(DetachedCriteria detachedCriteria, int firstResult, int maxResults);
 
-    // 使用指定的检索标准检索数据，返回指定范围的记录
+    // 使用指定的检索标准检索数据，返回指定范围的记录数目
     public int criteriaRowCount(DetachedCriteria detachedCriteria);
 
     // 使用指定的实体及属性检索(满足除主键外属性＝实体值)数据
