@@ -4,7 +4,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
- * 循环障碍，可以用于性能测试
+ * 循环障碍(循环屏障)，可以用于性能测试
  * 
  * @author xdc
  * 
@@ -18,6 +18,7 @@ class CyclicBarrierTest
 
         final CyclicBarrier barrier = new CyclicBarrier(threadCount, new Runnable()
         {
+            @Override
             public void run()
             {
                 // 等待所有子线程完成
@@ -29,6 +30,7 @@ class CyclicBarrierTest
         {
             Thread thread = new Thread("test-thread " + i)
             {
+                @Override
                 public void run()
                 {
                     for (int j = 0; j < loopCount; ++j)

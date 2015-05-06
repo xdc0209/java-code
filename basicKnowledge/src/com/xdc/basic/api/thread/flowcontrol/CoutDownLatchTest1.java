@@ -3,7 +3,7 @@ package com.xdc.basic.api.thread.flowcontrol;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * 当你启动了一个线程，你需要等它执行结束，此时，CountDownLatch也许是一个很好的选择。
+ * 倒数闸门, 当你启动了一个线程，你需要等它执行结束，此时，CountDownLatch也许是一个很好的选择。
  * 
  * @author xdc
  * 
@@ -18,6 +18,7 @@ public class CoutDownLatchTest1
         {
             Thread thread = new Thread("worker thread " + i)
             {
+                @Override
                 public void run()
                 {
                     System.out.println("子线程开始执行：" + Thread.currentThread().getName());

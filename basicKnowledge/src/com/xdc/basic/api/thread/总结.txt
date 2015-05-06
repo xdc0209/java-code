@@ -1,0 +1,1 @@
+总结：多线程开发中应该优先使用高层API，如果无法满足，使用java.util.concurrent.atomic和java.util.concurrent.locks包提供的中层API，而synchronized和volatile，以及wait,notify和notifyAll等低层API 应该最后考虑。

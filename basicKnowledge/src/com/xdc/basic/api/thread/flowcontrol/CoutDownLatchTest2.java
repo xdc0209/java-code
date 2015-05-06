@@ -3,7 +3,7 @@ package com.xdc.basic.api.thread.flowcontrol;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * 当你启动很多线程，你需要这些线程等到通知后才真正开始，CountDownLatch也许是一个很好的选择。
+ * 倒数闸门, 当你启动很多线程，你需要这些线程等到通知后才真正开始，CountDownLatch也许是一个很好的选择。
  * 
  * @author xdc
  * 
@@ -17,6 +17,7 @@ public class CoutDownLatchTest2
         {
             Thread thread = new Thread("worker thread " + i)
             {
+                @Override
                 public void run()
                 {
                     try
