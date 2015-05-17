@@ -120,7 +120,7 @@ public class Enc
     {
         Cipher cipher = Cipher.getInstance(cipherParam);
 
-        // 秘钥, AES必须为16/24/32bytes, 即: 128/192/256bits.
+        // 秘钥, AES必须为16/24/32bytes, 即: 128/192/256bits. 美国对加密解密等软件进行了出口限制，JDK中默认支持的的密钥长度较短(128bits)，加密强度较低，而UnlimitedJCEPolicyJDK7中的文件则没有这样的限制，因此为了获得更好的加密强度，可以到JDK官网下载此文件并替换掉JDK中对应的文件。
         SecretKeySpec keySpec = new SecretKeySpec(keyBytes, keyParam);
 
         // 初始化向量, AES必须为16bytes, 即: 128bits.
