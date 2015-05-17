@@ -1,5 +1,8 @@
 package com.xdc.basic.skills;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+
 public class GetPath
 {
     private static String fileSpt = System.getProperty("file.separator");
@@ -55,6 +58,30 @@ public class GetPath
 
         String absolutePath = userDir + fileSpt + relativePath;
         return absolutePath;
+    }
+
+    public static String connect(String... paths)
+    {
+        if (ArrayUtils.isEmpty(paths))
+        {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String path : paths)
+        {
+            sb.append(path).append(fileSpt);
+        }
+
+        String connectedPath = sb.toString();
+
+        // 去掉最后的分隔符
+        connectedPath = StringUtils.removeEnd(connectedPath, fileSpt);
+
+        // 将连续的分隔符合并，并改为当前平台的分隔符
+        connectedPath = connectedPath.replaceAll("[\\\\/]{1,}", fileSpt + fileSpt);
+
+        return connectedPath;
     }
 
     public static void main(String[] args)
