@@ -12,11 +12,12 @@ public class ConfigUtil
 {
     public static String getValue(String fileName, String key)
     {
+        FileReader input = null;
         try
         {
-            FileReader input = new FileReader(fileName);
+            input = new FileReader(fileName);
             List<String> lines = IOUtils.readLines(input);
-
+            IOUtils.closeQuietly(input);
             for (int i = 0; i < lines.size(); i++)
             {
                 String line = lines.get(i);
@@ -37,6 +38,7 @@ public class ConfigUtil
         }
         catch (IOException e)
         {
+            IOUtils.closeQuietly(input);
             System.err.println("Get value failed.");
             e.printStackTrace();
             System.exit(1);
@@ -47,10 +49,13 @@ public class ConfigUtil
 
     public static void setValue(String fileName, String key, String value)
     {
+        FileReader input = null;
+        FileWriter output = null;
         try
         {
-            FileReader input = new FileReader(fileName);
+            input = new FileReader(fileName);
             List<String> lines = IOUtils.readLines(input);
+            IOUtils.closeQuietly(input);
 
             for (int i = 0; i < lines.size(); i++)
             {
@@ -70,12 +75,14 @@ public class ConfigUtil
                 }
             }
 
-            FileWriter output = new FileWriter(fileName);
+            output = new FileWriter(fileName);
             IOUtils.writeLines(lines, null, output);
-            output.close();
+            IOUtils.closeQuietly(output);
         }
         catch (IOException e)
         {
+            IOUtils.closeQuietly(input);
+            IOUtils.closeQuietly(output);
             System.err.println("Set value failed.");
             e.printStackTrace();
             System.exit(1);

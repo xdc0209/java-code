@@ -17,7 +17,7 @@ public class CrackApache
 
         FileReader input = new FileReader(curPath + "nyfedit.ini");
         List<String> lines = IOUtils.readLines(input);
-        input.close();
+        IOUtils.closeQuietly(input);
 
         String time = String.valueOf(System.currentTimeMillis() / 1000);
         for (int i = 0; i < lines.size(); i++)
@@ -34,6 +34,6 @@ public class CrackApache
 
         FileWriter output = new FileWriter(curPath + "nyfedit.ini");
         IOUtils.writeLines(lines, null, output);
-        output.close();
+        IOUtils.closeQuietly(output);
     }
 }
