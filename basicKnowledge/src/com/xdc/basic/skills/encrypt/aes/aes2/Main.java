@@ -1,7 +1,7 @@
 package com.xdc.basic.skills.encrypt.aes.aes2;
 
-import com.xdc.basic.skills.encrypt.aes.aes1.core.EncException;
-import com.xdc.basic.skills.encrypt.aes.aes1.util.EncUtil;
+import com.xdc.basic.skills.encrypt.aes.aes2.core.EncException;
+import com.xdc.basic.skills.encrypt.aes.aes2.util.EncUtil;
 
 public class Main
 {
