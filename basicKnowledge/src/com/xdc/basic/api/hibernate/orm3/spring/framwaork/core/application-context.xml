@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 公共配置开始 ######################################################################### -->
+
+	<!-- 属性占位定义，将易变化的配置项，移到*.properties中 -->
+	<bean id="propertyConfigurer"
+		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.PasswordConverPropertyPlaceholderConfigurer">
+
+		<!-- 文件系统路径查找数据库配置文件，app.conf.dir(名称随意)为java的jvm的属性，可在启动java时指定 -->
+		<!-- <property name="location" value="file:${app.conf.dir}/src/com/xdc/basic/api/hibernate/orm3/spring/framwaork/jdbc.properties"/> -->
+
+		<!-- classpath路径查找数据库配置文件 -->
+		<property name="location"
+			value="classpath:com/xdc/basic/api/hibernate/orm3/spring/framwaork/core/jdbc.properties" />
+	</bean>
+
+	<!-- 数据源定义 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		lazy-init="false" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- 测试sql -->
+		<property name="validationQuery" value="${test.sql}" />
+		<!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 表示从连接池中获取连接前是否运行validationQuery，true=运行[默认]，false=不运行； -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 表示将连接归还连接池前是否运行validationQuery，true=运行，false=不运行[默认]； -->
+		<property name="testOnReturn" value="true" />
+		<!-- 毫秒检查一次连接池中空闲的连接。 -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+		<property name="numTestsPerEvictionRun" value="8" />
+
+		<!-- 初始化连接池数量。 -->
+		<property name="initialSize" value="8" />
+		<!-- 在抛出异常之前，池等待连接被回收的最长时间（当没有可用连接时）。设置为-1表示无限等待。 -->
+		<property name="maxWait" value="60000" />
+		<!-- 同一时间可以从池分配的最多连接数量。设置为0时表示无限制。 -->
+		<property name="maxActive" value="64" />
+		<!-- 池里不会被释放的最多空闲连接数量。设置为0时表示无限制。 -->
+		<property name="maxIdle" value="24" />
+	</bean>
+
+	<!-- clob/blob处理器 -->
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true" />
+
+	<!-- 连接工厂定义 -->
+	<bean id="sessionFactory"
+		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.SessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="lobHandler" ref="lobHandler" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.default_schema">${hibernate.schema}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+
+				<prop key="javax.persistence.validation.mode">none</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 定义事务管理器（声明式的事务） -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 定义事务代理抽象对象，以便被继承，减少代码 -->
+	<bean id="baseTransactionProxy" lazy-init="true" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<!-- 配置事务管理器 -->
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<!-- 配置事务属性 -->
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="remove*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="del*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+				<prop key="load*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+				<prop key="query*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 公共配置结束 ######################################################################### -->
+
+
+	<!-- 业务配置开始 ######################################################################### -->
+
+	<bean id="studentDao"
+		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.StudentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="courseDao"
+		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.CourseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="scoreDao"
+		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.ScoreDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 提示：一般来说，事务应该配置业务层，而不是dao层。业务层是对业务逻辑的封装，而dao层仅是对数据库基本操作的封装 -->
+
+	<bean id="studentService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.impl.StudentServiceImpl">
+				<property name="studentDao" ref="studentDao" />
+				<property name="scoreDao" ref="scoreDao" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="courseService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.impl.CourseServiceImpl">
+				<property name="courseDao" ref="courseDao" />
+				<property name="scoreDao" ref="scoreDao" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 业务配置结束 ######################################################################### -->
+
+</beans>
+

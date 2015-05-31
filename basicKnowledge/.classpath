@@ -142,7 +142,7 @@
 	<classpathentry kind="lib" path="lib/apache/poi/lib/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="lib/apache/poi/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/apache/poi/ooxml-lib/xmlbeans-2.6.0.jar"/>
-	<classpathentry kind="lib" path="lib/apache/commons/commons-dbcp2-2.1.jar" sourcepath="libsrc/apache/commons/commons-dbcp2-2.1-src.zip"/>
-	<classpathentry kind="lib" path="lib/apache/commons/commons-pool2-2.3.jar" sourcepath="libsrc/apache/commons/commons-pool2-2.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/apache/commons/commons-dbcp-1.4.jar" sourcepath="libsrc/apache/commons/commons-dbcp-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons/commons-pool-1.6.jar" sourcepath="libsrc/apache/commons/commons-pool-1.6-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
