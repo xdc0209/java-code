@@ -1,1 +1,1 @@
-xjc -xmlschema "users.xsd" -p com.xdc.basic.example.jaxb.user
+xjc -xmlschema "users.xsd" -p com.xdc.basic.api.jaxb.user
