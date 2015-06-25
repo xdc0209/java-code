@@ -18,8 +18,6 @@
 	<classpathentry kind="lib" path="lib/apache/commons/commons-logging-1.1.3.jar" sourcepath="libsrc/apache/commons/commons-logging-1.1.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-logging-adapters-1.1.3.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-logging-api-1.1.3.jar"/>
-	<classpathentry kind="lib" path="lib/mq/rabbitmq-client-tests.jar"/>
-	<classpathentry kind="lib" path="lib/mq/rabbitmq-client.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mybatis-3.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/ojdbc6.jar"/>
@@ -144,5 +142,8 @@
 	<classpathentry kind="lib" path="lib/apache/poi/ooxml-lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-dbcp-1.4.jar" sourcepath="libsrc/apache/commons/commons-dbcp-1.4-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-pool-1.6.jar" sourcepath="libsrc/apache/commons/commons-pool-1.6-sources.jar"/>
+	<classpathentry kind="lib" path="lib/mq/activemq/activemq-all-5.11.1.jar" sourcepath="libsrc/mq/activemq/activemq-parent-5.11.1-source-release.zip"/>
+	<classpathentry kind="lib" path="lib/mq/rabbitmq/rabbitmq-client-tests.jar"/>
+	<classpathentry kind="lib" path="lib/mq/rabbitmq/rabbitmq-client.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
