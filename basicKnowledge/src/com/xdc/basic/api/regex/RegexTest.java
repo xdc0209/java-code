@@ -61,7 +61,7 @@ public class RegexTest
     }
 
     @Test
-    public void ExpressionParse()
+    public void expressionParse()
     {
         // 表达式解析： 整数1 加或乘 整数2
         // \s：代表空白，-？：代表0个或一个减号，\d:代表数字
@@ -151,6 +151,35 @@ public class RegexTest
         }
         matcher.appendTail(sb);
         System.out.println(sb.toString());
+    }
+
+    /**
+     * find和matches比较
+     * 
+     * matcher.find()字符串内查找
+     * 
+     * matcher.matches()整个字符串匹配 (ps: string.matches()调用的是matcher.matches())
+     */
+    @Test
+    public void matcherFindAndMatches()
+    {
+        String regex = "[a-zA-Z0-9_]";
+        String input = "User_001";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input); // 获得匹配器对象
+
+        System.out.println(matcher.find());
+        System.out.println(matcher.matches());
+
+        regex = "[a-zA-Z0-9_]*";
+        input = "User_001";
+
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(input); // 获得匹配器对象
+
+        System.out.println(matcher.find());
+        System.out.println(matcher.matches());
     }
 
     private void regexSearch(String regex, String input)
