@@ -72,6 +72,12 @@ public class Server
         JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, mbs);
         LocateRegistry.createRegistry(9999);
 
+        // jmxmp协议的服务端样例
+        // JMXServiceURL url = new JMXServiceURL("jmxmp", "localhost", 9999);
+        // Map<String, Object> envMap = new HashMap<String, Object>();
+        // envMap.put("jmx.remote.server.address.wildcard", "false");
+        // JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, envMap, mbs);
+
         // Start the RMI connector server
         echo("Start the RMI connector server");
         cs.start();

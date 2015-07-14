@@ -33,6 +33,10 @@ public class Client
         // 建立rmi连接客户端并连接rmi连接服务器
         // Create an RMI connector client and connect it to the RMI connector server
         JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:9999/myserver");
+
+        // jmxmp协议的连接样例
+        // JMXServiceURL url = new JMXServiceURL("service:jmx:jmxmp://localhost:9999");
+
         JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
 
         // Create listener
