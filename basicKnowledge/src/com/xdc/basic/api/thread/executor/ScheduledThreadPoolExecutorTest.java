@@ -19,7 +19,14 @@ public class ScheduledThreadPoolExecutorTest
 
     public static void main(String[] args)
     {
-        // 参数corePoolSize代表线程最小个数，即使它们空闲，线程数最大值无限制，动态增加
+        // 注意：下面的两个方法，在执行过程中出现任何异常，且没有捕获，都会导致当前及后续任务终止。
+        // exec.scheduleAtFixedRate(command, initialDelay, period, unit)
+        // exec.scheduleWithFixedDelay(command, initialDelay, delay, unit)
+        // 可以在java doc中看到如下说明：
+        // If any execution of the task encounters an exception, subsequent executions are suppressed. 
+        // 如果任务的任何一个执行遇到异常，则后续执行都会被取消。
+
+        // 参数corePoolSize代表线程池中线程个数，即使它们空闲
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
 
         long initialDelay = 0;
@@ -49,6 +56,7 @@ public class ScheduledThreadPoolExecutorTest
     {
         ScheduledFuture<?> scheduledFuture = exec.scheduleAtFixedRate(new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println("cancelSchedule: " + format.format(new Date()));
@@ -83,6 +91,7 @@ public class ScheduledThreadPoolExecutorTest
          */
         exec.scheduleAtFixedRate(new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println("scheduleAtFixedRate: " + format.format(new Date()));
@@ -103,6 +112,7 @@ public class ScheduledThreadPoolExecutorTest
          */
         exec.scheduleWithFixedDelay(new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println("scheduleWithFixedDelay-begin: " + format.format(new Date()));
@@ -130,6 +140,7 @@ public class ScheduledThreadPoolExecutorTest
          */
         exec.schedule(new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println("The thread can only run once!");
