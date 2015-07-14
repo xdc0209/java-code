@@ -3,6 +3,9 @@ package com.xdc.basic.api.thread.executor.threadfactory;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 参考自: java.util.concurrent.Executors.DefaultThreadFactory
+ */
 public class NamePrefixThreadFactory implements ThreadFactory
 {
     // 记录线程的个数
