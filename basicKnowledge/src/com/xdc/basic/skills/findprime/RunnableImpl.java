@@ -30,8 +30,8 @@ public class RunnableImpl implements Runnable
         {
             return false;
         }
-
-        for (int i = 3; i <= Math.sqrt(n) + 0.1; i = i + 2)
+        double maxCheckNum = Math.sqrt(n) + 0.1;
+        for (int i = 3; i <= maxCheckNum; i = i + 2)
         {
             if (n % i == 0)
             {
