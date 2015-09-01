@@ -42,6 +42,9 @@ public class LogTest
 
     public static List<Person> getTop3(List<Person> nums)
     {
+        // 定位问题时可以打印线程调用堆栈
+        // log.error("Get thread stack trace info.", new Throwable("No error occur. Just for getting thread stack trace info."));
+
         log.info("Get top 3 bigin.");
         List<Person> result = new ArrayList<Person>();
         result.addAll(nums);
