@@ -1,0 +1,43 @@
+当线程堆栈中出现大量的GenericObjectPool.borrowObject时，就表明连接池无空闲连接，线程阻塞在获取数据库连接上。
+有两个原因：
+1. 考虑下数据库连接池的连接数设置的过小，支撑不了业务需要。
+2. 一些线程对数据操作时间过长，或其实耗时操作夹杂在数据操作中间，导致线程对连接占用过长。
+
+对于2：
+可以根据日志中对连接的占用和释放判断，缺点日志过多不容易定位问题。
+也可以使用数据库客户端参看数据库连接，在上面不断刷新，有时可以看到正在执行什么语句，在去搜业务代码。
+通过JProfiler的监控功能，查看那个语句执行的比较耗时。
+
+想到一个思路：通过某种工具和接口，查看当前占用连接的线程并打印线程堆栈。目前只是想法，不知道有没有类似的工具。
+
+"xdc-db-1-thread-1" prio=6 tid=0x05644400 nid=0x1e18 in Object.wait() [0x060df000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x28850398> (a org.apache.commons.pool.impl.GenericObjectPool$Latch)
+	at org.apache.commons.pool.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:1126)
+	- locked <0x28850398> (a org.apache.commons.pool.impl.GenericObjectPool$Latch)
+	at org.apache.commons.dbcp.PoolingDataSource.getConnection(PoolingDataSource.java:106)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider.getConnection(LocalDataSourceConnectionProvider.java:83)
+	at org.hibernate.jdbc.ConnectionManager.openConnection(ConnectionManager.java:446)
+	at org.hibernate.jdbc.ConnectionManager.getConnection(ConnectionManager.java:167)
+	at org.hibernate.jdbc.JDBCContext.connection(JDBCContext.java:160)
+	at org.hibernate.transaction.JDBCTransaction.begin(JDBCTransaction.java:81)
+	at org.hibernate.impl.SessionImpl.beginTransaction(SessionImpl.java:1473)
+	at org.springframework.orm.hibernate3.HibernateTransactionManager.doBegin(HibernateTransactionManager.java:556)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:372)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:417)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:255)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:94)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+	at com.sun.proxy.$Proxy6.delStudent(Unknown Source)
+	at com.xdc.basic.api.hibernate.orm3.spring.Main$1.run(Main.java:43)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+   Locked ownable synchronizers:
+	- <0x29dc70d8> (a java.util.concurrent.ThreadPoolExecutor$Worker)
