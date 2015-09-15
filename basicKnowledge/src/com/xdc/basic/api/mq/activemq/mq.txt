@@ -15,7 +15,12 @@
 
 在p2p的场景里，相互通信的双方是通过一个类似于队列的方式来进行交流。和前面pub-sub的区别在于一个topic有一个发送者和多个接收者，而在p2p里一个queue只有一个发送者和一个接收者。
 
-http://192.168.230.129:8161/admin/
+启停MQ
+cd [activemq_install_dir]/bin
+./activemq start
+./activemq stop
+
+http://192.168.224.128:8161/admin/
 admin/admin
 
 ActiveMQ.Advisory.Connection
