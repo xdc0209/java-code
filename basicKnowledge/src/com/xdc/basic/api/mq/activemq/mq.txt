@@ -24,3 +24,22 @@ web console(web 管理页面)
 http://192.168.224.128:8161/admin/
 admin/admin
 
+==================================================================================
+使用jms需要注意的问题
+以下所述的问题，不仅是对ActiveMQ，对于其他的JMS也一样有效。
+
+1.1 不要频繁的建立和关闭连接
+JMS使用长连接方式，一个程序，只要和JMS服务器保持一个连接就可以了，不要频繁的建立和关闭连接。频繁的建立和关闭连接，对程序的性能影响还是很大的。这一点和jdbc还是不太一样的。
+
+1.2 Connection的start()和stop()方法代价很高
+JMS 的Connection的start()和stop()方法代价很高，不能经常调用。我们试用的时候，写了个jms的connection pool，每次将connection取出pool时调用start()方法，归还时调用stop()方法，然而后来用jprofiler发现，一般的 cpu时间都耗在了这两个方法上。
+
+1.3 start()后才能收消息
+Connection的start()方法调用后，才能收到jms消息。如果不调用这个方法，能发出消息，但是一直收不到消息。不知道其它的jms服务器也是这样。
+
+1.4 显示关闭Session
+如 果忘记了最后关闭Connection或Session对象，都会导致内存泄漏。这个在我测试的时候也发现了。本来以为关闭了Connection，由这 个Connection生成的Session也会被自动关闭，结果并非如此，Session并没有关闭，导致内存泄漏。所以一定要显示的关闭 Connection和Session。
+
+1.5 对Session做对象池
+对Session做对象池，而不是 Connection。Session也是昂贵的对象，每次使用都新建和关闭，代价也非常高。而且后来我们发现，原来Connection是线程安全的， 而Session不是，所以后来改成了对Session做对象池，而只保留一个Connection。
+
