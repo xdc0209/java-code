@@ -1,0 +1,1 @@
+摘自：http://activemq.apache.org/how-should-i-implement-request-response-with-jms.html
