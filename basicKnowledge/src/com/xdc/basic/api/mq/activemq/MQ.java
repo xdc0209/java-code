@@ -1,115 +1,131 @@
 package com.xdc.basic.api.mq.activemq;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
 import javax.jms.Connection;
+import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
-import javax.jms.Queue;
 import javax.jms.Session;
-import javax.jms.Topic;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.ActiveMQQueue;
-import org.apache.activemq.command.ActiveMQTopic;
+import org.apache.commons.lang3.StringUtils;
+
+import com.xdc.basic.api.mq.activemq.MqNode.NodeType;
 
 public class MQ
 {
-    private static Connection connection = null;
+    private static Connection                                       connection = null;
 
-    public static void sendQueue(String message, String queueName) throws JMSException
+    private static Session                                          session    = null;
+
+    private static ConcurrentHashMap<MqNode, MessageProducer>       producers  = new ConcurrentHashMap<MqNode, MessageProducer>();
+
+    private static ConcurrentHashMap<MqNode, List<MessageConsumer>> consumers  = new ConcurrentHashMap<MqNode, List<MessageConsumer>>();
+
+    public static void send(MqNode mqNode, String message) throws JMSException
     {
-        Connection connection = getConnection();
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
-        Queue queue = new ActiveMQQueue(queueName);
-
-        MessageProducer producer = session.createProducer(queue);
+        Session session = getSession();
+        MessageProducer producer = getProducer(mqNode);
         producer.send(session.createTextMessage(message));
-
-        producer.close();
-        session.close();
     }
 
-    public static void sendTopic(String message, String topicName) throws JMSException
+    public static void registerListener(MqNode mqNode, MessageListener listener) throws JMSException
     {
-        Connection connection = getConnection();
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        List<MessageConsumer> mqNodeConsumers = consumers.get(mqNode);
+        if (mqNodeConsumers == null)
+        {
+            mqNodeConsumers = new ArrayList<>();
+            if (consumers.putIfAbsent(mqNode, mqNodeConsumers) != null)
+            {
+                mqNodeConsumers = consumers.get(mqNode);
+            }
+        }
 
-        Topic topic = new ActiveMQTopic(topicName);
+        MessageConsumer consumer = createConsumer(mqNode);
+        mqNodeConsumers.add(consumer);
 
-        MessageProducer producer = session.createProducer(topic);
-        producer.send(session.createTextMessage(message));
-
-        producer.close();
-        session.close();
+        consumer.setMessageListener(listener);
     }
 
-    public static Message receiveQueue(String queueName) throws JMSException
+    public static MessageProducer getProducer(MqNode mqNode) throws JMSException
     {
-        Connection connection = getConnection();
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        MessageProducer producer = producers.get(mqNode);
+        if (producer == null)
+        {
+            producer = createProducer(mqNode);
+            if (producers.putIfAbsent(mqNode, producer) != null)
+            {
+                producer.close();
+                producer = producers.get(mqNode);
+            }
 
-        Queue queue = new ActiveMQQueue(queueName);
+        }
 
-        MessageConsumer comsumer = session.createConsumer(queue);
-        // comsumer.getMessageSelector();
-        // comsumer.getMessageListener();
-        // comsumer.receive();
-        Message message = comsumer.receive(5000);
-
-        comsumer.close();
-        session.close();
-
-        return message;
+        return producer;
     }
 
-    public static Message receiveTopic(String topicName) throws JMSException
+    public static MessageProducer createProducer(MqNode mqNode) throws JMSException
     {
-        Connection connection = getConnection();
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = getSession();
 
-        Topic topic = new ActiveMQTopic(topicName);
+        Destination destination = null;
+        if (mqNode.getNodeType() == NodeType.Queue)
+        {
+            destination = session.createQueue(mqNode.getNodeKey());
+        }
+        else
+        {
+            destination = session.createTopic(mqNode.getNodeKey());
+        }
 
-        MessageConsumer comsumer = session.createConsumer(topic);
-        // comsumer.getMessageSelector();
-        // comsumer.getMessageListener();
-        // comsumer.receive();
-        Message message = comsumer.receive(5000);
-
-        comsumer.close();
-        session.close();
-
-        return message;
+        MessageProducer producer = session.createProducer(destination);
+        return producer;
     }
 
-    public static void registerListenerQueue(String queueName, MessageListener listener) throws JMSException
+    public static MessageConsumer createConsumer(MqNode mqNode) throws JMSException
     {
-        Connection connection = getConnection();
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = getSession();
 
-        Queue queue = new ActiveMQQueue(queueName);
+        Destination destination = null;
+        if (mqNode.getNodeType() == NodeType.Queue)
+        {
+            destination = session.createQueue(mqNode.getNodeKey());
+        }
+        else
+        {
+            destination = session.createTopic(mqNode.getNodeKey());
+        }
 
-        MessageConsumer comsumer = session.createConsumer(queue);
-        comsumer.setMessageListener(listener);
-
-        comsumer.close();
-        session.close();
+        MessageConsumer consumer = null;
+        if (StringUtils.isBlank(mqNode.getSelector()))
+        {
+            consumer = session.createConsumer(destination);
+        }
+        else
+        {
+            consumer = session.createConsumer(destination, mqNode.getSelector());
+        }
+        return consumer;
     }
 
-    public static void registerListenerTopic(String topicName, MessageListener listener) throws JMSException
+    private static Session getSession() throws JMSException
     {
-        Connection connection = getConnection();
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
-        Topic topic = new ActiveMQTopic(topicName);
-
-        MessageConsumer comsumer = session.createConsumer(topic);
-        comsumer.setMessageListener(listener);
-
-        comsumer.close();
-        session.close();
+        if (session == null)
+        {
+            synchronized (Session.class)
+            {
+                if (session == null)
+                {
+                    session = getConnection().createSession(false, Session.AUTO_ACKNOWLEDGE);
+                }
+            }
+        }
+        return session;
     }
 
     private static Connection getConnection() throws JMSException
@@ -120,8 +136,8 @@ public class MQ
             {
                 if (connection == null)
                 {
-                    ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(
-                            "failover:tcp://192.168.224.128:61616");
+                    String brokerURL = "failover:(tcp://192.168.224.128:61616)?nested.wireFormat.maxInactivityDuration=0";
+                    ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerURL);
                     connection = factory.createConnection();
                     connection.start();
                 }
