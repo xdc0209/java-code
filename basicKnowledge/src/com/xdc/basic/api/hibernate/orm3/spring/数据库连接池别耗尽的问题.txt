@@ -4,12 +4,28 @@
 2. 一些线程对数据操作时间过长，或其实耗时操作夹杂在数据操作中间，导致线程对连接占用过长。
 
 对于2：
-可以根据日志中对连接的占用和释放判断，缺点日志过多不容易定位问题。
-也可以使用数据库客户端参看数据库连接，在上面不断刷新，有时可以看到正在执行什么语句，在去搜业务代码。
+(1)可以根据日志中对连接的占用和释放判断，缺点日志过多不容易定位问题。
+(2)也可以使用数据库客户端参看数据库连接，在上面不断刷新，有时可以看到正在执行什么语句，在去搜业务代码。
 通过JProfiler的监控功能，查看那个语句执行的比较耗时。
+(3)设置数据库连接池参数
+http://www.blogjava.net/midstr/archive/2009/08/03/227483.html
+http://www.cnblogs.com/gogly/archive/2012/11/05/2755838.html
+removeAbandoned="true"
+removeAbandonedTimeout="60"
+logAbandoned="true"
+有时粗心的程序编写者在从连接池中获取连接使用后忘记了连接的关闭，这样连池的连接就会逐渐达到maxActive直至连接池无法提供服务。现代连接池一般提供一种“智能”的检查，但设置了removeAbandoned="true"时，当连接池连接数到达(getNumIdle() < 2) and (getNumActive() > getMaxActive() - 3)时便会启动连接回收，那种活动时间超过removeAbandonedTimeout="60"的连接将会被回收，同时如果logAbandoned="true"设置为true,程序在回收连接的同时会打印日志。removeAbandoned是连接池的高级功能，理论上这中配置不应该出现在实际的生产环境，因为有时应用程序执行长事务，可能这种情况下，会被连接池误回收，该种配置一般在程序测试阶段，为了定位连接泄漏的具体代码位置，被开启，生产环境中连接的关闭应该靠程序自己保证。
+连接池满时，再次执行就不能获取新的连接，并且后台的日志都是连接池满的信息，而没有具体那一行代码的连接没有释放的异常信息。
+同样的java代码，加上那三个参数去掉之后，连接池满时，再次执行就不能获取新的连接，后台就报如下错，提示哪里的代码没有关闭连接(已经具体到那一行代码获取的连接没有关闭，这个很重要！！！)
+DBCP object created 2008-09-06 14:27:32 by the following code was never closed:
+java.lang.Exception
+        at org.apache.commons.dbcp.AbandonedTrace.init(AbandonedTrace.java:96)
+        at org.apache.commons.dbcp.AbandonedTrace.<init>(AbandonedTrace.java:79)
+        at org.apache.commons.dbcp.DelegatingResultSet.<init>(DelegatingResultSet.java:71)
+        at org.apache.commons.dbcp.DelegatingResultSet.wrapResultSet(DelegatingResultSet.java:80)
+        at org.apache.commons.dbcp.DelegatingStatement.executeQuery(DelegatingStatement.java:205)
+        at com.thunisoft.fy.spxt.SpxtBaseLogic.createPbxx(SpxtBaseLogic.java:5772)
 
-想到一个思路：通过某种工具和接口，查看当前占用连接的线程并打印线程堆栈。目前只是想法，不知道有没有类似的工具。
-
+连接池满时堆栈中出现大量的borrowObject
 "xdc-db-1-thread-1" prio=6 tid=0x05644400 nid=0x1e18 in Object.wait() [0x060df000]
    java.lang.Thread.State: TIMED_WAITING (on object monitor)
 	at java.lang.Object.wait(Native Method)

@@ -38,19 +38,27 @@
 		<property name="testOnBorrow" value="true" />
 		<!-- 表示将连接归还连接池前是否运行validationQuery，true=运行，false=不运行[默认]； -->
 		<property name="testOnReturn" value="true" />
-		<!-- 毫秒检查一次连接池中空闲的连接。 -->
+		<!-- 检查一次连接池中空闲的连接。单位：毫秒 -->
 		<property name="timeBetweenEvictionRunsMillis" value="30000" />
 		<!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
 		<property name="numTestsPerEvictionRun" value="8" />
 
 		<!-- 初始化连接池数量。 -->
 		<property name="initialSize" value="8" />
-		<!-- 在抛出异常之前，池等待连接被回收的最长时间（当没有可用连接时）。设置为-1表示无限等待。 -->
+		<!-- 在抛出异常之前，池等待连接被回收的最长时间（当没有可用连接时）。设置为-1表示无限等待。单位：毫秒 -->
 		<property name="maxWait" value="60000" />
 		<!-- 同一时间可以从池分配的最多连接数量。设置为0时表示无限制。 -->
 		<property name="maxActive" value="64" />
 		<!-- 池里不会被释放的最多空闲连接数量。设置为0时表示无限制。 -->
 		<property name="maxIdle" value="24" />
+
+		<!-- 以下参数不适合生产环境。可用于定位问题-->
+		<!-- 回收被遗弃的（一般是忘了释放的）数据库连接到连接池中。 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 数据库连接过多长时间不用将被视为被遗弃而收回连接池中。单位：秒 -->
+		<property name="removeAbandonedTimeout" value="300" />
+		<!-- 将被遗弃的数据库连接的回收记入日志。 -->
+		<property name="logAbandoned" value="true" />
 	</bean>
 
 	<!-- clob/blob处理器 -->
