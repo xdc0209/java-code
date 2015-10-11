@@ -145,5 +145,8 @@
 	<classpathentry kind="lib" path="lib/mq/activemq/activemq-all-5.11.1.jar" sourcepath="libsrc/mq/activemq/activemq-parent-5.11.1-source-release.zip"/>
 	<classpathentry kind="lib" path="lib/mq/rabbitmq/rabbitmq-client-tests.jar"/>
 	<classpathentry kind="lib" path="lib/mq/rabbitmq/rabbitmq-client.jar"/>
+	<classpathentry kind="lib" path="lib/btrace/btrace-agent.jar"/>
+	<classpathentry kind="lib" path="lib/btrace/btrace-boot.jar"/>
+	<classpathentry kind="lib" path="lib/btrace/btrace-client.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
