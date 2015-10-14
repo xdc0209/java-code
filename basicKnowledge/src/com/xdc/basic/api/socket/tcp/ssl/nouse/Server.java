@@ -17,7 +17,7 @@ public class Server
         while (true)
         {
             Socket sc = serverSocket.accept();
-            System.out.println("接受并处理scoket连接： " + sc.getInetAddress().getHostAddress() + ":" + sc.getLocalPort());
+            System.out.println("接受并处理scoket连接： " + sc.getInetAddress().getHostAddress() + ":" + sc.getPort());
 
             SocketHanlder scocketHanlder = new SocketHanlder(sc);
             exec.submit(scocketHanlder);

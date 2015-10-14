@@ -35,8 +35,11 @@ public class MyServer
 
                 // 打印客户端的信息
                 System.out.println("这是第" + (++count) + "个客户访问");
+                System.out.println("服务端IP地址：" + socket.getLocalAddress().getHostAddress());
+                System.out.println("服务端端口号：" + socket.getLocalPort());
                 System.out.println("客户端IP地址：" + socket.getInetAddress().getHostAddress());
-                System.out.println("本地端口号：" + socket.getLocalPort());
+                System.out.println("客户端端口号：" + socket.getPort());
+
                 System.out.println("客户端信息：" + din.readUTF());
                 // 向客户端发送回应信息
                 dout.writeUTF("服务器的时间为：" + (new Date()));
