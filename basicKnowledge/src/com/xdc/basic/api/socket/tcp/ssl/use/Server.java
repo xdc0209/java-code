@@ -50,11 +50,12 @@ public class Server
             throws NoSuchAlgorithmException, KeyStoreException, IOException, CertificateException,
             FileNotFoundException, UnrecoverableKeyException, KeyManagementException
     {
-        // 创建JCEKS密钥库（JCEKS在安全级别上要比JKS强）
+        // 获取密钥库工具（java支持JKS、JCEKS、PKCS12。 java默认类型为JKS。 JCEKS在安全级别上要比JKS强。）
         KeyStore ks = KeyStore.getInstance("JCEKS");
+        // 读取密钥库文件，需保证密钥库文件的类型与密钥库工具的类型的一致，否则会报异常。（JCEKS读取JKS文件不会报错）
         ks.load(new FileInputStream(keystorePath), null);
 
-        // 创建管理JCEKS密钥库的X.509密钥管理器
+        // 获取管理JCEKS密钥库的X.509密钥管理器
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
         kmf.init(ks, keystorePass.toCharArray());
 
