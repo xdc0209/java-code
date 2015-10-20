@@ -2,13 +2,11 @@ package com.xdc.basic.api.mq.activemq;
 
 import javax.jms.JMSException;
 
-import com.xdc.basic.api.mq.activemq.MqNode.NodeType;
-
 public class Main
 {
     public static void main(String[] args) throws JMSException
     {
-        MqNode mqNode = new MqNode("xdc-quque", NodeType.Queue);
+        // MqNode mqNode = new MqNode("xdc-quque", NodeType.Queue);
 
         while (true)
         {
