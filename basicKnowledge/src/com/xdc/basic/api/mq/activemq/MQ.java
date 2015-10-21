@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
@@ -34,12 +35,26 @@ public class MQ
         producer.send(session.createTextMessage(message));
     }
 
+    public Message receiveMessage(MqNode mqNode) throws JMSException
+    {
+        long timeout = 10 * 1000;
+        return receiveMessage(mqNode, timeout);
+    }
+
+    public Message receiveMessage(MqNode mqNode, long timeout) throws JMSException
+    {
+        MessageConsumer consumer = createConsumer(mqNode);
+        Message message = consumer.receive(timeout);
+        consumer.close();
+        return message;
+    }
+
     public static void registerListener(MqNode mqNode, MessageListener listener) throws JMSException
     {
         List<MessageConsumer> mqNodeConsumers = consumers.get(mqNode);
         if (mqNodeConsumers == null)
         {
-            mqNodeConsumers = new ArrayList<>();
+            mqNodeConsumers = new ArrayList<MessageConsumer>();
             if (consumers.putIfAbsent(mqNode, mqNodeConsumers) != null)
             {
                 mqNodeConsumers = consumers.get(mqNode);
@@ -113,7 +128,7 @@ public class MQ
         return consumer;
     }
 
-    private static Session getSession() throws JMSException
+    public static Session getSession() throws JMSException
     {
         if (session == null)
         {
@@ -128,7 +143,7 @@ public class MQ
         return session;
     }
 
-    private static Connection getConnection() throws JMSException
+    public static Connection getConnection() throws JMSException
     {
         if (connection == null)
         {
@@ -139,6 +154,9 @@ public class MQ
                     String brokerURL = "failover:(tcp://192.168.224.128:61616)?nested.wireFormat.maxInactivityDuration=0";
                     ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerURL);
                     connection = factory.createConnection();
+
+                    // Connection的start()方法调用后，才能收到jms消息。如果不调用这个方法，能发出消息，但是一直收不到消息。
+                    // Starts (or restarts) a connection's delivery of incoming messages.
                     connection.start();
                 }
             }
