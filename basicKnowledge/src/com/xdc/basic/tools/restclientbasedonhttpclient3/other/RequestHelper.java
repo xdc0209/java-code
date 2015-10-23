@@ -6,11 +6,11 @@ import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-import com.xdc.basic.tools.restclient.constants.Constants;
-import com.xdc.basic.tools.restclient.constants.HttpMethod;
-import com.xdc.basic.tools.restclient.message.Request;
-import com.xdc.basic.tools.restclient.message.RestClientException;
-import com.xdc.basic.tools.restclient.tools.JsonTool;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.Constants;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpMethodType;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Request;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.message.RestClientException;
+import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.JsonTool;
 
 public class RequestHelper
 {
@@ -18,7 +18,7 @@ public class RequestHelper
     public void saveReqest() throws IOException, RestClientException
     {
         Request req = new Request();
-        req.setMethod(HttpMethod.GET.toString());
+        req.setMethod(HttpMethodType.GET.toString());
         req.setUrl("/resoure/vm");
         req.setBodyType(Constants.BodyType.json);
         req.setBody("");
