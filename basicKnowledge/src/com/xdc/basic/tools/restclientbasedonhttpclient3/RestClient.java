@@ -44,7 +44,7 @@ public class RestClient
         super();
         if (!IpTool.isIpv4Port(port))
         {
-            throw new IllegalArgumentException("Port is not leagal. Port should be in [1,65535]. Port = " + port);
+            throw new IllegalArgumentException("Port [" + port + "] is not leagal. Port should be in [1,65535].");
         }
 
         if (StringUtils.isBlank(port))
