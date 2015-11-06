@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import com.xdc.basic.skills.GetPath;
 
@@ -20,9 +22,11 @@ public class File2String
 {
     public static void main(String[] args) throws IOException
     {
-        int lineLength = 1800;
+        int lineLength = 1900;
         String fromFileName = "activemq.zip";
         String toFileName = "activemq.zip.txt";
+
+        String prefix = DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMddHHmmss");
 
         String curPath = GetPath.getRelativePath();
 
@@ -41,7 +45,9 @@ public class File2String
             {
                 endIndex = fromFileBase64StringLength;
             }
-            toFileLines.add(j + "-" + fromFileBase64String.substring(beginIndex, endIndex));
+
+            toFileLines.add(String.format("%s:%03d-%s%s", prefix, j,
+                    fromFileBase64String.substring(beginIndex, endIndex), SystemUtils.LINE_SEPARATOR));
         }
 
         Writer toFileWriter = new FileWriter(curPath + toFileName);
