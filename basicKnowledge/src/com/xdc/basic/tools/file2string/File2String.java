@@ -22,7 +22,7 @@ public class File2String
 {
     public static void main(String[] args) throws IOException
     {
-        int lineLength = 1900;
+        int lineLength = 1800;
         String fromFileName = "activemq.zip";
         String toFileName = "activemq.zip.txt";
 
