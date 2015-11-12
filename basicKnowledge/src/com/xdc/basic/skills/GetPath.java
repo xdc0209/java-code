@@ -8,6 +8,13 @@ public class GetPath
     private static String fileSpt = System.getProperty("file.separator");
 
     /**
+     * 私有构造函数，防止误实例化。工具类不需要实例化
+     */
+    private GetPath()
+    {
+    }
+
+    /**
      * 获得与当前类包名一致的路径
      * 
      * @return
