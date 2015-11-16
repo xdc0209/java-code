@@ -19,15 +19,16 @@ public class JsonTool
 
     public static byte[] toJSONBytes(Object o) throws RestClientException
     {
+        byte[] bytes = null;
         try
         {
-            byte[] bytes = mapper.writeValueAsBytes(o);
-            return bytes;
+            bytes = mapper.writeValueAsBytes(o);
         }
         catch (JsonProcessingException e)
         {
             throw new RestClientException(e);
         }
+        return bytes;
     }
 
     public static <T> T parse(byte[] bytes, Class<T> clazz) throws RestClientException

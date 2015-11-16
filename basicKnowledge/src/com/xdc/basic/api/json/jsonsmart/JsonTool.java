@@ -42,7 +42,7 @@ public class JsonTool
         students.add(student);
 
         // array --> json string
-        String studentsString = JSONValue.toJSONString(students);
+        String studentsString = JsonTool.toJSONString(students);
         System.out.println(studentsString);
 
         // json string --> array

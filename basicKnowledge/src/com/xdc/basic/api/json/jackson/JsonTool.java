@@ -51,6 +51,42 @@ public class JsonTool
         System.out.println(parsedUsers);
     }
 
+    public static byte[] toJSONBytes(Object o)
+    {
+        byte[] bytes = null;
+        try
+        {
+            bytes = mapper.writeValueAsBytes(o);
+        }
+        catch (JsonProcessingException e)
+        {
+            e.printStackTrace();
+        }
+        return bytes;
+    }
+
+    public static <T> T parse(byte[] bytes, Class<T> clazz)
+    {
+        T t = null;
+        try
+        {
+            t = mapper.readValue(bytes, clazz);
+        }
+        catch (JsonParseException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return t;
+    }
+
     public static String toJSONString(Object o)
     {
         String s = null;
