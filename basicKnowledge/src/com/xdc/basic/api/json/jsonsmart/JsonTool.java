@@ -46,7 +46,7 @@ public class JsonTool
         System.out.println(studentsString);
 
         // json string --> array
-        List<Student> parsedArray = JsonTool.parseArray(studentsString, Student.class);
+        List<Student> parsedArray = JsonTool.parseToArray(studentsString, Student.class);
         System.out.println(parsedArray);
 
         // json string --> array
@@ -77,7 +77,7 @@ public class JsonTool
         return result;
     }
 
-    public static <T> List<T> parseArray(String s, Class<T> clazz)
+    public static <T> List<T> parseToArray(String s, Class<T> clazz)
     {
         List<T> result = null;
         Object object = JSONValue.parse(s);

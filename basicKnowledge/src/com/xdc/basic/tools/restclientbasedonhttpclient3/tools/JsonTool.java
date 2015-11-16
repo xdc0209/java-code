@@ -17,6 +17,41 @@ public class JsonTool
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    public static byte[] toJSONBytes(Object o) throws RestClientException
+    {
+        try
+        {
+            byte[] bytes = mapper.writeValueAsBytes(o);
+            return bytes;
+        }
+        catch (JsonProcessingException e)
+        {
+            throw new RestClientException(e);
+        }
+    }
+
+    public static <T> T parse(byte[] bytes, Class<T> clazz) throws RestClientException
+    {
+        T t = null;
+        try
+        {
+            t = mapper.readValue(bytes, clazz);
+        }
+        catch (JsonParseException e)
+        {
+            throw new RestClientException(e);
+        }
+        catch (JsonMappingException e)
+        {
+            throw new RestClientException(e);
+        }
+        catch (IOException e)
+        {
+            throw new RestClientException(e);
+        }
+        return t;
+    }
+
     public static String toJSONString(Object o) throws RestClientException
     {
         String s = null;

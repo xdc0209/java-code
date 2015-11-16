@@ -113,7 +113,7 @@ public class JsonTool
         return retult;
     }
 
-    public static <T> List<T> parseArray(String s, Class<T> clazz)
+    public static <T> List<T> parseToArray(String s, Class<T> clazz)
     {
         // TODO 待研究
         // List<T> result = mapper.readValue(s, TypeFactory.collectionType(ArrayList.class, clazz));
