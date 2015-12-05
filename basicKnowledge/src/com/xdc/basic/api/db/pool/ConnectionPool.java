@@ -234,6 +234,10 @@ public class ConnectionPool
                     catch (SQLException e)
                     {
                         System.err.println("创建数据库连接失败！" + e.getMessage());
+                        if (conn != null)
+                        {
+                            conn.close();
+                        }
                         return null;
                     }
                     pConn.setConnection(conn);

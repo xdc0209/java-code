@@ -86,6 +86,18 @@ public class IpTool
         return ipInt;
     }
 
+    public static boolean isMac(String mac)
+    {
+        if (StringUtils.isBlank(mac))
+        {
+            return false;
+        }
+
+        String macRegExp = "^([a-fA-F0-9]{2}[-:]){5}([a-fA-F0-9]){2}$";
+
+        return mac.matches(macRegExp);
+    }
+
     public static void main(String[] args)
     {
         String ip1 = "254.1.1.1";
