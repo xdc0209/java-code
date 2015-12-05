@@ -1,0 +1,54 @@
+mvn没出现之前，早前的项目中，存在如下的几个问题：
+1、依赖管理混乱， 表现为如下的几个方面。
+1）不清楚到底存在哪些依赖，尤其是开源依赖
+2）同一个依赖存在多个不同的版本， 版本管理混乱
+2、阶段绑定插件目标混乱，配置不统一
+3、仅仅包含了jar包的输出，对于其他附件，例如javadoc、source以及安装包没有包含，安装包基本都是不同的人编写的不同的脚本，格式，方式不统一，并且对应的依赖包存在没有及时更新的风险。
+4、本地构建没有纳入工程管理
+
+
+mvn主仓库地址
+http://search.maven.org/#browse
+
+
+常用命令说明
+===========================================
+摘自：http://www.cnblogs.com/PatrickLee/archive/2012/10/31/2747398.html
+3. 编译源代码：                  mvn compile
+4. 运行测试：                    mvn test
+5. 编译测试代码：                mvn test-compile
+6. 产生site：                    mvn site (编译，打包，findbugs）
+7. 打包：                        mvn package
+8. 打包源码：                    mvn source:jar
+9. 在本地Repository中安装jar：   mvn install
+10.在远程Repository中安装jar：   mvn deploy
+11.清除产生的项目：              mvn clean
+12.只测试而不编译，也不测试编译：mvn test -skipping compile -skipping test-compile
+   (-skipping 的灵活运用，当然也可以用于其他组合命令)
+
+
+项目应用
+===========================================
+cd /d %java_src%\com.xdc.soft
+call mvn clean install -Dmaven.test.skip=true || pause && exit 1
+
+call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft\pom.xml            || pause && exit 1
+
+
+===========================================
+原本不支持maven的包在maven中的使用
+groupId，artifactId和version这个三组合标示依赖的具体工程，而且这个依赖工程必须是maven中心包管理范围内的。如果碰上非开源包，maven支持不了这个包，那么则有三种方法处理：
+1.本地安装这个插件install plugin例如：
+mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1.0.0
+2.创建自己的Repositories并且部署这个包，使用类似上面的deploy:deploy-file 命令
+3.设置scope为system，并且指定系统路径
+
+
+http://blog.csdn.net/adeyi/article/details/17259479
+maven的属性，是值的占位符，类似EL，类似ant的属性，比如${X}，可用于pom文件任何赋值的位置。有以下分类：
+env.X：                  操作系统环境变量，比如${env.PATH}
+project.x：              pom文件中的属性，比如：<project><version>1.0</version></project>，引用方式：${project.version}
+settings.x：             settings.xml文件中的属性，比如：<settings><offline>false</offline></settings>，引用方式：${settings.offline}
+Java System Properties： java.lang.System.getProperties()中的属性，比如java.home，引用方式：${java.home}
+自定义：在pom文件中可以：<properties><installDir>c:/apps/cargo-installs</installDir></properties>，引用方式：${installDir}
+

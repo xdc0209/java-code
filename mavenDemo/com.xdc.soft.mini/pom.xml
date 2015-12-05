@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.xdc.soft</groupId>
+		<artifactId>com.xdc.soft</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.xdc.soft.mini</artifactId>
+	<version>${xdc.mini.version}</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<xdc.mini.version>1.0.0-SNAPSHOT</xdc.mini.version>
+		<xdc.antrun.pkg.target.path>${basedir}/../../virgo/repository/usr</xdc.antrun.pkg.target.path>
+	</properties>
+
+	<modules>
+		<module>com.xdc.soft.mini.compute</module>
+		<module>com.xdc.soft.mini.compute.add</module>
+		<module>com.xdc.soft.mini.compute.multiply</module>
+		<module>com.xdc.soft.mini.consumer</module>
+	</modules>
+
+</project>

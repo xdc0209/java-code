@@ -1,0 +1,47 @@
+本文档未进行细致详述所有细节，给大家留下摸索空间。
+
+
+一、构建环境
+
+1. 下载virgo，版本选择最新版（3.6.3.RELEASE）的Virgo Kernel，http://www.eclipse.org/virgo/download/
+
+2. 开启osgi控制台:
+修改virgo内核级别控制台2401：virgo-kernel-3.6.3.RELEASE\configuration\osgi.console.properties
+telnet.enabled=true
+修改virgo用户级别控制台2501：virgo-kernel-3.6.3.RELEASE\repository\ext\osgi.console.properties
+telnet.enabled=true
+
+3. 开启输入输出流：
+修改virgo-kernel-3.6.3.RELEASE\configuration\org.eclipse.virgo.medic.properties
+log.wrapSysOut=false
+log.wrapSysErr=false
+
+4. 启动virgo，双击virgo-kernel-3.6.3.RELEASE\bin\startup.bat
+注：如启动报错，先删除virgo-kernel-3.6.3.RELEASE\work 或者在启动时指定clean参数，startup.bat -clean
+
+二、编写osgi bundle
+1. 设置eclipse的mvn的setting文件, 使用mvn_settings.xml
+窗口--》首选项--》Maven--》User Settings
+
+2. 创建osgi的maven工程，参见“创建osgi的mavent工程.docx”
+
+3. 工程创建完成后，添加业务代码，并配置osgi配置文件 （/src/main/resources/META-INF/spring目录下任意名字的xml文件）
+
+4. 代码写好后，进行打包
+
+5. 编写plan文件，参见com.xdc.soft.mini.plan
+
+6. 将jar包复制到virgo-kernel-3.6.3.RELEASE\repository\usr
+   将plan文件复制到virgo-kernel-3.6.3.RELEASE\pickup
+
+7. 重新启动启动virgo验证功能
+
+8. 进入virgo的osgi控制台，学会基本的命令。telnet 127.0.0.1 2501
+
+
+===============================================================================
+其他注意事项：
+对于非引用的使用的类，如驱动com.mysql.jdbc.Driver等，打包bundle工具不会在MANIFEST.MF引入相应的包：
+<properties>
+    <osgi.import.package>com.mysql.jdbc;version="5.1.13",...其他需要特殊指定的包...</osgi.import.package>
+</properties>

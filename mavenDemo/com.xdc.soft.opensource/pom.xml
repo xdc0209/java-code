@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.xdc.soft</groupId>
+		<artifactId>com.xdc.soft</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.xdc.soft.opensource</artifactId>
+	<packaging>pom</packaging>
+
+	<properties>
+		<xdc.antrun.pkg.target.path>${basedir}/../../virgo/repository/usr</xdc.antrun.pkg.target.path>
+
+		<refer.groupId>junit</refer.groupId>
+		<refer.artifactId>junit</refer.artifactId>
+		<refer.version>4.8.2</refer.version>
+
+		<osgi.classpath>.,lib/${refer.artifactId}-${refer.version}.jar</osgi.classpath>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${refer.groupId}</groupId>
+			<artifactId>${refer.artifactId}</artifactId>
+			<version>${refer.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-refer</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${refer.groupId}</groupId>
+									<artifactId>${refer.artifactId}</artifactId>
+									<version>${refer.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.outputDirectory}/lib/</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+					<execution>
+						<id>package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<type>${project.packaging}</type>
+								</artifactItem>
+							</artifactItems>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>com.springsource.log4j</module>
+		<module>com.springsource.poi</module>
+	</modules>
+
+</project>

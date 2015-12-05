@@ -1,0 +1,333 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xdc.soft</groupId>
+	<artifactId>com.xdc.soft</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- 编译工具版本 -->
+		<jdk.version>1.7</jdk.version>
+		<maven.version>3.0.0</maven.version>
+		<maven.enforcer.version>1.4.1</maven.enforcer.version>
+
+		<!-- 打包工具版本 -->
+		<maven.compiler.version>3.3</maven.compiler.version>
+		<maven.surefire.version>2.19</maven.surefire.version>
+		<maven.jar.version>2.6</maven.jar.version>
+		<maven.war.version>2.6</maven.war.version>
+		<maven.source.version>2.4</maven.source.version>
+
+		<!-- OSGi Bundle配置信息 -->
+		<maven.bundle.version>2.3.6</maven.bundle.version>
+		<osgi.main.class></osgi.main.class>
+		<osgi.bundle.activator></osgi.bundle.activator>
+		<osgi.bundle.classpath></osgi.bundle.classpath>
+		<osgi.bundle.category></osgi.bundle.category>
+		<osgi.bundle.vendor></osgi.bundle.vendor>
+		<osgi.bundle.copyright></osgi.bundle.copyright>
+		<osgi.export.package></osgi.export.package>
+		<osgi.private.package></osgi.private.package>
+		<osgi.import.package></osgi.import.package>
+		<osgi.import.bundle></osgi.import.bundle>
+		<osgi.dynamic.import.package></osgi.dynamic.import.package>
+		<osgi.require.bundle></osgi.require.bundle>
+		<osgi.fragment.host></osgi.fragment.host>
+		<osgi.include.resource></osgi.include.resource>
+		<osgi.web.context.path></osgi.web.context.path>
+		<osgi.embed.dependency></osgi.embed.dependency>
+		<osgi.embed.directory></osgi.embed.directory>
+		<osgi.embed.transitive></osgi.embed.transitive>
+
+		<!-- 拷贝jar包或war包的到指定路径，如果为空，跳过拷贝 -->
+		<xdc.antrun.pkg.target.path></xdc.antrun.pkg.target.path>
+		<maven.antrun.version>1.8</maven.antrun.version>
+		<maven.assembly.version>2.6</maven.assembly.version>
+
+		<!-- 三方包版本 -->
+		<commons.lang3.version>3.1</commons.lang3.version>
+		<commons.collections.version>3.2.1</commons.collections.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons.collections.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+
+		<!-- 插件管理，主要是为了统一管理插件，确保本项目和所有子项目使用的插件版本和配置保持一致。 -->
+		<!-- pluginManagement是表示插件的声明，maven不会加载该插件，pluginManagement声明可以被继承。 -->
+		<!-- 本项目和所有子项目中plugins节点只配置 groupId 和 artifactId就可以完成插件的引用。 -->
+		<pluginManagement>
+			<plugins>
+
+				<!-- 开发环境检查，java、mvn版本是否符合要求，当不满足要求的时候会抛出异常阻断流程。主要防止开发人员使用不同版本的工具，导致出现诡异的问题。 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven.enforcer.version}</version>
+					<executions>
+						<execution>
+							<id>enforce-versions</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<inherited>true</inherited>
+							<configuration>
+								<rules>
+									<requireJavaVersion>
+										<version>[${jdk.version},)</version>
+									</requireJavaVersion>
+									<requireMavenVersion>
+										<version>[${maven.version},)</version>
+									</requireMavenVersion>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- 指定编译参数，若不指定，则会用maven-compiler-plugin默认的参数进行处理，可能不满足项目要求。 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.version}</version>
+					<configuration>
+						<!-- 源代码使用的开发版本。 -->
+						<source>${jdk.version}</source>
+						<!-- 需要生成的目标class文件的编译版本。一般而言，target与source是保持一致的。 -->
+						<target>${jdk.version}</target>
+						<encoding>UTF-8</encoding>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<fork>true</fork>
+						<meminitial>128m</meminitial>
+						<maxmem>512m</maxmem>
+					</configuration>
+				</plugin>
+
+				<!-- 屏蔽测试用例 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.version}</version>
+					<configuration>
+						<skipTests>true</skipTests>
+					</configuration>
+				</plugin>
+
+				<!-- 打jar包 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.version}</version>
+					<configuration>
+						<archiveClasses>true</archiveClasses>
+						<archive>
+							<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+							<manifestEntries>
+								<Built-By>XDC</Built-By>
+							</manifestEntries>
+							<manifest>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- 打war包 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven.war.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<packagingExcludes>WEB-INF/classes/META-INF/**,WEB-INF/lib/**</packagingExcludes>
+						<archive>
+							<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+						</archive>
+						<webResources>
+							<resource>
+								<directory>${project.build.outputDirectory}/META-INF</directory>
+								<targetPath>META-INF</targetPath>
+							</resource>
+						</webResources>
+					</configuration>
+				</plugin>
+
+				<!-- 打源码包 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.version}</version>
+				</plugin>
+
+				<!-- 打包osgi的bundle -->
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>${maven.bundle.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<supportedProjectTypes>
+							<supportedProjectType>jar</supportedProjectType>
+							<supportedProjectType>war</supportedProjectType>
+							<supportedProjectType>bundle</supportedProjectType>
+						</supportedProjectTypes>
+						<instructions>
+							<Main-Class>${osgi.main.class}</Main-Class>
+							<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+							<Bundle-Description>${project.description}</Bundle-Description>
+							<Bundle-Activator>${osgi.bundle.activator}</Bundle-Activator>
+							<Bundle-ClassPath>${osgi.bundle.classpath}</Bundle-ClassPath>
+							<Bundle-Category>${osgi.bundle.category}</Bundle-Category>
+							<Bundle-Vendor>${osgi.bundle.vendor}</Bundle-Vendor>
+							<Bundle-Copyrigh>${osgi.bundle.copyright}</Bundle-Copyrigh>
+							<Implementation-Title>${project.artifactId} ${project.version}</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Export-Package>
+								${osgi.export.package},!conf.*,!WEB-INF.*,!*.impl.*,!*.support.*,!*.internal.*,*
+							</Export-Package>
+							<Private-Package>${osgi.private.package}</Private-Package>
+							<Import-Package>
+								${osgi.import.package},!sun.misc.*,*
+							</Import-Package>
+							<Import-Bundle>${osgi.import.bundle}</Import-Bundle>
+							<DynamicImport-Package>${osgi.dynamic.import.package}</DynamicImport-Package>
+							<Require-Bundle>${osgi.require.bundle}</Require-Bundle>
+							<Fragment-Host>${osgi.fragment.host}</Fragment-Host>
+							<Include-Resource>${osgi.include.resource}</Include-Resource>
+							<Web-ContextPath>${osgi.web.context.path}</Web-ContextPath>
+							<Embed-Dependency>${osgi.embed.dependency}</Embed-Dependency>
+							<Embed-Directory>${osgi.embed.directory}</Embed-Directory>
+							<Embed-Transitive>${osgi.embed.transitive}</Embed-Transitive>
+							<_nouses>true</_nouses>
+						</instructions>
+					</configuration>
+					<executions>
+						<execution>
+							<id>bundle-manifest</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>manifest</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- 使用ant的能力，实现文件的复制、移动、删除等操作。 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven.antrun.version}</version>
+					<executions>
+						<execution>
+							<id>copy-package</id>
+							<phase>package</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<inherited>true</inherited>
+							<configuration>
+								<tasks>
+									<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.dependency.classpath" />
+									<if>
+										<equals arg1="${project.packaging}" arg2="pom" />
+										<then>
+											<echo message="This is the POM project. Skip to copy package." />
+										</then>
+										<else>
+											<if>
+												<equals arg1="${xdc.antrun.pkg.target.path}" arg2="" />
+												<then>
+													<echo message="Propertie 'xdc.antrun.pkg.target.path' is empty. Skip to copy package." />
+												</then>
+												<else>
+													<copy todir="${xdc.antrun.pkg.target.path}" overwrite="true">
+														<fileset dir="${basedir}/target">
+															<include name="${project.artifactId}-${project.version}.jar" />
+															<include name="${project.artifactId}-${project.version}.war" />
+														</fileset>
+													</copy>
+												</else>
+											</if>
+										</else>
+									</if>
+								</tasks>
+							</configuration>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>ant-contrib</groupId>
+							<artifactId>ant-contrib</artifactId>
+							<version>1.0b3</version>
+							<exclusions>
+								<exclusion>
+									<groupId>ant</groupId>
+									<artifactId>ant</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<!-- Assembly插件可以构建创建一个包含脚本、配置文件以及所有运行时所依赖的元素发布包。 功能与maven-antrun-plugin部分重合。 -->
+				<!-- 为了实现自己需要的打包格式，我们可以使用maven ant task以maven + ant的方式来实现非标准打包，也可使用maven中针对打包任务而提供的标准插件：assembly插件。 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven.assembly.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

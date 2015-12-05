@@ -1,0 +1,38 @@
+Osgi框架：equinox
+---控制 OSGi 框架---
+    launch - 启动 OSGi 框架
+    shutdown - 关闭 OSGi 框架
+    close - 关闭并退出
+    exit - 立即退出（System.exit）
+    init - 卸载所有束
+    setprop <key>=<value> - 设置 OSGi 属性
+---正在控制束---
+    install - 安装 bundle 并（可选）从给定的 URL 启动 bundle
+    uninstall - 卸载指定的 bundle
+**  start - 启动指定的 bundle
+**  stop - 停止指定的 bundle
+    refresh - 刷新指定 bundle 的包
+    update - 更新指定 bundle
+---正在显示状态---
+    status [-s [<束状态的逗号分隔列表>]  [<bsn 的段>]] - 显示已安装的 bundle 和已注册的服务
+**  ss [-s [<束状态的逗号分隔列表>]  [<bsn 的段>]] - 显示已安装的 bundle（短状态）
+    services [过滤器] - display registered service details
+**  packages [<pkgname>|<id>|<location>] - 显示已导入／导出的包的详细信息
+    bundles [-s [<束状态的逗号分隔列表>]  [<bsn 的段>]] - 显示已安装的所有 bundle 的详细信息
+**  bundle (<id>|<location>) - 显示指定 bundle 的详细信息
+**  headers (<id>|<location>) - 打印 bundle 标题
+---其它---
+    exec <command> - 在单独的进程中执行命令并等待
+    fork <command> - 在单独的进程中执行命令
+    gc - 执行垃圾回收
+    getprop  [ 名称 ] - 显示具有给定名称的系统属性，或者显示所有系统属性。
+---正在控制启动级别---
+    sl [<id>|<location>] - 显示指定的 bundle 的启动级别，如果未指定 bundle，则显示框架的启动级别
+    setfwsl <start level> - 设置框架启动级别
+    setbsl <start level>（<id>|<location>） - 设置 bundle 的启动级别
+    setibsl <start level> - 设置初始 bundle 启动级别
+---控制概要分析---
+    profilelog - 显示和清除概要分析日志消息
+---操纵控制台---
+    more - 控制台输出的更多提示
+    disconnect - 断开 Telnet 会话
