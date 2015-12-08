@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -23,17 +24,26 @@ public class File2String
     public static void main(String[] args) throws IOException
     {
         int lineLength = 1800;
-        String fromFileName = "activemq.zip";
-        String toFileName = "activemq.zip.txt";
+        String fromFileName = "pictures.rar";
+        String toFileName = fromFileName + ".txt";
 
         String prefix = DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMddHHmmss");
 
         String curPath = GetPath.getRelativePath();
 
-        InputStream fromFileInputStream = new FileInputStream(curPath + fromFileName);
-        byte[] fromFileBytes = IOUtils.toByteArray(fromFileInputStream);
-        String fromFileBase64String = Base64.encodeBase64String(fromFileBytes);
-        IOUtils.closeQuietly(fromFileInputStream);
+        // 读取文件
+        InputStream fromFileContentInputStream = new FileInputStream(curPath + fromFileName);
+        byte[] fromFileContentBytes = IOUtils.toByteArray(fromFileContentInputStream);
+
+        // 名称编码
+        byte[] fromFileNameBytes = StringUtils.getBytesUtf8(fromFileName);
+        String fromFileNameBase64String = Base64.encodeBase64String(fromFileNameBytes);
+
+        // 内容编码
+        String fromFileContentBase64String = Base64.encodeBase64String(fromFileContentBytes);
+        IOUtils.closeQuietly(fromFileContentInputStream);
+
+        String fromFileBase64String = fromFileNameBase64String + ">>>" + fromFileContentBase64String;
 
         List<String> toFileLines = new ArrayList<String>();
         int fromFileBase64StringLength = fromFileBase64String.length();
@@ -50,6 +60,7 @@ public class File2String
                     fromFileBase64String.substring(beginIndex, endIndex), SystemUtils.LINE_SEPARATOR));
         }
 
+        // 写入文件
         Writer toFileWriter = new FileWriter(curPath + toFileName);
         IOUtils.writeLines(toFileLines, null, toFileWriter);
         IOUtils.closeQuietly(toFileWriter);

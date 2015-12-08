@@ -20,11 +20,11 @@ public class String2File
 {
     public static void main(String[] args) throws IOException
     {
-        String fromFileName = "activemq.zip.txt";
-        String toFileName = "activemq.zip.txt.zip";
+        String fromFileName = "data.txt";
 
         String curPath = GetPath.getRelativePath();
 
+        // 读取文件
         Reader fromFileReader = new FileReader(curPath + fromFileName);
         List<String> fromFileLines = IOUtils.readLines(fromFileReader);
         IOUtils.closeQuietly(fromFileReader);
@@ -38,11 +38,20 @@ public class String2File
             }
         }
         String toFileBase64String = sb.toString();
-        byte[] toFileBytes = Base64.decodeBase64(toFileBase64String);
 
-        OutputStream toFileOutputStream = new FileOutputStream(curPath + toFileName);
-        IOUtils.write(toFileBytes, toFileOutputStream);
-        IOUtils.closeQuietly(toFileOutputStream);
+        // 解析名称
+        String toFileNameBase64String = StringUtils.substringBefore(toFileBase64String, ">>>");
+        byte[] toFileNameBytes = Base64.decodeBase64(toFileNameBase64String);
+        String toFileName = org.apache.commons.codec.binary.StringUtils.newStringUtf8(toFileNameBytes);
+
+        // 解析内容
+        String toFileContentBase64String = StringUtils.substringAfter(toFileBase64String, ">>>");
+        byte[] toFileContentBytes = Base64.decodeBase64(toFileContentBase64String);
+
+        // 写入文件
+        OutputStream toFileContentOutputStream = new FileOutputStream(curPath + toFileName);
+        IOUtils.write(toFileContentBytes, toFileContentOutputStream);
+        IOUtils.closeQuietly(toFileContentOutputStream);
 
         System.out.println("fromFileName: " + fromFileName);
         System.out.println("toFileName:   " + toFileName);
