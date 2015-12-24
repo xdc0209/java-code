@@ -32,15 +32,16 @@ http://search.maven.org/#browse
 cd /d %java_src%\com.xdc.soft
 call mvn clean install -Dmaven.test.skip=true || pause && exit 1
 
-call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft\pom.xml            || pause && exit 1
+call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft\pom.xml || pause && exit 1
 
 
 ===========================================
 原本不支持maven的包在maven中的使用
 groupId，artifactId和version这个三组合标示依赖的具体工程，而且这个依赖工程必须是maven中心包管理范围内的。如果碰上非开源包，maven支持不了这个包，那么则有三种方法处理：
-1.本地安装这个插件install plugin例如：
+1.本地安装这个包，命令如下：
 mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1.0.0
-2.创建自己的Repositories并且部署这个包，使用类似上面的deploy:deploy-file 命令
+2.创建自己的Repositories并且部署这个包，命令如下：
+mvn deploy:deploy-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1.0.0
 3.设置scope为system，并且指定系统路径
 
 

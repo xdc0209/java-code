@@ -80,6 +80,26 @@
 	<build>
 		<finalName>${project.artifactId}-${project.version}</finalName>
 
+		<!-- 把资源打到jar包或war包的相应位置。 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+
 		<!-- 插件管理，主要是为了统一管理插件，确保本项目和所有子项目使用的插件版本和配置保持一致。 -->
 		<!-- pluginManagement是表示插件的声明，maven不会加载该插件，pluginManagement声明可以被继承。 -->
 		<!-- 本项目和所有子项目中plugins节点只配置 groupId 和 artifactId就可以完成插件的引用。 -->

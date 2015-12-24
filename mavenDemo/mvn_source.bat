@@ -13,7 +13,6 @@ set java_src=%cd%
 :: echo.
 :: pause
 
-echo.
 echo ==============================================================================
 echo 本地构建开始: %java_src%
 echo ==============================================================================
@@ -25,20 +24,24 @@ set start_time=%date% %time%
 :: cd /d %java_src%\com.xdc.soft
 :: call mvn source:jar || pause && exit 1
 ::
-:: cd /d %java_src%\com.xdc.soft.mini
+:: cd /d %java_src%\com.xdc.soft.virgo
 :: call mvn source:jar || pause && exit 1
 ::
 :: cd /d %java_src%\com.xdc.soft.opensource
 :: call mvn source:jar || pause && exit 1
+::
+:: cd /d %java_src%\com.xdc.soft.mini
+:: call mvn source:jar || pause && exit 1
 
 call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft\pom.xml            || pause && exit 1
-call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
+call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.virgo\pom.xml      || pause && exit 1
 call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.opensource\pom.xml || pause && exit 1
+call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
+echo.
 
 :: 结束时间
 set end_time=%date% %time%
 
-echo.
 echo ==============================================================================
 echo 本地构建成功: %java_src%
 echo ==============================================================================

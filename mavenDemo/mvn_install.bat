@@ -13,7 +13,6 @@ set java_src=%cd%
 :: echo.
 :: pause
 
-echo.
 echo ==============================================================================
 echo 本地构建开始: %java_src%
 echo ==============================================================================
@@ -25,20 +24,32 @@ set start_time=%date% %time%
 :: cd /d %java_src%\com.xdc.soft
 :: call mvn clean install -Dmaven.test.skip=true || pause && exit 1
 ::
-:: cd /d %java_src%\com.xdc.soft.mini
+:: cd /d %java_src%\com.xdc.soft.virgo
 :: call mvn clean install -Dmaven.test.skip=true || pause && exit 1
 ::
 :: cd /d %java_src%\com.xdc.soft.opensource
 :: call mvn clean install -Dmaven.test.skip=true || pause && exit 1
+::
+:: cd /d %java_src%\com.xdc.soft.mini
+:: call mvn clean install -Dmaven.test.skip=true || pause && exit 1
 
 call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft\pom.xml            || pause && exit 1
-call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
+call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.virgo\pom.xml      || pause && exit 1
 call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.opensource\pom.xml || pause && exit 1
+call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
+echo.
+
+echo 复制资源：%java_src%\com.xdc.soft.virgo\release\virgo
+xcopy /E /Y %java_src%\com.xdc.soft.virgo\release\virgo %java_src%\virgo
+echo.
+
+echo 复制资源：%java_src%\com.xdc.soft.mini\release\virgo
+xcopy /E /Y %java_src%\com.xdc.soft.mini\release\virgo %java_src%\virgo
+echo.
 
 :: 结束时间
 set end_time=%date% %time%
 
-echo.
 echo ==============================================================================
 echo 本地构建成功: %java_src%
 echo ==============================================================================
