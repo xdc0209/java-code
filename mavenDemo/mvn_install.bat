@@ -21,6 +21,8 @@ echo.
 :: 开始时间
 set start_time=%date% %time%
 
+rmdir /S /Q %java_src%\virgo 2>nul
+
 :: cd /d %java_src%\com.xdc.soft
 :: call mvn clean install -Dmaven.test.skip=true || pause && exit 1
 ::
