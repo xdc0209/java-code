@@ -8,7 +8,7 @@ public class ExecuteResultHandler
 
     private volatile boolean  hasResult     = false;
 
-    private volatile Response response      = null;  ;
+    private volatile Response response      = null;
 
     public void onProcessComplete(Response response)
     {

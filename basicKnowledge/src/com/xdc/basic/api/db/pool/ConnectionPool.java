@@ -20,14 +20,14 @@ import java.util.Vector;
 
 public class ConnectionPool
 {
-    private String                   jdbcDriver             = "";  // 数据库驱动
-    private String                   dbUrl                  = "";  // 数据 URL
-    private String                   dbUsername             = "";  // 数据库用户名
-    private String                   dbPassword             = "";  // 数据库用户密码
-    private String                   testTable              = "";  // 测试连接是否可用的测试表名，默认没有测试表
-    private int                      initialConnections     = 10;  // 连接池的初始大小
-    private int                      incrementalConnections = 5;   // 连接池自动增加的大小
-    private int                      maxConnections         = 50;  // 连接池最大的大小
+    private String                   jdbcDriver             = "";   // 数据库驱动
+    private String                   dbUrl                  = "";   // 数据 URL
+    private String                   dbUsername             = "";   // 数据库用户名
+    private String                   dbPassword             = "";   // 数据库用户密码
+    private String                   testTable              = "";   // 测试连接是否可用的测试表名，默认没有测试表
+    private int                      initialConnections     = 10;   // 连接池的初始大小
+    private int                      incrementalConnections = 5;    // 连接池自动增加的大小
+    private int                      maxConnections         = 50;   // 连接池最大的大小
     private Vector<PooledConnection> connections            = null; // 存放连接池中数据库连接的向量，初始时为 null
 
     public ConnectionPool(String jdbcDriver, String dbUrl, String dbUsername, String dbPassword)
@@ -371,7 +371,7 @@ public class ConnectionPool
             {
                 wait(5000); // 等 5 秒
             }
-            //5 秒后直接关闭它
+            // 5 秒后直接关闭它
             closeConnection(pConn.getConnection());
             // 从连接池向量中删除它
             connections.removeElement(pConn);
@@ -410,7 +410,7 @@ public class ConnectionPool
 
     class PooledConnection
     {
-        Connection connection = null; // 数据库连接
+        Connection connection = null;  // 数据库连接
         boolean    busy       = false; // 此连接是否正在使用的标志，默认没有正在使用
 
         // 构造函数，根据一个Connection构告一个PooledConnection对象

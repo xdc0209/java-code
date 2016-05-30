@@ -24,7 +24,7 @@ public class Consumer
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        // 注册消费者1 
+        // 注册消费者1
         MessageConsumer comsumer1 = session.createConsumer(queue);
         comsumer1.setMessageListener(new MessageListener()
         {
@@ -42,7 +42,7 @@ public class Consumer
             }
         });
 
-        // 注册消费者2 
+        // 注册消费者2
         MessageConsumer comsumer2 = session.createConsumer(queue);
         comsumer2.setMessageListener(new MessageListener()
         {

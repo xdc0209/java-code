@@ -65,8 +65,8 @@ public class RestClient
             return null;
         }
 
-        String encodeStr = Base64.encodeBase64String(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(user
-                + ":" + password));
+        String encodeStr = Base64
+                .encodeBase64String(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(user + ":" + password));
         return HttpConstants.AUTH_BASIC + " " + encodeStr;
     }
 
@@ -115,13 +115,13 @@ public class RestClient
     {
         if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.json))
         {
-            request.addHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.JSON + ";"
-                    + HttpConstants.Charset.UTF8);
+            request.addHeader(HttpConstants.CONTENT_TYPE,
+                    HttpConstants.ContentType.JSON + ";" + HttpConstants.Charset.UTF8);
         }
         else if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.xml))
         {
-            request.addHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.XML + ";"
-                    + HttpConstants.Charset.UTF8);
+            request.addHeader(HttpConstants.CONTENT_TYPE,
+                    HttpConstants.ContentType.XML + ";" + HttpConstants.Charset.UTF8);
         }
         else
         {

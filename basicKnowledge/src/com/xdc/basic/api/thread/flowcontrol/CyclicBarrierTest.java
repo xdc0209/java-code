@@ -38,7 +38,7 @@ class CyclicBarrierTest
                         doTest();
                         try
                         {
-                            // 通知barrier已经完成  
+                            // 通知barrier已经完成
                             System.out.println("子线程已完成:" + Thread.currentThread().getName());
                             barrier.await();
                         }

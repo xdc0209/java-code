@@ -29,7 +29,8 @@ public class OracleCommand extends AbstractAtomCommand
     @Option(name = "-u", aliases = { "--user" }, usage = "database user", metaVar = "<user>", required = true)
     private String  user;
 
-    @Option(name = "-p", aliases = { "--password" }, usage = "database password", metaVar = "<password>", required = true)
+    @Option(name = "-p", aliases = {
+            "--password" }, usage = "database password", metaVar = "<password>", required = true)
     private String  password;
 
     @Option(name = "-d", aliases = { "--dba" }, usage = "use dba role", handler = BooleanOptionHandler.class)

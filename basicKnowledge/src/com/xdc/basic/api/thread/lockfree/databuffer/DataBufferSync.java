@@ -7,7 +7,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 public class DataBufferSync
 {
     Vector<String> dataBuffer = new Vector<String>(); // 数据缓冲区
-    final int      MAX_SIZE   = 3;                   // 设置缓冲区大小
+    final int      MAX_SIZE   = 3;                    // 设置缓冲区大小
 
     void addData()
     {

@@ -85,27 +85,27 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber>
     }
 
     // Works fine, but can be made faster
-    //    public int compareTo(PhoneNumber pn) {
-    //      // Compare area codes
-    //      if (areaCode < pn.areaCode)
-    //          return -1;
-    //      if (areaCode > pn.areaCode)
-    //          return  1;
+    // public int compareTo(PhoneNumber pn) {
+    // // Compare area codes
+    // if (areaCode < pn.areaCode)
+    // return -1;
+    // if (areaCode > pn.areaCode)
+    // return 1;
     //
-    //      // Area codes are equal, compare prefixes
-    //      if (prefix < pn.prefix)
-    //          return -1;
-    //      if (prefix > pn.prefix)
-    //          return  1;
+    // // Area codes are equal, compare prefixes
+    // if (prefix < pn.prefix)
+    // return -1;
+    // if (prefix > pn.prefix)
+    // return 1;
     //
-    //      // Area codes and prefixes are equal, compare line numbers
-    //      if (lineNumber < pn.lineNumber)
-    //          return -1;
-    //      if (lineNumber > pn.lineNumber)
-    //          return  1;
+    // // Area codes and prefixes are equal, compare line numbers
+    // if (lineNumber < pn.lineNumber)
+    // return -1;
+    // if (lineNumber > pn.lineNumber)
+    // return 1;
     //
-    //      return 0;  // All fields are equal
-    //  }
+    // return 0; // All fields are equal
+    // }
 
     public int compareTo(PhoneNumber pn)
     {

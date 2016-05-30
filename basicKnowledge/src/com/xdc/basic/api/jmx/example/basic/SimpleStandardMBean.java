@@ -12,7 +12,8 @@ public interface SimpleStandardMBean
     /**
      * Setter: set the "State" attribute of the "SimpleStandard" standard MBean.
      * 
-     * @param <VAR>s</VAR> the new value of the "State" attribute.
+     * @param <VAR>s</VAR>
+     *            the new value of the "State" attribute.
      */
     public void setState(String s);
 

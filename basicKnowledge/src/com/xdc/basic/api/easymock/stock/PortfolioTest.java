@@ -1,10 +1,10 @@
 package com.xdc.basic.api.easymock.stock;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
+
+import junit.framework.TestCase;
 
 /**
  * http://blog.jobbole.com/24453/

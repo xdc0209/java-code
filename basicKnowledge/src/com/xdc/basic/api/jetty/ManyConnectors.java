@@ -1,19 +1,19 @@
 //
-//  ========================================================================
-//  Copyright (c) 1995-2014 Mort Bay Consulting Pty. Ltd.
-//  ------------------------------------------------------------------------
-//  All rights reserved. This program and the accompanying materials
-//  are made available under the terms of the Eclipse Public License v1.0
-//  and Apache License v2.0 which accompanies this distribution.
+// ========================================================================
+// Copyright (c) 1995-2014 Mort Bay Consulting Pty. Ltd.
+// ------------------------------------------------------------------------
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// and Apache License v2.0 which accompanies this distribution.
 //
-//      The Eclipse Public License is available at
-//      http://www.eclipse.org/legal/epl-v10.html
+// The Eclipse Public License is available at
+// http://www.eclipse.org/legal/epl-v10.html
 //
-//      The Apache License v2.0 is available at
-//      http://www.opensource.org/licenses/apache2.0.php
+// The Apache License v2.0 is available at
+// http://www.opensource.org/licenses/apache2.0.php
 //
-//  You may elect to redistribute this code under either of these licenses.
-//  ========================================================================
+// You may elect to redistribute this code under either of these licenses.
+// ========================================================================
 //
 
 package com.xdc.basic.api.jetty;
@@ -103,8 +103,9 @@ public class ManyConnectors
         // We create a second ServerConnector, passing in the http configuration
         // we just made along with the previously created ssl context factory.
         // Next we set the port and a longer idle timeout.
-        ServerConnector https = new ServerConnector(server, new SslConnectionFactory(sslContextFactory,
-                HttpVersion.HTTP_1_1.asString()), new HttpConnectionFactory(https_config));
+        ServerConnector https = new ServerConnector(server,
+                new SslConnectionFactory(sslContextFactory, HttpVersion.HTTP_1_1.asString()),
+                new HttpConnectionFactory(https_config));
         https.setPort(8443);
         https.setIdleTimeout(500000);
 

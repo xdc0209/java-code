@@ -23,7 +23,7 @@ public class ScheduledThreadPoolExecutorTest
         // exec.scheduleAtFixedRate(command, initialDelay, period, unit)
         // exec.scheduleWithFixedDelay(command, initialDelay, delay, unit)
         // 可以在java doc中看到如下说明：
-        // If any execution of the task encounters an exception, subsequent executions are suppressed. 
+        // If any execution of the task encounters an exception, subsequent executions are suppressed.
         // 如果任务的任何一个执行遇到异常，则后续执行都会被取消。
 
         // 参数corePoolSize代表线程池中线程个数，即使它们空闲

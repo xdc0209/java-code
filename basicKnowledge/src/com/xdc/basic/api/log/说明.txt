@@ -1,1 +1,59 @@
-Log4j有两种配置方式，一种是xml格式，一种是properties格式。都是放置到classpath下面。默认名称分别是：log4j.xml和log4j.properties
+==============================================================
+日志接口：
+(1)Apache Commons Logging(之前叫Jakarta Commons Logging，简称JCL)
+common-logging通过动态查找的机制，在程序运行时自动找出真正使用的日志库。由于它使用了ClassLoader寻找和载入底层的日志库， 导致了象OSGI这样的框架无法正常工作，因为OSGI的不同的插件使用自己的ClassLoader。 OSGI的这种机制保证了插件互相独立，然而却使Apache Common-Logging无法工作。
+
+(2)slf4j
+slf4j在编译时静态绑定真正的Log库,因此可以再OSGI中使用。另外，SLF4J支持参数化的log字符串，避免了之前为了减少字符串拼接的性能损耗而不得不写的if(logger.isDebugEnable())，现在你可以直接写：logger.debug(“current user is: {}”, user)。拼装消息被推迟到了它能够确定是不是要显示这条消息的时候，但是获取参数的代价并没有幸免。
+强调一下：支持参数化的log字符串时是slf4j提供的能力。
+
+slf4j+log4j
+需要的配置文件和组件包，下面三个jar文件和一个配置文件都是要放在项目的classpath上。
+1. slf4j-api-1.5.11.jar
+2. slf4j-log4j12-1.5.11.jar
+3. log4j-1.2.15.jar
+4. log4j.properties或是log4j.xml
+
+slf4j+logback
+需要的配置文件和组件包，下面三个jar文件和一个配置文件都是要放在项目的classpath上。
+1. slf4j-api-1.7.21.jar
+2. logback-classic-1.1.7.jar
+3. logback-core-1.1.7.jar
+4. logback.xml
+
+注：在使用slf4j的情况下，如果环境中同时存在log4j和logback，那么slf4j将根据logback-classic-*.jar和slf4j-log4j12-*.jar在classpath出现的顺序决定使用哪个，优先使用前面的。
+
+==============================================================
+log4j的配置文件的加载顺序：
+(1)log4j有两种配置方式: 一种是xml格式，一种是properties格式。
+
+(2)配置文件的加载优先级：
+(a)在代码中指定：
+org.apache.log4j.PropertyConfigurator.configure(System.getProperty("user.dir") + "/src/log4j.properties");
+org.apache.log4j.PropertyConfigurator.configureAndWatch(System.getProperty("user.dir") + "/src/log4j.properties", 60000L);
+
+(b)java启动参数中指定：
+指定url路径：            java -Dlog4j.configuration=file:C:/Users/XDC/Desktop/log4j.properties -jar com.xdc.log.test.jar
+指定classpath路径：java -Dlog4j.configuration=com/xdc/basic/api/log/slf4j/log4j.properties -jar com.xdc.log.test.jar
+
+(c)放在classpath根目录中：
+默认名称分别是：log4j.xml和log4j.properties
+
+==============================================================
+logback的配置文件的加载优先级：
+(a)java启动参数中指定：
+指定文件路径：java -Dlogback.configurationFile=C:/Users/XDC/Desktop/logback.xml -jar com.xdc.log.test.jar
+注意：Note that the file extension must be ".xml" or ".groovy".
+
+(b)放在classpath根目录中：
+默认名称是：logback.xml
+
+(c)如果以上都没能找到，则会使用默认配置。默认配置如下：
+输出格式 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n  
+输出方向：System.out
+输出级别：Debug
+
+==============================================================
+日志修改动态生效
+log4j使用java代码设置：org.apache.log4j.PropertyConfigurator.configureAndWatch
+log4j支持配置文件设置：

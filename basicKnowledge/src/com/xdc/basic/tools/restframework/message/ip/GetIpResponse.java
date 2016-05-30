@@ -1,8 +1,5 @@
 package com.xdc.basic.tools.restframework.message.ip;
 
-import java.lang.Integer;
-import java.lang.String;
-
 public class GetIpResponse
 {
     private Integer ret;

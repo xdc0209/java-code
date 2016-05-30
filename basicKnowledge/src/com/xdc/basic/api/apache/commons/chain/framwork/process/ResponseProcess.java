@@ -18,8 +18,8 @@ public class ResponseProcess extends MessageProcess
     public void handle()
     {
         Response response = ResponseQueue.getInstance().take();
-        ExecuteResultHandler executeResultHandler = ExecuteResultHandlerHolder.getInstance().get(
-                response.getRequestId());
+        ExecuteResultHandler executeResultHandler = ExecuteResultHandlerHolder.getInstance()
+                .get(response.getRequestId());
 
         if (executeResultHandler == null)
         {

@@ -10,7 +10,7 @@ public interface Constants
 
     interface Charset
     {
-        String UTF8 = "UTF-8"; // UTF8和UTF-8一样 
+        String UTF8 = "UTF-8"; // UTF8和UTF-8一样
         String GBK  = "GBK";
     }
 }

@@ -136,13 +136,13 @@ public class RestClient
     {
         if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.json))
         {
-            httpMethod.setRequestHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.JSON + ";"
-                    + HttpConstants.Charset.UTF8);
+            httpMethod.setRequestHeader(HttpConstants.CONTENT_TYPE,
+                    HttpConstants.ContentType.JSON + ";" + HttpConstants.Charset.UTF8);
         }
         else if (StringUtils.equalsIgnoreCase(req.getBodyType(), Constants.BodyType.xml))
         {
-            httpMethod.setRequestHeader(HttpConstants.CONTENT_TYPE, HttpConstants.ContentType.XML + ";"
-                    + HttpConstants.Charset.UTF8);
+            httpMethod.setRequestHeader(HttpConstants.CONTENT_TYPE,
+                    HttpConstants.ContentType.XML + ";" + HttpConstants.Charset.UTF8);
         }
         else
         {

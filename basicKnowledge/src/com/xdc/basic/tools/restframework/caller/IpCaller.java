@@ -12,9 +12,9 @@ public interface IpCaller
     @RestMethod(method = MethodType.GET, url = "/iplookup/iplookup.php?format=json&ip={ip}")
     GetIpResponse getIp(String ip);
 
-    // POST   参见MusicCaller
+    // POST 参见MusicCaller
 
-    // PUT    参见MusicCaller
+    // PUT 参见MusicCaller
 
     // DELETE 参见MusicCaller
 }

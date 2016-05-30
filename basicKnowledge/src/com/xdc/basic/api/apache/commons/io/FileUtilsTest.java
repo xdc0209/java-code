@@ -25,8 +25,8 @@ public class FileUtilsTest
         // 列出指定目录的所有目录和文件
         IOFileFilter fileFilter = CanReadFileFilter.CAN_READ;
         IOFileFilter dirFilter = CanReadFileFilter.READ_ONLY;
-        //        IOFileFilter fileFilter = TrueFileFilter.INSTANCE;
-        //        IOFileFilter dirFilter = FalseFileFilter.INSTANCE;
+        // IOFileFilter fileFilter = TrueFileFilter.INSTANCE;
+        // IOFileFilter dirFilter = FalseFileFilter.INSTANCE;
 
         Collection<File> listFilesAndDirs = FileUtils.listFilesAndDirs(new File(curPath), fileFilter, dirFilter);
         System.out.println(listFilesAndDirs);

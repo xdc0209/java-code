@@ -63,6 +63,7 @@ public enum Option
 
     // Implementing a fromString method on an enum type
     private static final Map<String, Option> stringToEnum = new HashMap<String, Option>();
+
     static
     {
         // Initialize map from constant name to enum constant

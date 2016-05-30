@@ -9,8 +9,8 @@ public class RuntimeInfo
                 + Runtime.getRuntime().availableProcessors());
 
         // Total amount of free memory available to the JVM
-        System.out.println("Total amount of free memory available to the JVM (bytes): "
-                + Runtime.getRuntime().freeMemory());
+        System.out.println(
+                "Total amount of free memory available to the JVM (bytes): " + Runtime.getRuntime().freeMemory());
 
         // This will return Long.MAX_VALUE if there is no preset limit
         long maxMemory = Runtime.getRuntime().maxMemory();
@@ -19,7 +19,7 @@ public class RuntimeInfo
                 + (maxMemory == Long.MAX_VALUE ? "no limit" : maxMemory));
 
         // Total memory currently in use by the JVM
-        System.out.println("Total memory currently in use by the JVM - heap size (bytes): "
-                + Runtime.getRuntime().totalMemory());
+        System.out.println(
+                "Total memory currently in use by the JVM - heap size (bytes): " + Runtime.getRuntime().totalMemory());
     }
 }

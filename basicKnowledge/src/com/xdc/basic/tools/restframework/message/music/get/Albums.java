@@ -1,10 +1,5 @@
 package com.xdc.basic.tools.restframework.message.music.get;
 
-import com.xdc.basic.tools.restframework.message.music.get.Artists;
-
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 
 public class Albums

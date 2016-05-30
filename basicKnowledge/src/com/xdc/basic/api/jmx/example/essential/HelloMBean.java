@@ -1,7 +1,9 @@
-/* HelloMBean.java - MBean interface describing the management
-   operations and attributes for the Hello World MBean.  In this case
-   there are two operations, "sayHello" and "add", and two attributes,
-   "Name" and "CacheSize". */
+/*
+ * HelloMBean.java - MBean interface describing the management
+ * operations and attributes for the Hello World MBean. In this case
+ * there are two operations, "sayHello" and "add", and two attributes,
+ * "Name" and "CacheSize".
+ */
 
 package com.xdc.basic.api.jmx.example.essential;
 

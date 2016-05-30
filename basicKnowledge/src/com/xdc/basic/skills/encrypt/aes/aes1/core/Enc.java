@@ -33,7 +33,7 @@ public class Enc
 
             byte[] cipherBytes = encode(cipherSuit, plainBytes, keyBytes, ivBytes);
 
-            // 将加密结果的字节数组进行编码(主要编解码方式有Base64, HEX, UUE), 
+            // 将加密结果的字节数组进行编码(主要编解码方式有Base64, HEX, UUE),
             String cipherText = String.format("%s:%s:%s", cipherSuit.toHexString(), CodecUtil.bytes2HexString(ivBytes),
                     CodecUtil.bytes2HexString(cipherBytes));
             return cipherText;
@@ -100,7 +100,7 @@ public class Enc
 
     private static byte[] doFinal(int mode, String cipherParam, String keyParam, byte[] inputBytes, byte[] keyBytes,
             byte[] ivBytes) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
-            InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
+                    InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
     {
         Cipher cipher = Cipher.getInstance(cipherParam);
 

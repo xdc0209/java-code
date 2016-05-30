@@ -1,25 +1,25 @@
 /*
  * ====================================================================
  * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
+ * or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
+ * regarding copyright ownership. The ASF licenses this file
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * with the License. You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
+ * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations
  * under the License.
  * ====================================================================
  *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
@@ -42,25 +42,32 @@ import org.apache.http.util.EntityUtils;
  * This example demonstrates the use of the {@link ResponseHandler} to simplify
  * the process of processing the HTTP response and releasing associated resources.
  */
-public class ClientWithResponseHandler {
+public class ClientWithResponseHandler
+{
 
-    public final static void main(String[] args) throws Exception {
+    public final static void main(String[] args) throws Exception
+    {
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        try {
+        try
+        {
             HttpGet httpget = new HttpGet("http://www.google.com/");
 
             System.out.println("executing request " + httpget.getURI());
 
             // Create a custom response handler
-            ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
+            ResponseHandler<String> responseHandler = new ResponseHandler<String>()
+            {
 
-                public String handleResponse(
-                        final HttpResponse response) throws ClientProtocolException, IOException {
+                public String handleResponse(final HttpResponse response) throws ClientProtocolException, IOException
+                {
                     int status = response.getStatusLine().getStatusCode();
-                    if (status >= 200 && status < 300) {
+                    if (status >= 200 && status < 300)
+                    {
                         HttpEntity entity = response.getEntity();
                         return entity != null ? EntityUtils.toString(entity) : null;
-                    } else {
+                    }
+                    else
+                    {
                         throw new ClientProtocolException("Unexpected response status: " + status);
                     }
                 }
@@ -71,10 +78,11 @@ public class ClientWithResponseHandler {
             System.out.println(responseBody);
             System.out.println("----------------------------------------");
 
-        } finally {
+        }
+        finally
+        {
             httpclient.close();
         }
     }
 
 }
-

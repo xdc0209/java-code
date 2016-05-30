@@ -1,11 +1,11 @@
 package com.xdc.basic.api.mybatis.generator.data;
 
-import com.xdc.basic.api.mybatis.generator.model.Student;
-import com.xdc.basic.api.mybatis.generator.model.StudentExample;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+
+import com.xdc.basic.api.mybatis.generator.model.Student;
+import com.xdc.basic.api.mybatis.generator.model.StudentExample;
 
 public interface StudentMapper
 {

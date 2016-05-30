@@ -22,9 +22,9 @@ public class CRC32Util
         return StringUtils.equals(crc, crcToMatch);
     }
 
-    //    public static void main(String[] args)
-    //    {
-    //        String s = "I'm the king of world!";
-    //        System.out.println(CRC32Util.crc(s.getBytes()));
-    //    }
+    // public static void main(String[] args)
+    // {
+    // String s = "I'm the king of world!";
+    // System.out.println(CRC32Util.crc(s.getBytes()));
+    // }
 }

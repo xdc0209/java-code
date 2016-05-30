@@ -1,6 +1,8 @@
-/* Hello.java - MBean implementation for the Hello World MBean.
-   This class must implement all the Java methods declared in the
-   HelloMBean interface, with the appropriate behavior for each one.  */
+/*
+ * Hello.java - MBean implementation for the Hello World MBean.
+ * This class must implement all the Java methods declared in the
+ * HelloMBean interface, with the appropriate behavior for each one.
+ */
 
 package com.xdc.basic.api.jmx.example.essential;
 

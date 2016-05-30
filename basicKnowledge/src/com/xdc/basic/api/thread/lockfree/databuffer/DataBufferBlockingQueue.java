@@ -15,13 +15,13 @@ import org.apache.commons.lang3.RandomStringUtils;
  */
 public class DataBufferBlockingQueue
 {
-    // BlockingQueue提供的常用方法： 
-    //      可能报异常    返回布尔值      可能阻塞     设定等待时间
-    // 入队  add(e)      offer(e)    put(e)    offer(e, timeout, unit)
-    // 出队  remove()    poll()      take()    poll(timeout, unit)
-    // 查看  element()   peek()      无                无
+    // BlockingQueue提供的常用方法：
+    // 操作..可能报异常..返回布尔值..可能阻塞..设定等待时间
+    // 入队..add(e).....offer(e)...put(e)...offer(e, timeout, unit)
+    // 出队..remove()...poll().....take()...poll(timeout, unit)
+    // 查看..element()..peek().....无.......无
     //
-    // 从上表可以很明显看出每个方法的作用，这个不用多说。强调下： 
+    // 从上表可以很明显看出每个方法的作用，这个不用多说。强调下：
     // add(e) remove() element() 方法不会阻塞线程。当不满足约束条件时，会抛出IllegalStateException 异常。例如：当队列被元素填满后，再调用add(e)，则会抛出异常。
     // offer(e) poll() peek() 方法即不会阻塞线程，也不会抛出异常。例如：当队列被元素填满后，再调用offer(e)，则不会插入元素，函数返回false。
     // 要想要实现阻塞功能，需要调用put(e) take() 方法。当不满足约束条件时，会阻塞线程。

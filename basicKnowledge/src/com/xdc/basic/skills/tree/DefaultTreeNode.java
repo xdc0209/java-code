@@ -114,8 +114,8 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     }
 
     /**
-     * 将目标节点node插入到当前节点的子节点列表的index(从0开 始)位置, 
-     * 如果index < 0, 则插入到列表头, 
+     * 将目标节点node插入到当前节点的子节点列表的index(从0开 始)位置,
+     * 如果index < 0, 则插入到列表头,
      * 如果index 大于列表元素个数，则添加到列表最后
      */
     @Override
@@ -145,8 +145,8 @@ public class DefaultTreeNode<T> extends AbstractTreeNode<T>
     }
 
     /**
-     * 将目标节点附件nodeAttchment插入到当前节点的子节点列表的index(从0开 始)位置, 
-     * 如果index < 0, 则插入到列表头, 
+     * 将目标节点附件nodeAttchment插入到当前节点的子节点列表的index(从0开 始)位置,
+     * 如果index < 0, 则插入到列表头,
      * 如果index 大于列表元素个数，则添加到列表最后
      */
     @Override

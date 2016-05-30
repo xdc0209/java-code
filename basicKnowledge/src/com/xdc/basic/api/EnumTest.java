@@ -38,6 +38,7 @@ public class EnumTest
 
         // Implementing a fromString method on an enum type
         private static final Map<String, Color> stringToEnum = new HashMap<String, Color>();
+
         static
         {
             // Initialize map from constant name to enum constant

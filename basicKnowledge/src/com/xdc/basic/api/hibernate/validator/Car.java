@@ -23,5 +23,5 @@ public class Car
         this.seatCount = seatCount;
     }
 
-    //getters and setters ...
+    // getters and setters ...
 }

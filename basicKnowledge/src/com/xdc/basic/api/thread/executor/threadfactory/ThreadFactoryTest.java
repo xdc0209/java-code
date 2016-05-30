@@ -12,18 +12,18 @@ public class ThreadFactoryTest
 {
     public static void main(String[] args)
     {
-        //        ThreadFactory threadFactory = new ThreadFactory()
-        //        {
-        //            private AtomicLong seq = new AtomicLong(0);
+        // ThreadFactory threadFactory = new ThreadFactory()
+        // {
+        // private AtomicLong seq = new AtomicLong(0);
         //
-        //            @Override
-        //            public Thread newThread(Runnable r)
-        //            {
-        //                Thread t = new Thread(r);
-        //                t.setName("MyThread-" + seq.getAndIncrement());
-        //                return t;
-        //            }
-        //        };
+        // @Override
+        // public Thread newThread(Runnable r)
+        // {
+        // Thread t = new Thread(r);
+        // t.setName("MyThread-" + seq.getAndIncrement());
+        // return t;
+        // }
+        // };
 
         // 创建一个可重用固定线程数的线程池
         ExecutorService pool = Executors.newFixedThreadPool(3, new NamePrefixThreadFactory("Eat"));
@@ -78,6 +78,7 @@ class MyThread2 extends Thread
             e.printStackTrace();
         }
 
-        throw new IllegalArgumentException("It's a test for " + ThreadUncaughtExceptionHandler.class.getCanonicalName());
+        throw new IllegalArgumentException(
+                "It's a test for " + ThreadUncaughtExceptionHandler.class.getCanonicalName());
     }
 }

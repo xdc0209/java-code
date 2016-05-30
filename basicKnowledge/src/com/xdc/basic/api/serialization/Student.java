@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Student implements Serializable
 {
-    //	序列化标志
-    //	Add generated serial version ID
-    //	添加已生成的串行版本标识
+    // 序列化标志
+    // Add generated serial version ID
+    // 添加已生成的串行版本标识
 
     private static final long serialVersionUID = -5104809987465264163L;
 

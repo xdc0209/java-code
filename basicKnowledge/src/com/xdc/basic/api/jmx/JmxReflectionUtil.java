@@ -24,11 +24,12 @@ public class JmxReflectionUtil
 {
     private static final String LOCAL_CONNECTOR_ADDRESS = "com.sun.management.jmxremote.localConnectorAddress";
     private static final String MANAGEMENT_AGENT_JAR    = File.separator + "lib" + File.separator
-                                                                + "management-agent.jar";
+            + "management-agent.jar";
 
     // 以免类被多次加载引发错误，将此定义为静态字段，只加载一次。
     private static Class<?>     vmClazz                 = null;
     private static Class<?>     vmdClazz                = null;
+
     static
     {
         try

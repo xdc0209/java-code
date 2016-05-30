@@ -45,8 +45,8 @@ public class SimpleDynamic extends NotificationBroadcasterSupport implements Dyn
      * Allows the value of the specified attribute of the Dynamic MBean to be obtained.
      */
     @Override
-    public Object getAttribute(String attributeName) throws AttributeNotFoundException, MBeanException,
-            ReflectionException
+    public Object getAttribute(String attributeName)
+            throws AttributeNotFoundException, MBeanException, ReflectionException
     {
         // Check attributeName is not null to avoid NullPointerException later on
         if (attributeName == null)
@@ -74,8 +74,8 @@ public class SimpleDynamic extends NotificationBroadcasterSupport implements Dyn
      * Sets the value of the specified attribute of the Dynamic MBean.
      */
     @Override
-    public void setAttribute(Attribute attribute) throws AttributeNotFoundException, InvalidAttributeValueException,
-            MBeanException, ReflectionException
+    public void setAttribute(Attribute attribute)
+            throws AttributeNotFoundException, InvalidAttributeValueException, MBeanException, ReflectionException
     {
         // Check attribute is not null to avoid NullPointerException later on
         if (attribute == null)
@@ -187,8 +187,9 @@ public class SimpleDynamic extends NotificationBroadcasterSupport implements Dyn
         // Check attributes is not null to avoid NullPointerException later on
         if (attributes == null)
         {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "AttributeList attributes cannot be null."), "Cannot invoke a setter of " + dClassName + ".");
+            throw new RuntimeOperationsException(
+                    new IllegalArgumentException("AttributeList attributes cannot be null."),
+                    "Cannot invoke a setter of " + dClassName + ".");
         }
 
         AttributeList resultList = new AttributeList();
@@ -222,8 +223,8 @@ public class SimpleDynamic extends NotificationBroadcasterSupport implements Dyn
      * Allows an operation to be invoked on the Dynamic MBean.
      */
     @Override
-    public Object invoke(String operationName, Object params[], String signature[]) throws MBeanException,
-            ReflectionException
+    public Object invoke(String operationName, Object params[], String signature[])
+            throws MBeanException, ReflectionException
     {
         // Check operationName is not null to avoid NullPointerException later on
         if (operationName == null)
@@ -241,8 +242,8 @@ public class SimpleDynamic extends NotificationBroadcasterSupport implements Dyn
         else
         {
             // Unrecognized operation name
-            throw new ReflectionException(new NoSuchMethodException(operationName), "Cannot find the operation "
-                    + operationName + " in " + dClassName + ".");
+            throw new ReflectionException(new NoSuchMethodException(operationName),
+                    "Cannot find the operation " + operationName + " in " + dClassName + ".");
         }
     }
 
@@ -322,8 +323,9 @@ public class SimpleDynamic extends NotificationBroadcasterSupport implements Dyn
         dConstructors[0] = new MBeanConstructorInfo("Constructs a " + "SimpleDynamic object", constructors[0]);
 
         MBeanParameterInfo[] params = null;
-        dOperations[0] = new MBeanOperationInfo("reset", "reset State and NbChanges "
-                + "attributes to their initial values", params, "void", MBeanOperationInfo.ACTION);
+        dOperations[0] = new MBeanOperationInfo("reset",
+                "reset State and NbChanges " + "attributes to their initial values", params, "void",
+                MBeanOperationInfo.ACTION);
 
         dNotifications[0] = new MBeanNotificationInfo(new String[] { AttributeChangeNotification.ATTRIBUTE_CHANGE },
                 AttributeChangeNotification.class.getName(),

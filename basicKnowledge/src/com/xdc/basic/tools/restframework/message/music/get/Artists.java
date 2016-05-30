@@ -1,9 +1,5 @@
 package com.xdc.basic.tools.restframework.message.music.get;
 
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
-
 public class Artists
 {
     private Integer id;

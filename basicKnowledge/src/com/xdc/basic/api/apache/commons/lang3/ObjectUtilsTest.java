@@ -12,14 +12,14 @@ public class ObjectUtilsTest
         System.out.println();
 
         /*
-        ObjectUtils.equals(null, null)                  = true
-        ObjectUtils.equals(null, "")                    = false
-        ObjectUtils.equals("", null)                    = false
-        ObjectUtils.equals("", "")                      = true
-        ObjectUtils.equals(Boolean.TRUE, null)          = false
-        ObjectUtils.equals(Boolean.TRUE, "true")        = false
-        ObjectUtils.equals(Boolean.TRUE, Boolean.TRUE)  = true
-        ObjectUtils.equals(Boolean.TRUE, Boolean.FALSE) = false
+         * ObjectUtils.equals(null, null) = true
+         * ObjectUtils.equals(null, "") = false
+         * ObjectUtils.equals("", null) = false
+         * ObjectUtils.equals("", "") = true
+         * ObjectUtils.equals(Boolean.TRUE, null) = false
+         * ObjectUtils.equals(Boolean.TRUE, "true") = false
+         * ObjectUtils.equals(Boolean.TRUE, Boolean.TRUE) = true
+         * ObjectUtils.equals(Boolean.TRUE, Boolean.FALSE) = false
          */
         System.out.println("Compares two objects for equality, where either one or both objects may be null.");
         Object a = new Object();

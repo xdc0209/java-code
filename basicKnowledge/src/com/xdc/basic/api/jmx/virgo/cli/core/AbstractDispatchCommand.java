@@ -40,9 +40,9 @@ public abstract class AbstractDispatchCommand implements Command
             handleError(null);
         }
 
-        // The "sub-command" pattern refers to the design of the command line like git and svn, 
-        // where the first argument to the command designates a sub-command (say git checkout), 
-        // then everything that follows afterward are parsed by this sub-command (which is usually 
+        // The "sub-command" pattern refers to the design of the command line like git and svn,
+        // where the first argument to the command designates a sub-command (say git checkout),
+        // then everything that follows afterward are parsed by this sub-command (which is usually
         // different depending on which sub-command was selected.)
         String subcommandName = args[0];
         Command command = subcommands.get(subcommandName);

@@ -30,7 +30,7 @@ public class ExecutorTool
         super();
         this.out = new ByteArrayOutputStream(); // 设置输出流
         this.err = new ByteArrayOutputStream(); // 设置输出流
-        this.input = null; // 设置输入流，比如删除文件要确认，当让这个例子用不到   TODO 以后在考虑输入的问题吧 
+        this.input = null; // 设置输入流，比如删除文件要确认，当然这个例子用不到 TODO 以后在考虑输入的问题吧
 
         this.lastOutputLines = new ArrayList<String>();
         this.lastErrLines = new ArrayList<String>();

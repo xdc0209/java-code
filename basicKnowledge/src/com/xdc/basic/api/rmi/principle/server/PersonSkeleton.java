@@ -13,7 +13,7 @@ public class PersonSkeleton extends Thread
 
     public PersonSkeleton(Person person)
     {
-        // get reference of object server      
+        // get reference of object server
         this.person = person;
     }
 
@@ -23,33 +23,33 @@ public class PersonSkeleton extends Thread
     {
         try
         {
-            // new socket at port 9999      
+            // new socket at port 9999
             ServerSocket serverSocket = new ServerSocket(9999);
             System.out.println("服务运行中...");
             System.out.println("服务端口号为：" + 9999);
-            // accept stub's request      
+            // accept stub's request
             Socket socket = serverSocket.accept();
             while (socket != null)
             {
-                // get stub's request      
+                // get stub's request
                 ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream());
                 String method = (String) inStream.readObject();
-                // check method name      
+                // check method name
                 if (method.equals("age"))
                 {
-                    // execute object server's business method      
+                    // execute object server's business method
                     int age = person.getAge();
                     ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
-                    // return result to stub      
+                    // return result to stub
                     outStream.writeInt(age);
                     outStream.flush();
                 }
                 if (method.equals("name"))
                 {
-                    // execute object server's business method      
+                    // execute object server's business method
                     String name = person.getName();
                     ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
-                    // return result to stub      
+                    // return result to stub
                     outStream.writeObject(name);
                     outStream.flush();
                 }

@@ -40,7 +40,7 @@ public class Virgo
             ReflectionException, MalformedObjectNameException, IntrospectionException, AttributeNotFoundException
     {
         // virgo的服务器可能使用rmi协议，也可能使用jmxmp协议，具体是那种你的virgo怎么配置的，格式样例分别如下：
-        // rmi:   service:jmx:rmi:///jndi/rmi://Virgo_Server_IP_Address:9875/jmxrmi
+        // rmi: service:jmx:rmi:///jndi/rmi://Virgo_Server_IP_Address:9875/jmxrmi
         // jmxmp: service:jmx:jmxmp://Virgo_Server_IP_Address:9875
 
         JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://192.168.227.135:9875/jmxrmi");
@@ -130,61 +130,61 @@ public class Virgo
         return Integer.valueOf(String.valueOf(bundleId));
     }
 
-    //    /**
-    //     * 通过osgi.core中的listBundles方法获取bundle状态，但是不同版virgo可能没有此域，兼容性不好，不用此方法。
-    //     */
-    //    private static void printBundleStatef(MBeanServerConnection mbsc) throws MalformedObjectNameException,
-    //            InstanceNotFoundException, MBeanException, ReflectionException, IOException
-    //    {
+    // /**
+    // * 通过osgi.core中的listBundles方法获取bundle状态，但是不同版virgo可能没有此域，兼容性不好，不用此方法。
+    // */
+    // private static void printBundleStatef(MBeanServerConnection mbsc) throws MalformedObjectNameException,
+    // InstanceNotFoundException, MBeanException, ReflectionException, IOException
+    // {
     //
-    //        ObjectName kernelObjectName = new ObjectName(
-    //                "osgi.core:version=1.5,type=bundleState,region=org.eclipse.equinox.region.kernel");
-    //        ObjectName userObjectName = new ObjectName(
-    //                "osgi.core:version=1.5,type=bundleState,region=org.eclipse.virgo.region.user");
+    // ObjectName kernelObjectName = new ObjectName(
+    // "osgi.core:version=1.5,type=bundleState,region=org.eclipse.equinox.region.kernel");
+    // ObjectName userObjectName = new ObjectName(
+    // "osgi.core:version=1.5,type=bundleState,region=org.eclipse.virgo.region.user");
     //
-    //        Object listKernelBundlesResult = mbsc.invoke(kernelObjectName, "listBundles", null, null);
-    //        Object listUserBundlesResult = mbsc.invoke(userObjectName, "listBundles", null, null);
+    // Object listKernelBundlesResult = mbsc.invoke(kernelObjectName, "listBundles", null, null);
+    // Object listUserBundlesResult = mbsc.invoke(userObjectName, "listBundles", null, null);
     //
-    //        if (listKernelBundlesResult instanceof TabularData && listUserBundlesResult instanceof TabularData)
-    //        {
-    //            TabularData kernelTabularData = (TabularData) listKernelBundlesResult;
-    //            TabularData userTabularData = (TabularData) listUserBundlesResult;
+    // if (listKernelBundlesResult instanceof TabularData && listUserBundlesResult instanceof TabularData)
+    // {
+    // TabularData kernelTabularData = (TabularData) listKernelBundlesResult;
+    // TabularData userTabularData = (TabularData) listUserBundlesResult;
     //
-    //            System.out.println("==== Kernel Bundles State ====");
-    //            System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
-    //            for (Object o : kernelTabularData.values())
-    //            {
-    //                if (o instanceof CompositeData)
-    //                {
-    //                    CompositeData compositeData = (CompositeData) o;
+    // System.out.println("==== Kernel Bundles State ====");
+    // System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
+    // for (Object o : kernelTabularData.values())
+    // {
+    // if (o instanceof CompositeData)
+    // {
+    // CompositeData compositeData = (CompositeData) o;
     //
-    //                    Object identifier = compositeData.get("Identifier");
-    //                    Object state = compositeData.get("State");
-    //                    Object symbolicName = compositeData.get("SymbolicName");
-    //                    Object version = compositeData.get("Version");
-    //                    System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
-    //                }
-    //            }
-    //            System.out.println();
+    // Object identifier = compositeData.get("Identifier");
+    // Object state = compositeData.get("State");
+    // Object symbolicName = compositeData.get("SymbolicName");
+    // Object version = compositeData.get("Version");
+    // System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
+    // }
+    // }
+    // System.out.println();
     //
-    //            System.out.println("==== User Bundles State ====");
-    //            System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
-    //            for (Object o : userTabularData.values())
-    //            {
-    //                if (o instanceof CompositeData)
-    //                {
-    //                    CompositeData compositeData = (CompositeData) o;
+    // System.out.println("==== User Bundles State ====");
+    // System.out.printf("%-5s%-12s%s\n", "id", "State", "Bundle");
+    // for (Object o : userTabularData.values())
+    // {
+    // if (o instanceof CompositeData)
+    // {
+    // CompositeData compositeData = (CompositeData) o;
     //
-    //                    Object identifier = compositeData.get("Identifier");
-    //                    Object state = compositeData.get("State");
-    //                    Object symbolicName = compositeData.get("SymbolicName");
-    //                    Object version = compositeData.get("Version");
-    //                    System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
-    //                }
-    //            }
-    //            System.out.println();
-    //        }
-    //    }
+    // Object identifier = compositeData.get("Identifier");
+    // Object state = compositeData.get("State");
+    // Object symbolicName = compositeData.get("SymbolicName");
+    // Object version = compositeData.get("Version");
+    // System.out.printf("%-5s%-12s%s_%s\n", identifier, state, symbolicName, version);
+    // }
+    // }
+    // System.out.println();
+    // }
+    // }
 }
 
 class Bundle

@@ -10,8 +10,8 @@ public abstract class AbstractTreeNode<T> implements TreeNode<T>
 {
     // 简述下树的遍历
     // 二叉树遍历的顺序：如果用L、D、R分别表示遍历左子树、访问根结点、遍历右子树，则对二叉树的遍历可以有下列六种（3!=6）组合：LDR、 LRD、 DLR、 DRL、RDL、 RLD。
-    // 若再限定先左后右的次序，则只剩下三种组合：LDR（中序遍历）、LRD（后序遍历）、DLR（前序遍历，或叫先序遍历）。 
-    // 
+    // 若再限定先左后右的次序，则只剩下三种组合：LDR（中序遍历）、LRD（后序遍历）、DLR（前序遍历，或叫先序遍历）。
+    //
     // 这里的实现的树是一般的树（子节点不止两个），常用的遍历为层次遍历，原理同二叉树的前序遍历。
 
     private static final long serialVersionUID = 1425451366642064662L;

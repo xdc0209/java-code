@@ -5,10 +5,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 // Excel中的概念：
 // Workbook 工作簿（对应xls文件）
-// Sheet    工作表
-// Row      行
-// Colum    列
-// Cell     单元格
+// Sheet 工作表
+// Row 行
+// Colum 列
+// Cell 单元格
 public abstract class RowObj
 {
     /**

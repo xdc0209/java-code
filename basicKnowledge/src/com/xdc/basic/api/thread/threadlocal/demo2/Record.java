@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Record
 {
-    private final List<Integer> attemptList = new ArrayList<Integer>(); ;
+    private final List<Integer> attemptList = new ArrayList<Integer>();
 
     public void save(int value)
     {

@@ -1,8 +1,0 @@
-SLF4J+Log4J。
-
-需要的配置文件和组件包，下面三个 jar 文件和一个 properties 文件都是要放在项目的 ClassPath 上。
-
-1. slf4j-api-1.5.11.jar
-2. slf4j-log4j12-1.5.11.jar
-3. log4j-1.2.15.jar
-4. log4j.properties(也可以是 log4j.xml，本例中用 log4j.propertes)

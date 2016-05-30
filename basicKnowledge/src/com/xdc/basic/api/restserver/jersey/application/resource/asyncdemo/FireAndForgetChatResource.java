@@ -5,11 +5,11 @@
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
- * and Distribution License("CDDL") (collectively, the "License").  You
- * may not use this file except in compliance with the License.  You can
+ * and Distribution License("CDDL") (collectively, the "License"). You
+ * may not use this file except in compliance with the License. You can
  * obtain a copy of the License at
  * http://glassfish.java.net/public/CDDL+GPL_1_1.html
- * or packager/legal/LICENSE.txt.  See the License for the specific
+ * or packager/legal/LICENSE.txt. See the License for the specific
  * language governing permissions and limitations under the License.
  *
  * When distributing the software, include this License Header Notice in each
@@ -29,10 +29,10 @@
  * If you wish your version of this file to be governed by only the CDDL or
  * only the GPL Version 2, indicate your decision by adding "[Contributor]
  * elects to include this software in this distribution under the [CDDL or GPL
- * Version 2] license."  If you don't indicate a single choice of license, a
+ * Version 2] license." If you don't indicate a single choice of license, a
  * recipient has the option to distribute your version of this file under
  * either the CDDL, the GPL Version 2 or to extend the choice of license to
- * its licensees as provided above.  However, if you add GPL Version 2 code
+ * its licensees as provided above. However, if you add GPL Version 2 code
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
@@ -69,14 +69,11 @@ import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 @Consumes(MediaType.TEXT_PLAIN)
 public class FireAndForgetChatResource
 {
-    private static final ExecutorService              QUEUE_EXECUTOR             = Executors
-                                                                                         .newCachedThreadPool(new ThreadFactoryBuilder()
-                                                                                                 .setNameFormat(
-                                                                                                         "fire&forget-chat-resource-executor-%d")
-                                                                                                 .build());
+    private static final ExecutorService              QUEUE_EXECUTOR             = Executors.newCachedThreadPool(
+            new ThreadFactoryBuilder().setNameFormat("fire&forget-chat-resource-executor-%d").build());
 
     private static final BlockingQueue<AsyncResponse> suspended                  = new ArrayBlockingQueue<AsyncResponse>(
-                                                                                         5);
+            5);
 
     public static final String                        POST_NOTIFICATION_RESPONSE = "Message sent.";
 
@@ -84,8 +81,8 @@ public class FireAndForgetChatResource
     public void pickUpMessage(@Suspended final AsyncResponse ar, @QueryParam("id") final String messageId)
             throws InterruptedException
     {
-        System.out.println(MessageFormat.format("Received GET <{0}> with context {1} on thread {2}.", new Object[] {
-                messageId, ar.toString(), Thread.currentThread().getName() }));
+        System.out.println(MessageFormat.format("Received GET <{0}> with context {1} on thread {2}.",
+                new Object[] { messageId, ar.toString(), Thread.currentThread().getName() }));
         QUEUE_EXECUTOR.submit(new Runnable()
         {
             @Override
@@ -110,8 +107,8 @@ public class FireAndForgetChatResource
     @POST
     public String postMessage(final String message) throws InterruptedException
     {
-        System.out.println(MessageFormat.format("Received POSTed message <{0}> on thread {1}.", new Object[] { message,
-                Thread.currentThread().getName() }));
+        System.out.println(MessageFormat.format("Received POSTed message <{0}> on thread {1}.",
+                new Object[] { message, Thread.currentThread().getName() }));
         QUEUE_EXECUTOR.submit(new Runnable()
         {
             @Override
@@ -121,14 +118,14 @@ public class FireAndForgetChatResource
                 {
                     final AsyncResponse suspendedResponse = suspended.take();
                     System.out.println(MessageFormat.format(
-                            "Resuming GET context {0} with a message <{1}> on thread {2}.", new Object[] {
-                                    suspendedResponse.toString(), message, Thread.currentThread().getName() }));
+                            "Resuming GET context {0} with a message <{1}> on thread {2}.",
+                            new Object[] { suspendedResponse.toString(), message, Thread.currentThread().getName() }));
                     suspendedResponse.resume(message);
                 }
                 catch (InterruptedException ex)
                 {
-                    System.out.println(MessageFormat.format("Waiting for a sending a message <" + message
-                            + "> has been interrupted.", ex));
+                    System.out.println(MessageFormat
+                            .format("Waiting for a sending a message <" + message + "> has been interrupted.", ex));
                 }
             }
         });

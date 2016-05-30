@@ -14,19 +14,19 @@ public class LogTest
 
     public static void main(String[] args)
     {
-        //        log.isFatalEnabled(); // true
-        //        log.isErrorEnabled(); // true
-        //        log.isWarnEnabled();  // true
-        //        log.isInfoEnabled();  // true
-        //        log.isDebugEnabled(); // false
-        //        log.isTraceEnabled(); // false
+        // log.isFatalEnabled(); // true
+        // log.isErrorEnabled(); // true
+        // log.isWarnEnabled(); // true
+        // log.isInfoEnabled(); // true
+        // log.isDebugEnabled(); // false
+        // log.isTraceEnabled(); // false
         //
-        //        log.fatal("fatal.");
-        //        log.error("error.");
-        //        log.warn("warn.");
-        //        log.info("info");
-        //        log.debug("debug.");
-        //        log.trace("trace.");
+        // log.fatal("fatal.");
+        // log.error("error.");
+        // log.warn("warn.");
+        // log.info("info");
+        // log.debug("debug.");
+        // log.trace("trace.");
 
         List<Person> nums = new ArrayList<Person>();
         for (int i = 0; i < 2; i++)

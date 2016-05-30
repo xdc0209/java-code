@@ -59,7 +59,7 @@ public enum CipherSuit
     // 加解密算法
     private String algorithm;
 
-    // 工作模式 
+    // 工作模式
     private String workingMode;
 
     // 填充方式
@@ -96,6 +96,7 @@ public enum CipherSuit
     }
 
     private static final Map<String, CipherSuit> stringToEnum = new HashMap<String, CipherSuit>();
+
     static
     {
         for (CipherSuit cipherSuit : values())
@@ -123,6 +124,7 @@ public enum CipherSuit
     }
 
     private static final Map<String, CipherSuit> hexStringToEnum = new HashMap<String, CipherSuit>();
+
     static
     {
         for (CipherSuit cipherSuit : values())
@@ -143,6 +145,7 @@ public enum CipherSuit
     }
 
     private static final Map<Byte, CipherSuit> byteToEnum = new HashMap<Byte, CipherSuit>();
+
     static
     {
         for (CipherSuit cipherSuit : values())
@@ -156,19 +159,19 @@ public enum CipherSuit
         return byteToEnum.get(b);
     }
 
-    //    public static void main(String[] args)
-    //    {
-    //        for (CipherSuit cipherSuit : values())
-    //        {
-    //            byte b = cipherSuit.toByte();
-    //            System.out.println(b);
-    //            CipherSuit fromByte = CipherSuit.fromByte(b);
-    //            System.out.println(cipherSuit == fromByte);
+    // public static void main(String[] args)
+    // {
+    // for (CipherSuit cipherSuit : values())
+    // {
+    // byte b = cipherSuit.toByte();
+    // System.out.println(b);
+    // CipherSuit fromByte = CipherSuit.fromByte(b);
+    // System.out.println(cipherSuit == fromByte);
     //
-    //            String hexString = cipherSuit.toHexString();
-    //            System.out.println(hexString);
-    //            CipherSuit fromHexString = CipherSuit.fromHexString(hexString);
-    //            System.out.println(cipherSuit == fromHexString);
-    //        }
-    //    }
+    // String hexString = cipherSuit.toHexString();
+    // System.out.println(hexString);
+    // CipherSuit fromHexString = CipherSuit.fromHexString(hexString);
+    // System.out.println(cipherSuit == fromHexString);
+    // }
+    // }
 }

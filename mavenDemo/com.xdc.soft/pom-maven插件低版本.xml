@@ -138,9 +138,9 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven.compiler.version}</version>
 					<configuration>
-						<!-- 源代码使用的开发版本。 -->
+						<!-- 源代码使用的开发版本。一般而言，target与source是保持一致的。 -->
 						<source>${jdk.version}</source>
-						<!-- 需要生成的目标class文件的编译版本。一般而言，target与source是保持一致的。 -->
+						<!-- 需要生成的目标class文件的编译版本。对于基础类库，最好使用老的jdk编译，这样jar包可以运行在多个较新版本的jre上，适用面更广。 -->
 						<target>${jdk.version}</target>
 						<encoding>UTF-8</encoding>
 						<showDeprecation>true</showDeprecation>

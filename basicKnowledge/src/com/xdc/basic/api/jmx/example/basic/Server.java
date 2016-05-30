@@ -28,14 +28,14 @@ import javax.management.remote.JMXServiceURL;
 
 public class Server
 {
-    public static void main(String[] args) throws InstanceAlreadyExistsException, NotCompliantMBeanException,
-            MBeanRegistrationException, MBeanException, ReflectionException, IntrospectionException,
-            InstanceNotFoundException, MalformedObjectNameException, InvalidAttributeValueException,
-            AttributeNotFoundException, IOException
+    public static void main(String[] args)
+            throws InstanceAlreadyExistsException, NotCompliantMBeanException, MBeanRegistrationException,
+            MBeanException, ReflectionException, IntrospectionException, InstanceNotFoundException,
+            MalformedObjectNameException, InvalidAttributeValueException, AttributeNotFoundException, IOException
     {
-        // 获得MBeanServer实例  ==================================================
-        // MBeanServer mbs = MBeanServerFactory.createMBeanServer(); // 不能在jconsole中使用  
-        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer(); // 可在jconsole中使用  
+        // 获得MBeanServer实例 ==================================================
+        // MBeanServer mbs = MBeanServerFactory.createMBeanServer(); // 不能在jconsole中使用
+        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer(); // 可在jconsole中使用
 
         // Get default domain
         String defaultDomain = mbs.getDefaultDomain();
@@ -99,8 +99,8 @@ public class Server
         mbs.createMBean(mbeanClassName, mbeanObjectName);
     }
 
-    private static void printMBeanInfo(MBeanInfo mbeanInfo) throws IntrospectionException, InstanceNotFoundException,
-            ReflectionException
+    private static void printMBeanInfo(MBeanInfo mbeanInfo)
+            throws IntrospectionException, InstanceNotFoundException, ReflectionException
     {
         echo("================ Print MBean Info Start ================");
         echo("CLASSNAME:   " + mbeanInfo.getClassName());

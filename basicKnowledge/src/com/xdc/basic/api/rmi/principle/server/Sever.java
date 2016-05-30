@@ -6,7 +6,7 @@ public class Sever
 {
     public static void main(String args[])
     {
-        // new object server      
+        // new object server
         Person person = new PersonImpl("Richard", 34);
         PersonSkeleton skel = new PersonSkeleton(person);
         skel.start();

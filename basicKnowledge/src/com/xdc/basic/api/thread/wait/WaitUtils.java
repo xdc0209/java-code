@@ -34,27 +34,27 @@ public class WaitUtils
         }
     }
 
-    //    public static class WaitCondition
-    //    {
-    //        /**
-    //         * 如果返回值为false，则一直等待直到超时
-    //         */
-    //        public boolean evalCondition()
-    //        {
-    //            return false;
-    //        }
+    // public static class WaitCondition
+    // {
+    // /**
+    // * 如果返回值为false，则一直等待直到超时
+    // */
+    // public boolean evalCondition()
+    // {
+    // return false;
+    // }
     //
-    //        public void doActionPerInterval()
-    //        {
+    // public void doActionPerInterval()
+    // {
     //
-    //        }
+    // }
     //
-    //        /**
-    //         * 超时之后的回调接口
-    //         */
-    //        public void waitConditionTimeout()
-    //        {
+    // /**
+    // * 超时之后的回调接口
+    // */
+    // public void waitConditionTimeout()
+    // {
     //
-    //        }
-    //    }
+    // }
+    // }
 }

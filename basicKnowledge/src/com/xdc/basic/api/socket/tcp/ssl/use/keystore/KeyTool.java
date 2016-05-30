@@ -39,8 +39,8 @@ public class KeyTool
      * 二 从密钥库中读取证书
      */
     @Test
-    public void readCertificateFromKeystore() throws KeyStoreException, NoSuchAlgorithmException, CertificateException,
-            IOException
+    public void readCertificateFromKeystore()
+            throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException
     {
         String curPath = GetPath.getRelativePath();
 
@@ -79,8 +79,8 @@ public class KeyTool
      * 四 JAVA程序修改密钥库口令
      */
     @Test
-    public void modifyKeyStorePassword() throws KeyStoreException, NoSuchAlgorithmException, CertificateException,
-            IOException
+    public void modifyKeyStorePassword()
+            throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException
     {
         String curPath = GetPath.getRelativePath();
 

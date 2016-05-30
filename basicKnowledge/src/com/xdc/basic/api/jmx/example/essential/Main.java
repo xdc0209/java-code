@@ -1,6 +1,8 @@
-/* Main.java - main class for Hello World example.  Create the
-   HelloWorld MBean, register it, then wait forever (or until the
-   program is interrupted).  */
+/*
+ * Main.java - main class for Hello World example. Create the
+ * HelloWorld MBean, register it, then wait forever (or until the
+ * program is interrupted).
+ */
 
 package com.xdc.basic.api.jmx.example.essential;
 

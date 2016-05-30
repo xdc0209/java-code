@@ -53,7 +53,7 @@ public class InterruptTest2 implements Runnable
         {
             System.out.println("遇到阻塞1");
             System.out.println(Thread.currentThread().isInterrupted()); // 可以看出来此时的答案是false
-            Thread.currentThread().interrupt();                         // 因为此时isInterrupted的状态时false，所以这句话就特别重要了。要不然下一个for循环的b.take就无法进行下去了
+            Thread.currentThread().interrupt(); // 因为此时isInterrupted的状态时false，所以这句话就特别重要了。要不然下一个for循环的b.take就无法进行下去了
             System.out.println(Thread.currentThread().isInterrupted()); // 现在就是true了。
         }
 

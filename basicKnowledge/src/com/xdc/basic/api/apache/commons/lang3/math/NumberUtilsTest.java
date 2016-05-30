@@ -14,7 +14,7 @@ public class NumberUtilsTest
         String str6 = "12345678901234567890L";
         String str7 = "12345678901234567890F";
 
-        // Checks whether the String contains only digit characters, [0-9]+. 
+        // Checks whether the String contains only digit characters, [0-9]+.
         // Null and empty String will return false.
         System.out.println(NumberUtils.isDigits(str)); // true
         System.out.println(NumberUtils.isDigits(str2)); // false

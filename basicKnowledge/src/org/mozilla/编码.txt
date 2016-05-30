@@ -1,0 +1,24 @@
+Windows自带的记事本Notepad             Notepad++            编码前缀      备注
+ANSI                                   ANSI                 无前缀        ANSI是默认的编码方式。对于英文文件是ASCII编码，对于简体中文文件是GB2312编码（只针对Windows简体中文版，如果是繁体中文版会采用Big5码）。
+Unicode                                UCS-2 Little Endian  FF FE         UTF-16小端序，Unicode编码指的是UCS-2编码方式，即直接用两个字节存入字符的Unicode码。这个选项用的little endian格式。
+Unicode big endian                     UCS-2 Big Endian     FE FF         UTF-16大端序，Unicode big endian编码与上一个选项相对应。我在下一节会解释little endian和big endian的涵义。
+UTF-8                                  UTF-8                EF BB BF
+--无法保存为UTF-8无BOM                 UTF-8无BOM           无前缀
+
+
+注意：Notepad中的保存为UTF-8格式是带有BOM的，但是不带BOM格式的UTF-8同样能打开，并且如果你修改保存的话，存储格式变为带BOM的UTF8了。
+      Notepad++保存时不会改变文件的编码。
+      Eclipse中的UTF8是不带BOM的。
+      如果java程序处理Notepad中的UFT-8（即带有BOM的），需要去除前三个字节。
+      在java中，class文件采用utf8的编码方式，JVM运行时采用utf16。Java的字符串是永远都是unicode的，采用的是UTF-16的编码方式。
+      Java使用UTF-8编码时生成的文件是不带BOM的。
+  
+字符集和编码
+ASCII是古老的编码，那个时候还不区分字符集和编码，基本可以看作合二为一的东西。
+Unicode严格来说是字符集，可以有多种编码。
+UTF-8是一种Unicode的编码。
+
+注：字符集（char set）就是字符的集合，收录了一定数量的字符。每个字符有对应的ID值，叫码点（code point）。实际存储的时候，不一定是直接存储字符串的码点（比如，为了节约空间），要进行转换。这个转换规则就是编码。
+
+
+

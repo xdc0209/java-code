@@ -20,7 +20,7 @@ public class ConfigurationLogListener implements ConfigurationListener
     public void configurationChanged(ConfigurationEvent event)
     {
         // only display events after the modification was done
-        System.out.println("Received event! "
-                + ToStringBuilder.reflectionToString(event, ToStringStyle.MULTI_LINE_STYLE));
+        System.out.println(
+                "Received event! " + ToStringBuilder.reflectionToString(event, ToStringStyle.MULTI_LINE_STYLE));
     }
 }

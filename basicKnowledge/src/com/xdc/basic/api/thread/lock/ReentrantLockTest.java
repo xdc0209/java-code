@@ -25,7 +25,7 @@ public class ReentrantLockTest
          */
         public void addValue(double v)
         {
-            lock.lock();// 取得锁  
+            lock.lock();// 取得锁
             try
             {
                 System.out.println("ReentrantLockTest.LockTest.addValue()");
@@ -39,7 +39,7 @@ public class ReentrantLockTest
             }
             finally
             {
-                lock.unlock();// 释放锁  
+                lock.unlock();// 释放锁
             }
         }
 
@@ -54,7 +54,7 @@ public class ReentrantLockTest
     {
         final LockTest lockTest = new LockTest();
 
-        // 新建任务1，调用lockTest的addValue方法  
+        // 新建任务1，调用lockTest的addValue方法
         Runnable task1 = new Runnable()
         {
             public void run()
@@ -62,7 +62,7 @@ public class ReentrantLockTest
                 lockTest.addValue(55.55);
             }
         };
-        // 新建任务2，调用lockTest的getValue方法  
+        // 新建任务2，调用lockTest的getValue方法
         Runnable task2 = new Runnable()
         {
             public void run()
@@ -74,17 +74,17 @@ public class ReentrantLockTest
         ExecutorService cachedService = Executors.newCachedThreadPool();
 
         Future<?> future = null;
-        // 同时执行任务1三次，由于addValue方法使用了锁机制，所以，实质上会顺序执行  
+        // 同时执行任务1三次，由于addValue方法使用了锁机制，所以，实质上会顺序执行
         for (int i = 0; i < 3; i++)
         {
             future = cachedService.submit(task1);
         }
-        // 等待最后一个任务1被执行完  
+        // 等待最后一个任务1被执行完
         future.get();
 
-        // 再执行任务2，输出结果  
+        // 再执行任务2，输出结果
         future = cachedService.submit(task2);
-        // 等待任务2执行完后，关闭任务执行服务  
+        // 等待任务2执行完后，关闭任务执行服务
         future.get();
 
         cachedService.shutdownNow();

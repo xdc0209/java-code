@@ -10,8 +10,8 @@ import org.hibernate.cfg.Configuration;
 @SuppressWarnings("deprecation")
 public class HibernateUtil
 {
-    private static Log                        log     = LogFactory.getLog(HibernateUtil.class);
-    private static final SessionFactory       sessionFactory;                                  // 定义SessionFactory
+    private static Log                  log = LogFactory.getLog(HibernateUtil.class);
+    private static final SessionFactory sessionFactory;                              // 定义SessionFactory
 
     static
     {

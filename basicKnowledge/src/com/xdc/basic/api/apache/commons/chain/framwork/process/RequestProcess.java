@@ -23,7 +23,7 @@ public class RequestProcess extends MessageProcess
 {
     private static Log            log      = LogFactory.getLog(RequestProcess.class);
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(100, new RequestHandlerThreadFactory()); ;
+    private final ExecutorService executor = Executors.newFixedThreadPool(100, new RequestHandlerThreadFactory());
 
     @Override
     public void stop()

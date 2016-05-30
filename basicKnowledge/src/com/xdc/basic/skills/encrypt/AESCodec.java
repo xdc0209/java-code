@@ -12,27 +12,28 @@ import org.apache.commons.codec.binary.Base64;
 /**
  * http://www.linuxidc.com/Linux/2012-08/69217.htm
  * 
- * AES对称加密算法 
- * @see =========================================================================================================== 
- * @see 这里演示的是其Java6.0的实现,理所当然的BouncyCastle也支持AES对称加密算法 
- * @see 另外,我们也可以以AES算法实现为参考,完成RC2,RC4和Blowfish算法的实现 
- * @see =========================================================================================================== 
- * @see 由于DES的不安全性以及DESede算法的低效,于是催生了AES算法(Advanced Encryption Standard) 
- * @see 该算法比DES要快,安全性高,密钥建立时间短,灵敏性好,内存需求低,在各个领域应用广泛 
- * @see 目前,AES算法通常用于移动通信系统以及一些软件的安全外壳,还有一些无线路由器中也是用AES算法构建加密协议 
- * @see =========================================================================================================== 
- * @see 由于Java6.0支持大部分的算法,但受到出口限制,其密钥长度不能满足需求 
- * @see 所以特别需要注意的是:如果使用256位的密钥,则需要无政策限制文件(Unlimited Strength Jurisdiction Policy Files) 
- * @see 不过Sun是通过权限文件local_poblicy.jar和US_export_policy.jar做的相应限制,我们可以在Sun官网下载替换文件,减少相关限制 
- * @see 网址为http://www.Oracle.com/technetwork/java/javase/downloads/index.html 
- * @see 在该页面的最下方找到Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 6,点击下载 
- * @see http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip 
- * @see http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip 
- * @see 然后覆盖本地JDK目录和JRE目录下的security目录下的文件即可 
- * @see =========================================================================================================== 
- * @see 关于AES的更多详细介绍,可以参考此爷的博客http://blog.csdn.net/kongqz/article/category/800296 
- * @create Jul 17, 2012 6:35:36 PM 
- * @author 玄玉(http://blog.csdn/net/jadyer) 
+ * AES对称加密算法
+ * 
+ * @see ===========================================================================================================
+ * @see 这里演示的是其Java6.0的实现,理所当然的BouncyCastle也支持AES对称加密算法
+ * @see 另外,我们也可以以AES算法实现为参考,完成RC2,RC4和Blowfish算法的实现
+ * @see ===========================================================================================================
+ * @see 由于DES的不安全性以及DESede算法的低效,于是催生了AES算法(Advanced Encryption Standard)
+ * @see 该算法比DES要快,安全性高,密钥建立时间短,灵敏性好,内存需求低,在各个领域应用广泛
+ * @see 目前,AES算法通常用于移动通信系统以及一些软件的安全外壳,还有一些无线路由器中也是用AES算法构建加密协议
+ * @see ===========================================================================================================
+ * @see 由于Java6.0支持大部分的算法,但受到出口限制,其密钥长度不能满足需求
+ * @see 所以特别需要注意的是:如果使用256位的密钥,则需要无政策限制文件(Unlimited Strength Jurisdiction Policy Files)
+ * @see 不过Sun是通过权限文件local_poblicy.jar和US_export_policy.jar做的相应限制,我们可以在Sun官网下载替换文件,减少相关限制
+ * @see 网址为http://www.Oracle.com/technetwork/java/javase/downloads/index.html
+ * @see 在该页面的最下方找到Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 6,点击下载
+ * @see http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip
+ * @see http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip
+ * @see 然后覆盖本地JDK目录和JRE目录下的security目录下的文件即可
+ * @see ===========================================================================================================
+ * @see 关于AES的更多详细介绍,可以参考此爷的博客http://blog.csdn.net/kongqz/article/category/800296
+ * @create Jul 17, 2012 6:35:36 PM
+ * @author 玄玉(http://blog.csdn/net/jadyer)
  */
 public class AESCodec
 {
@@ -81,7 +82,7 @@ public class AESCodec
      * @param key
      *            密钥
      * @return 加密后的数据
-     * */
+     */
     public static String encrypt(String data, String secretKey) throws Exception
     {
         Key key = restoreKey(secretKey); // 还原密钥
@@ -98,7 +99,7 @@ public class AESCodec
      * @param key
      *            密钥
      * @return 解密后的数据
-     * */
+     */
     public static String decrypt(String data, String secretKey) throws Exception
     {
         Key key = restoreKey(secretKey); // 还原密钥

@@ -27,7 +27,7 @@ public class TimeServerHandler extends IoHandlerAdapter
         String rcvMsg = message.toString();
         if (rcvMsg.trim().equalsIgnoreCase("quit"))
         {
-            // 结束会话 
+            // 结束会话
             session.close(true);
             return;
         }
@@ -38,7 +38,7 @@ public class TimeServerHandler extends IoHandlerAdapter
         System.out.println("Send message: " + sendMsg);
         System.out.println();
 
-        // 返回当前时间的字符串 
+        // 返回当前时间的字符串
         session.write(sendMsg);
     }
 

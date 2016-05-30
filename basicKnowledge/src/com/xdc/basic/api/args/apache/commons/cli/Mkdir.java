@@ -73,7 +73,7 @@ public class Mkdir
             System.out.println("has v");
         }
 
-        //判断是否含有block-size参数
+        // 判断是否含有block-size参数
         if (cl.hasOption("block-size"))
         {
             // print the value of block-size

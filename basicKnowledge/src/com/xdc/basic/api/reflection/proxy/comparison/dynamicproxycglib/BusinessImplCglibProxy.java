@@ -31,9 +31,9 @@ class BusinessImplCglibProxy implements MethodInterceptor
     {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(clazz);
-        // 回调方法  
+        // 回调方法
         enhancer.setCallback(new BusinessImplCglibProxy());
-        // 创建代理对象  
+        // 创建代理对象
         return enhancer.create();
     }
 }

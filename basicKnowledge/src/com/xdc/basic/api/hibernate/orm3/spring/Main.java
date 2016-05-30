@@ -18,8 +18,8 @@ public class Main
             DomainClasses.addDomainClasses(Course.class);
             DomainClasses.addDomainClasses(Score.class);
 
-            SpringBeanFactory.addSpringConfigPath(GetPath.connect(GetPath.getPackagePath(),
-                    "framwaork/core/application-context.xml"));
+            SpringBeanFactory.addSpringConfigPath(
+                    GetPath.connect(GetPath.getPackagePath(), "framwaork/core/application-context.xml"));
             SpringBeanFactory.init();
 
             StudentService studentService = SpringBeanFactory.getBean("studentService", StudentService.class);

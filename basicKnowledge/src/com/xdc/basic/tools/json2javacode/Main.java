@@ -89,7 +89,7 @@ public class Main
     private static final String angle_bracket_start = "<";
     private static final String angle_bracket_end   = ">";
 
-    // PS： These are Parentheses, Square brackets, Angle brackets and Brace.    
+    // PS： These are Parentheses, Square brackets, Angle brackets and Brace.
     // 提示：括号有小括号 、 中括号 、 角括号和大括号.
 
     /**

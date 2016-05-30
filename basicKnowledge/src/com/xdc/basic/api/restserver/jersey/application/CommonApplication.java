@@ -37,12 +37,12 @@ public class CommonApplication extends Application
     {
         HashSet<Class<?>> clazzes = new HashSet<Class<?>>();
 
-        //        // 注册provider
-        //        clazzes.add(JacksonJsonProvider.class);
+        // // 注册provider
+        // clazzes.add(JacksonJsonProvider.class);
         //
-        //        // 注册exceptionMapper
-        //        clazzes.add(ResourceNotExistMapper.class);
-        //        clazzes.add(IdNotUniqueMapper.class);
+        // // 注册exceptionMapper
+        // clazzes.add(ResourceNotExistMapper.class);
+        // clazzes.add(IdNotUniqueMapper.class);
 
         return clazzes;
     }

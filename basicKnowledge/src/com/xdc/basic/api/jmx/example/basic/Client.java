@@ -26,9 +26,9 @@ public class Client
 {
     @SuppressWarnings("unused")
     public static void main(String[] args) throws IOException, MalformedObjectNameException,
-            InstanceAlreadyExistsException, MBeanRegistrationException, NotCompliantMBeanException,
-            ReflectionException, MBeanException, InstanceNotFoundException, AttributeNotFoundException,
-            InvalidAttributeValueException, ListenerNotFoundException, InterruptedException
+            InstanceAlreadyExistsException, MBeanRegistrationException, NotCompliantMBeanException, ReflectionException,
+            MBeanException, InstanceNotFoundException, AttributeNotFoundException, InvalidAttributeValueException,
+            ListenerNotFoundException, InterruptedException
     {
         // 建立rmi连接客户端并连接rmi连接服务器
         // Create an RMI connector client and connect it to the RMI connector server

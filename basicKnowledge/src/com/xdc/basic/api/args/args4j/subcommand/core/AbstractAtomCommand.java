@@ -43,7 +43,7 @@ public abstract class AbstractAtomCommand implements Command
             // after parsing arguments, you should check if enough arguments are given.
             // if (CollectionUtils.isEmpty(command.getArguments()))
             // {
-            //     throw new CmdLineException(parser, "No argument is given");
+            // throw new CmdLineException(parser, "No argument is given");
             // }
         }
         catch (CmdLineException e)

@@ -29,7 +29,8 @@ public class SimpleStandard extends NotificationBroadcasterSupport implements Si
     /**
      * Setter: set the "State" attribute of the "SimpleStandard" standard MBean.
      * 
-     * @param <VAR>s</VAR> the new value of the "State" attribute.
+     * @param <VAR>s</VAR>
+     *            the new value of the "State" attribute.
      */
     @Override
     public void setState(String s)
@@ -77,16 +78,17 @@ public class SimpleStandard extends NotificationBroadcasterSupport implements Si
 
     /**
      * Returns an array indicating, for each notification this MBean may send, the name of the Java class of the
-     * notification and the notification type.</p>
+     * notification and the notification type.
+     * </p>
      * 
      * @return the array of possible notifications.
      */
     @Override
     public MBeanNotificationInfo[] getNotificationInfo()
     {
-        return new MBeanNotificationInfo[] { new MBeanNotificationInfo(
-                new String[] { AttributeChangeNotification.ATTRIBUTE_CHANGE },
-                AttributeChangeNotification.class.getName(),
-                "This notification is emitted when the reset() method is called.") };
+        return new MBeanNotificationInfo[] {
+                new MBeanNotificationInfo(new String[] { AttributeChangeNotification.ATTRIBUTE_CHANGE },
+                        AttributeChangeNotification.class.getName(),
+                        "This notification is emitted when the reset() method is called.") };
     }
 }

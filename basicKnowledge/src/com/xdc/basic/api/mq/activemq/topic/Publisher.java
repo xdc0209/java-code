@@ -20,7 +20,7 @@ public class Publisher
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        //创建一个生产者，然后发送多个消息
+        // 创建一个生产者，然后发送多个消息
         MessageProducer producer = session.createProducer(topic);
         for (int i = 0; i < 10; i++)
         {

@@ -1,11 +1,5 @@
 package com.xdc.basic.tools.restframework.message.music.get;
 
-import com.xdc.basic.tools.restframework.message.music.get.Album;
-import com.xdc.basic.tools.restframework.message.music.get.Artists;
-import com.xdc.basic.tools.restframework.message.music.get.Medias;
-
-import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 
 public class Tracks

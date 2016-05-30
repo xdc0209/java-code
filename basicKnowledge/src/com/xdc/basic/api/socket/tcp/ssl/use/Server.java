@@ -114,7 +114,7 @@ public class Server
         // 支持的加密套件
         String[] supportedCipherSuites = serverSocket.getSupportedCipherSuites();
 
-        // 安全的加密套件 
+        // 安全的加密套件
         List<String> safeCipherSuites = new ArrayList<String>();
         safeCipherSuites.add("SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA");
         safeCipherSuites.add("SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA");

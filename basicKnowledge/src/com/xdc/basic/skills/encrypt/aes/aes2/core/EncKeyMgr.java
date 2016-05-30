@@ -132,27 +132,27 @@ public class EncKeyMgr
     {
         // 替换秘钥因子流程
         // 1. 原始目录为KeyDir
-        // 2. 复制目录KeyDir为OldKeyDir                                                                                         (shell)
-        // 3. 复制目录KeyDir为NewKeyDir                                                                                         (shell)
-        // 4. 随机生成秘钥因子和相应的CRC                                                                                       (java)
-        // 5. 将密钥因子和相应的CRC替换到NewKeyDir                                                                              (java或shell)
+        // 2. 复制目录KeyDir为OldKeyDir (shell)
+        // 3. 复制目录KeyDir为NewKeyDir (shell)
+        // 4. 随机生成秘钥因子和相应的CRC (java)
+        // 5. 将密钥因子和相应的CRC替换到NewKeyDir (java或shell)
         // 6. 根据OldKeyDir的秘钥因子、工作秘钥密文和NewKeyDir中的密钥因子，将OldKeyDir的工作秘钥先解密再加密获得新工作秘钥密文 (java)
-        // 7. 将工作秘钥替换到NewKeyDir                                                                                         (java或shell)
-        // 8. 将NewKeyDir中的文件替换到KeyDir                                                                                   (shell)
-        // 9. 删除OldKeyDir和NewKeyDir                                                                                          (shell)
-        // 
+        // 7. 将工作秘钥替换到NewKeyDir (java或shell)
+        // 8. 将NewKeyDir中的文件替换到KeyDir (shell)
+        // 9. 删除OldKeyDir和NewKeyDir (shell)
+        //
         // 替换工作秘钥流程(其中4和5包括替换秘钥因子，可选)
-        // 1.  原始目录为KeyDir
-        // 2.  复制目录KeyDir为OldKeyDir                                  (shell)
-        // 3.  复制目录KeyDir为NewKeyDir                                  (shell)
-        // 4.  随机生成秘钥因子和相应的CRC                                (java)
-        // 5.  将密钥因子和相应的CRC替换到NewKeyDir                       (java或shell)
-        // 6.  随机生成工作秘钥                                           (java)
-        // 7.  根据NewKeyDir中的密钥因子，加密工作秘钥获得工作秘钥密文    (java)
-        // 8.  将工作秘钥密文替换到NewKeyDir                              (java或shell)
-        // 9.  根据OldKeyDir和NewKeyDir，将系统中已存在的密文先加密再解密 (java)
-        // 10. 将新密文写回系统                                           (java或shell)
-        // 11. 将NewKeyDir中的文件替换到KeyDir                            (shell)
-        // 12. 删除OldKeyDir和NewKeyDir                                   (shell)
+        // 1. 原始目录为KeyDir
+        // 2. 复制目录KeyDir为OldKeyDir (shell)
+        // 3. 复制目录KeyDir为NewKeyDir (shell)
+        // 4. 随机生成秘钥因子和相应的CRC (java)
+        // 5. 将密钥因子和相应的CRC替换到NewKeyDir (java或shell)
+        // 6. 随机生成工作秘钥 (java)
+        // 7. 根据NewKeyDir中的密钥因子，加密工作秘钥获得工作秘钥密文 (java)
+        // 8. 将工作秘钥密文替换到NewKeyDir (java或shell)
+        // 9. 根据OldKeyDir和NewKeyDir，将系统中已存在的密文先加密再解密 (java)
+        // 10. 将新密文写回系统 (java或shell)
+        // 11. 将NewKeyDir中的文件替换到KeyDir (shell)
+        // 12. 删除OldKeyDir和NewKeyDir (shell)
     }
 }

@@ -27,8 +27,8 @@ public final class SecuritySAXSource
         return newSecuritySAXSource(new InputSource(reader));
     }
 
-    public static SAXSource newSecuritySAXSource(InputSource inputSource) throws ParserConfigurationException,
-            SAXException
+    public static SAXSource newSecuritySAXSource(InputSource inputSource)
+            throws ParserConfigurationException, SAXException
     {
         SAXParserFactory securityFactory = SecuritySAXParserFactory.newSecurityInstance();
         // as followed copy from javax.xml.bind.helpers.AbstractUnmarshallerImpl.getXMLReader()

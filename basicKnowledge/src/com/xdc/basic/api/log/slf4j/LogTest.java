@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,22 +14,19 @@ public class LogTest
 
     public static void main(String[] args)
     {
-        // 指定配置文件位置，默认的存放路径是src\log4j.properties
-        PropertyConfigurator.configure(System.getProperty("user.dir") + "\\src\\log4j.properties");
-
-        //        log.isFatalEnabled(); // true
-        //        log.isErrorEnabled(); // true
-        //        log.isWarnEnabled();  // true
-        //        log.isInfoEnabled();  // true
-        //        log.isDebugEnabled(); // false
-        //        log.isTraceEnabled(); // false
+        // log.isFatalEnabled(); // true
+        // log.isErrorEnabled(); // true
+        // log.isWarnEnabled(); // true
+        // log.isInfoEnabled(); // true
+        // log.isDebugEnabled(); // false
+        // log.isTraceEnabled(); // false
         //
-        //        log.fatal("fatal.");
-        //        log.error("error.");
-        //        log.warn("warn.");
-        //        log.info("info");
-        //        log.debug("debug.");
-        //        log.trace("trace.");
+        // log.fatal("fatal.");
+        // log.error("error.");
+        // log.warn("warn.");
+        // log.info("info");
+        // log.debug("debug.");
+        // log.trace("trace.");
 
         List<Person> nums = new ArrayList<Person>();
         for (int i = 0; i < 2; i++)
@@ -54,10 +50,7 @@ public class LogTest
             log.warn("The size of persons is " + nums.size() + " and < 3.");
         }
 
-        if (log.isDebugEnabled())
-        {
-            log.debug("Persons are " + nums);
-        }
+        log.debug("Persons are {}.", nums);
 
         Collections.sort(result, new Comparator<Person>()
         {
@@ -73,10 +66,7 @@ public class LogTest
             result = result.subList(0, 3);
         }
 
-        if (log.isDebugEnabled())
-        {
-            log.debug("Top 3 of persons are " + result);
-        }
+        log.debug("Top 3 of persons are {}.", result);
 
         log.info("Get top 3 end.");
         return result;

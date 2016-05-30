@@ -1,25 +1,25 @@
 /*
  * ====================================================================
  * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
+ * or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
+ * regarding copyright ownership. The ASF licenses this file
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * with the License. You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
+ * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations
  * under the License.
  * ====================================================================
  *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
@@ -50,23 +50,27 @@ import org.apache.http.util.EntityUtils;
  * A simple example that uses HttpClient to execute an HTTP request against
  * a target site that requires user authentication.
  */
-public class ClientInteractiveAuthentication {
+public class ClientInteractiveAuthentication
+{
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception
+    {
         BasicCredentialsProvider credsProvider = new BasicCredentialsProvider();
-        CloseableHttpClient httpclient = HttpClients.custom()
-                .setDefaultCredentialsProvider(credsProvider).build();
-        try {
+        CloseableHttpClient httpclient = HttpClients.custom().setDefaultCredentialsProvider(credsProvider).build();
+        try
+        {
             // Create local execution context
             HttpClientContext localContext = HttpClientContext.create();
 
             HttpGet httpget = new HttpGet("http://localhost/test");
 
             boolean trying = true;
-            while (trying) {
+            while (trying)
+            {
                 System.out.println("executing request " + httpget.getRequestLine());
                 CloseableHttpResponse response = httpclient.execute(httpget, localContext);
-                try {
+                try
+                {
                     System.out.println("----------------------------------------");
                     System.out.println(response.getStatusLine());
 
@@ -79,22 +83,25 @@ public class ClientInteractiveAuthentication {
                     RouteInfo route = localContext.getHttpRoute();
                     AuthState authState = null;
                     HttpHost authhost = null;
-                    if (sc == HttpStatus.SC_UNAUTHORIZED) {
+                    if (sc == HttpStatus.SC_UNAUTHORIZED)
+                    {
                         // Target host authentication required
                         authState = localContext.getTargetAuthState();
                         authhost = route.getTargetHost();
                     }
-                    if (sc == HttpStatus.SC_PROXY_AUTHENTICATION_REQUIRED) {
+                    if (sc == HttpStatus.SC_PROXY_AUTHENTICATION_REQUIRED)
+                    {
                         // Proxy authentication required
                         authState = localContext.getProxyAuthState();
                         authhost = route.getProxyHost();
                     }
 
-                    if (authState != null) {
+                    if (authState != null)
+                    {
                         System.out.println("----------------------------------------");
                         AuthScheme authscheme = authState.getAuthScheme();
-                        System.out.println("Please provide credentials for " +
-                                authscheme.getRealm() + "@" + authhost.toHostString());
+                        System.out.println("Please provide credentials for " + authscheme.getRealm() + "@"
+                                + authhost.toHostString());
 
                         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
@@ -103,21 +110,30 @@ public class ClientInteractiveAuthentication {
                         System.out.print("Enter password: ");
                         String password = console.readLine();
 
-                        if (user != null && user.length() > 0) {
+                        if (user != null && user.length() > 0)
+                        {
                             Credentials creds = new UsernamePasswordCredentials(user, password);
                             credsProvider.setCredentials(new AuthScope(authhost), creds);
                             trying = true;
-                        } else {
+                        }
+                        else
+                        {
                             trying = false;
                         }
-                    } else {
+                    }
+                    else
+                    {
                         trying = false;
                     }
-                } finally {
+                }
+                finally
+                {
                     response.close();
                 }
             }
-        } finally {
+        }
+        finally
+        {
             httpclient.close();
         }
     }

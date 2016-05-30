@@ -48,7 +48,7 @@ public class RSACodec
     {
         // 生成密钥对
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM); // 获取keypair生成器
-        keyPairGen.initialize(1024); // 设置密钥位数   
+        keyPairGen.initialize(1024); // 设置密钥位数
         KeyPair keyPair = keyPairGen.generateKeyPair(); // 生成keypair
         PublicKey publicKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();

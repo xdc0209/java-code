@@ -18,8 +18,8 @@ public abstract class AbstractJmxCommand extends AbstractAtomCommand
         MBeanServerConnection mbsc = null;
         try
         {
-            JMXServiceURL url = new JMXServiceURL(String.format(JmxConfig.getUrl(), JmxConfig.getIp(),
-                    JmxConfig.getPort()));
+            JMXServiceURL url = new JMXServiceURL(
+                    String.format(JmxConfig.getUrl(), JmxConfig.getIp(), JmxConfig.getPort()));
 
             Map<String, Object> env = new HashMap<String, Object>();
             env.put(JMXConnector.CREDENTIALS, new String[] { JmxConfig.getUser(), JmxConfig.getPassword() });

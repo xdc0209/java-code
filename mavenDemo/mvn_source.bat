@@ -6,7 +6,7 @@ title 本地构建脚本
 set java_src=%cd%
 
 :: echo Java代码路径:     %java_src%
-:: echo Settings文件位置: %java_src%\mvn_settings.xml
+:: echo Settings文件位置: %java_src%\mvn_settings_windows.xml
 :: echo.
 ::
 :: echo 请确认settings文件的配置与当前代码库路径相符。如果不正确，点X关闭窗口！！！否则任意键继续。。。
@@ -33,10 +33,10 @@ set start_time=%date% %time%
 :: cd /d %java_src%\com.xdc.soft.mini
 :: call mvn source:jar || pause && exit 1
 
-call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft\pom.xml            || pause && exit 1
-call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.virgo\pom.xml      || pause && exit 1
-call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.opensource\pom.xml || pause && exit 1
-call mvn source:jar -s %java_src%\mvn_settings.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
+call mvn source:jar -s %java_src%\mvn_settings_windows.xml -f %java_src%\com.xdc.soft\pom.xml            || pause && exit 1
+call mvn source:jar -s %java_src%\mvn_settings_windows.xml -f %java_src%\com.xdc.soft.virgo\pom.xml      || pause && exit 1
+call mvn source:jar -s %java_src%\mvn_settings_windows.xml -f %java_src%\com.xdc.soft.opensource\pom.xml || pause && exit 1
+call mvn source:jar -s %java_src%\mvn_settings_windows.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
 echo.
 
 :: 结束时间

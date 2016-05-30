@@ -12,6 +12,7 @@ import com.xdc.basic.tools.restclient.message.RestClientException;
 public class JsonTool
 {
     private static final ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+
     static
     {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

@@ -11,8 +11,8 @@ public class JDKProxyFactory implements InvocationHandler
     public Object createProxyInstance(Object targetObject)
     {
         this.targetObject = targetObject;
-        return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(),
-                targetObject.getClass().getInterfaces(), this);
+        return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(), targetObject.getClass().getInterfaces(),
+                this);
     }
 
     @Override

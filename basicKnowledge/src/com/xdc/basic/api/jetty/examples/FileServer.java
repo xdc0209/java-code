@@ -1,19 +1,19 @@
 //
-//  ========================================================================
-//  Copyright (c) 1995-2014 Mort Bay Consulting Pty. Ltd.
-//  ------------------------------------------------------------------------
-//  All rights reserved. This program and the accompanying materials
-//  are made available under the terms of the Eclipse Public License v1.0
-//  and Apache License v2.0 which accompanies this distribution.
+// ========================================================================
+// Copyright (c) 1995-2014 Mort Bay Consulting Pty. Ltd.
+// ------------------------------------------------------------------------
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// and Apache License v2.0 which accompanies this distribution.
 //
-//      The Eclipse Public License is available at
-//      http://www.eclipse.org/legal/epl-v10.html
+// The Eclipse Public License is available at
+// http://www.eclipse.org/legal/epl-v10.html
 //
-//      The Apache License v2.0 is available at
-//      http://www.opensource.org/licenses/apache2.0.php
+// The Apache License v2.0 is available at
+// http://www.opensource.org/licenses/apache2.0.php
 //
-//  You may elect to redistribute this code under either of these licenses.
-//  ========================================================================
+// You may elect to redistribute this code under either of these licenses.
+// ========================================================================
 //
 
 package com.xdc.basic.api.jetty.examples;
@@ -24,7 +24,7 @@ import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 
-/** 
+/**
  * Simple Jetty FileServer.
  * This is a simple example of Jetty configured as a FileServer.
  */
@@ -33,12 +33,12 @@ public class FileServer
     // This example shows how to create a simple file server in Jetty. It is perfectly suitable for test cases where
     // you need an actual web server to obtain a file from, it could easily be configured to serve files from a directory
     // under src/test/resources. Note that this does not have any logic for caching of files, either within the server or
-    // setting the appropriate headers on the response. It is simply a few lines that illustate how easy it is to serve 
+    // setting the appropriate headers on the response. It is simply a few lines that illustate how easy it is to serve
     // out some files.
 
     public static void main(String[] args) throws Exception
     {
-        // Create a basic Jetty server object that will listen on port 8080.  Note that if you set this to port 0
+        // Create a basic Jetty server object that will listen on port 8080. Note that if you set this to port 0
         // then a randomly available port will be assigned that you can either look in the logs for the port,
         // or programmatically obtain it for use in test cases.
         Server server = new Server(8080);

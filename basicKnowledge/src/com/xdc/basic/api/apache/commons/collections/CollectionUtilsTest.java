@@ -48,8 +48,8 @@ public class CollectionUtilsTest
         List<Person> persons = new ArrayList<Person>();
         persons.add(new Person("xudachao", 25, false));
         persons.add(new Person("gengxue", 24, false));
-        Person person = (Person) CollectionUtils.find(persons, new BeanPropertyValueEqualsPredicate("name", "xudachao",
-                true));
+        Person person = (Person) CollectionUtils.find(persons,
+                new BeanPropertyValueEqualsPredicate("name", "xudachao", true));
         System.out.println(person);
     }
 }

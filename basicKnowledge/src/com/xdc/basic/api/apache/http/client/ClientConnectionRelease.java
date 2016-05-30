@@ -1,25 +1,25 @@
 /*
  * ====================================================================
  * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
+ * or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
+ * regarding copyright ownership. The ASF licenses this file
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * with the License. You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
+ * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations
  * under the License.
  * ====================================================================
  *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
@@ -40,17 +40,21 @@ import org.apache.http.impl.client.HttpClients;
  * This example demonstrates the recommended way of using API to make sure
  * the underlying connection gets released back to the connection manager.
  */
-public class ClientConnectionRelease {
+public class ClientConnectionRelease
+{
 
-    public final static void main(String[] args) throws Exception {
+    public final static void main(String[] args) throws Exception
+    {
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        try {
+        try
+        {
             HttpGet httpget = new HttpGet("http://www.apache.org/");
 
             // Execute HTTP request
             System.out.println("executing request " + httpget.getURI());
             CloseableHttpResponse response = httpclient.execute(httpget);
-            try {
+            try
+            {
                 System.out.println("----------------------------------------");
                 System.out.println(response.getStatusLine());
                 System.out.println("----------------------------------------");
@@ -60,27 +64,36 @@ public class ClientConnectionRelease {
 
                 // If the response does not enclose an entity, there is no need
                 // to bother about connection release
-                if (entity != null) {
+                if (entity != null)
+                {
                     InputStream instream = entity.getContent();
-                    try {
+                    try
+                    {
                         instream.read();
                         // do something useful with the response
-                    } catch (IOException ex) {
+                    }
+                    catch (IOException ex)
+                    {
                         // In case of an IOException the connection will be released
                         // back to the connection manager automatically
                         throw ex;
-                    } finally {
+                    }
+                    finally
+                    {
                         // Closing the input stream will trigger connection release
                         instream.close();
                     }
                 }
-            } finally {
+            }
+            finally
+            {
                 response.close();
             }
-        } finally {
+        }
+        finally
+        {
             httpclient.close();
         }
     }
 
 }
-

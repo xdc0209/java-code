@@ -44,13 +44,13 @@ public class PropertiesConfigurationTest
         }
     }
 
-    //    遗留问题：研究正确的使用方法，避免下面的问题。
-    //    1. 使用不当，可能会造成注释丢失
-    //    2. 使用不当，可能会造成出现重复记录
+    // 遗留问题：研究正确的使用方法，避免下面的问题。
+    // 1. 使用不当，可能会造成注释丢失
+    // 2. 使用不当，可能会造成出现重复记录
     //
-    //    config.clear();
-    //    config.load();
-    //    config.refresh();
-    //    config.reload();
-    //    config.reload(true);
+    // config.clear();
+    // config.load();
+    // config.refresh();
+    // config.reload();
+    // config.reload(true);
 }

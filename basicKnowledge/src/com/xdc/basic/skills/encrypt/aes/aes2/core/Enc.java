@@ -116,7 +116,7 @@ public class Enc
 
     private static byte[] doFinal(int mode, String cipherParam, String keyParam, byte[] inputBytes, byte[] keyBytes,
             byte[] ivBytes) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
-            InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
+                    InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
     {
         Cipher cipher = Cipher.getInstance(cipherParam);
 

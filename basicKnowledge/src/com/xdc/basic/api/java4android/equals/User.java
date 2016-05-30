@@ -1,6 +1,6 @@
 package com.xdc.basic.api.java4android.equals;
 
-//equals()的重写
+// equals()的重写
 public class User
 {
     String name;

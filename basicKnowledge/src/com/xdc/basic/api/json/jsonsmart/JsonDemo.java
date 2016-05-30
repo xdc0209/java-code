@@ -3,14 +3,14 @@ package com.xdc.basic.api.json.jsonsmart;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONStyle;
 import net.minidev.json.JSONValue;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
-
-import org.junit.Test;
 
 /*
  * Home page: http://code.google.com/p/json-smart/

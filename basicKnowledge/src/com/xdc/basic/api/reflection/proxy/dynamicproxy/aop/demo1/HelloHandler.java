@@ -58,8 +58,8 @@ public class HelloHandler implements InvocationHandler
     public Hello bind(Hello hello)
     {
         this.hello = hello;
-        Hello helloProxy = (Hello) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass()
-                .getInterfaces(), this);
+        Hello helloProxy = (Hello) Proxy.newProxyInstance(hello.getClass().getClassLoader(),
+                hello.getClass().getInterfaces(), this);
         return helloProxy;
     }
 

@@ -12,14 +12,14 @@ public class PersonStub implements Person
 
     public PersonStub() throws Throwable
     {
-        // connect to skeleton      
+        // connect to skeleton
         socket = new Socket("127.0.0.1", 9999);
     }
 
     @Override
     public int getAge() throws Throwable
     {
-        // pass method name to skeleton      
+        // pass method name to skeleton
         ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
         outStream.writeObject("age");
         outStream.flush();
@@ -30,7 +30,7 @@ public class PersonStub implements Person
     @Override
     public String getName() throws Throwable
     {
-        // pass method name to skeleton      
+        // pass method name to skeleton
         ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
         outStream.writeObject("name");
         outStream.flush();

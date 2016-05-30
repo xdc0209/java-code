@@ -35,8 +35,8 @@ public class CallerTool
             String variableName = matcher.group(1);
             if (!urlVariablesIterator.hasNext())
             {
-                throw new IllegalArgumentException("Not enough variable values available to expand '" + variableName
-                        + "'");
+                throw new IllegalArgumentException(
+                        "Not enough variable values available to expand '" + variableName + "'");
             }
             Object variableValue = urlVariablesIterator.next();
 
@@ -66,8 +66,8 @@ public class CallerTool
         {
             if (ArrayUtils.isEmpty(args))
             {
-                throw new CallerException("Method " + methodType
-                        + " must has at least on arg for the first used as body.");
+                throw new CallerException(
+                        "Method " + methodType + " must has at least on arg for the first used as body.");
             }
 
             return args[0];
@@ -93,8 +93,8 @@ public class CallerTool
         {
             if (ArrayUtils.isEmpty(args))
             {
-                throw new CallerException("Method " + methodType
-                        + " must has at least on arg for the first used as body.");
+                throw new CallerException(
+                        "Method " + methodType + " must has at least on arg for the first used as body.");
             }
 
             // 第一个参数以后的都作为url变量

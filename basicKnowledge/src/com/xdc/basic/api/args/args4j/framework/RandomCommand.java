@@ -18,13 +18,15 @@ import org.kohsuke.args4j.spi.BooleanOptionHandler;
 
 public class RandomCommand extends AbstractCommand
 {
-    @Option(name = "-c", aliases = { "--count" }, usage = "the length of random string to create", required = true, metaVar = "<count>")
+    @Option(name = "-c", aliases = {
+            "--count" }, usage = "the length of random string to create", required = true, metaVar = "<count>")
     private int          count;
 
     @Option(name = "-m", aliases = { "--mode" }, usage = "the character mode of random", required = true)
     private RandomMode   mode;
 
-    @Option(name = "-s", aliases = { "--string" }, usage = "the string containing the set of characters to use when mode is Custom", metaVar = "<string>")
+    @Option(name = "-s", aliases = {
+            "--string" }, usage = "the string containing the set of characters to use when mode is Custom", metaVar = "<string>")
     private String       string;
 
     @Option(name = "-o", aliases = { "--output" }, usage = "the file to output", metaVar = "<file>")
@@ -33,7 +35,8 @@ public class RandomCommand extends AbstractCommand
     // using 'handler=...' allows you to specify a custom OptionHandler
     // implementation class. This allows you to bind a standard Java type
     // with a non-standard option syntax
-    @Option(name = "-M", aliases = { "--multi-line" }, usage = "if output with multi line or not", handler = BooleanOptionHandler.class)
+    @Option(name = "-M", aliases = {
+            "--multi-line" }, usage = "if output with multi line or not", handler = BooleanOptionHandler.class)
     private boolean      multiLine = false;
 
     // receives other command line parameters than options

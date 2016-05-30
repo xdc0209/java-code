@@ -68,7 +68,7 @@ public class Person implements Comparable<Object>
                 .append("smoker", smoker).toString();
     }
 
-    //Two Objects that compare equal using equals(Object) should normally also compare equal using compareTo(Object).
+    // Two Objects that compare equal using equals(Object) should normally also compare equal using compareTo(Object).
     // 先比较年龄，再比较姓名，再比较是否抽烟
     @Override
     public int compareTo(Object o)

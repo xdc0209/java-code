@@ -40,7 +40,7 @@ public class BasicKnowledge
         String str = new String(bytes);
 
         // 4. StringBuffer(同步)和StringBuilder(非同步)
-        //    如果是JDK1.5最好用StringBuilder取代StringBuffer, 除非有线程安全的要求.
+        // 如果是JDK1.5最好用StringBuilder取代StringBuffer, 除非有线程安全的要求.
         StringBuilder sb = new StringBuilder();
         sb.append("Hello");
         sb.append("World");

@@ -22,7 +22,7 @@ public class StringRegexTest
     public void testMatches()
     {
         // 注意：matches的含义是整个字符串匹配
-        // 更多信息参见 com.xdc.basic.api.regex.RegexTest.matcherFindAndMatches() 
+        // 更多信息参见 com.xdc.basic.api.regex.RegexTest.matcherFindAndMatches()
         String str = "User_001";
         System.out.println(str.matches("[a-zA-Z0-9_]+"));
     }

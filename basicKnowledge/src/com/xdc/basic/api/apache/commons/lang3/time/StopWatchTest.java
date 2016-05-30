@@ -12,9 +12,9 @@ public class StopWatchTest
          * Thus you cannot now call stop before start, resume before suspend or
          * unsplit before split. if not, it throws IllegalStateException
          * 
-         * 1. split(), suspend(), or stop() cannot be invoked twice 
-         * 2. unsplit() may only be called if the watch has been split() 
-         * 3. resume() may only be called if the watch has been suspend() 
+         * 1. split(), suspend(), or stop() cannot be invoked twice
+         * 2. unsplit() may only be called if the watch has been split()
+         * 3. resume() may only be called if the watch has been suspend()
          * 4. start() cannot be called twice without calling reset()
          */
 

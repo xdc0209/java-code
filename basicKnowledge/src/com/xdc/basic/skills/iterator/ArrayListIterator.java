@@ -17,16 +17,16 @@ public class ArrayListIterator
     {
         // 摘自：http://www.cnblogs.com/alipayhutu/archive/2012/08/11/2634073.html
         // 总结：
-        // 1. 一边遍历，一边删除: 
-        //      ArrayList            foreach  报异常ConcurrentModificationException
-        //      ArrayList            iterator 不会报错
-        //      CopyOnWriteArrayList foreach  不会报错
-        //      CopyOnWriteArrayList iterator 报异常UnsupportedOperationException
+        // 1. 一边遍历，一边删除:
+        // ArrayList.............foreach...报异常ConcurrentModificationException
+        // ArrayList.............iterator..不会报错
+        // CopyOnWriteArrayList..foreach...不会报错
+        // CopyOnWriteArrayList..iterator..报异常UnsupportedOperationException
         // 2. 一边遍历，一边增加
-        //      ArrayList            foreach  报异常ConcurrentModificationException
-        //      ArrayList            iterator 报异常ConcurrentModificationException
-        //      CopyOnWriteArrayList foreach  不会报错
-        //      CopyOnWriteArrayList iterator 不会报错
+        // ArrayList.............foreach...报异常ConcurrentModificationException
+        // ArrayList.............iterator..报异常ConcurrentModificationException
+        // CopyOnWriteArrayList..foreach...不会报错
+        // CopyOnWriteArrayList..iterator..不会报错
 
         List<String> oss = new ArrayList<String>();
         oss.add("Windows 98");

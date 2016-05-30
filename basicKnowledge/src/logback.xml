@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false" scan="true" scanPeriod="30 seconds"
+	packagingData="true">
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d | %-5p | %t | %m [ Method: %C.%M:%L ] %n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="rootAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>bin/log/logback_root.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d | %-5p | %t | %m [ Method: %C.%M:%L ] %n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>logback_root.%i.log</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>3</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>10MB</maxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<appender name="packageAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>bin/log/logback_packagelog.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d | %-5p | %t | %m [ Method: %C.%M:%L ] %n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>logback_packagelog.%i.log</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>3</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>10MB</maxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<logger name="com.xdc.basic.api.log.apache.commons.logging"
+		additivity="false" level="INFO">
+		<appender-ref ref="packageAppender" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="rootAppender" />
+		<!-- <appender-ref ref="consoleAppender" /> -->
+	</root>
+
+</configuration>
