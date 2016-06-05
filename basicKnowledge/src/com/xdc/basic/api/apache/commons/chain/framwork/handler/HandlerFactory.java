@@ -75,7 +75,11 @@ public class HandlerFactory
             {
                 commands.add(clazz.newInstance());
             }
-            catch (InstantiationException | IllegalAccessException e)
+            catch (InstantiationException e)
+            {
+                log.error("Cteate Handler fail.", e);
+            }
+            catch (IllegalAccessException e)
             {
                 log.error("Cteate Handler fail.", e);
             }

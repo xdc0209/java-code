@@ -38,7 +38,9 @@ package org.mozilla.intl.chardet;
 
 public class nsDetector extends nsPSMDetector implements nsICharsetDetector
 {
-    private nsICharsetDetectionObserver mObserver = null;
+    private nsICharsetDetectionObserver mObserver       = null;
+
+    private String                      detectedCharset = null;
 
     public nsDetector()
     {
@@ -75,6 +77,8 @@ public class nsDetector extends nsPSMDetector implements nsICharsetDetector
 
     public void Report(String charset)
     {
+        this.detectedCharset = charset;
+
         if (mObserver != null)
         {
             mObserver.Notify(charset);
@@ -91,5 +95,10 @@ public class nsDetector extends nsPSMDetector implements nsICharsetDetector
             }
         }
         return true;
+    }
+
+    public String getDetectedCharset()
+    {
+        return this.detectedCharset;
     }
 }

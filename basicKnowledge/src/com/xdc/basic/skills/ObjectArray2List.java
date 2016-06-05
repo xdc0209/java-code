@@ -17,9 +17,9 @@ public class ObjectArray2List
     {
         // 对象数组-->列表
         String[] strArray = new String[] { "z", "a", "C" };
-        List<String> list = Arrays.asList(strArray); // 列表不支持修改操作
+        List<String> list = Arrays.asList(strArray); // 列表不支持增加、删除操作，支持修改操作，但是修改会反映到原始数组
         // 也可以直接这样写 List<String> list = Arrays.asList("z", "a", "C");
-        List<String> list2 = new ArrayList<String>(Arrays.asList(strArray)); // 推荐,列表支持修改操作
+        List<String> list2 = new ArrayList<String>(Arrays.asList(strArray)); // 推荐，列表支持修改操作
 
         // 列表-->对象数组
         ArrayList<String> sl = new ArrayList<String>();

@@ -1,3 +1,10 @@
+======================================================================
+摘自：http://www.open-open.com/lib/view/open1373879020591.html
+Mozilla在很多年前就做了一个非常优秀的编码检测工具，叫chardet(java版jchardet )，后来有发布了算法更加优秀的universalchardet，用于Firefox的自动编码识别。另外Apache内容抽取项目Tika的发布包tika-app-1.*.jar(自1.2及以后版本)其中打包了juniversalchardet。
+注意：如果试图识别几个字节的短文本编码，可能会出现了识别错误，这应该是算法实现本身的缺陷，但识别稍大一点文本编码，正确率则非常高，尤其较chardet要高的多。
+
+
+======================================================================
 摘自：https://github.com/albfernandez/juniversalchardet/releases
 
 
