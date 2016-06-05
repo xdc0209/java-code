@@ -1,15 +1,18 @@
 package com.xdc.basic.tools.file2string;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -23,13 +26,33 @@ public class File2String
 {
     public static void main(String[] args) throws IOException
     {
-        int lineLength = 1800;
-        String fromFileName = "pictures.rar";
-        String toFileName = fromFileName + ".txt";
-
-        String prefix = DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMddHHmmss");
-
         String curPath = GetPath.getRelativePath();
+        Collection<File> compressedFiles = FileUtils.listFiles(new File(curPath), new String[] { "rar", "zip" }, false);
+        for (File compressedFile : compressedFiles)
+        {
+            String fromFileName = compressedFile.getName();
+            String toFileName = fromFileName + ".txt";
+
+            file2String(fromFileName, toFileName);
+        }
+    }
+
+    private static void file2String(String fromFileName, String toFileName) throws IOException
+    {
+        String curPath = GetPath.getRelativePath();
+
+        File toFile = new File(curPath + toFileName);
+        if (toFile.exists())
+        {
+            System.out.println("fromFileName: " + fromFileName);
+            System.out.println("toFileName:   " + toFileName);
+            System.out.println(String.format("File [%s] exists, skip to file2String.", toFileName));
+            System.out.println();
+            return;
+        }
+
+        int lineLength = 1800;
+        String prefix = DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMddHHmmss");
 
         // 读取文件
         InputStream fromFileContentInputStream = new FileInputStream(curPath + fromFileName);
@@ -67,5 +90,6 @@ public class File2String
 
         System.out.println("fromFileName: " + fromFileName);
         System.out.println("toFileName:   " + toFileName);
+        System.out.println();
     }
 }

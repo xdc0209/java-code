@@ -220,7 +220,7 @@ public class FileCharsetUtil
         for (File file : txtFiles)
         {
             String detectedCharset = FileCharsetUtil.detectFileCharset(file);
-            System.out.println(String.format("File: %-120s FileCharset: %-20s", file, detectedCharset));
+            System.out.println(String.format("File: %-80s FileCharset: %-20s", file, detectedCharset));
             if (StringUtils.isBlank(detectedCharset))
             {
                 String[] probableCharsets = FileCharsetUtil.detectFileProbableCharsetsByJchardet(file);
