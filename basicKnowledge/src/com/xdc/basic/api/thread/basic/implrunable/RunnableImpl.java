@@ -18,22 +18,4 @@ class RunnableImpl implements Runnable
         }
 
     }
-
-    // 这个应该是规范的写法，如果不这么写，出错很难发现
-    // public void run()
-    // {
-    // try
-    // {
-    // // dosomething
-    // }
-    // catch (Throwable e)
-    // {
-    // // log and throw
-    // throw e;
-    // }
-    // finally
-    // {
-    // // do some cleaning, close io and so on
-    // }
-    // }
 }
