@@ -1,0 +1,17 @@
+原文:如何通过覆盖JRE中的类来查看端口是谁起的
+
+背景
+红线要求，所有端口要划归相应平面，不能绑定在0.0.0.0上。
+大部分情况下，通过查找端口号，可以找到相应的配置。但有些场景下，有些端口不是在配置方件中，甚至是随机端口，隐藏在三方件中。
+这时可以尝试通过本文档中的方法获取到启动端口的线程堆栈，也就确定了谁打开了这个端口。
+
+原理：
+1、几乎所有的监听端口，在JVM底层，都是通过ServerSocket类来实现端口绑定的；
+2、java的类加载，是分层加载。所有JRE基础类，均加载在bootdelegation中；
+3、在java启动参数中，-Xbootclasspath/p:，会让所有的classloader在加载前，先在这个jar里找class，它会在顶层的classloader bootdelegation里，同时在bootdelegation里，查找顺序排在前面；
+4、新建一个java工程，将JRE中ServerSocket.java（在%JAVA_HOME%\src.zip\java\net\ServerSocket.java中）复制进来，在里面加一些日志(printStack)，进而可以获取到启动端口的线程堆栈。将工程打成JavaMock.jar包。
+5、利用JVM参数，使修改后的ServerSocket类覆盖JRE的。执行命令：java -Xbootclasspath/p:JavaMock.jar mainClass
+
+PS:
+注意jre版本，最好取同一版本的ServerSocket.java文件，以免引入不必要的错误。
+
