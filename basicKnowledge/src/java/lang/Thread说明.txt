@@ -1,0 +1,18 @@
+原文:如何通过覆盖JRE中的类来查看线程是谁起的
+
+背景
+编码规范要求，线程都要名字。如果启动线程没有指定名称的话，那么默认的名字为Thread-数字，如Thread-23。
+当我们通过jstack获取到线程堆栈后，看到了一些默认名称的线程，通过堆栈信息，我们发现我们不知道这个线程是谁启动的，那么怎么才能知道，这个线程谁起的呢？
+这时可以尝试通过本文档中的方法获取到启动线程的线程堆栈，也就确定了谁打开了这个线程。
+
+原理：
+1、java中启动线程都是通过Thread类实现的；
+2、java的类加载，是分层加载。所有JRE基础类，均加载在bootdelegation中；
+3、在java启动参数中，-Xbootclasspath/p:，会让所有的classloader在加载前，先在这个jar里找class，它会在顶层的classloader bootdelegation里，同时在bootdelegation里，查找顺序排在前面；
+4、新建一个java工程，将JRE中Thread.java（在%JAVA_HOME%\src.zip\java\lang\Thread.java中）复制进来，在里面加一些日志(printStack)，进而可以获取到启动线程的线程堆栈。将工程打成JavaMock.jar包。
+5、利用JVM参数，使修改后的Thread类覆盖JRE的。执行命令：java -Xbootclasspath/p:JavaMock.jar mainClass
+
+PS:
+注意jre版本，最好取同一版本的Thread.java文件，以免引入不必要的错误。
+注意因为Thread类中引用了JDK中的限制的api，要在Eclipse中设置一下，否则无法编译。窗口-->首选项-->Java-->编译器-->错误/警告-->建议不用使用和限制使用的API-->里面的所有项改为忽略。
+
