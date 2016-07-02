@@ -4,9 +4,7 @@ import java.io.File;
 import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.apache.commons.io.filefilter.FileFilterUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.slf4j.Logger;
@@ -28,9 +26,8 @@ public class Main
     {
         String taskDir = GetPath.connect(GetPath.getAbsolutePath(), "tasks");
 
-        // 列出任务目录的所有文件
-        Collection<File> files = FileUtils.listFiles(new File(taskDir), TrueFileFilter.INSTANCE,
-                FalseFileFilter.INSTANCE);
+        // 列出任务目录的所有文件, 注意java的api设计的比较怪异，扩展名明前不能加点。
+        Collection<File> files = FileUtils.listFiles(new File(taskDir), new String[] { "txt" }, true);
 
         for (File file : files)
         {
@@ -50,7 +47,8 @@ public class Main
         TaskDirMonitor TaskDirMonitor = new TaskDirMonitor();
 
         String taskDir = GetPath.connect(GetPath.getAbsolutePath(), "tasks");
-        FileAlterationObserver taskDirObserver = new FileAlterationObserver(taskDir, FileFilterUtils.fileFileFilter());
+        FileAlterationObserver taskDirObserver = new FileAlterationObserver(taskDir,
+                FileFilterUtils.suffixFileFilter(".txt"));
         taskDirObserver.addListener(TaskDirMonitor);
 
         // 配置Monitor，第一个参数单位是毫秒，是监听的间隔；第二个参数就是绑定我们之前的观察对象。

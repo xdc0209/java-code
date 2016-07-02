@@ -1,12 +1,10 @@
-#StartTime ¿ÉÑ¡, ½Å±¾¿ªÊ¼ÔËÐÐµÄÊ±¼ä, ¸ñÊ½ÎªHH:MM (Default: ¿Õ,±íÊ¾Á¢¼´Æô¶¯, ²Î¿¼×¢2)
-#StopTime ¿ÉÑ¡, ½Å±¾½áÊøÔËÐÐµÄÊ±¼ä, ¸ñÊ½ÎªHH:MM (Default: ¿Õ,±íÊ¾Ã»ÓÐ½áÊøÊ±¼ä, ²Î¿¼×¢2)
-#SleepTime ¿ÉÑ¡, Ö´ÐÐÖÜÆÚ,µ¥Î»: ·ÖÖÓ (Default: 3)
+#StartTime å¯é€‰, è„šæœ¬å¼€å§‹è¿è¡Œçš„æ—¶é—´, æ ¼å¼ä¸ºHH:MM (Default: ç©º,è¡¨ç¤ºç«‹å³å¯åŠ¨, å‚è€ƒæ³¨2)
+#StopTime å¯é€‰, è„šæœ¬ç»“æŸè¿è¡Œçš„æ—¶é—´, æ ¼å¼ä¸ºHH:MM (Default: ç©º,è¡¨ç¤ºæ²¡æœ‰ç»“æŸæ—¶é—´, å‚è€ƒæ³¨2)
+#SleepTime å¯é€‰, æ‰§è¡Œå‘¨æœŸ,å•ä½: åˆ†é’Ÿ (Default: 3)
 
-# ×¢2: ¹ØÓÚStartTimeºÍStopTime:
-# ¸ñÊ½¾ùÎª: HH:MM 24Ð¡Ê±ÖÆ
-# Éèµ±Ç°Ê±¼äÎªnow
-# Èç¹û now <= StartTime ÔòÔÚµ±ÌìµÄ StartTime¿ªÊ¼Ö´ÐÐ
-# Èç¹û now > StartTime ÔòÔÚµÚ¶þÌìµÄStartTime¿ªÊ¼Ö´ÐÐ
-# Èç¹ûStopTime < StartTime, Ôò±íÊ¾ÊÇ´ÓStartTime¿ªÊ¼µ½µÚ¶þÌìµÄStopTime
-# ÀýÈç StartTime = 20:00, StopTime = 8:00, Ôò±íÊ¾´ÓÍíÉÏµÄ20:00µ½µÚ¶þÌìÔçÉÏµÄ8:00
+# æ³¨1: å…³äºŽStartTimeå’ŒStopTime:
+# æ ¼å¼å‡ä¸º: HH:MM 24å°æ—¶åˆ¶
+
+# æ³¨2: å¦‚æžœStopTime < StartTime, åˆ™è¡¨ç¤ºæ˜¯ä»ŽStartTimeå¼€å§‹åˆ°ç¬¬äºŒå¤©çš„StopTime
+# ä¾‹å¦‚ StartTime = 20:00, StopTime = 8:00, åˆ™è¡¨ç¤ºä»Žæ™šä¸Šçš„20:00åˆ°ç¬¬äºŒå¤©æ—©ä¸Šçš„8:00
 

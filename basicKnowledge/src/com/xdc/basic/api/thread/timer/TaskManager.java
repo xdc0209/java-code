@@ -27,18 +27,20 @@ public class TaskManager
 
     public static void addTask(File file) throws IOException, ParseException
     {
-        log.info("Add task: task=[{}].", file);
+        log.info("Add task start. file=[{}].", file.getAbsolutePath());
 
         TaskFile taskFile = parseTaskFile(file);
         Task task = new Task(exec, taskFile);
         task.start();
 
         tasks.put(file, task);
+
+        log.info("Add task finish. file=[{}].", file.getAbsolutePath());
     }
 
     public static void removeTask(File file)
     {
-        log.info("Remove task: task=[{}].", file);
+        log.info("Remove task start. file=[{}].", file.getAbsolutePath());
 
         Task task = tasks.get(file);
         if (task != null)
@@ -47,14 +49,18 @@ public class TaskManager
         }
 
         tasks.remove(file);
+
+        log.info("Remove task finish. file=[{}].", file.getAbsolutePath());
     }
 
     public static void updateTask(File file) throws IOException, ParseException
     {
-        log.info("Update task: task=[{}].", file);
+        log.info("Update task start. file=[{}].", file.getAbsolutePath());
 
         removeTask(file);
         addTask(file);
+
+        log.info("Update task finish. file=[{}].", file.getAbsolutePath());
     }
 
     private static TaskFile parseTaskFile(File file) throws IOException

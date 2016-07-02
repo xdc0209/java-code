@@ -1,7 +1,7 @@
 {
     "name": "task4",
-    "startTime": "",
-    "stopTime": "",
+    "startTime": "08:30",
+    "stopTime": "09:50",
     "sleepTime": 10,
     "scriptFile": "ping -c 1 127.0.0.1"
 }
