@@ -8,15 +8,45 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Person implements Comparable<Person>
 {
-    String  name;
-    int     age;
-    boolean smoker;
+    private String  name;
+    private int     age;
+    private boolean smoker;
 
     public Person(String name, int age, boolean smoker)
     {
         super();
         this.name = name;
         this.age = age;
+        this.smoker = smoker;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public int getAge()
+    {
+        return age;
+    }
+
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+
+    public boolean isSmoker()
+    {
+        return smoker;
+    }
+
+    public void setSmoker(boolean smoker)
+    {
         this.smoker = smoker;
     }
 
