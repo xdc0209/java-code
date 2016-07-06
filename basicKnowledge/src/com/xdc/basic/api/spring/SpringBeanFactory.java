@@ -1,4 +1,4 @@
-package com.xdc.basic.api.hibernate.orm3.spring.framwaork.core;
+package com.xdc.basic.api.spring;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,9 @@ public class SpringBeanFactory
         {
             SpringBeanFactory.init();
         }
+
+        // 两种写法，都可以
+        // return applicationContext.getBean(name, clazz);
 
         return (T) applicationContext.getBean(name);
     }
