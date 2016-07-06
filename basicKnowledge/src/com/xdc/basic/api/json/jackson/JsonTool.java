@@ -18,6 +18,9 @@ public class JsonTool
     static
     {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        // 设置此参数后，Java对象转换为的Json字符串带有类型信息。对于Java对象成员包含Object类型时，Json字符串转换为Java对象转换时，Object类型对应的字段能还原当时对应的类。不指定的话，默认Object类型的将转换为LinkedHashMap。
+        // mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.OBJECT_AND_NON_CONCRETE, JsonTypeInfo.As.PROPERTY);
     }
 
     public static void main(String[] args)
