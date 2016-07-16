@@ -1,8 +1,8 @@
-package com.xdc.basic.api.rmi.sbus.core;
+package com.xdc.basic.api.rmi.sbus.message;
 
 import java.io.Serializable;
 
-public class InvokeResult implements Serializable
+public class SbusInvokeResult implements Serializable
 {
     private static final long serialVersionUID = -377150813534937429L;
 
@@ -13,19 +13,19 @@ public class InvokeResult implements Serializable
 
     private Throwable         throwable;
 
-    public InvokeResult()
+    public SbusInvokeResult()
     {
         super();
     }
 
-    public InvokeResult(String id, Object result)
+    public SbusInvokeResult(String id, Object result)
     {
         super();
         this.id = id;
         this.result = result;
     }
 
-    public InvokeResult(String id, Throwable throwable)
+    public SbusInvokeResult(String id, Throwable throwable)
     {
         super();
         this.id = id;

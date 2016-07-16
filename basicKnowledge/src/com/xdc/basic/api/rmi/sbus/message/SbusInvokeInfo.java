@@ -1,25 +1,30 @@
-package com.xdc.basic.api.rmi.sbus.core;
+package com.xdc.basic.api.rmi.sbus.message;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
-public class InvokeInfo implements Serializable
+public class SbusInvokeInfo implements Serializable
 {
     private static final long serialVersionUID = 1712593749778467036L;
 
     // 消息id，用于消息跟踪。在调用信息（InvokeInfo）中取出，然后设置到调用结果（InvokeResult）中。
     private String            id               = UUID.randomUUID().toString();
 
+    /**
+     * TODO 待完善
+     * 因为java.lang.reflect.Method实现序列化接口，所以定义此类
+     * 因为java.lang.reflect.Method未定义空参数的构造器，无法通过json转化
+     */
     private InvokeMethod      invokeMethod;
 
     private Object[]          invokeArgs;
 
-    public InvokeInfo()
+    public SbusInvokeInfo()
     {
     }
 
-    public InvokeInfo(Method method, Object[] args)
+    public SbusInvokeInfo(Method method, Object[] args)
     {
         this.invokeMethod = new InvokeMethod(method.getDeclaringClass(), method.getReturnType(), method.getName(),
                 method.getParameterTypes());
