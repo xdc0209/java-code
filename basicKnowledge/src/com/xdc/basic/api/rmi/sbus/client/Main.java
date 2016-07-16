@@ -13,7 +13,6 @@ import com.xdc.basic.api.rmi.sbus.transport.socket.SocketClient;
 
 public class Main
 {
-
     private static Logger log = LoggerFactory.getLogger(SbusServer.class);
 
     public static void main(String[] args) throws Throwable

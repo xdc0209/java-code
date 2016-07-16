@@ -1,10 +1,9 @@
 package com.xdc.basic.api.rmi.sbus.client;
 
-import org.apache.commons.lang3.SerializationUtils;
-
 import com.xdc.basic.api.rmi.sbus.message.SbusInvokeInfo;
 import com.xdc.basic.api.rmi.sbus.message.SbusInvokeResult;
 import com.xdc.basic.api.rmi.sbus.transport.MessageClient;
+import com.xdc.basic.api.rmi.sbus.util.SerializationUtil;
 
 public class SbusClient
 {
@@ -18,11 +17,11 @@ public class SbusClient
 
     public SbusInvokeResult invoke(SbusInvokeInfo invokeInfo) throws Exception
     {
-        byte[] invokeInfoBytes = SerializationUtils.serialize(invokeInfo);
+        byte[] invokeInfoBytes = SerializationUtil.serialize(invokeInfo);
 
         byte[] invokeResultBytes = messageClient.send(invokeInfoBytes);
 
-        SbusInvokeResult invokeResult = (SbusInvokeResult) SerializationUtils.deserialize(invokeResultBytes);
+        SbusInvokeResult invokeResult = (SbusInvokeResult) SerializationUtil.deserialize(invokeResultBytes);
         return invokeResult;
     }
 }

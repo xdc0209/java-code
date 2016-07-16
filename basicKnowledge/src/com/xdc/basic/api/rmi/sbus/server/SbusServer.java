@@ -1,6 +1,5 @@
 package com.xdc.basic.api.rmi.sbus.server;
 
-import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,6 +7,7 @@ import com.xdc.basic.api.rmi.sbus.message.SbusException;
 import com.xdc.basic.api.rmi.sbus.message.SbusInvokeInfo;
 import com.xdc.basic.api.rmi.sbus.message.SbusInvokeResult;
 import com.xdc.basic.api.rmi.sbus.transport.MessageListener;
+import com.xdc.basic.api.rmi.sbus.util.SerializationUtil;
 
 public class SbusServer implements MessageListener
 {
@@ -19,13 +19,13 @@ public class SbusServer implements MessageListener
         SbusInvokeInfo invokeInfo = null;
         try
         {
-            invokeInfo = (SbusInvokeInfo) SerializationUtils.deserialize(invokeInfoBytes);
+            invokeInfo = (SbusInvokeInfo) SerializationUtil.deserialize(invokeInfoBytes);
         }
         catch (Throwable e)
         {
             log.error("Deserialize invoke info bytes failed.", e);
             SbusInvokeResult invokeResult = new SbusInvokeResult("deserialize_invoke_info_bytes_failed", e);
-            byte[] invokeResultBytes = SerializationUtils.serialize(invokeResult);
+            byte[] invokeResultBytes = SerializationUtil.serialize(invokeResult);
             return invokeResultBytes;
         }
 
@@ -39,7 +39,7 @@ public class SbusServer implements MessageListener
                 SbusException sbusException = new SbusException(
                         String.format("Service [ %s ] not found.", invokeInfo.getInvokeMethod().getClazz()));
                 invokeResult = new SbusInvokeResult(invokeInfo.getId(), sbusException);
-                byte[] invokeResultBytes = SerializationUtils.serialize(invokeResult);
+                byte[] invokeResultBytes = SerializationUtil.serialize(invokeResult);
                 return invokeResultBytes;
             }
 
@@ -48,20 +48,20 @@ public class SbusServer implements MessageListener
         catch (Throwable e)
         {
             invokeResult = new SbusInvokeResult(invokeInfo.getId(), e);
-            byte[] invokeResultBytes = SerializationUtils.serialize(invokeResult);
+            byte[] invokeResultBytes = SerializationUtil.serialize(invokeResult);
             return invokeResultBytes;
         }
 
         // 序列化调用结果
         try
         {
-            byte[] invokeResultBytes = SerializationUtils.serialize(invokeResult);
+            byte[] invokeResultBytes = SerializationUtil.serialize(invokeResult);
             return invokeResultBytes;
         }
         catch (Throwable e)
         {
             invokeResult = new SbusInvokeResult(invokeInfo.getId(), e);
-            byte[] invokeResultBytes = SerializationUtils.serialize(invokeResult);
+            byte[] invokeResultBytes = SerializationUtil.serialize(invokeResult);
             return invokeResultBytes;
         }
     }
