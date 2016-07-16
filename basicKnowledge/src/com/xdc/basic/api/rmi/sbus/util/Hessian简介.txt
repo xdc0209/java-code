@@ -1,0 +1,14 @@
+摘自：http://my.oschina.net/u/863258/blog/413148
+Hessian是由Caocho公司发布的一个轻量级的二进制协议远程调用实现方案，Hessian也是基于HTTP协议的，其工作原理如下：
+(1).客户端：
+a.发送远程调用请求：
+客户端程序—>发送远程调用请求—>Hessian客户端拦截器—>封装远程调用请求—>Hessian代理—>通过HTTP协议发送远程请求代理到服务端。
+b.接收远程调用响应：
+远程调用结果—>HTTP响应—>客户端。
+
+(2).服务端：
+a.接收远程调用请求：
+远程调用HTTP请求—>HessianServiceExporter接收请求—>HessianExporter将远程调用对象封装为HessianSkeleton框架—> HessianSkeleton处理远程调用请求。
+b.返回远程调用响应：
+HessianSkeleton封装远程调用处理结果—>HTTP响应—>客户端。
+
