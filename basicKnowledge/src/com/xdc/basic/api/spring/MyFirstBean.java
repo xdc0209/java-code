@@ -27,7 +27,7 @@ public class MyFirstBean
 
     public void setProperty1(String property1)
     {
-        System.out.println("MyFirstBean.setProperty1()");
+        System.out.println("MyFirstBean.setProperty1(" + property1 + ")");
         this.property1 = property1;
     }
 
@@ -39,7 +39,7 @@ public class MyFirstBean
 
     public void setProperty2(String property2)
     {
-        System.out.println("MyFirstBean.setProperty2()");
+        System.out.println("MyFirstBean.setProperty2(" + property2 + ")");
         this.property2 = property2;
     }
 

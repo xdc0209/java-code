@@ -9,9 +9,16 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<bean id="myFirstBean" class="com.xdc.basic.api.spring.MyFirstBean"
-		factory-method="getInstance" init-method="init" destroy-method="destroy">
+		factory-method="getInstance" init-method="init" destroy-method="destroy"
+		depends-on="mySecondBean">
 		<property name="property1" value="value1" />
 		<property name="property2" value="value2" />
+	</bean>
+
+	<bean id="mySecondBean" class="com.xdc.basic.api.spring.MySecondBean"
+		factory-method="getInstance" init-method="init" destroy-method="destroy">
+		<property name="property3" value="value3" />
+		<property name="property4" value="value4" />
 	</bean>
 
 </beans>
