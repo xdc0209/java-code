@@ -1,0 +1,7 @@
+Mybatis简介
+IBatis后改名为MyBatis, 官方给出了详细的中文示例文档,比较容易上手. 官方网站: http://www.mybatis.org
+
+数据库操作之前接触过JDBC,apache common dbutils, Hibernate.
+JDBC最基础的, 然后dbutils对JDBC做了些封装, Hibernate中关系映射已经可以脱离SQL使用HQL操作了. MyBatis则处于dbutils和Hibernate之间, 相对dbutils封装的更完整, 相对于Hibernate则更灵活.
+与Hibernate的区别在于, 它的Transaction是默认开启的, 也就是必需在修改结束后使用commit或rollback(默认).
+
