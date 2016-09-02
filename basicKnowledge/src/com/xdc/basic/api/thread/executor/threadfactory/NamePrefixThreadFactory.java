@@ -9,16 +9,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class NamePrefixThreadFactory implements ThreadFactory
 {
     // 记录线程的个数
-    private static final AtomicInteger poolNumber   = new AtomicInteger(1);
+    private static final AtomicInteger           poolNumber                     = new AtomicInteger(1);
 
     // 线程组
-    private final ThreadGroup          group;
+    private final ThreadGroup                    group;
 
     // 记录线程池中线程的个数
-    private final AtomicInteger        threadNumber = new AtomicInteger(1);
+    private final AtomicInteger                  threadNumber                   = new AtomicInteger(1);
 
     // 线程名称前缀
-    private final String               namePrefix;
+    private final String                         namePrefix;
+
+    private final ThreadUncaughtExceptionHandler threadUncaughtExceptionHandler = new ThreadUncaughtExceptionHandler();
 
     public NamePrefixThreadFactory(String name)
     {
@@ -33,7 +35,7 @@ public class NamePrefixThreadFactory implements ThreadFactory
     {
         Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
 
-        t.setUncaughtExceptionHandler(new ThreadUncaughtExceptionHandler());
+        t.setUncaughtExceptionHandler(threadUncaughtExceptionHandler);
 
         if (t.isDaemon())
         {
