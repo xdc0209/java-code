@@ -81,10 +81,9 @@ public class Server
         // 支持的协议
         String[] supportedProtocols = serverSocket.getSupportedProtocols();
 
-        // 安全的协议
+        // 安全的协议: SSLv3、TLSv1已被公认为不安全的协议，禁止使用
         List<String> safeProtocols = new ArrayList<String>();
         safeProtocols.add("SSLv2Hello"); // 为了兼容性服务端需保留此协议，目前此协议还未发现漏洞
-        safeProtocols.add("TLSv1");
         safeProtocols.add("TLSv1.1");
         safeProtocols.add("TLSv1.2");
 
