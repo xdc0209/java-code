@@ -43,7 +43,9 @@ class MyThread extends Thread
     @Override
     public void run()
     {
+        System.err.println("MyThread start.");
         double i = 12 / 0; // 抛出异常的地方
         System.out.println(i);
+        System.err.println("MyThread finish.");
     }
 }
