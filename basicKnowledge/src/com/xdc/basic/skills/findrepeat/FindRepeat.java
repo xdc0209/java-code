@@ -45,8 +45,8 @@ public class FindRepeat
 
             if (list.size() > 1)
             {
-                System.out.println(line);
-                System.out.println(list);
+                System.out.println("Content: [" + line + "]");
+                System.out.println("Line: " + list);
                 System.out.println();
             }
 
