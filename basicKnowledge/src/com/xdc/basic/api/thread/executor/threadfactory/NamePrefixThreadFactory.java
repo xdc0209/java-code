@@ -8,19 +8,20 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class NamePrefixThreadFactory implements ThreadFactory
 {
+    // 未捕获的异常处理类：当run方法中出现异常且未捕获而导致线程死亡时，进行兜底处理，处理方式就是简单的打印日志，便于定位问题。
+    private static final ThreadUncaughtExceptionHandler threadUncaughtExceptionHandler = new ThreadUncaughtExceptionHandler();
+
     // 记录线程的个数
-    private static final AtomicInteger           poolNumber                     = new AtomicInteger(1);
+    private static final AtomicInteger                  poolNumber                     = new AtomicInteger(1);
 
     // 线程组
-    private final ThreadGroup                    group;
+    private final ThreadGroup                           group;
 
     // 记录线程池中线程的个数
-    private final AtomicInteger                  threadNumber                   = new AtomicInteger(1);
+    private final AtomicInteger                         threadNumber                   = new AtomicInteger(1);
 
     // 线程名称前缀
-    private final String                         namePrefix;
-
-    private final ThreadUncaughtExceptionHandler threadUncaughtExceptionHandler = new ThreadUncaughtExceptionHandler();
+    private final String                                namePrefix;
 
     public NamePrefixThreadFactory(String name)
     {
