@@ -31,7 +31,6 @@ public class SbusSkeleton<T>
         try
         {
             method = clazz.getMethod(name, parameterTypes);
-
         }
         catch (NoSuchMethodException e)
         {
