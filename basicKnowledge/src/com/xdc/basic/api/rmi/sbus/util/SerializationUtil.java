@@ -69,7 +69,7 @@ public class SerializationUtil
     {
         if (objectData == null)
         {
-            throw new IllegalArgumentException("The byte[] must not be null");
+            throw new IllegalArgumentException("The byte[] must not be null.");
         }
 
         ByteArrayInputStream is = new ByteArrayInputStream(objectData);
