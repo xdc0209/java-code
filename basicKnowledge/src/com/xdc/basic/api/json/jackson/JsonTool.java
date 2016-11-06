@@ -2,6 +2,7 @@ package com.xdc.basic.api.json.jackson;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -27,35 +28,35 @@ public class JsonTool
     {
         // ----------------------------------------------------------
         // json object ----------------------------------------------
-        String jsonString = "{\"name\":{\"first\":\"Joe\",\"last\":\"Sixpack\"},\"gender\":\"MALE\",\"verified\":false,\"userImage\":\"Rm9vYmFyIQ==\"}";
+        String userString = "{\"name\":{\"first\":\"Joe\",\"last\":\"Sixpack\"},\"gender\":\"MALE\",\"verified\":false,\"userImage\":\"Rm9vYmFyIQ==\"}";
 
         // json string --> object
-        User user = JsonTool.parse(jsonString, User.class);
-        System.out.println(user);
+        User userObject = JsonTool.fromJsonString(userString, User.class);
+        System.out.println(userObject);
 
-        Map<String, Object> parseToMap = JsonTool.parseToMap(jsonString);
-        System.out.println(parseToMap);
+        Map<String, Object> userMap = JsonTool.fromJsonStringToMap(userString);
+        System.out.println(userMap);
 
         // object --> json string
-        String jsonString2 = JsonTool.toJSONString(user);
-        System.out.println(jsonString2);
+        String userString2 = JsonTool.toJsonString(userObject);
+        System.out.println(userString2);
 
         // ----------------------------------------------------------
         // json array -----------------------------------------------
         ArrayList<User> users = new ArrayList<User>();
-        users.add(user);
-        users.add(user);
+        users.add(userObject);
+        users.add(userObject);
 
         // array --> json string
-        String jsonString3 = JsonTool.toJSONString(users);
-        System.out.println(jsonString3);
+        String usersString = JsonTool.toJsonString(users);
+        System.out.println(usersString);
 
         // json string --> array
-        User[] parsedUsers = JsonTool.parse(jsonString3, User[].class);
-        System.out.println(parsedUsers);
+        User[] usersArray = JsonTool.fromJsonString(usersString, User[].class);
+        System.out.println(Arrays.toString(usersArray));
     }
 
-    public static byte[] toJSONBytes(Object o)
+    public static byte[] toJsonBytes(Object o)
     {
         byte[] bytes = null;
         try
@@ -69,7 +70,7 @@ public class JsonTool
         return bytes;
     }
 
-    public static <T> T parse(byte[] bytes, Class<T> clazz)
+    public static <T> T fromJsonBytes(byte[] bytes, Class<T> clazz)
     {
         T t = null;
         try
@@ -91,7 +92,7 @@ public class JsonTool
         return t;
     }
 
-    public static String toJSONString(Object o)
+    public static String toJsonString(Object o)
     {
         String s = null;
         try
@@ -108,7 +109,7 @@ public class JsonTool
         return s;
     }
 
-    public static <T> T parse(String s, Class<T> clazz)
+    public static <T> T fromJsonString(String s, Class<T> clazz)
     {
         T t = null;
         try
@@ -131,12 +132,12 @@ public class JsonTool
     }
 
     @SuppressWarnings("unchecked")
-    public static Map<String, Object> parseToMap(String s)
+    public static Map<String, Object> fromJsonStringToMap(String s)
     {
-        Map<String, Object> retult = null;
+        Map<String, Object> map = null;
         try
         {
-            retult = mapper.readValue(s, Map.class);
+            map = mapper.readValue(s, Map.class);
         }
         catch (JsonParseException e)
         {
@@ -150,14 +151,14 @@ public class JsonTool
         {
             e.printStackTrace();
         }
-        return retult;
+        return map;
     }
 
-    public static <T> List<T> parseToArray(String s, Class<T> clazz)
+    public static <T> List<T> fromJsonStringToArray(String s, Class<T> clazz)
     {
         // TODO 待研究
-        // List<T> result = mapper.readValue(s, TypeFactory.collectionType(ArrayList.class, clazz));
-        // return result;
+        // List<T> list = mapper.readValue(s, TypeFactory.collectionType(ArrayList.class, clazz));
+        // return list;
         return null;
     }
 }

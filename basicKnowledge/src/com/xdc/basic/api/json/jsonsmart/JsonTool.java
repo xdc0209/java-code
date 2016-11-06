@@ -1,6 +1,7 @@
 package com.xdc.basic.api.json.jsonsmart;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,16 +25,16 @@ public class JsonTool
         student.setGoodFriends(goodFriends);
 
         // object --> json string
-        String studentString = JsonTool.toJSONString(student);
+        String studentString = JsonTool.toJsonString(student);
         System.out.println(studentString);
 
         // json string --> object
-        Student parsedStudent = JsonTool.parse(studentString, Student.class);
-        System.out.println(parsedStudent);
+        Student studentObject = JsonTool.fromJsonString(studentString, Student.class);
+        System.out.println(studentObject);
 
         // json string --> object
-        Map<String, Object> parseToMap = JsonTool.parseToMap(studentString);
-        System.out.println(parseToMap);
+        Map<String, Object> studentMap = JsonTool.fromJsonStringToMap(studentString);
+        System.out.println(studentMap);
 
         // ----------------------------------------------------------
         // json array -----------------------------------------------
@@ -42,55 +43,55 @@ public class JsonTool
         students.add(student);
 
         // array --> json string
-        String studentsString = JsonTool.toJSONString(students);
+        String studentsString = JsonTool.toJsonString(students);
         System.out.println(studentsString);
 
         // json string --> array
-        List<Student> parsedArray = JsonTool.parseToArray(studentsString, Student.class);
-        System.out.println(parsedArray);
+        List<Student> studentsList = JsonTool.fromJsonStringToList(studentsString, Student.class);
+        System.out.println(studentsList);
 
         // json string --> array
-        Student[] parsedStudents = JsonTool.parse(studentsString, Student[].class);
-        System.out.println(parsedStudents);
+        Student[] studentsArray = JsonTool.fromJsonString(studentsString, Student[].class);
+        System.out.println(Arrays.toString(studentsArray));
     }
 
-    public static String toJSONString(Object o)
+    public static String toJsonString(Object o)
     {
         return JSONValue.toJSONString(o);
     }
 
-    public static <T> T parse(String s, Class<T> clazz)
+    public static <T> T fromJsonString(String s, Class<T> clazz)
     {
         return JSONValue.parse(s, clazz);
     }
 
     @SuppressWarnings("unchecked")
-    public static Map<String, Object> parseToMap(String s)
+    public static Map<String, Object> fromJsonStringToMap(String s)
     {
-        Map<String, Object> result = null;
+        Map<String, Object> map = null;
         Object object = JSONValue.parse(s);
         if (object instanceof JSONObject)
         {
             // JSONObject继承自HashMap
-            result = (Map<String, Object>) object;
+            map = (Map<String, Object>) object;
         }
-        return result;
+        return map;
     }
 
-    public static <T> List<T> parseToArray(String s, Class<T> clazz)
+    public static <T> List<T> fromJsonStringToList(String s, Class<T> clazz)
     {
-        List<T> result = null;
+        List<T> list = null;
         Object object = JSONValue.parse(s);
         if (object instanceof JSONArray)
         {
-            result = new ArrayList<T>();
+            list = new ArrayList<T>();
             JSONArray jsonArray = (JSONArray) object;
             for (Object object2 : jsonArray)
             {
                 String string = JSONValue.toJSONString(object2);
-                result.add(JSONValue.parse(string, clazz));
+                list.add(JSONValue.parse(string, clazz));
             }
         }
-        return result;
+        return list;
     }
 }

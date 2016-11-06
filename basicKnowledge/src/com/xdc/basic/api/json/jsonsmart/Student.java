@@ -55,12 +55,6 @@ public class Student
         this.age = age;
     }
 
-    @Override
-    public String toString()
-    {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
-
     public List<String> getGoodFriends()
     {
         return goodFriends;
@@ -71,4 +65,9 @@ public class Student
         this.goodFriends = goodFriends;
     }
 
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

@@ -66,7 +66,7 @@ public class TaskManager
     private static TaskFile parseTaskFile(File file) throws IOException
     {
         String taskString = FileUtils.readFileToString(file);
-        TaskFile taskFile = JsonTool.parse(taskString, TaskFile.class);
+        TaskFile taskFile = JsonTool.fromJsonString(taskString, TaskFile.class);
         taskFile.setPath(file.getAbsolutePath());
         taskFile.checkAndTrim();
         return taskFile;

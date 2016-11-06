@@ -1,5 +1,8 @@
 package com.xdc.basic.api.json.jackson;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class User
 {
     public enum Gender
@@ -75,5 +78,11 @@ public class User
     public void setUserImage(byte[] b)
     {
         _userImage = b;
+    }
+
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

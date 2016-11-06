@@ -30,7 +30,7 @@ public class Main
         String jsonString = FileUtils.readFileToString(jsonFile, "UTF8");
 
         // 先解析成Map类型
-        Map<String, Object> map = JsonTool.parseToMap(jsonString);
+        Map<String, Object> map = JsonTool.fromJsonStringToMap(jsonString);
 
         // 生成类型定义
         List<ClassDefine> classDefines = generateClassDefines(javaPackageName, objectClassName, map);
