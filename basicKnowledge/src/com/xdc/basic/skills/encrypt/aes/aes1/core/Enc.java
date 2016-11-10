@@ -122,13 +122,14 @@ public class Enc
      * 
      * @throws EncException
      */
-    public static byte[] encodeWithPBKDF2(char[] text, byte[] salt) throws EncException
+    public static byte[] encodeWithPBKDF2(char[] text, byte[] salt, String algorithm, int keyLength, int iterationCount)
+            throws EncException
     {
         try
         {
-            PBEKeySpec keySpec = new PBEKeySpec(text, salt, 100000, 128);
+            PBEKeySpec keySpec = new PBEKeySpec(text, salt, iterationCount, keyLength);
 
-            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(algorithm);
             SecretKey secretKey = secretKeyFactory.generateSecret(keySpec);
 
             byte[] hashText = secretKey.getEncoded();

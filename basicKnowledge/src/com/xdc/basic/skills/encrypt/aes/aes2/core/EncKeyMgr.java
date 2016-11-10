@@ -30,9 +30,11 @@ public class EncKeyMgr
     /**
      * 根据秘钥因子，加密工作秘钥
      */
-    public static String encodeWorkKeyHexWithRootKeyHex(String plainWorkKeyHex, String rootKeyHex) throws EncException
+    public static String encodeWorkKeyHexWithRootKeyHex(String plainWorkKeyHex, String rootKeyHex, String algorithm,
+            int keyLength, int iterationCount) throws EncException
     {
-        byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector);
+        byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector, algorithm,
+                keyLength, iterationCount);
 
         byte[] cipherWorkKeyBytes = Enc.encode(CodecUtil.hexString2Bytes(plainWorkKeyHex), initKeyBytes);
         return CodecUtil.bytes2HexString(cipherWorkKeyBytes);
@@ -41,9 +43,11 @@ public class EncKeyMgr
     /**
      * 根据秘钥因子，解密工作秘钥
      */
-    public static String decodeWorkKeyHexWithRootKeyHex(String cipherWorkKeyHex, String rootKeyHex) throws EncException
+    public static String decodeWorkKeyHexWithRootKeyHex(String cipherWorkKeyHex, String rootKeyHex, String algorithm,
+            int keyLength, int iterationCount) throws EncException
     {
-        byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector);
+        byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector, algorithm,
+                keyLength, iterationCount);
 
         byte[] plainWorkKeyBytes = Enc.decode(CodecUtil.hexString2Bytes(cipherWorkKeyHex), initKeyBytes);
         return CodecUtil.bytes2HexString(plainWorkKeyBytes);
@@ -108,6 +112,10 @@ public class EncKeyMgr
     @Test
     public void genKey() throws EncException
     {
+        String algorithm = "PBKDF2WithHmacSHA1";
+        int keyLength = 128;
+        int iterationCount = 100000;
+
         String workKeyHex = genWorkKeyHex();
         String rootKeyHex = genRootKeyHex();
 
@@ -117,8 +125,10 @@ public class EncKeyMgr
         SystemUtil.outPrintln("rootKeyHex: " + rootKeyHex);
         SystemUtil.outPrintln("rootKeyCrc: " + rootKeyCrc);
 
-        String cipherWorkKeyHex = encodeWorkKeyHexWithRootKeyHex(workKeyHex, rootKeyHex);
-        String plainWorkKeyHex = decodeWorkKeyHexWithRootKeyHex(cipherWorkKeyHex, rootKeyHex);
+        String cipherWorkKeyHex = encodeWorkKeyHexWithRootKeyHex(workKeyHex, rootKeyHex, algorithm, keyLength,
+                iterationCount);
+        String plainWorkKeyHex = decodeWorkKeyHexWithRootKeyHex(cipherWorkKeyHex, rootKeyHex, algorithm, keyLength,
+                iterationCount);
 
         SystemUtil.outPrintln("cipherWorkKeyHex: " + cipherWorkKeyHex);
         SystemUtil.outPrintln("plainWorkKeyHex: " + plainWorkKeyHex);

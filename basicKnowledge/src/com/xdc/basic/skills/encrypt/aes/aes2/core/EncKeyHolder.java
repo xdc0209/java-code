@@ -18,21 +18,25 @@ public class EncKeyHolder
     /**
      * 缓存不同路径下的工作秘钥，避免每次都访问文件（Key:路径，value：工作秘钥）
      */
-    private static Map<String, byte[]> workKeyBytesMap   = new ConcurrentHashMap<String, byte[]>();
+    private static Map<String, byte[]> workKeyBytesMap                  = new ConcurrentHashMap<String, byte[]>();
 
-    private static final String        ENC_ROOT_KEY_CONF = "enc.root.key.conf";
-    private static final String        ENC_WORK_KEY_CONF = "enc.work.key.conf";
-    private static final String        ENC_ROOT_KEY      = "enc.root.key";
-    private static final String        ENC_ROOT_KEY_CRC  = "enc.root.key.crc";
-    private static final String        ENC_WORK_KEY      = "enc.work.key";
+    private static final String        ENC_ROOT_KEY_CONF                = "enc.root.key.conf";
+    private static final String        ENC_ROOT_KEY                     = "enc.root.key";
+    private static final String        ENC_ROOT_KEY_CRC                 = "enc.root.key.crc";
+    private static final String        ENC_ROOT_KEY_GEN_ALGORITHM       = "enc.root.key.gen.algorithm";
+    private static final String        ENC_ROOT_KEY_GEN_LENGTH          = "enc.root.key.gen.length";
+    private static final String        ENC_ROOT_KEY_GEN_ITERATION_COUNT = "enc.root.key.gen.iteration.count";
+
+    private static final String        ENC_WORK_KEY_CONF                = "enc.work.key.conf";
+    private static final String        ENC_WORK_KEY                     = "enc.work.key";
 
     // 初始向量的赋值：可以编写个临时小工具，生成如下赋值代码。（代码规则：先生成随机数，再进行随机运算）
     // 这样做的好处：
     // 1. 攻击者无法通过字符串搜索的方式查找出初始向量数组。
     // 2. 避免出现连续赋值，以随机运算替换，提升了逆向攻击难度。
-    public static final byte[]         initVector        = { (byte) 0x73, (byte) 0x5C, (byte) 0x55, (byte) 0x9E,
-            (byte) 0x60, (byte) 0x35, (byte) 0xF7, (byte) 0x1F, (byte) 0x96, (byte) 0xF9, (byte) 0x49, (byte) 0x6E,
-            (byte) 0x6F, (byte) 0x29, (byte) 0x18, (byte) 0xC7 };
+    public static final byte[]         initVector                       = { (byte) 0x73, (byte) 0x5C, (byte) 0x55,
+            (byte) 0x9E, (byte) 0x60, (byte) 0x35, (byte) 0xF7, (byte) 0x1F, (byte) 0x96, (byte) 0xF9, (byte) 0x49,
+            (byte) 0x6E, (byte) 0x6F, (byte) 0x29, (byte) 0x18, (byte) 0xC7 };
 
     static
     {
@@ -70,7 +74,12 @@ public class EncKeyHolder
                 throw new EncException("root key and root key crc not match.");
             }
 
-            byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKey.toCharArray(), EncKeyHolder.initVector);
+            String algorithm = p.getProperty(ENC_ROOT_KEY_GEN_ALGORITHM, "PBKDF2WithHmacSHA1");
+            int keyLength = Integer.valueOf(p.getProperty(ENC_ROOT_KEY_GEN_LENGTH, "128"));
+            int iterationCount = Integer.valueOf(p.getProperty(ENC_ROOT_KEY_GEN_ITERATION_COUNT, "100000"));
+
+            byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKey.toCharArray(), EncKeyHolder.initVector, algorithm,
+                    keyLength, iterationCount);
 
             return initKeyBytes;
         }
