@@ -56,10 +56,10 @@ public class Enc
             byte[] baseCipherBytes = encode(cipherSuit, plainBytes, keyBytes, ivBytes);
 
             // 1字节算法编码，16字节iv，最短16字节密文
-            byte[] cipherBytes = new byte[1 + 16 + baseCipherBytes.length];
+            byte[] cipherBytes = new byte[1 + ivBytes.length + baseCipherBytes.length];
             cipherBytes[0] = cipherSuit.toByte();
             System.arraycopy(ivBytes, 0, cipherBytes, 1, ivBytes.length);
-            System.arraycopy(baseCipherBytes, 0, cipherBytes, 1 + 16, baseCipherBytes.length);
+            System.arraycopy(baseCipherBytes, 0, cipherBytes, 1 + ivBytes.length, baseCipherBytes.length);
 
             return cipherBytes;
         }
@@ -88,8 +88,8 @@ public class Enc
             byte[] ivBytes = new byte[16];
             System.arraycopy(cipherBytes, 1, ivBytes, 0, ivBytes.length);
 
-            byte[] baseCipherBytes = new byte[cipherBytes.length - 1 - 16];
-            System.arraycopy(cipherBytes, 1 + 16, baseCipherBytes, 0, baseCipherBytes.length);
+            byte[] baseCipherBytes = new byte[cipherBytes.length - 1 - ivBytes.length];
+            System.arraycopy(cipherBytes, 1 + ivBytes.length, baseCipherBytes, 0, baseCipherBytes.length);
 
             byte[] plainBytes = decode(cipherSuit, baseCipherBytes, keyBytes, ivBytes);
             return plainBytes;
