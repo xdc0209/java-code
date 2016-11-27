@@ -20,10 +20,10 @@ public class MonitorTest
         String directory = "src";
         FileAlterationObserver observer = new FileAlterationObserver(directory, filter);
 
-        // 构造收听类 没啥好说的
+        // 构造监听类，没啥好说的
         FileListener listener = new FileListener();
 
-        // 为观察对象添加收听对象
+        // 为观察对象添加监听对象
         observer.addListener(listener);
 
         // 配置Monitor，第一个参数单位是毫秒，是监听的间隔；第二个参数就是绑定我们之前的观察对象。
