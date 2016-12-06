@@ -45,6 +45,34 @@ public class IpTool
         return port.matches(portRegExp);
     }
 
+    public static boolean isIpv4DynamicPort(String port)
+    {
+        if (StringUtils.isBlank(port))
+        {
+            return true;
+        }
+
+        int portNumber = NumberUtils.toInt(port, -1);
+        if (portNumber >= 1024 && portNumber <= 65535)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isIpv4DynamicPortRegexp(String port)
+    {
+        if (StringUtils.isBlank(port))
+        {
+            return true;
+        }
+
+        String portRegExp = "^102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
+
+        return port.matches(portRegExp);
+    }
+
     public static boolean isMask(String mask)
     {
         if (StringUtils.isBlank(mask))
@@ -131,5 +159,45 @@ public class IpTool
         System.out.println(isMask(mask3));
 
         System.out.println(isInSameSubnet("128.128.5.2", "128.128.5.2", "255.255.0.0"));
+
+        long start1 = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++)
+        {
+
+            isIpv4DynamicPortRegexp("-1");
+            isIpv4DynamicPortRegexp("0");
+            isIpv4DynamicPortRegexp("1");
+            isIpv4DynamicPortRegexp("999");
+            isIpv4DynamicPortRegexp("1023");
+            isIpv4DynamicPortRegexp("1024");
+            isIpv4DynamicPortRegexp("1025");
+            isIpv4DynamicPortRegexp("9999");
+            isIpv4DynamicPortRegexp("65534");
+            isIpv4DynamicPortRegexp("65535");
+            isIpv4DynamicPortRegexp("65536");
+            isIpv4DynamicPortRegexp("99999");
+        }
+        long end1 = System.currentTimeMillis();
+
+        long start2 = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++)
+        {
+            isIpv4DynamicPort("-1");
+            isIpv4DynamicPort("0");
+            isIpv4DynamicPort("1");
+            isIpv4DynamicPort("999");
+            isIpv4DynamicPort("1023");
+            isIpv4DynamicPort("1024");
+            isIpv4DynamicPort("1025");
+            isIpv4DynamicPort("9999");
+            isIpv4DynamicPort("65534");
+            isIpv4DynamicPort("65535");
+            isIpv4DynamicPort("65536");
+            isIpv4DynamicPort("99999");
+        }
+        long end2 = System.currentTimeMillis();
+
+        System.out.println("Regexp: " + (end1 - start1)); // Regexp: 6072
+        System.out.println("Java  : " + (end2 - start2)); // Java : 78
     }
 }
