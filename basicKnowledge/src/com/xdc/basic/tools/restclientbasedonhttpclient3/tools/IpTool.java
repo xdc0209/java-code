@@ -160,6 +160,7 @@ public class IpTool
 
         System.out.println(isInSameSubnet("128.128.5.2", "128.128.5.2", "255.255.0.0"));
 
+        // 测试正则表达式和java校验的效率
         long start1 = System.currentTimeMillis();
         for (int i = 0; i < 100000; i++)
         {
