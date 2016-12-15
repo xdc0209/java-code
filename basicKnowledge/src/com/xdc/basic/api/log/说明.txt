@@ -33,7 +33,7 @@ org.apache.log4j.PropertyConfigurator.configure(System.getProperty("user.dir") +
 org.apache.log4j.PropertyConfigurator.configureAndWatch(System.getProperty("user.dir") + "/src/log4j.properties", 60000L);
 
 (b)java启动参数中指定：
-指定url路径：            java -Dlog4j.configuration=file:C:/Users/XDC/Desktop/log4j.properties -jar com.xdc.log.test.jar
+指定url路径：      java -Dlog4j.configuration=file:C:/Users/XDC/Desktop/log4j.properties -jar com.xdc.log.test.jar
 指定classpath路径：java -Dlog4j.configuration=com/xdc/basic/api/log/slf4j/log4j.properties -jar com.xdc.log.test.jar
 
 (c)放在classpath根目录中：
@@ -49,11 +49,25 @@ logback的配置文件的加载优先级：
 默认名称是：logback.xml
 
 (c)如果以上都没能找到，则会使用默认配置。默认配置如下：
-输出格式 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n  
+输出格式 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 输出方向：System.out
 输出级别：Debug
 
 ==============================================================
 日志修改动态生效
 log4j使用java代码设置：org.apache.log4j.PropertyConfigurator.configureAndWatch
-log4j支持配置文件设置：
+log4j支持配置文件设置：？
+logback支持配置文件设置：？
+
+==============================================================
+输出样式推荐：
+log4j：
+%d{yyyy-MM-dd HH:mm:ss.SSSZ}|%-5p|%t| %m |%c.%M(%F:%L)%n
+%d{yyyy-MM-dd HH:mm:ss.SSSZ}|%-5p|%t| %m |%l%n
+提示1：其中%l表示：类全名.方法名(文件名:代码行数)，等价于%c.%M(%F:%L)。
+提示2：类全名和文件名需要都打印出来，因为内部类的类名和文件名是不一样的。
+
+logback：
+%date{yyyy-MM-dd HH:mm:ss.SSSZ}|%-5level|%thread| %message |%class.%method\(%file:%line\)%n
+提示1：括号要转义，否则会报错。
+
