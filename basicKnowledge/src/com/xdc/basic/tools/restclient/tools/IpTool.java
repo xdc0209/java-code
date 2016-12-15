@@ -5,6 +5,32 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 public class IpTool
 {
+    // IP >>>> 127.0.0.1
+    private static final String ipv4IpRegExp                = "^((?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))\\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$";
+
+    // Mask >>>> 255.255.0.0
+    private static final String ipv4MaskRegExp              = "^((254|252|248|240|224|192|128|0)\\.0\\.0\\.0)$|^(255\\.(254|252|248|240|224|192|128|0)\\.0\\.0)$|^(255\\.255\\.(254|252|248|240|224|192|128|0)\\.0)$|^(255\\.255\\.255\\.(254|252|248|240|224|192|128|0))$";
+
+    // Port >>>> 1-65535
+    private static final String ipv4PortRegExp              = "^[1-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
+
+    // DynamicPort >>>> 1024-65535
+    private static final String ipv4DynamicPortRegExp       = "^102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
+
+    // Mac >>>> 00:0C:29:C2:A9:A0
+    private static final String macRegExp                   = "^([a-fA-F0-9]{2}[-:]){5}([a-fA-F0-9]){2}$";
+
+    // IP1,IP2,IP3 >>>> 127.0.0.1,127.0.0.2,127.0.0.3
+    private static final String ipv4IpListRegExp            = String.format("^(%s)(,(%s))*$",
+            StringUtils.substringBetween(ipv4IpRegExp, "^", "$"), StringUtils.substringBetween(ipv4IpRegExp, "^", "$"));
+
+    // IP1:Port1,IP2:Port2,IP3:Port3 >>>> 127.0.0.1:1024,127.0.0.2:1025,127.0.0.3:65535
+    private static final String ipv4IpDynamicPortListRegExp = String.format("^((%s):(%s))(,((%s):(%s)))*$",
+            StringUtils.substringBetween(ipv4IpRegExp, "^", "$"),
+            StringUtils.substringBetween(ipv4PortRegExp, "^", "$"),
+            StringUtils.substringBetween(ipv4IpRegExp, "^", "$"),
+            StringUtils.substringBetween(ipv4PortRegExp, "^", "$"));
+
     public static boolean isIpv4Ip(String ip)
     {
         if (StringUtils.isBlank(ip))
@@ -12,9 +38,7 @@ public class IpTool
             return false;
         }
 
-        String ipRegExp = "^((?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))\\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$";
-
-        return ip.matches(ipRegExp);
+        return ip.matches(ipv4IpRegExp);
     }
 
     public static boolean isIpv4Port(String port)
@@ -33,16 +57,14 @@ public class IpTool
         return false;
     }
 
-    public static boolean isIpv4PortRegexp(String port)
+    public static boolean isIpv4PortRegExp(String port)
     {
         if (StringUtils.isBlank(port))
         {
             return true;
         }
 
-        String portRegExp = "^[1-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
-
-        return port.matches(portRegExp);
+        return port.matches(ipv4PortRegExp);
     }
 
     public static boolean isIpv4DynamicPort(String port)
@@ -61,16 +83,14 @@ public class IpTool
         return false;
     }
 
-    public static boolean isIpv4DynamicPortRegexp(String port)
+    public static boolean isIpv4DynamicPortRegExp(String port)
     {
         if (StringUtils.isBlank(port))
         {
             return true;
         }
 
-        String portRegExp = "^102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
-
-        return port.matches(portRegExp);
+        return port.matches(ipv4DynamicPortRegExp);
     }
 
     public static boolean isMask(String mask)
@@ -80,9 +100,7 @@ public class IpTool
             return false;
         }
 
-        String maskRegExp = "^((254|252|248|240|224|192|128|0)\\.0\\.0\\.0)$|^(255\\.(254|252|248|240|224|192|128|0)\\.0\\.0)$|^(255\\.255\\.(254|252|248|240|224|192|128|0)\\.0)$|^(255\\.255\\.255\\.(254|252|248|240|224|192|128|0))$";
-
-        return mask.matches(maskRegExp);
+        return mask.matches(ipv4MaskRegExp);
     }
 
     public static boolean isInSameSubnet(String ip1, String ip2, String mask)
@@ -133,13 +151,19 @@ public class IpTool
             return false;
         }
 
-        String macRegExp = "^([a-fA-F0-9]{2}[-:]){5}([a-fA-F0-9]){2}$";
-
         return mac.matches(macRegExp);
     }
 
     public static void main(String[] args)
     {
+        System.out.println(ipv4IpRegExp);
+        System.out.println(ipv4MaskRegExp);
+        System.out.println(ipv4PortRegExp);
+        System.out.println(ipv4DynamicPortRegExp);
+        System.out.println(macRegExp);
+        System.out.println(ipv4IpListRegExp);
+        System.out.println(ipv4IpDynamicPortListRegExp);
+
         String ip1 = "254.1.1.1";
         String ip2 = "244.1.1.1";
         String ip3 = "144.1.1.1";
@@ -164,19 +188,18 @@ public class IpTool
         long start1 = System.currentTimeMillis();
         for (int i = 0; i < 100000; i++)
         {
-
-            isIpv4DynamicPortRegexp("-1");
-            isIpv4DynamicPortRegexp("0");
-            isIpv4DynamicPortRegexp("1");
-            isIpv4DynamicPortRegexp("999");
-            isIpv4DynamicPortRegexp("1023");
-            isIpv4DynamicPortRegexp("1024");
-            isIpv4DynamicPortRegexp("1025");
-            isIpv4DynamicPortRegexp("9999");
-            isIpv4DynamicPortRegexp("65534");
-            isIpv4DynamicPortRegexp("65535");
-            isIpv4DynamicPortRegexp("65536");
-            isIpv4DynamicPortRegexp("99999");
+            isIpv4DynamicPortRegExp("-1");
+            isIpv4DynamicPortRegExp("0");
+            isIpv4DynamicPortRegExp("1");
+            isIpv4DynamicPortRegExp("999");
+            isIpv4DynamicPortRegExp("1023");
+            isIpv4DynamicPortRegExp("1024");
+            isIpv4DynamicPortRegExp("1025");
+            isIpv4DynamicPortRegExp("9999");
+            isIpv4DynamicPortRegExp("65534");
+            isIpv4DynamicPortRegExp("65535");
+            isIpv4DynamicPortRegExp("65536");
+            isIpv4DynamicPortRegExp("99999");
         }
         long end1 = System.currentTimeMillis();
 
