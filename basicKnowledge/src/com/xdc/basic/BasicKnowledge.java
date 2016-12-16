@@ -20,14 +20,21 @@ public class BasicKnowledge
         // 2. 获取系统属性
         Properties p = System.getProperties(); // 得到所有属性值
         p.list(System.out);
-        System.getProperty("file.separator"); // 文件分隔符（在 UNIX 系统中是“/”）
-        System.getProperty("path.separator"); // 路径分隔符（在 UNIX 系统中是“:”）
-        System.getProperty("line.separator"); // 行分隔符（在 UNIX 系统中是“/n”）
+
         System.getProperty("user.name"); // 用户的账户名称
         System.getProperty("user.home"); // 用户的主目录
         System.getProperty("user.dir"); // 用户的当前工作目录
+
+        System.getProperty("path.separator"); // 路径分隔符：在Unix和Unix-like(Linux，MacOS，FreeBSD，AIX)系统中是':'，在Windows系统中是';'
+        System.getProperty("file.separator"); // 文件分隔符：在Unix和Unix-like(Linux，MacOS，FreeBSD，AIX)系统中是'/'，在Windows系统中是'\'
+        System.getProperty("line.separator"); // 行分隔符，也叫换行符：在Unix和Unix-like(Linux，MacOS10，FreeBSD，AIX)系统中是'\n'，在Windows系统中是'\r\n'，在MacOS9系统及以前的MacOS系统中是'\r'
+
         // apache 类库
-        String LINE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
+        String PATH_SEPARATOR = SystemUtils.PATH_SEPARATOR;
+        String LINE_SEPARATOR = SystemUtils.FILE_SEPARATOR;
+        String FILE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
+        System.out.println(PATH_SEPARATOR);
+        System.out.println(FILE_SEPARATOR);
         System.out.println(LINE_SEPARATOR);
 
         // sun.jnu.encoding 影响文件名的创建、 cmd命令行的当前编码
