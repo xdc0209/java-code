@@ -90,7 +90,11 @@ public class CodecUtil
         Charset cs = Charset.forName("UTF-8");
         ByteBuffer bb = cs.encode(cb);
 
-        return bb.array();
+        // Warning：不能直接调用bb.array()，否则末尾会多出一个'\0'，参考自：http://stackoverflow.com/questions/5513144/converting-char-to-byte
+        byte[] bytes = new byte[bb.remaining()];
+        bb.get(bytes);
+
+        return bytes;
     }
 
     /**
