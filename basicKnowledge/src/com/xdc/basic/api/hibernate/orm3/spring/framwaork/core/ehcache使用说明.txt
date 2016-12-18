@@ -1,0 +1,48 @@
+一、配置方法：
+1. 添加ehcache配置文件ehcache.xml
+2. 修改application-context.xml指明使用ehcache
+3. 指定使用缓存的Javabean，有是三个方法：
+(1)hibernate.cfg.xml中标签配置方式：
+<class-cache usage="nonstrict-read-write" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Student"/>
+<class-cache usage="nonstrict-read-write" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Course"/>
+
+(2)映射文件*.hbm.xml中标签配置方式：
+Student.hbm.xml
+<cache usage="nonstrict-read-write"/>
+Course.hbm.xml
+<cache usage="nonstrict-read-write"/>
+
+(3)Javabean中注解配置的方式:
+@Entity
+@Table(name = "Student")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Student implements Serializable
+
+@Entity
+@Table(name = "Course")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Course implements Serializable
+
+
+二、注意事项：
+(1)缓存分为：
+实体对象缓存
+实体中的部分属性对象缓存
+
+(2)进过实验验证：（打开hibernate.show_sql可以观察，有sql语句打印出来就是去数据库中查询了，没有则是使用的缓存。）
+使用List<T> loadAll()和以Criterion为参数的查询，不会被缓存。
+使用T get(PK id)会被缓存，实验中看到了性能提升。
+网上也有类似的文章：http://www.2cto.com/os/201404/292350.html
+
+(3)使用缓存后手工修改数据库内容后要重启应用。
+
+
+附：在hibernate配置实体Javabean有两种方式：
+(1)映射文件*.hbm.xml中标签配置方式：
+(a)配置hibernate.cfg.xml：<mapping resource="com/xdc/basic/api/hibernate/orm4/demo/config/Event.hbm.xml" />
+(b)添加Event.hbm.xml
+
+(2)Javabean中注解配置的方式:
+(a)配置hibernate.cfg.xml：<mapping class="com.xdc.basic.api.hibernate.orm4.demo.annotation.Event" />
+(b)在Event添加注解
+

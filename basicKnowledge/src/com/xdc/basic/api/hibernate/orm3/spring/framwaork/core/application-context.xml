@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -11,20 +10,17 @@
 	<!-- 公共配置开始 ######################################################################### -->
 
 	<!-- 属性占位定义，将易变化的配置项，移到*.properties中 -->
-	<bean id="propertyConfigurer"
-		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.PasswordConverPropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.PasswordConverPropertyPlaceholderConfigurer">
 
 		<!-- 文件系统路径查找数据库配置文件，app.conf.dir(名称随意)为java的jvm的属性，可在启动java时指定 -->
 		<!-- <property name="location" value="file:${app.conf.dir}/src/com/xdc/basic/api/hibernate/orm3/spring/framwaork/jdbc.properties"/> -->
 
 		<!-- classpath路径查找数据库配置文件 -->
-		<property name="location"
-			value="classpath:com/xdc/basic/api/hibernate/orm3/spring/framwaork/core/jdbc.properties" />
+		<property name="location" value="classpath:com/xdc/basic/api/hibernate/orm3/spring/framwaork/core/jdbc.properties" />
 	</bean>
 
 	<!-- 数据源定义 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		lazy-init="false" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" lazy-init="false" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -52,7 +48,7 @@
 		<!-- 池里不会被释放的最多空闲连接数量。设置为0时表示无限制。 -->
 		<property name="maxIdle" value="24" />
 
-		<!-- 以下参数不适合生产环境。可用于定位问题-->
+		<!-- 以下参数不适合生产环境。可用于定位问题 -->
 		<!-- 回收被遗弃的（一般是忘了释放的）数据库连接到连接池中。 -->
 		<property name="removeAbandoned" value="true" />
 		<!-- 数据库连接过多长时间不用将被视为被遗弃而收回连接池中。单位：秒 -->
@@ -62,12 +58,10 @@
 	</bean>
 
 	<!-- clob/blob处理器 -->
-	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"
-		lazy-init="true" />
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
 
 	<!-- 连接工厂定义 -->
-	<bean id="sessionFactory"
-		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.SessionFactoryBean">
+	<bean id="sessionFactory" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.SessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="lobHandler" ref="lobHandler" />
 		<property name="hibernateProperties">
@@ -77,21 +71,27 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.use_sql_comments">true</prop>
 
+				<!-- 缓存配置 -->
 				<prop key="hibernate.cache.use_query_cache">true</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+
+				<!-- 使用hibernate内置的HashtableCacheProvider作为二次缓存 -->
+				<!-- <prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop> -->
+
+				<!-- 使用ehcache作为二次缓存 -->
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">com/xdc/basic/api/hibernate/orm3/spring/framwaork/core/ehcache.xml</prop>
 
 				<prop key="javax.persistence.validation.mode">none</prop>
-				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory
-				</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
 			</props>
 		</property>
 	</bean>
 
 	<!-- 定义事务管理器（声明式的事务） -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -124,17 +124,14 @@
 
 	<!-- 业务配置开始 ######################################################################### -->
 
-	<bean id="studentDao"
-		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.StudentDaoImpl">
+	<bean id="studentDao" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.StudentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="courseDao"
-		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.CourseDaoImpl">
+	<bean id="courseDao" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.CourseDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="scoreDao"
-		class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.ScoreDaoImpl">
+	<bean id="scoreDao" class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.impl.ScoreDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -142,8 +139,7 @@
 
 	<bean id="studentService" parent="baseTransactionProxy">
 		<property name="target">
-			<bean
-				class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.impl.StudentServiceImpl">
+			<bean class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.impl.StudentServiceImpl">
 				<property name="studentDao" ref="studentDao" />
 				<property name="scoreDao" ref="scoreDao" />
 			</bean>
@@ -152,8 +148,7 @@
 
 	<bean id="courseService" parent="baseTransactionProxy">
 		<property name="target">
-			<bean
-				class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.impl.CourseServiceImpl">
+			<bean class="com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.impl.CourseServiceImpl">
 				<property name="courseDao" ref="courseDao" />
 				<property name="scoreDao" ref="scoreDao" />
 			</bean>
