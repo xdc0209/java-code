@@ -1,4 +1,4 @@
-package com.xdc.basic.api.jaxb.security.sax.source;
+package com.xdc.basic.api.xml.security.x2.sax;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -13,10 +13,6 @@ import org.xml.sax.XMLReader;
 
 public final class SecuritySAXSource
 {
-    private SecuritySAXSource()
-    {
-    }
-
     public static SAXSource newSecuritySAXSource(InputStream in) throws ParserConfigurationException, SAXException
     {
         return newSecuritySAXSource(new InputSource(in));
@@ -30,7 +26,8 @@ public final class SecuritySAXSource
     public static SAXSource newSecuritySAXSource(InputSource inputSource)
             throws ParserConfigurationException, SAXException
     {
-        SAXParserFactory securityFactory = SecuritySAXParserFactory.newSecurityInstance();
+        SAXParserFactory securityFactory = SecuritySAXParserFactory.newInstance();
+
         // as followed copy from javax.xml.bind.helpers.AbstractUnmarshallerImpl.getXMLReader()
         securityFactory.setNamespaceAware(true);
         // there is no point in asking a validation because there is no guarantee that the document will come with a proper schemaLocation.

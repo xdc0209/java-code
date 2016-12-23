@@ -7,6 +7,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.xdc.basic.api.xml.security.x4.dom4j.SecuritySAXReader;
 import com.xdc.basic.skills.GetPath;
 
 public class X4_Dom4jTest
@@ -17,7 +18,7 @@ public class X4_Dom4jTest
         File file = new File(curPath + "students.xml");
         try
         {
-            SAXReader reader = new SAXReader();
+            SAXReader reader = SecuritySAXReader.newInstance();
             Document doc = reader.read(file);
             Element root = doc.getRootElement();
             List<?> elements = root.elements("student");

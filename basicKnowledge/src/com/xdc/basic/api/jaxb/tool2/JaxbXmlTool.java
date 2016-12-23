@@ -14,6 +14,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 
 /**
  * jaxb解析XML
@@ -76,6 +78,19 @@ public class JaxbXmlTool
     {
         Marshaller marshaller = createMarshaller(clazz);
         marshaller.marshal(t, file);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T xml2Java(Class<T> clazz, Source source) throws JAXBException
+    {
+        Unmarshaller unmarshaller = createUnmarshaller(clazz);
+        return (T) unmarshaller.unmarshal(source);
+    }
+
+    public static <T> void java2Xml(Class<T> clazz, T t, Result result) throws JAXBException
+    {
+        Marshaller marshaller = createMarshaller(clazz);
+        marshaller.marshal(t, result);
     }
 
     public static <T> T xmlString2Java(Class<T> clazz, String xmlString) throws JAXBException

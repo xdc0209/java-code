@@ -14,6 +14,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 
 public class XMLConvertor
 {
@@ -69,6 +71,16 @@ public class XMLConvertor
     public void java2Xml(Object obj, File file) throws JAXBException
     {
         marshaller.marshal(obj, file);
+    }
+
+    public Object xml2Java(Source source) throws JAXBException
+    {
+        return unmarshaller.unmarshal(source);
+    }
+
+    public void java2Xml(Object obj, Result result) throws JAXBException
+    {
+        marshaller.marshal(obj, result);
     }
 
     public Object xmlString2Java(String xmlString) throws JAXBException

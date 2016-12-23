@@ -9,6 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.xdc.basic.api.xml.security.x1.dom.SecurityDocumentBuilderFactory;
 import com.xdc.basic.skills.GetPath;
 
 public class X1_DomTest
@@ -19,7 +20,7 @@ public class X1_DomTest
         File file = new File(curPath + "students.xml");
         try
         {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory factory = SecurityDocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(file);
 

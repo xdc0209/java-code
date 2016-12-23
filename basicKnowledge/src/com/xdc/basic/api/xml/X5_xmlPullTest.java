@@ -10,6 +10,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.xdc.basic.api.xml.security.x5.xmlpull.SecurityXmlPullParserFactory;
 import com.xdc.basic.skills.GetPath;
 
 public class X5_xmlPullTest
@@ -19,7 +20,7 @@ public class X5_xmlPullTest
         String curPath = GetPath.getRelativePath();
         try
         {
-            XmlPullParserFactory pullParserFactory = XmlPullParserFactory.newInstance();
+            XmlPullParserFactory pullParserFactory = SecurityXmlPullParserFactory.newInstance();
             XmlPullParser xmlPullParser = pullParserFactory.newPullParser();
 
             File file = new File(curPath + "students.xml");
