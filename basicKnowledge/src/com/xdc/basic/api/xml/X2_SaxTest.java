@@ -6,7 +6,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.xdc.basic.api.xml.security.x2.sax.SecuritySAXParserFactory;
+import com.xdc.basic.api.xml.security.avoid.xxe.x2.sax.SecuritySAXParserFactory;
 import com.xdc.basic.skills.GetPath;
 
 public class X2_SaxTest extends DefaultHandler

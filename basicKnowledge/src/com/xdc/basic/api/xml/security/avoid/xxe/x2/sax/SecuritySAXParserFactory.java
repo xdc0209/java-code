@@ -1,4 +1,4 @@
-package com.xdc.basic.api.xml.security.x2.sax;
+package com.xdc.basic.api.xml.security.avoid.xxe.x2.sax;
 
 import javax.xml.parsers.SAXParserFactory;
 
@@ -9,14 +9,6 @@ public final class SecuritySAXParserFactory
 {
     private static final Logger logger = LoggerFactory.getLogger(SecuritySAXParserFactory.class);
 
-    /**
-     * 完全禁止DTD，推荐
-     * factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-     * 
-     * 不完全禁止DTD
-     * factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-     * factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-     */
     public static SAXParserFactory newInstance()
     {
         SAXParserFactory factory = SAXParserFactory.newInstance();

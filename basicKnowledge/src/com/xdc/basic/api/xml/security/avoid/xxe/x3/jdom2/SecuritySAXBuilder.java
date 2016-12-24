@@ -1,4 +1,4 @@
-package com.xdc.basic.api.xml.security.x3.jdom2;
+package com.xdc.basic.api.xml.security.avoid.xxe.x3.jdom2;
 
 import org.jdom2.input.SAXBuilder;
 

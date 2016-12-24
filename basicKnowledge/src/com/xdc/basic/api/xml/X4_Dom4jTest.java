@@ -7,7 +7,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import com.xdc.basic.api.xml.security.x4.dom4j.SecuritySAXReader;
+import com.xdc.basic.api.xml.security.avoid.xxe.x4.dom4j.SecuritySAXReader;
 import com.xdc.basic.skills.GetPath;
 
 public class X4_Dom4jTest

@@ -1,4 +1,4 @@
-package com.xdc.basic.api.xml.security.x4.dom4j;
+package com.xdc.basic.api.xml.security.avoid.xxe.x4.dom4j;
 
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;

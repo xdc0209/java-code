@@ -7,7 +7,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
-import com.xdc.basic.api.xml.security.x3.jdom2.SecuritySAXBuilder;
+import com.xdc.basic.api.xml.security.avoid.xxe.x3.jdom2.SecuritySAXBuilder;
 import com.xdc.basic.skills.GetPath;
 
 public class X3_Jdom2Test

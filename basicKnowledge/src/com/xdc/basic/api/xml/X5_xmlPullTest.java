@@ -10,7 +10,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.xdc.basic.api.xml.security.x5.xmlpull.SecurityXmlPullParserFactory;
+import com.xdc.basic.api.xml.security.avoid.xxe.x5.xmlpull.SecurityXmlPullParserFactory;
 import com.xdc.basic.skills.GetPath;
 
 public class X5_xmlPullTest

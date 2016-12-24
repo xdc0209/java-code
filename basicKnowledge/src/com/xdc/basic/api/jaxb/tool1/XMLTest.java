@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import com.xdc.basic.api.jaxb.user.Users;
-import com.xdc.basic.api.xml.security.x2.sax.SecuritySAXSource;
+import com.xdc.basic.api.xml.security.avoid.xxe.x2.sax.SecuritySAXSource;
 
 /**
  * xml解析

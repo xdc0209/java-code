@@ -1,0 +1,10 @@
+XXE（XML External Entity漏洞），是一种针对XML终端实施的攻击，黑客想要实施这种攻击，需要在XML的payload包含外部实体声明，且服务器本身允许实体扩展。这样的话，黑客或许能读取WEB服务器的文件系统，通过UNC路径访问远程文件系统，或者通过HTTP/HTTPS连接到任意主机。借助XXE，攻击者可以实现任意文件读取，DoS拒绝服务攻击以及代理扫描内网等。
+
+防止XXE的方法：
+方法一：完全禁止DTD，推荐
+factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
+方法二：不完全禁止DTD
+factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+

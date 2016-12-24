@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.xdc.basic.api.xml.security.x1.dom.SecurityDocumentBuilderFactory;
+import com.xdc.basic.api.xml.security.avoid.xxe.x1.dom.SecurityDocumentBuilderFactory;
 import com.xdc.basic.skills.GetPath;
 
 public class X1_DomTest

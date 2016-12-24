@@ -1,4 +1,4 @@
-package com.xdc.basic.api.xml.security.x1.dom;
+package com.xdc.basic.api.xml.security.avoid.xxe.x1.dom;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
