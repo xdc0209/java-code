@@ -1,0 +1,1 @@
+由于同时导入orm3和orm4会引起包冲突，导致功能不可用，所以在classpath中默认未添加orm3的jar包，如果要调试orm3的代码，要先去除orm4的jar包，再添加orm3的jar包。
