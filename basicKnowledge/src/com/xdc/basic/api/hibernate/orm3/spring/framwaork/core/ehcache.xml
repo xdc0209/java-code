@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- name属性无实际用途，只是标识属主，这点有助于在大团队开发中尽快找到维护主体。 -->
 <ehcache
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="xdcOrmCacheManager">
 
 	<!-- 磁盘存储配置：用来指定缓存在磁盘上的存储位置。可以使用JavaVM环境变量(user.home，user.dir，java.io.tmpdir) -->
 	<!-- <diskStore path="c:/ehcache" /> -->
