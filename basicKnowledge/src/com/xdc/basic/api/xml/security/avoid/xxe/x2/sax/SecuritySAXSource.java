@@ -32,7 +32,10 @@ public final class SecuritySAXSource
         securityFactory.setNamespaceAware(true);
         // there is no point in asking a validation because there is no guarantee that the document will come with a proper schemaLocation.
         securityFactory.setValidating(true);
+
         XMLReader xmlReader = securityFactory.newSAXParser().getXMLReader();
+        xmlReader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
         SAXSource saxSource = new SAXSource(xmlReader, inputSource);
 
         return saxSource;
