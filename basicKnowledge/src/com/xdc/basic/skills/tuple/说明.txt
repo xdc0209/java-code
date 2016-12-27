@@ -1,0 +1,5 @@
+名词解释：
+tuple： 元组
+pair：  二元组
+triple：三元组
+
