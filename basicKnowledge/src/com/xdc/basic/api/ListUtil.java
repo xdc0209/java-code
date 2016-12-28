@@ -23,4 +23,14 @@ public class ListUtil
 
         return list.get(1);
     }
+
+    public static <T> T getThirdElement(List<T> list)
+    {
+        if (list == null || list.size() < 3)
+        {
+            return null;
+        }
+
+        return list.get(2);
+    }
 }
