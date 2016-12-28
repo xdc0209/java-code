@@ -36,8 +36,16 @@ public class Course implements Serializable
 
 3. 使用缓存后手工修改数据库内容后要重启应用。
 
+4. ehcache缓存不止用于数据库场景，也可以用于一些通用的缓存场景，如flume中使用了ehcache。
+xdc-linux:/home/apache-flume-1.6.0-bin # find -name "*cache*"
+./lib/ehcache-core-2.5.1.jar
+xdc-linux:/home/apache-flume-1.6.0-bin #
 
-附：在hibernate配置实体Javabean有两种方式：
+5. 企业版的ehcache才能使用非堆内存存储缓存信息，普通版的ehcache只能使用堆内存，注意设置大小限制，以免导致内存溢出，可参考：http://elim.iteye.com/blog/2116749
+
+
+============================================================
+附1：在hibernate配置实体Javabean有两种方式：
 1. 映射文件*.hbm.xml中标签配置方式：
 (1)配置hibernate.cfg.xml：<mapping resource="com/xdc/basic/api/hibernate/orm4/demo/config/Event.hbm.xml" />
 (2)添加Event.hbm.xml
@@ -45,4 +53,21 @@ public class Course implements Serializable
 2.Javabean中注解配置的方式:
 (1)配置hibernate.cfg.xml：<mapping class="com.xdc.basic.api.hibernate.orm4.demo.annotation.Event" />
 (2)在Event添加注解
+
+
+============================================================
+附2：缓存技术比较：
+http://www.tuicool.com/articles/R7NZbmb
+http://blog.csdn.net/chenleixing/article/details/47035367
+http://blog.csdn.net/jationxiaozi/article/details/8509732
+https://my.oschina.net/weiweiblog/blog/483592
+
+memcache：分布式内存对象缓存系统，占用其他机子的内存。很多互联网，例如做负载均衡的web服务器可以共享一台Memcache的资源。传递的信息以键值对的形式存储。传递的数据要实现序列化。memcached服务器端是c编写的，客户端有多个语言的实现，如c，php（淘宝，sina等各大门户网站），python（豆瓣网），java（Xmemcached，spymemcached)。memcached服务器端是使用文本或者二进制通信的。memcached的 python客户端没有开源，其他语言的好像都开源了。另外我以前不明白为什么各大互联网公司都是使用memcached缓存，后来我明白了原因：因为各大门户网站以及淘宝是使用php编写的网站，memcached有php客户端，而ehcache是纯java的，囧。
+ehcache：直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。ehcache是纯java编写的，通信是通过RMI方式，适用于基于java技术的项目。
+redis：通过socket访问到缓存服务，效率比ecache低，比数据库要快很多，处理集群和分布式缓存方便，有成熟的方案。
+
+如果是单个应用或者对缓存访问要求很高的应用，用ehcache。
+如果是大型系统，存在缓存共享、分布式部署、缓存内容很大的，建议用redis。
+
+补充下：ehcache也有缓存共享方案，不过是通过RMI或者Jgroup多播方式进行广播缓存通知更新，缓存共享复杂，维护不方便。简单的共享可以，但是涉及到缓存恢复，大数据缓存，则不合适。
 
