@@ -41,7 +41,7 @@
 
 	<!-- 映射文件 -->
 	<mappers>
-		<mapper resource="com/xdc/basic/example/mybatis/manual/dao/StudentMapper.xml" />
+		<mapper resource="com/xdc/basic/api/mybatis/manual/dao/StudentMapper.xml" />
 	</mappers>
 
 </configuration>
