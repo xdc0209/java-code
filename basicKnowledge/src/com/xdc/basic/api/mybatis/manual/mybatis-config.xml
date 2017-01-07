@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 这段用于验证配置文件的合法性 -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 自定义typeHandler，解决空串问题 -->
+	<typeHandlers>
+		<typeHandler javaType="String" jdbcType="INTEGER"
+			handler="com.xdc.basic.api.mybatis.manual.other.EmptyStringToNullTypeHandler" />
+		<typeHandler javaType="String" jdbcType="VARCHAR"
+			handler="com.xdc.basic.api.mybatis.manual.other.EmptyStringToNullTypeHandler" />
+	</typeHandlers>
+
+	<!-- 配置数据库连接信息 -->
+	<environments default="mysql">
+		<environment id="mysql">
+			<transactionManager type="JDBC" />
+
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/college" />
+				<property name="username" value="college" />
+				<property name="password" value="123456" />
+			</dataSource>
+		</environment>
+
+		<environment id="oracle">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+				<property name="username" value="system" />
+				<property name="password" value="manager" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 映射文件 -->
+	<mappers>
+		<mapper resource="com/xdc/basic/example/mybatis/manual/dao/StudentMapper.xml" />
+	</mappers>
+
+</configuration>

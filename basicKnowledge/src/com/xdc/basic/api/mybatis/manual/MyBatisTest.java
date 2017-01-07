@@ -8,14 +8,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.xdc.basic.api.mybatis.manual.data.StudentMapper;
+import com.xdc.basic.api.mybatis.manual.dao.StudentMapper;
 import com.xdc.basic.api.mybatis.manual.model.Student;
 
 public class MyBatisTest
 {
     public static void main(String[] args) throws IOException
     {
-        String resource = "com/xdc/basic/example/mybatis/manual/data/mybatis-config.xml";
+        String resource = "com/xdc/basic/example/mybatis/manual/mybatis-config.xml";
         Reader reader = Resources.getResourceAsReader(resource);
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
