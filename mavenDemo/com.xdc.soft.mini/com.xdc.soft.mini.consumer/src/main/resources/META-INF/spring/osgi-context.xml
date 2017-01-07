@@ -6,6 +6,12 @@
                         http://www.springframework.org/schema/osgi
                         http://www.springframework.org/schema/osgi/spring-osgi-1.1.xsd">
 
+	<!-- 属性介绍 -->
+	<!-- cardinality属性：默认值为1..1，说明总是有一个这样的服务存在。0..1说明不需要一直存在这样一个服务。 -->
+	<!-- filter属性：过滤服务属性CalulateServeiceType为add的服务。 -->
+	<!-- <osgi:reference id="computeService" interface="com.xdc.soft.mini.compute.Compute" cardinality="1..1" -->
+	<!-- filter="(CalulateServeiceType=add)" /> -->
+
 	<osgi:reference id="computeService" interface="com.xdc.soft.mini.compute.Compute" />
 
 </beans>
