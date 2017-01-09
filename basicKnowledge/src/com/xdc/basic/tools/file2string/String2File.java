@@ -16,13 +16,15 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.skills.encrypt.aes.aes2.core.EncException;
+import com.xdc.basic.skills.encrypt.aes.aes2.util.EncUtil;
 
 /**
  * base编码的字符串转换为文件
  */
 public class String2File
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, EncException
     {
         String curPath = GetPath.getRelativePath();
         Collection<File> txtFiles = FileUtils.listFiles(new File(curPath), new String[] { "txt" }, false);
@@ -34,11 +36,11 @@ public class String2File
         }
     }
 
-    private static void string2File(String fromFileName) throws FileNotFoundException, IOException
+    private static void string2File(String fromFileName) throws FileNotFoundException, IOException, EncException
     {
         String curPath = GetPath.getRelativePath();
 
-        // 读取文件
+        // 读取文件内容
         Reader fromFileReader = new FileReader(curPath + fromFileName);
         List<String> fromFileLines = IOUtils.readLines(fromFileReader);
         IOUtils.closeQuietly(fromFileReader);
@@ -53,16 +55,18 @@ public class String2File
         }
         String toFileBase64String = sb.toString();
 
-        // 解析名称
+        // 对文件名称先解码后解密
         String toFileNameBase64String = StringUtils.substringBefore(toFileBase64String, ">>>");
         byte[] toFileNameBytes = Base64.decodeBase64(toFileNameBase64String);
+        toFileNameBytes = EncUtil.decode(toFileNameBytes);
         String toFileName = org.apache.commons.codec.binary.StringUtils.newStringUtf8(toFileNameBytes);
 
-        // 解析内容
+        // 对文件内容先解码后解密
         String toFileContentBase64String = StringUtils.substringAfter(toFileBase64String, ">>>");
         byte[] toFileContentBytes = Base64.decodeBase64(toFileContentBase64String);
-        File toFile = new File(curPath + toFileName);
+        toFileContentBytes = EncUtil.decode(toFileContentBytes);
 
+        File toFile = new File(curPath + toFileName);
         if (toFile.exists())
         {
             System.out.println("fromFileName: " + fromFileName);

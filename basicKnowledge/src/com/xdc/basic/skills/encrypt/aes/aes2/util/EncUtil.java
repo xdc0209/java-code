@@ -26,4 +26,24 @@ public class EncUtil
         String plainText = Enc.decode(cipherText, workKeyBytes);
         return plainText;
     }
+
+    public static byte[] encode(byte[] plainBytes) throws EncException
+    {
+        String curPath = GetPath.getRelativePath();
+        String keyPath = GetPath.connect(curPath, "..", "core");
+
+        byte[] workKeyBytes = EncKeyHolder.getWorkKeyBytes(keyPath);
+        byte[] cipherBytes = Enc.encode(plainBytes, workKeyBytes);
+        return cipherBytes;
+    }
+
+    public static byte[] decode(byte[] cipherBytes) throws EncException
+    {
+        String curPath = GetPath.getRelativePath();
+        String keyPath = GetPath.connect(curPath, "..", "core");
+
+        byte[] workKeyBytes = EncKeyHolder.getWorkKeyBytes(keyPath);
+        byte[] plainBytes = Enc.decode(cipherBytes, workKeyBytes);
+        return plainBytes;
+    }
 }

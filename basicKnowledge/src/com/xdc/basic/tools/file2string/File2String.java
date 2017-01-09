@@ -18,13 +18,15 @@ import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.skills.encrypt.aes.aes2.core.EncException;
+import com.xdc.basic.skills.encrypt.aes.aes2.util.EncUtil;
 
 /**
  * 文件转换为base编码的字符串
  */
 public class File2String
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, EncException
     {
         String curPath = GetPath.getRelativePath();
         Collection<File> compressedFiles = FileUtils.listFiles(new File(curPath), new String[] { "rar", "zip" }, false);
@@ -37,7 +39,7 @@ public class File2String
         }
     }
 
-    private static void file2String(String fromFileName, String toFileName) throws IOException
+    private static void file2String(String fromFileName, String toFileName) throws IOException, EncException
     {
         String curPath = GetPath.getRelativePath();
 
@@ -54,17 +56,19 @@ public class File2String
         int lineLength = 1800;
         String prefix = DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMddHHmmss");
 
-        // 读取文件
+        // 读取文件内容
         InputStream fromFileContentInputStream = new FileInputStream(curPath + fromFileName);
         byte[] fromFileContentBytes = IOUtils.toByteArray(fromFileContentInputStream);
+        IOUtils.closeQuietly(fromFileContentInputStream);
 
-        // 名称编码
+        // 对文件名称先加密后编码
         byte[] fromFileNameBytes = StringUtils.getBytesUtf8(fromFileName);
+        fromFileNameBytes = EncUtil.encode(fromFileNameBytes);
         String fromFileNameBase64String = Base64.encodeBase64String(fromFileNameBytes);
 
-        // 内容编码
+        // 对文件内容先加密后编码
+        fromFileContentBytes = EncUtil.encode(fromFileContentBytes);
         String fromFileContentBase64String = Base64.encodeBase64String(fromFileContentBytes);
-        IOUtils.closeQuietly(fromFileContentInputStream);
 
         String fromFileBase64String = fromFileNameBase64String + ">>>" + fromFileContentBase64String;
 
