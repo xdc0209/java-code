@@ -48,7 +48,7 @@ public abstract class AbstractDispatchCommand implements Command
         Command command = subcommands.get(subcommandName);
         if (command == null)
         {
-            handleError(String.format("'%s' is not a valid  subcommand", subcommandName));
+            handleError(String.format("'%s' is not a valid subcommand", subcommandName));
         }
 
         return command;
