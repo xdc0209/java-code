@@ -1,0 +1,19 @@
+使用jaxb处理xml
+如果你曾经使用过烦人的sax或是dom来处理xml，你就会知道为什么要有jdom或者是jaxb。jaxb和jdom都是为了在java中提供比dom和sax更为方便的xml处理接口而开发的，并且通过完全不同的途径来解决这个问题。jdom的处理方式是与dom类似的树操作。而jaxb通过dtd和绑定模式来生成访问xml文档的java代码，将xml映射成了java对象来操作。你可以根据项目的需要和个人喜好来决定采用哪一个。
+
+这里只讲jaxb的使用过方法，稍微接触过jaxb的都知道，使用jaxb的难点是自己要编写schema，本文介绍一种比较先进的方法：借助工具生成schema，整个流程实现了自动化，你要做的就是操作生成好的java数据类。
+
+
+具体步骤如下：
+1.将xml样例保存到xml-xsd-java.xml文件。
+1.双击xml-xsd-java.bat，使用xml生成xsd，再使用xsd生成java代码。
+3.将生成的代码复制到工程中即可。调用方法见com.xdc.basic.api.jaxb.tool2.XMLTest。
+
+
+注：
+XSD指XML结构定义(XML Schemas Definition)，即xml的描述文件。可以使用xsd校验xml是否合法。
+XML与XSD的关系是由具体到抽象的，如同对象和类的关系一样。
+    xml  ------- xsd
+    对象 ------- 类
+因此，由xml生成的xsd，是一个由具体到抽象的过程，所以提供的具体xml应能尽量反映出抽象(如列表元素应至少两个子元素)，否则抽象结果中会有可能少量的信息丢失，不过还好大部分场景是满足主要求的，使用只需再确认一下。
+

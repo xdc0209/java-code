@@ -1,1 +1,0 @@
-java -jar trang.jar "users.xml" "users.xsd"
