@@ -12,5 +12,6 @@ public class VirgoCommand extends AbstractDispatchCommand
     {
         subcommands.put("plan", new PlanCommand());
         subcommands.put("bundle", new BundleCommand());
+        subcommands.put("shutdown", new ShutdownCommand());
     }
 }
