@@ -6,7 +6,7 @@
 
 具体步骤如下：
 1.将xml样例保存到xml-xsd-java.xml文件。
-1.双击xml-xsd-java.bat，使用xml生成xsd，再使用xsd生成java代码。
+2.双击xml-xsd-java.bat，使用xml生成xsd，再使用xsd生成java代码。
 3.将生成的代码复制到工程中即可。调用方法见com.xdc.basic.api.jaxb.tool2.XMLTest。
 
 
