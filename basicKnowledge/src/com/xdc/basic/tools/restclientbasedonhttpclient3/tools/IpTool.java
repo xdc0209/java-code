@@ -1,5 +1,8 @@
 package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -144,11 +147,26 @@ public class IpTool
         return ipInt;
     }
 
-    public static boolean isMac(String mac)
+    public static boolean isMac(String mac, boolean filterSpecialMac)
     {
         if (StringUtils.isBlank(mac))
         {
             return false;
+        }
+
+        if (filterSpecialMac)
+        {
+            // 过滤掉特殊的mac
+            List<String> specialMacs = new ArrayList<String>();
+
+            // 全0的mac一般有两个原因：1.网卡绑定配置出错。2.网卡出厂时未烧录。
+            specialMacs.add("00:00:00:00:00:00");
+            specialMacs.add("00-00-00-00-00-00");
+
+            if (specialMacs.contains(mac))
+            {
+                return false;
+            }
         }
 
         return mac.matches(macRegExp);
