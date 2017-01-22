@@ -8,5 +8,5 @@ public interface SecurityConstant
      * @see com.xdc.basic.api.apache.commons.lang3.builder.PersonReflectionToStringBuilder.toString3()
      * 
      */
-    public static final String[] PASSWORD_KEYS = new String[] { "password", "passWord", "passwd", "pwd" };
+    public static final String[] PASSWORD_KEYS = new String[] { "password", "passWord", "passwd", "passWd", "pwd" };
 }
