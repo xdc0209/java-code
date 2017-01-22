@@ -159,7 +159,9 @@ public class IpTool
             // 过滤掉特殊的mac
             List<String> specialMacs = new ArrayList<String>();
 
-            // 全0的mac一般有两个原因：1.网卡绑定配置出错。2.网卡出厂时未烧录。
+            // 全0的mac一般有两个原因：
+            // 1.网卡绑定配置出错。
+            // 2.服务器预置了多个网卡，但是根据业务规划没有全部使用，为了节约成本，可以在出厂时要求部分网卡不烧录，这些未烧录的网卡mac就是全为0的。
             specialMacs.add("00:00:00:00:00:00");
             specialMacs.add("00-00-00-00-00-00");
 
