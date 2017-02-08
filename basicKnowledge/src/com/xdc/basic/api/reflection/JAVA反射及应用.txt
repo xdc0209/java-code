@@ -1,0 +1,203 @@
+JAVA反射及使用
+1.基本概念
+JAVA反射(放射)机制：“程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言”。从这个观点看，Perl，Python，Ruby是动态语言，C++，Java，C#不是动态语言。但是JAVA有着一个非常突出的动态相关机制：Reflection，用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。换句话说，Java程序可以加载一个运行时才得知名称的class，获悉其完整构造(但不包括methods定义)，并生成其对象实体、或对其fields设值、或唤起其methods。
+JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。
+
+
+2.功能
+在运行时判断任意一个对象所属的类
+在运行时构造任意一个类的对象
+在运行时判断任意一个类所具有的成员变量和方法
+在运行时调用任意一个对象的方法
+生成动态代理
+Reflection 是Java被视为动态(或准动态)语言的一个关键性质。这个机制允许程序在运行时透过Reflection APIs取得任何一个已知名称的class的内部信息，包括其modifiers(诸如public, static 等等)、superclass(例如Object)、实现之interfaces(例如Serializable)，也包括fields和methods的所有信息，并可于运行时改变fields内容或调用methods。
+
+
+3.JAVA API
+在JDK中，主要由以下类来实现Java反射机制，这些类都位于java.lang.reflect包中：
+Class类：代表一个类。
+Field 类：代表类的成员变量(成员变量也称为类的属性)。
+Method类：代表类的方法。
+Constructor 类：代表类的构造方法。
+Array类：提供了动态创建数组，以及访问数组的元素的静态方法。
+
+在java.lang.Object 类中定义了getClass()方法，因此对于任意一个Java对象，都可以通过此方法获得对象的类型。Class类是Reflection API 中的核心类，它有以下方法
+getName()：获得类的完整名字。
+getFields()：获得类的public类型的属性。
+getDeclaredFields()：获得类的所有属性。
+getMethods()：获得类的public类型的方法。
+getDeclaredMethods()：获得类的所有方法。
+getMethod(String name, Class[] parameterTypes)：获得类的特定方法，name参数指定方法的名字，parameterTypes 参数指定方法的参数类型。
+getConstructors()：获得类的public类型的构造方法。
+getConstructor(Class[] parameterTypes)：获得类的特定构造方法，parameterTypes 参数指定构造方法的参数类型。
+newInstance()：通过类的不带参数的构造方法创建这个类的一个对象。
+
+
+4.举例说明
+(1)得到某个对象的属性
+    1 public Object getProperty(Object owner, String fieldName) throws Exception {
+    2     Class ownerClass = owner.getClass();
+    3
+    4     Field field = ownerClass.getField(fieldName);
+    5
+    6     Object property = field.get(owner);
+    7
+    8     return property;
+    9 }
+Class ownerClass = owner.getClass()：得到该对象的Class。
+Field field = ownerClass.getField(fieldName)：通过Class得到类声明的属性。
+Object property = field.get(owner)：通过对象得到该属性的实例，如果这个属性是非公有的，这里会报IllegalAccessException。
+
+(2)得到某个类的静态属性
+    1 public Object getStaticProperty(String className, String fieldName)
+    2             throws Exception {
+    3     Class ownerClass = Class.forName(className);
+    4
+    5     Field field = ownerClass.getField(fieldName);
+    6
+    7     Object property = field.get(ownerClass);
+    8
+    9     return property;
+   10 }
+Class ownerClass = Class.forName(className) ：首先得到这个类的Class。
+Field field = ownerClass.getField(fieldName)：和上面一样，通过Class得到类声明的属性。
+Object property = field.get(ownerClass) ：这里和上面有些不同，因为该属性是静态的，所以直接从类的Class里取。
+
+(3)执行某对象的方法
+    1 public Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception {
+    2
+    3     Class ownerClass = owner.getClass();
+    4
+    5     Class[] argsClass = new Class[args.length];
+    6
+    7     for (int i = 0, j = args.length; i < j; i++) {
+    8         argsClass[i] = args[i].getClass();
+    9     }
+   10
+   11     Method method = ownerClass.getMethod(methodName, argsClass);
+   12
+   13     return method.invoke(owner, args);
+   14 }
+Class owner_class = owner.getClass()：首先还是必须得到这个对象的Class。
+
+5～9行：配置参数的Class数组，作为寻找Method的条件。
+Method method = ownerClass.getMethod(methodName, argsClass)：通过Method名和参数的Class数组得到要执行的Method。
+method.invoke(owner, args)：执行该Method，invoke方法的参数是执行这个方法的对象，和参数数组。返回值是Object，也既是该方法的返回值。
+
+(4)执行某个类的静态方法
+    1 public Object invokeStaticMethod(String className, String methodName,
+    2             Object[] args) throws Exception {
+    3     Class ownerClass = Class.forName(className);
+    4
+    5     Class[] argsClass = new Class[args.length];
+    6
+    7     for (int i = 0, j = args.length; i < j; i++) {
+    8         argsClass[i] = args[i].getClass();
+    9     }
+   10
+   11     Method method = ownerClass.getMethod(methodName, argsClass);
+   12
+   13     return method.invoke(null, args);
+   14 }
+基本的原理和实例3相同，不同点是最后一行，invoke的一个参数是null，因为这是静态方法，不需要借助实例运行。
+
+(5)新建实例
+    1
+    2 public Object newInstance(String className, Object[] args) throws Exception {
+    3     Class newoneClass = Class.forName(className);
+    4
+    5     Class[] argsClass = new Class[args.length];
+    6
+    7     for (int i = 0, j = args.length; i < j; i++) {
+    8         argsClass[i] = args[i].getClass();
+    9     }
+   10
+   11     Constructor cons = newoneClass.getConstructor(argsClass);
+   12
+   13     return cons.newInstance(args);
+   14
+   15 }
+这里说的方法是执行带参数的构造函数来新建实例的方法。如果不需要参数，可以直接使用newoneClass.newInstance()来实现。
+Class newoneClass = Class.forName(className)：第一步，得到要构造的实例的Class。
+第5～第9行：得到参数的Class数组。
+Constructor cons = newoneClass.getConstructor(argsClass)：得到构造子。
+cons.newInstance(args)：新建实例。
+
+(6)判断是否为某个类的实例
+    1 public boolean isInstance(Object obj, Class cls) {
+    2     return cls.isInstance(obj);
+    3 }
+
+(7)得到数组中的某个元素
+    1 public Object getByArray(Object array, int index) {
+    2     return Array.get(array,index);
+    3 }
+
+
+5.JAVA类加载机制
+JAVA类加载过程:
+(a)Java命令执行时，设置一些java参数(比如classpath、虚拟机参数等)，环境变量。
+(b)读入虚拟机参数，定位jre目录， 加载jvm.dll ，初始化化虚拟机并启动。
+(c)java虚拟机初始化内存，产生bootstrap classloader类加载器，
+(d)Bootstrap Loader自动加载Extension Loader(标准扩展类加载器)，并将其父Loader设为Bootstrap Loader。
+(e)Bootstrap Loader自动加载AppClass Loader(系统类加载器)，并将其父Loader设为Extension Loader。
+(f)最后由AppClass Loader加载classpath下的类。
+
+
+6.泛型反射
+为了表达泛型类型声明，JDK 5.0在java.lang.reflect包中提供了一个新的接口Type, 该接口有如下子类型：
+Class类: 描述具体类型。
+TypeVariable接口， 描述类型变量(如T extends Comparable<? super T>)
+WildcardType接口，描述通配符(如？super T)。
+ParameterizedType接口， 描述泛型类或者接口类型(如Comparable<? super T>)。
+GenericArrayType接口，描述泛型数组。(如:T[])。
+
+例子：
+public class GenericTest
+{
+    private Map<String, Integer> map = new HashMap<String, Integer>();
+    public static void main(String[] args) throws SecurityException, NoSuchFieldException
+    { // 获取Class实例
+        Class<GenericTest> class1 = GenericTest.class;
+        // 根据属性名取得该属性对应的Field对象
+        Field mapField = class1.getDeclaredField("map");
+        // 示范第一个方法：直接通过getType()取出Field的类型，只对普通类型的Field有效
+        Class<?> class2 = mapField.getType();
+        // 输出查看
+        System.out.println("属性名为map的属性类型为：" + class2);
+        // 示范第二种方法：
+        Type mapMainType = mapField.getGenericType();
+        // 为了确保安全转换，使用instanceof
+        if (mapMainType instanceof ParameterizedType)
+        {
+            // 执行强制类型转换
+            ParameterizedType parameterizedType = (ParameterizedType)mapMainType;
+            // 获取基本类型信息，即Map
+            Type basicType = parameterizedType.getRawType();
+            System.out.println("基本类型为：" + basicType);
+            // 获取泛型类型的泛型参数
+            Type[] types = parameterizedType.getActualTypeArguments();
+            for (int i = 0; i < types.length; i++)
+            {
+                System.out.println("第" + (i + 1) + "个泛型类型是：" + types[i]);
+            }
+        }
+        else
+        {
+            System.out.println("获取泛型类型出错!");
+        }
+    }
+}
+
+
+7.反射在框架中的应用
+动态代理
+Spring AOP
+Hibernate
+
+
+8.反射的优缺点
+优点：反射提高了程序的灵活性、扩展和动态性，提高内聚性，降低耦合性。
+缺点：反射包括了一些动态类型，所以JVM无法对这些代码进行优化。因此，反射操作的效率要比那些非反射操作低得多。我们应该避免在经常被执行的代码或对性能要求很高的程序中使用反射。
+      由于反射可以操作类的私有成员，因此破坏了面向对象的封装性。
+
