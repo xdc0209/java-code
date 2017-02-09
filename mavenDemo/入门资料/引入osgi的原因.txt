@@ -1,18 +1,18 @@
-��ͳ����ϵͳģʽ��
-1.Javaϵͳ����Web������Ӧ�÷�������
-2.��Web������Ƕ��Javaϵͳ
+传统部署系统模式：
+1.Java系统部署到Web容器或应用服务器上
+2.将Web容器内嵌到Java系统
 
 
-OSGi�ŵ㣺
-���Ȳ�ε�ϵͳ
-�ȶ�����Ч��ϵͳ
-�淶�ġ��ɻ��۵�ģ��
-��..
+OSGi优点：
+可热插拔的系统
+稳定、高效的系统
+规范的、可积累的模块
+…..
 
-OSGiȱ�㣺
-��ҵ��Ӧ�ÿ�����̫�Ѻ�
-���������̫�Ѻ�
-ʹ��Spring Framework���Ի�������������
-����Embedded web containers��֧�ֲ���war��
-��..
+OSGi缺点：
+企业级应用开发不太友好
+服务管理不太友好
+使用Spring Framework特性机制来管理服务
+扩张Embedded web containers，支持部署war等
+…..
 

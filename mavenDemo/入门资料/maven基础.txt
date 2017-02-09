@@ -1,33 +1,33 @@
-mvnÃ»³öÏÖÖ®Ç°£¬ÔçÇ°µÄÏîÄ¿ÖĞ£¬´æÔÚÈçÏÂµÄ¼¸¸öÎÊÌâ£º
-1¡¢ÒÀÀµ¹ÜÀí»ìÂÒ£¬ ±íÏÖÎªÈçÏÂµÄ¼¸¸ö·½Ãæ¡£
-1£©²»Çå³şµ½µ×´æÔÚÄÄĞ©ÒÀÀµ£¬ÓÈÆäÊÇ¿ªÔ´ÒÀÀµ
-2£©Í¬Ò»¸öÒÀÀµ´æÔÚ¶à¸ö²»Í¬µÄ°æ±¾£¬ °æ±¾¹ÜÀí»ìÂÒ
-2¡¢½×¶Î°ó¶¨²å¼şÄ¿±ê»ìÂÒ£¬ÅäÖÃ²»Í³Ò»
-3¡¢½ö½ö°üº¬ÁËjar°üµÄÊä³ö£¬¶ÔÓÚÆäËû¸½¼ş£¬ÀıÈçjavadoc¡¢sourceÒÔ¼°°²×°°üÃ»ÓĞ°üº¬£¬°²×°°ü»ù±¾¶¼ÊÇ²»Í¬µÄÈË±àĞ´µÄ²»Í¬µÄ½Å±¾£¬¸ñÊ½£¬·½Ê½²»Í³Ò»£¬²¢ÇÒ¶ÔÓ¦µÄÒÀÀµ°ü´æÔÚÃ»ÓĞ¼°Ê±¸üĞÂµÄ·çÏÕ¡£
-4¡¢±¾µØ¹¹½¨Ã»ÓĞÄÉÈë¹¤³Ì¹ÜÀí
+mvnæ²¡å‡ºç°ä¹‹å‰ï¼Œæ—©å‰çš„é¡¹ç›®ä¸­ï¼Œå­˜åœ¨å¦‚ä¸‹çš„å‡ ä¸ªé—®é¢˜ï¼š
+1ã€ä¾èµ–ç®¡ç†æ··ä¹±ï¼Œ è¡¨ç°ä¸ºå¦‚ä¸‹çš„å‡ ä¸ªæ–¹é¢ã€‚
+1ï¼‰ä¸æ¸…æ¥šåˆ°åº•å­˜åœ¨å“ªäº›ä¾èµ–ï¼Œå°¤å…¶æ˜¯å¼€æºä¾èµ–
+2ï¼‰åŒä¸€ä¸ªä¾èµ–å­˜åœ¨å¤šä¸ªä¸åŒçš„ç‰ˆæœ¬ï¼Œ ç‰ˆæœ¬ç®¡ç†æ··ä¹±
+2ã€é˜¶æ®µç»‘å®šæ’ä»¶ç›®æ ‡æ··ä¹±ï¼Œé…ç½®ä¸ç»Ÿä¸€
+3ã€ä»…ä»…åŒ…å«äº†jaråŒ…çš„è¾“å‡ºï¼Œå¯¹äºå…¶ä»–é™„ä»¶ï¼Œä¾‹å¦‚javadocã€sourceä»¥åŠå®‰è£…åŒ…æ²¡æœ‰åŒ…å«ï¼Œå®‰è£…åŒ…åŸºæœ¬éƒ½æ˜¯ä¸åŒçš„äººç¼–å†™çš„ä¸åŒçš„è„šæœ¬ï¼Œæ ¼å¼ï¼Œæ–¹å¼ä¸ç»Ÿä¸€ï¼Œå¹¶ä¸”å¯¹åº”çš„ä¾èµ–åŒ…å­˜åœ¨æ²¡æœ‰åŠæ—¶æ›´æ–°çš„é£é™©ã€‚
+4ã€æœ¬åœ°æ„å»ºæ²¡æœ‰çº³å…¥å·¥ç¨‹ç®¡ç†
 
 
-mvnÖ÷²Ö¿âµØÖ·
+mvnä¸»ä»“åº“åœ°å€
 http://search.maven.org/#browse
 
 
-³£ÓÃÃüÁîËµÃ÷
+å¸¸ç”¨å‘½ä»¤è¯´æ˜
 ===========================================
-Õª×Ô£ºhttp://www.cnblogs.com/PatrickLee/archive/2012/10/31/2747398.html
-3. ±àÒëÔ´´úÂë£º                  mvn compile
-4. ÔËĞĞ²âÊÔ£º                    mvn test
-5. ±àÒë²âÊÔ´úÂë£º                mvn test-compile
-6. ²úÉúsite£º                    mvn site (±àÒë£¬´ò°ü£¬findbugs£©
-7. ´ò°ü£º                        mvn package
-8. ´ò°üÔ´Âë£º                    mvn source:jar
-9. ÔÚ±¾µØRepositoryÖĞ°²×°jar£º   mvn install
-10.ÔÚÔ¶³ÌRepositoryÖĞ°²×°jar£º   mvn deploy
-11.Çå³ı²úÉúµÄÏîÄ¿£º              mvn clean
-12.Ö»²âÊÔ¶ø²»±àÒë£¬Ò²²»²âÊÔ±àÒë£ºmvn test -skipping compile -skipping test-compile
-   (-skipping µÄÁé»îÔËÓÃ£¬µ±È»Ò²¿ÉÒÔÓÃÓÚÆäËû×éºÏÃüÁî)
+æ‘˜è‡ªï¼šhttp://www.cnblogs.com/PatrickLee/archive/2012/10/31/2747398.html
+3. ç¼–è¯‘æºä»£ç ï¼š                  mvn compile
+4. è¿è¡Œæµ‹è¯•ï¼š                    mvn test
+5. ç¼–è¯‘æµ‹è¯•ä»£ç ï¼š                mvn test-compile
+6. äº§ç”Ÿsiteï¼š                    mvn site (ç¼–è¯‘ï¼Œæ‰“åŒ…ï¼Œfindbugsï¼‰
+7. æ‰“åŒ…ï¼š                        mvn package
+8. æ‰“åŒ…æºç ï¼š                    mvn source:jar
+9. åœ¨æœ¬åœ°Repositoryä¸­å®‰è£…jarï¼š   mvn install
+10.åœ¨è¿œç¨‹Repositoryä¸­å®‰è£…jarï¼š   mvn deploy
+11.æ¸…é™¤äº§ç”Ÿçš„é¡¹ç›®ï¼š              mvn clean
+12.åªæµ‹è¯•è€Œä¸ç¼–è¯‘ï¼Œä¹Ÿä¸æµ‹è¯•ç¼–è¯‘ï¼šmvn test -skipping compile -skipping test-compile
+   (-skipping çš„çµæ´»è¿ç”¨ï¼Œå½“ç„¶ä¹Ÿå¯ä»¥ç”¨äºå…¶ä»–ç»„åˆå‘½ä»¤)
 
 
-ÏîÄ¿Ó¦ÓÃ
+é¡¹ç›®åº”ç”¨
 ===========================================
 cd /d %java_src%\com.xdc.soft
 call mvn clean install -Dmaven.test.skip=true || pause && exit 1
@@ -36,20 +36,20 @@ call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings.xml -f 
 
 
 ===========================================
-Ô­±¾²»Ö§³ÖmavenµÄ°üÔÚmavenÖĞµÄÊ¹ÓÃ
-groupId£¬artifactIdºÍversionÕâ¸öÈı×éºÏ±êÊ¾ÒÀÀµµÄ¾ßÌå¹¤³Ì£¬¶øÇÒÕâ¸öÒÀÀµ¹¤³Ì±ØĞëÊÇmavenÖĞĞÄ°ü¹ÜÀí·¶Î§ÄÚµÄ¡£Èç¹ûÅöÉÏ·Ç¿ªÔ´°ü£¬mavenÖ§³Ö²»ÁËÕâ¸ö°ü£¬ÄÇÃ´ÔòÓĞÈıÖÖ·½·¨´¦Àí£º
-1.±¾µØ°²×°Õâ¸ö°ü£¬ÃüÁîÈçÏÂ£º
+åŸæœ¬ä¸æ”¯æŒmavençš„åŒ…åœ¨mavenä¸­çš„ä½¿ç”¨
+groupIdï¼ŒartifactIdå’Œversionè¿™ä¸ªä¸‰ç»„åˆæ ‡ç¤ºä¾èµ–çš„å…·ä½“å·¥ç¨‹ï¼Œè€Œä¸”è¿™ä¸ªä¾èµ–å·¥ç¨‹å¿…é¡»æ˜¯mavenä¸­å¿ƒåŒ…ç®¡ç†èŒƒå›´å†…çš„ã€‚å¦‚æœç¢°ä¸Šéå¼€æºåŒ…ï¼Œmavenæ”¯æŒä¸äº†è¿™ä¸ªåŒ…ï¼Œé‚£ä¹ˆåˆ™æœ‰ä¸‰ç§æ–¹æ³•å¤„ç†ï¼š
+1.æœ¬åœ°å®‰è£…è¿™ä¸ªåŒ…ï¼Œå‘½ä»¤å¦‚ä¸‹ï¼š
 mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1.0.0
-2.´´½¨×Ô¼ºµÄRepositories²¢ÇÒ²¿ÊğÕâ¸ö°ü£¬ÃüÁîÈçÏÂ£º
+2.åˆ›å»ºè‡ªå·±çš„Repositorieså¹¶ä¸”éƒ¨ç½²è¿™ä¸ªåŒ…ï¼Œå‘½ä»¤å¦‚ä¸‹ï¼š
 mvn deploy:deploy-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1.0.0
-3.ÉèÖÃscopeÎªsystem£¬²¢ÇÒÖ¸¶¨ÏµÍ³Â·¾¶
+3.è®¾ç½®scopeä¸ºsystemï¼Œå¹¶ä¸”æŒ‡å®šç³»ç»Ÿè·¯å¾„
 
 
 http://blog.csdn.net/adeyi/article/details/17259479
-mavenµÄÊôĞÔ£¬ÊÇÖµµÄÕ¼Î»·û£¬ÀàËÆEL£¬ÀàËÆantµÄÊôĞÔ£¬±ÈÈç${X}£¬¿ÉÓÃÓÚpomÎÄ¼şÈÎºÎ¸³ÖµµÄÎ»ÖÃ¡£ÓĞÒÔÏÂ·ÖÀà£º
-env.X£º                  ²Ù×÷ÏµÍ³»·¾³±äÁ¿£¬±ÈÈç${env.PATH}
-project.x£º              pomÎÄ¼şÖĞµÄÊôĞÔ£¬±ÈÈç£º<project><version>1.0</version></project>£¬ÒıÓÃ·½Ê½£º${project.version}
-settings.x£º             settings.xmlÎÄ¼şÖĞµÄÊôĞÔ£¬±ÈÈç£º<settings><offline>false</offline></settings>£¬ÒıÓÃ·½Ê½£º${settings.offline}
-Java System Properties£º java.lang.System.getProperties()ÖĞµÄÊôĞÔ£¬±ÈÈçjava.home£¬ÒıÓÃ·½Ê½£º${java.home}
-×Ô¶¨Òå£ºÔÚpomÎÄ¼şÖĞ¿ÉÒÔ£º<properties><installDir>c:/apps/cargo-installs</installDir></properties>£¬ÒıÓÃ·½Ê½£º${installDir}
+mavençš„å±æ€§ï¼Œæ˜¯å€¼çš„å ä½ç¬¦ï¼Œç±»ä¼¼ELï¼Œç±»ä¼¼antçš„å±æ€§ï¼Œæ¯”å¦‚${X}ï¼Œå¯ç”¨äºpomæ–‡ä»¶ä»»ä½•èµ‹å€¼çš„ä½ç½®ã€‚æœ‰ä»¥ä¸‹åˆ†ç±»ï¼š
+env.Xï¼š                  æ“ä½œç³»ç»Ÿç¯å¢ƒå˜é‡ï¼Œæ¯”å¦‚${env.PATH}
+project.xï¼š              pomæ–‡ä»¶ä¸­çš„å±æ€§ï¼Œæ¯”å¦‚ï¼š<project><version>1.0</version></project>ï¼Œå¼•ç”¨æ–¹å¼ï¼š${project.version}
+settings.xï¼š             settings.xmlæ–‡ä»¶ä¸­çš„å±æ€§ï¼Œæ¯”å¦‚ï¼š<settings><offline>false</offline></settings>ï¼Œå¼•ç”¨æ–¹å¼ï¼š${settings.offline}
+Java System Propertiesï¼š java.lang.System.getProperties()ä¸­çš„å±æ€§ï¼Œæ¯”å¦‚java.homeï¼Œå¼•ç”¨æ–¹å¼ï¼š${java.home}
+è‡ªå®šä¹‰ï¼šåœ¨pomæ–‡ä»¶ä¸­å¯ä»¥ï¼š<properties><installDir>c:/apps/cargo-installs</installDir></properties>ï¼Œå¼•ç”¨æ–¹å¼ï¼š${installDir}
 

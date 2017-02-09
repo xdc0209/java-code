@@ -1,38 +1,38 @@
-Osgi¿ò¼Ü£ºequinox
----¿ØÖÆ OSGi ¿ò¼Ü---
-    launch - Æô¶¯ OSGi ¿ò¼Ü
-    shutdown - ¹Ø±Õ OSGi ¿ò¼Ü
-    close - ¹Ø±Õ²¢ÍË³ö
-    exit - Á¢¼´ÍË³ö£¨System.exit£©
-    init - Ğ¶ÔØËùÓĞÊø
-    setprop <key>=<value> - ÉèÖÃ OSGi ÊôĞÔ
----ÕıÔÚ¿ØÖÆÊø---
-    install - °²×° bundle ²¢£¨¿ÉÑ¡£©´Ó¸ø¶¨µÄ URL Æô¶¯ bundle
-    uninstall - Ğ¶ÔØÖ¸¶¨µÄ bundle
-**  start - Æô¶¯Ö¸¶¨µÄ bundle
-**  stop - Í£Ö¹Ö¸¶¨µÄ bundle
-    refresh - Ë¢ĞÂÖ¸¶¨ bundle µÄ°ü
-    update - ¸üĞÂÖ¸¶¨ bundle
----ÕıÔÚÏÔÊ¾×´Ì¬---
-    status [-s [<Êø×´Ì¬µÄ¶ººÅ·Ö¸ôÁĞ±í>]  [<bsn µÄ¶Î>]] - ÏÔÊ¾ÒÑ°²×°µÄ bundle ºÍÒÑ×¢²áµÄ·şÎñ
-**  ss [-s [<Êø×´Ì¬µÄ¶ººÅ·Ö¸ôÁĞ±í>]  [<bsn µÄ¶Î>]] - ÏÔÊ¾ÒÑ°²×°µÄ bundle£¨¶Ì×´Ì¬£©
-    services [¹ıÂËÆ÷] - display registered service details
-**  packages [<pkgname>|<id>|<location>] - ÏÔÊ¾ÒÑµ¼Èë£¯µ¼³öµÄ°üµÄÏêÏ¸ĞÅÏ¢
-    bundles [-s [<Êø×´Ì¬µÄ¶ººÅ·Ö¸ôÁĞ±í>]  [<bsn µÄ¶Î>]] - ÏÔÊ¾ÒÑ°²×°µÄËùÓĞ bundle µÄÏêÏ¸ĞÅÏ¢
-**  bundle (<id>|<location>) - ÏÔÊ¾Ö¸¶¨ bundle µÄÏêÏ¸ĞÅÏ¢
-**  headers (<id>|<location>) - ´òÓ¡ bundle ±êÌâ
----ÆäËü---
-    exec <command> - ÔÚµ¥¶ÀµÄ½ø³ÌÖĞÖ´ĞĞÃüÁî²¢µÈ´ı
-    fork <command> - ÔÚµ¥¶ÀµÄ½ø³ÌÖĞÖ´ĞĞÃüÁî
-    gc - Ö´ĞĞÀ¬»ø»ØÊÕ
-    getprop  [ Ãû³Æ ] - ÏÔÊ¾¾ßÓĞ¸ø¶¨Ãû³ÆµÄÏµÍ³ÊôĞÔ£¬»òÕßÏÔÊ¾ËùÓĞÏµÍ³ÊôĞÔ¡£
----ÕıÔÚ¿ØÖÆÆô¶¯¼¶±ğ---
-    sl [<id>|<location>] - ÏÔÊ¾Ö¸¶¨µÄ bundle µÄÆô¶¯¼¶±ğ£¬Èç¹ûÎ´Ö¸¶¨ bundle£¬ÔòÏÔÊ¾¿ò¼ÜµÄÆô¶¯¼¶±ğ
-    setfwsl <start level> - ÉèÖÃ¿ò¼ÜÆô¶¯¼¶±ğ
-    setbsl <start level>£¨<id>|<location>£© - ÉèÖÃ bundle µÄÆô¶¯¼¶±ğ
-    setibsl <start level> - ÉèÖÃ³õÊ¼ bundle Æô¶¯¼¶±ğ
----¿ØÖÆ¸ÅÒª·ÖÎö---
-    profilelog - ÏÔÊ¾ºÍÇå³ı¸ÅÒª·ÖÎöÈÕÖ¾ÏûÏ¢
----²Ù×İ¿ØÖÆÌ¨---
-    more - ¿ØÖÆÌ¨Êä³öµÄ¸ü¶àÌáÊ¾
-    disconnect - ¶Ï¿ª Telnet »á»°
+Osgiæ¡†æ¶ï¼šequinox
+---æ§åˆ¶ OSGi æ¡†æ¶---
+    launch - å¯åŠ¨ OSGi æ¡†æ¶
+    shutdown - å…³é—­ OSGi æ¡†æ¶
+    close - å…³é—­å¹¶é€€å‡º
+    exit - ç«‹å³é€€å‡ºï¼ˆSystem.exitï¼‰
+    init - å¸è½½æ‰€æœ‰æŸ
+    setprop <key>=<value> - è®¾ç½® OSGi å±æ€§
+---æ­£åœ¨æ§åˆ¶æŸ---
+    install - å®‰è£… bundle å¹¶ï¼ˆå¯é€‰ï¼‰ä»ç»™å®šçš„ URL å¯åŠ¨ bundle
+    uninstall - å¸è½½æŒ‡å®šçš„ bundle
+**  start - å¯åŠ¨æŒ‡å®šçš„ bundle
+**  stop - åœæ­¢æŒ‡å®šçš„ bundle
+    refresh - åˆ·æ–°æŒ‡å®š bundle çš„åŒ…
+    update - æ›´æ–°æŒ‡å®š bundle
+---æ­£åœ¨æ˜¾ç¤ºçŠ¶æ€---
+    status [-s [<æŸçŠ¶æ€çš„é€—å·åˆ†éš”åˆ—è¡¨>]  [<bsn çš„æ®µ>]] - æ˜¾ç¤ºå·²å®‰è£…çš„ bundle å’Œå·²æ³¨å†Œçš„æœåŠ¡
+**  ss [-s [<æŸçŠ¶æ€çš„é€—å·åˆ†éš”åˆ—è¡¨>]  [<bsn çš„æ®µ>]] - æ˜¾ç¤ºå·²å®‰è£…çš„ bundleï¼ˆçŸ­çŠ¶æ€ï¼‰
+    services [è¿‡æ»¤å™¨] - display registered service details
+**  packages [<pkgname>|<id>|<location>] - æ˜¾ç¤ºå·²å¯¼å…¥ï¼å¯¼å‡ºçš„åŒ…çš„è¯¦ç»†ä¿¡æ¯
+    bundles [-s [<æŸçŠ¶æ€çš„é€—å·åˆ†éš”åˆ—è¡¨>]  [<bsn çš„æ®µ>]] - æ˜¾ç¤ºå·²å®‰è£…çš„æ‰€æœ‰ bundle çš„è¯¦ç»†ä¿¡æ¯
+**  bundle (<id>|<location>) - æ˜¾ç¤ºæŒ‡å®š bundle çš„è¯¦ç»†ä¿¡æ¯
+**  headers (<id>|<location>) - æ‰“å° bundle æ ‡é¢˜
+---å…¶å®ƒ---
+    exec <command> - åœ¨å•ç‹¬çš„è¿›ç¨‹ä¸­æ‰§è¡Œå‘½ä»¤å¹¶ç­‰å¾…
+    fork <command> - åœ¨å•ç‹¬çš„è¿›ç¨‹ä¸­æ‰§è¡Œå‘½ä»¤
+    gc - æ‰§è¡Œåƒåœ¾å›æ”¶
+    getprop  [ åç§° ] - æ˜¾ç¤ºå…·æœ‰ç»™å®šåç§°çš„ç³»ç»Ÿå±æ€§ï¼Œæˆ–è€…æ˜¾ç¤ºæ‰€æœ‰ç³»ç»Ÿå±æ€§ã€‚
+---æ­£åœ¨æ§åˆ¶å¯åŠ¨çº§åˆ«---
+    sl [<id>|<location>] - æ˜¾ç¤ºæŒ‡å®šçš„ bundle çš„å¯åŠ¨çº§åˆ«ï¼Œå¦‚æœæœªæŒ‡å®š bundleï¼Œåˆ™æ˜¾ç¤ºæ¡†æ¶çš„å¯åŠ¨çº§åˆ«
+    setfwsl <start level> - è®¾ç½®æ¡†æ¶å¯åŠ¨çº§åˆ«
+    setbsl <start level>ï¼ˆ<id>|<location>ï¼‰ - è®¾ç½® bundle çš„å¯åŠ¨çº§åˆ«
+    setibsl <start level> - è®¾ç½®åˆå§‹ bundle å¯åŠ¨çº§åˆ«
+---æ§åˆ¶æ¦‚è¦åˆ†æ---
+    profilelog - æ˜¾ç¤ºå’Œæ¸…é™¤æ¦‚è¦åˆ†ææ—¥å¿—æ¶ˆæ¯
+---æ“çºµæ§åˆ¶å°---
+    more - æ§åˆ¶å°è¾“å‡ºçš„æ›´å¤šæç¤º
+    disconnect - æ–­å¼€ Telnet ä¼šè¯

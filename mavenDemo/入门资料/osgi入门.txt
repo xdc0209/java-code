@@ -1,50 +1,50 @@
-±¾ÎÄµµÎ´½øÐÐÏ¸ÖÂÏêÊöËùÓÐÏ¸½Ú£¬¸ø´ó¼ÒÁôÏÂÃþË÷¿Õ¼ä¡£
+æœ¬æ–‡æ¡£æœªè¿›è¡Œç»†è‡´è¯¦è¿°æ‰€æœ‰ç»†èŠ‚ï¼Œç»™å¤§å®¶ç•™ä¸‹æ‘¸ç´¢ç©ºé—´ã€‚
 
-Áã¡¢½éÉÜ
-OSGi¸ÅÄî£ºOSGi(Open Service Gateway Initiative)ÊÇÒ»ÖÖ·þÎñÔËÐÐÆ½Ì¨¡£Í¨¹ýÊµÏÖÄÜ¹»Ìá¹©·þÎñµÄ·ûºÏOSGi¹æ·¶µÄ×é¼þ£¬ÓÃ»§¿ÉÒÔ½«Æä×é¼þ·¢²¼µ½OSGiÔËÐÐÆ½Ì¨£¬¹©ÓÃ»§ºÍÆäËû×é¼þÊ¹ÓÃ¡£Îª¿ª·¢ºÍ²¿ÊðÄ£¿é»¯Ó¦ÓÃºÍ¿â¶¨ÒåÁË»ù´¡¼Ü¹¹¡£
-OSGi¹æ·¶£ºOSGi·þÎñÆ½Ì¨¹æ·¶ÊÇÓÉOSGiÁªÃË´´½¨³öµÄÒ»Ì×¹æ·¶¡£¸ÃÌ×¹æ·¶¶¨ÒåÁËÒ»¸ö¿ª·ÅÊ½µÄ¹«¹²µÄ½á¹¹£¬Ê¹¸÷·þÎñÌá¹©ÉÌ¡¢Èí¼þ¿ª·¢Õß¡¢Èí¼þÖÆÔìÉÌ¡¢Éè±¸ÖÆÔìÉÌµÈÄÜ¹²Í¬¿ª·¢¡¢²¿Êð¡¢¹ÜÀí·þÎñ¡£
+é›¶ã€ä»‹ç»
+OSGiæ¦‚å¿µï¼šOSGi(Open Service Gateway Initiative)æ˜¯ä¸€ç§æœåŠ¡è¿è¡Œå¹³å°ã€‚é€šè¿‡å®žçŽ°èƒ½å¤Ÿæä¾›æœåŠ¡çš„ç¬¦åˆOSGiè§„èŒƒçš„ç»„ä»¶ï¼Œç”¨æˆ·å¯ä»¥å°†å…¶ç»„ä»¶å‘å¸ƒåˆ°OSGiè¿è¡Œå¹³å°ï¼Œä¾›ç”¨æˆ·å’Œå…¶ä»–ç»„ä»¶ä½¿ç”¨ã€‚ä¸ºå¼€å‘å’Œéƒ¨ç½²æ¨¡å—åŒ–åº”ç”¨å’Œåº“å®šä¹‰äº†åŸºç¡€æž¶æž„ã€‚
+OSGiè§„èŒƒï¼šOSGiæœåŠ¡å¹³å°è§„èŒƒæ˜¯ç”±OSGiè”ç›Ÿåˆ›å»ºå‡ºçš„ä¸€å¥—è§„èŒƒã€‚è¯¥å¥—è§„èŒƒå®šä¹‰äº†ä¸€ä¸ªå¼€æ”¾å¼çš„å…¬å…±çš„ç»“æž„ï¼Œä½¿å„æœåŠ¡æä¾›å•†ã€è½¯ä»¶å¼€å‘è€…ã€è½¯ä»¶åˆ¶é€ å•†ã€è®¾å¤‡åˆ¶é€ å•†ç­‰èƒ½å…±åŒå¼€å‘ã€éƒ¨ç½²ã€ç®¡ç†æœåŠ¡ã€‚
 
-Ò»¡¢¹¹½¨»·¾³
-1. ÏÂÔØvirgo£¬°æ±¾Ñ¡Ôñ×îÐÂ°æ£¨3.6.3.RELEASE£©µÄVirgo Kernel£¬http://www.eclipse.org/virgo/download/
+ä¸€ã€æž„å»ºçŽ¯å¢ƒ
+1. ä¸‹è½½virgoï¼Œç‰ˆæœ¬é€‰æ‹©æœ€æ–°ç‰ˆï¼ˆ3.6.3.RELEASEï¼‰çš„Virgo Kernelï¼Œhttp://www.eclipse.org/virgo/download/
 
-2. ¿ªÆôosgi¿ØÖÆÌ¨:
-ÐÞ¸ÄvirgoÄÚºË¼¶±ð¿ØÖÆÌ¨2401£ºvirgo-kernel-3.6.3.RELEASE\configuration\osgi.console.properties
+2. å¼€å¯osgiæŽ§åˆ¶å°:
+ä¿®æ”¹virgoå†…æ ¸çº§åˆ«æŽ§åˆ¶å°2401ï¼švirgo-kernel-3.6.3.RELEASE\configuration\osgi.console.properties
 telnet.enabled=true
-ÐÞ¸ÄvirgoÓÃ»§¼¶±ð¿ØÖÆÌ¨2501£ºvirgo-kernel-3.6.3.RELEASE\repository\ext\osgi.console.properties
+ä¿®æ”¹virgoç”¨æˆ·çº§åˆ«æŽ§åˆ¶å°2501ï¼švirgo-kernel-3.6.3.RELEASE\repository\ext\osgi.console.properties
 telnet.enabled=true
 
-3. ¿ªÆôÊäÈëÊä³öÁ÷£º
-ÐÞ¸Ävirgo-kernel-3.6.3.RELEASE\configuration\org.eclipse.virgo.medic.properties
+3. å¼€å¯è¾“å…¥è¾“å‡ºæµï¼š
+ä¿®æ”¹virgo-kernel-3.6.3.RELEASE\configuration\org.eclipse.virgo.medic.properties
 log.wrapSysOut=false
 log.wrapSysErr=false
 
-4. Æô¶¯virgo£¬Ë«»÷virgo-kernel-3.6.3.RELEASE\bin\startup.bat
-×¢£ºÈçÆô¶¯±¨´í£¬ÏÈÉ¾³ývirgo-kernel-3.6.3.RELEASE\work »òÕßÔÚÆô¶¯Ê±Ö¸¶¨clean²ÎÊý£¬startup.bat -clean
+4. å¯åŠ¨virgoï¼ŒåŒå‡»virgo-kernel-3.6.3.RELEASE\bin\startup.bat
+æ³¨ï¼šå¦‚å¯åŠ¨æŠ¥é”™ï¼Œå…ˆåˆ é™¤virgo-kernel-3.6.3.RELEASE\work æˆ–è€…åœ¨å¯åŠ¨æ—¶æŒ‡å®šcleanå‚æ•°ï¼Œstartup.bat -clean
 
-¶þ¡¢±àÐ´osgi bundle
-1. ÉèÖÃeclipseµÄmvnµÄsettingÎÄ¼þ, Ê¹ÓÃmvn_settings.xml
-´°¿Ú--¡·Ê×Ñ¡Ïî--¡·Maven--¡·User Settings
+äºŒã€ç¼–å†™osgi bundle
+1. è®¾ç½®eclipseçš„mvnçš„settingæ–‡ä»¶, ä½¿ç”¨mvn_settings.xml
+çª—å£--ã€‹é¦–é€‰é¡¹--ã€‹Maven--ã€‹User Settings
 
-2. ´´½¨osgiµÄmaven¹¤³Ì£¬²Î¼û¡°´´½¨osgiµÄmavent¹¤³Ì.docx¡±
+2. åˆ›å»ºosgiçš„mavenå·¥ç¨‹ï¼Œå‚è§â€œåˆ›å»ºosgiçš„maventå·¥ç¨‹.docxâ€
 
-3. ¹¤³Ì´´½¨Íê³Éºó£¬Ìí¼ÓÒµÎñ´úÂë£¬²¢ÅäÖÃosgiÅäÖÃÎÄ¼þ £¨/src/main/resources/META-INF/springÄ¿Â¼ÏÂÈÎÒâÃû×ÖµÄxmlÎÄ¼þ£©
+3. å·¥ç¨‹åˆ›å»ºå®ŒæˆåŽï¼Œæ·»åŠ ä¸šåŠ¡ä»£ç ï¼Œå¹¶é…ç½®osgié…ç½®æ–‡ä»¶ ï¼ˆ/src/main/resources/META-INF/springç›®å½•ä¸‹ä»»æ„åå­—çš„xmlæ–‡ä»¶ï¼‰
 
-4. ´úÂëÐ´ºÃºó£¬½øÐÐ´ò°ü
+4. ä»£ç å†™å¥½åŽï¼Œè¿›è¡Œæ‰“åŒ…
 
-5. ±àÐ´planÎÄ¼þ£¬²Î¼ûcom.xdc.soft.mini.plan
+5. ç¼–å†™planæ–‡ä»¶ï¼Œå‚è§com.xdc.soft.mini.plan
 
-6. ½«jar°ü¸´ÖÆµ½virgo-kernel-3.6.3.RELEASE\repository\usr
-   ½«planÎÄ¼þ¸´ÖÆµ½virgo-kernel-3.6.3.RELEASE\pickup
+6. å°†jaråŒ…å¤åˆ¶åˆ°virgo-kernel-3.6.3.RELEASE\repository\usr
+   å°†planæ–‡ä»¶å¤åˆ¶åˆ°virgo-kernel-3.6.3.RELEASE\pickup
 
-7. ÖØÐÂÆô¶¯Æô¶¯virgoÑéÖ¤¹¦ÄÜ
+7. é‡æ–°å¯åŠ¨å¯åŠ¨virgoéªŒè¯åŠŸèƒ½
 
-8. ½øÈëvirgoµÄosgi¿ØÖÆÌ¨£¬Ñ§»á»ù±¾µÄÃüÁî¡£telnet 127.0.0.1 2501
+8. è¿›å…¥virgoçš„osgiæŽ§åˆ¶å°ï¼Œå­¦ä¼šåŸºæœ¬çš„å‘½ä»¤ã€‚telnet 127.0.0.1 2501
 
 
 ===============================================================================
-ÆäËû×¢ÒâÊÂÏî£º
-¶ÔÓÚ·ÇÒýÓÃµÄÊ¹ÓÃµÄÀà£¬ÈçÇý¶¯com.mysql.jdbc.DriverµÈ£¬´ò°übundle¹¤¾ß²»»áÔÚMANIFEST.MFÒýÈëÏàÓ¦µÄ°ü£º
+å…¶ä»–æ³¨æ„äº‹é¡¹ï¼š
+å¯¹äºŽéžå¼•ç”¨çš„ä½¿ç”¨çš„ç±»ï¼Œå¦‚é©±åŠ¨com.mysql.jdbc.Driverç­‰ï¼Œæ‰“åŒ…bundleå·¥å…·ä¸ä¼šåœ¨MANIFEST.MFå¼•å…¥ç›¸åº”çš„åŒ…ï¼š
 <properties>
-    <osgi.import.package>com.mysql.jdbc;version="5.1.13",...ÆäËûÐèÒªÌØÊâÖ¸¶¨µÄ°ü...</osgi.import.package>
+    <osgi.import.package>com.mysql.jdbc;version="5.1.13",...å…¶ä»–éœ€è¦ç‰¹æ®ŠæŒ‡å®šçš„åŒ…...</osgi.import.package>
 </properties>
 
