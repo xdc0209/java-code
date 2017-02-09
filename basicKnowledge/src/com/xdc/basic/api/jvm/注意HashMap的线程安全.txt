@@ -1,0 +1,17 @@
+注意HashMap的线程安全
+
+问题现象：
+    发现业务在一段时间运行后，系统CPU资源使用一直在95％以上，而且内存消耗并不多。系统变得很慢。但是在停掉业务后，系统CPU资源马上变得空闲。
+
+问题原因：
+   通过top -H查看占用cpu最高的线程id，再通过jstack查看问题线程的堆栈，发现一直处在HashMap代码中，这样基本可以确定是因为在多线程中使用了HashMap，而导致HashMap死循环了，表现出来就是线程挂死。
+
+问题结论：
+   JAVA的HashMap是非线程安全的，在多线程访问的情况下，不要把HashMap的变量声明为static类型，特别是，不要把HashMap的变量做成单例的变量(只初始化一次)。
+   可以用线程安全的Hashtable替换HashMap。使用上基本一致，只是Hashtable对Map进行了线程访问加锁的机制进行保护。在性能上，Hashtable要比HashMap低，对大并发的业务的性能有一定影响。
+   ConcurrentHashMap是Doug Lea的java.util.concurrent包的一部分，它提供比Hashtable或者Collections.synchronizedMap更高程度的并发性。而且，对于大多数成功的get()操作它会设法避免完全锁定，其结果就是使得并发应用程序有着非常好的吞吐量。
+   Java语言规范(JLS)允许一些内存操作并不对于所有其他线程立即可见。有两种语言机制可用于保证跨线程内存操作的一致性--synchronized和volatile。
+
+模拟代码：
+com.xdc.basic.api.jvm.HashMapInfiniteLoop
+
