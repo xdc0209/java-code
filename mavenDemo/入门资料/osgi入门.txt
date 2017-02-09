@@ -1,8 +1,10 @@
 本文档未进行细致详述所有细节，给大家留下摸索空间。
 
+零、介绍
+OSGi概念：OSGi(Open Service Gateway Initiative)是一种服务运行平台。通过实现能够提供服务的符合OSGi规范的组件，用户可以将其组件发布到OSGi运行平台，供用户和其他组件使用。为开发和部署模块化应用和库定义了基础架构。
+OSGi规范：OSGi服务平台规范是由OSGi联盟创建出的一套规范。该套规范定义了一个开放式的公共的结构，使各服务提供商、软件开发者、软件制造商、设备制造商等能共同开发、部署、管理服务。
 
 一、构建环境
-
 1. 下载virgo，版本选择最新版（3.6.3.RELEASE）的Virgo Kernel，http://www.eclipse.org/virgo/download/
 
 2. 开启osgi控制台:
@@ -45,3 +47,4 @@ log.wrapSysErr=false
 <properties>
     <osgi.import.package>com.mysql.jdbc;version="5.1.13",...其他需要特殊指定的包...</osgi.import.package>
 </properties>
+
