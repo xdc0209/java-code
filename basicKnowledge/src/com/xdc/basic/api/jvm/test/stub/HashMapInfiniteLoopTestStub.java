@@ -1,4 +1,4 @@
-package com.xdc.basic.api.jvm;
+package com.xdc.basic.api.jvm.test.stub;
 
 import java.util.HashMap;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
 // HashMap不是线程安全的，在被多线程共享操作时，有概率出现死循环，导致单核cpu占用100%。这个概率比较低，多次执行代码不一定能复现，但可以通过单步调试构造出来。
 // 问题原因是多线程同时put时，如果同时触发了rehash操作，会导致HashMap中的链表中出现循环节点，进而使得后面get的时候，会死循环。
 // 多线程场景下一定要使用线程安全的ConcurrentHashMap，不能使用HashMap。
-public class HashMapInfiniteLoop
+public class HashMapInfiniteLoopTestStub
 {
     private static HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(2, 0.75f);
 

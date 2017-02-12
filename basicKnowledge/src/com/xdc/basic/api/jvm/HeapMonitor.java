@@ -12,7 +12,7 @@ import javax.management.MBeanServer;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-public class Heap
+public class HeapMonitor
 {
     @SuppressWarnings("unused")
     public static void main(String[] args)

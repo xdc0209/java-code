@@ -1,6 +1,6 @@
 package com.xdc.basic.api.jvm;
 
-public class RuntimeInfo
+public class RuntimeInfoMonitor
 {
     public static void main(String[] args)
     {

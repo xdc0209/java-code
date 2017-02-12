@@ -9,7 +9,7 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.SystemUtils;
 
-public class Deadlock
+public class DeadlockMonitor
 {
     public static void main(String[] args)
     {
