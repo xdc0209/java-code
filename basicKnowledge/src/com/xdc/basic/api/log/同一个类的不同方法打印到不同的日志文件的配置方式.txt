@@ -1,0 +1,52 @@
+摘自：http://blog.sina.com.cn/s/blog_4521e7ac0101g3wn.html
+
+log4j的强大功能无可置疑，但实际应用中免不了遇到某个功能需要输出独立的日志文件的情况，怎样才能把所需的内容从原有日志中分离，形成单独的日志文件呢？其实只要在现有的log4j基础上稍加配置即可轻松实现这一功能。
+1)先看一个常见的log4j.properties文件，它是在控制台和daily.log文件中记录日志：
+log4j.rootLogger=error,dailyLog,stdout
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
+log4j.appender.dailyLog=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.dailyLog.File=../logs/daily.log
+log4j.appender.dailyLog.Append=true
+log4j.appender.dailyLog.Threshold=ERROR
+log4j.appender.dailyLog.DatePattern='.'yyyy-MM-dd
+log4j.appender.dailyLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.dailyLog.layout.ConversionPattern=%5p:%d - %m%n
+
+2)如果想对不同的功能模块输出不同的文件，怎么操作？
+用户基础信息模块路径为：com.isoft.visa.baseinf
+它下面有个类：com.isoft.visa.baseinf.service.impl.UserInfo
+private Log log = LogFactory.getLog(UserInfo.class);
+然后在log4j.properties中加入:
+log4j.logger.com.isoft.visa.baseinf=info,userLog,stdout
+log4j.appender.userLog=org.apache.log4j.FileAppender
+log4j.appender.userLog.File=../logs/userinfo.log
+log4j.appender.userLog.Append=true
+log4j.appender.userLog.Threshold=info
+log4j.appender.userLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.userLog.layout.ConversionPattern==%d %p [%c] - %m%n
+注：也就是让com.isoft.visa.baseinf模块下所有的logger使用log4j.appender.userLog所做的配置。
+
+3)自定义"别名"的使用,相当于2的变种。
+private Log log = LogFactory.getLog("userInfoLog");
+然后在log4j.properties中加入:
+log4j.logger.userInfoLog=info,userLog,stdout
+log4j.appender.userLog=org.apache.log4j.FileAppender
+log4j.appender.userLog.File=../logs/userinfo.log
+log4j.appender.userLog.Append=true
+log4j.appender.userLog.Threshold=info
+log4j.appender.userLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.userLog.layout.ConversionPattern==%d %p [%c] - %m%n
+注：也就是在用logger时给它一个自定义的名字(如这里的"userInfoLog")，然后在log4j.properties中做出相应配置即可。在这种模式下，即使在同一个类中也能定义多个不同输出的log。
+在类中调用代码如下：
+private Log loggerError = LogFactory.getLog("userInfoLogError");
+private Log loggerInfo = LogFactory.getLog("userInfoLogInfo");
+
+4)自定义的日志默认是同时输出到log4j.rootLogger所配置的日志中的，如何能只让它们输出到自己指定的日志中呢？别急，这里有个开关：
+log4j.additivity.userInfoLog = false
+它用来设置是否同时输出到log4j.rootLogger所配置的日志中，设为false就不会输出到其它地方啦！注意这里的"userInfoLog"是你在程序中给logger起的那个自定义的名字！
+如果你说，我只是不想同时输出这个日志到log4j.rootLogger所配置的logfile中，stdout里我还想同时输出呢！那也好办，如：
+log4j.logger.userInfoLog=DEBUG, userLog, stdout
+

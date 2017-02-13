@@ -1,0 +1,27 @@
+参考：http://blog.csdn.net/wanghuan203/article/details/50615609
+
+动态修改日志级别的实现思路：
+思路1：
+(1)使用logback，并指定动态生效：<configuration debug="false" scan="true" scanPeriod="30 seconds" packagingData="true">
+(2)使用shell脚本实现日志配置文件的修改：
+   (a)备份日志配置文件，如果已经备份过，则不再备份，保证只保留原始文件。
+   (b)修改配置文件。
+   (c)使用at命令设置日志回滚任务，保证日志能在指定时间回滚到原始状态。注意：设置at定时任务前，检查是已经存在一个日志回滚任务，如果存在，先取消后添加。
+
+思路2：
+(1)使用logback，但不指定动态生效：<configuration debug="false" packagingData="true">
+(2)使用shell脚本实现日志配置文件的修改：
+   (a)使用jmx连接java虚拟机，并调用logback的接口设置日志级别。
+   (b)使用java的定时任务回滚日志。同样，如果已存在，先取消后添加。
+
+
+脚本定时任务实现参考：
+/etc/init.d/atd status >/dev/null 2>&1 || /etc/init.d/atd start >/dev/null 2>&1
+/etc/init.d/cron status >/dev/null 2>&1 || /etc/init.d/cron start >/dev/null 2>&1
+
+chkconfig atd on
+chkconfig cron on
+
+/usr/bin/at -f $APP_HOME/bin/log.sh -r now + 30 minutes >/dev/null 2>&1
+grep logback.xml /etc/crontab >/dev/null 2>&1 || echo '0 2 * * * root $APP_HOME/bin/log.sh -r >>/etc/crontab
+
