@@ -1,0 +1,11 @@
+JAVA: 1.6.0_45
+
+SupportedProtocols:
+SSLv2Hello
+SSLv3
+TLSv1
+
+EnabledProtocols:
+SSLv2Hello
+SSLv3
+TLSv1

@@ -1,6 +1,6 @@
 摘自：jersey-examples-2.14-all.zip\jersey\examples\https-clientserver-grizzly\README.html
 
-First thing you have to do if you want to communicate with service via https is set up SSLContext which is basically providing keystore and truststore. 
+First thing you have to do if you want to communicate with service via https is set up SSLContext which is basically providing keystore and truststore.
 Keystore is used for storing own keys and truststore is used for storing certificates to which you have decided to trust.
 
 ====================================================================================================

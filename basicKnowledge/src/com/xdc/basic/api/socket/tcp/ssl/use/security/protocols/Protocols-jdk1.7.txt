@@ -1,0 +1,14 @@
+JAVA: 1.7.0_79
+
+SupportedProtocols:
+SSLv2Hello
+SSLv3
+TLSv1
+TLSv1.1
+TLSv1.2
+
+EnabledProtocols:
+SSLv2Hello
+TLSv1
+TLSv1.1
+TLSv1.2
