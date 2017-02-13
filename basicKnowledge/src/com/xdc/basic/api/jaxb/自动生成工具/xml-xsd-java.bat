@@ -1,19 +1,19 @@
 @echo off
 
-:: ×¢Òâ£º´Ë²ÎÊıÎªÉú³ÉºóµÄjava´úÂë°üÂ·¾¶£¬ÇëÒª¸ù¾İÊµ¼ÊÇé¿öÖ¸¶¨
+:: æ³¨æ„ï¼šæ­¤å‚æ•°ä¸ºç”Ÿæˆåçš„javaä»£ç åŒ…è·¯å¾„ï¼Œè¯·è¦æ ¹æ®å®é™…æƒ…å†µæŒ‡å®š
 set java_package=com.xdc.basic.api.jaxb.user
 set xml_file=xml-xsd-java.xml
 set xsd_file=xml-xsd-java.xsd
 
-:: Í¨¹ı "ÑùÀıxml" ³éÏó³ö "ÃèÊöÎÄ¼şxsd"
+:: é€šè¿‡ "æ ·ä¾‹xml" æŠ½è±¡å‡º "æè¿°æ–‡ä»¶xsd"
 java -jar trang.jar %xml_file% %xsd_file% || pause && exit 1
 
-:: Í¨¹ı "ÃèÊöÎÄ¼şxsd" Éú³É "javaÀà"
+:: é€šè¿‡ "æè¿°æ–‡ä»¶xsd" ç”Ÿæˆ "javaç±»"
 xjc -xmlschema %xsd_file% -p %java_package% || pause && exit 1
 
-:: É¾³ı "ÃèÊöÎÄ¼şxsd"
+:: åˆ é™¤ "æè¿°æ–‡ä»¶xsd"
 del %xsd_file% || pause && exit 1
 
-echo java´úÂëÉú³ÉÍê³É.
+echo javaä»£ç ç”Ÿæˆå®Œæˆ.
 pause
 
