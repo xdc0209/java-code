@@ -2,8 +2,8 @@
  
 set SCRIPT_DIR=%~dp0
 
-:: å¯åŠ¨virgo: æ¸…ç†ã€æ‰“å¼€è°ƒè¯•ç«¯å£ã€ç­‰å¾…è°ƒè¯•è¿æ¥ 
+:: Æô¶¯virgo: ÇåÀí¡¢´ò¿ªµ÷ÊÔ¶Ë¿Ú¡¢µÈ´ıµ÷ÊÔÁ¬½Ó 
 :: call "%SCRIPT_DIR%startup.bat" -clean -debug 8000 -suspend
 
-:: å¯åŠ¨virgo: æ¸…ç†ã€æ‰“å¼€è°ƒè¯•ç«¯å£ 
+:: Æô¶¯virgo: ÇåÀí¡¢´ò¿ªµ÷ÊÔ¶Ë¿Ú 
 call "%SCRIPT_DIR%startup.bat" -clean -debug 8000

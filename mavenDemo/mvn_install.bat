@@ -1,24 +1,24 @@
 @echo off
-title æœ¬åœ°æ„å»ºè„šæœ¬
+title ±¾µØ¹¹½¨½Å±¾
 
-:: if not defined MVN_HOME echo è¯·å…ˆè®¾å®šç¯å¢ƒå˜é‡MVN_HOMEï¼Œå¹¶å°† %%MVN_HOME%%\bin; æ·»åŠ åˆ°ç¯å¢ƒå˜é‡PATHä¸­ã€‚ && pause && exit
+:: if not defined MVN_HOME echo ÇëÏÈÉè¶¨»·¾³±äÁ¿MVN_HOME£¬²¢½« %%MVN_HOME%%\bin; Ìí¼Óµ½»·¾³±äÁ¿PATHÖĞ¡£ && pause && exit
 
 set java_src=%cd%
 
-:: echo Javaä»£ç è·¯å¾„:     %java_src%
-:: echo Settingsæ–‡ä»¶ä½ç½®: %java_src%\mvn_settings_windows.xml
+:: echo Java´úÂëÂ·¾¶:     %java_src%
+:: echo SettingsÎÄ¼şÎ»ÖÃ: %java_src%\mvn_settings_windows.xml
 :: echo.
 ::
-:: echo è¯·ç¡®è®¤settingsæ–‡ä»¶çš„é…ç½®ä¸å½“å‰ä»£ç åº“è·¯å¾„ç›¸ç¬¦ã€‚å¦‚æœä¸æ­£ç¡®ï¼Œç‚¹Xå…³é—­çª—å£ï¼ï¼ï¼å¦åˆ™ä»»æ„é”®ç»§ç»­ã€‚ã€‚ã€‚
+:: echo ÇëÈ·ÈÏsettingsÎÄ¼şµÄÅäÖÃÓëµ±Ç°´úÂë¿âÂ·¾¶Ïà·û¡£Èç¹û²»ÕıÈ·£¬µãX¹Ø±Õ´°¿Ú£¡£¡£¡·ñÔòÈÎÒâ¼ü¼ÌĞø¡£¡£¡£
 :: echo.
 :: pause
 
 echo ==============================================================================
-echo æœ¬åœ°æ„å»ºå¼€å§‹: %java_src%
+echo ±¾µØ¹¹½¨¿ªÊ¼: %java_src%
 echo ==============================================================================
 echo.
 
-:: å¼€å§‹æ—¶é—´
+:: ¿ªÊ¼Ê±¼ä
 set start_time=%date% %time%
 
 rmdir /S /Q %java_src%\virgo 2>nul
@@ -41,21 +41,21 @@ call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings_windows
 call mvn clean install -Dmaven.test.skip=true -s %java_src%\mvn_settings_windows.xml -f %java_src%\com.xdc.soft.mini\pom.xml       || pause && exit 1
 echo.
 
-echo å¤åˆ¶èµ„æºï¼š%java_src%\com.xdc.soft.virgo\release\virgo
+echo ¸´ÖÆ×ÊÔ´£º%java_src%\com.xdc.soft.virgo\release\virgo
 xcopy /E /Y %java_src%\com.xdc.soft.virgo\release\virgo %java_src%\virgo
 echo.
 
-echo å¤åˆ¶èµ„æºï¼š%java_src%\com.xdc.soft.mini\release\virgo
+echo ¸´ÖÆ×ÊÔ´£º%java_src%\com.xdc.soft.mini\release\virgo
 xcopy /E /Y %java_src%\com.xdc.soft.mini\release\virgo %java_src%\virgo
 echo.
 
-:: ç»“æŸæ—¶é—´
+:: ½áÊøÊ±¼ä
 set end_time=%date% %time%
 
 echo ==============================================================================
-echo æœ¬åœ°æ„å»ºæˆåŠŸ: %java_src%
+echo ±¾µØ¹¹½¨³É¹¦: %java_src%
 echo ==============================================================================
-echo å¼€å§‹æ—¶é—´ï¼š%start_time%
-echo ç»“æŸæ—¶é—´ï¼š%end_time%
+echo ¿ªÊ¼Ê±¼ä£º%start_time%
+echo ½áÊøÊ±¼ä£º%end_time%
 echo.
 pause
