@@ -54,10 +54,14 @@ logback的配置文件的加载优先级：
 输出级别：Debug
 
 ==============================================================
-日志修改动态生效
+日志修改动态生效：
 log4j使用java代码设置：org.apache.log4j.PropertyConfigurator.configureAndWatch
-log4j支持配置文件设置：？
-logback支持配置文件设置：？
+log4j使用java启动参数设置：-Dlog4j.configuration.watch=true -Dlog4j.configuration=log4j.properties (注意：此参数在flume的启动中参数发现，网上找不到相关资料，怀疑是flume自己实现的参数)
+log4j使用日志配置文件设置：<configuration monitorInterval="30"> (注意：仅log4j 2才支持此参数)
+
+logback使用java代码设置：未查到资料，可能不支持，不过没关系，日志配置文件的方式更方便。
+logback使用java启动参数设置：未查到资料，可能不支持，不过没关系，日志配置文件的方式更方便。
+logback使用日志配置文件设置：<configuration debug="false" scan="true" scanPeriod="30 seconds" packagingData="true">
 
 ==============================================================
 输出样式推荐：
