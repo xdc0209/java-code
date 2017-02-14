@@ -1,4 +1,6 @@
-参考：http://blog.csdn.net/wanghuan203/article/details/50615609
+参考：Log4j动态日志配置切换并立即生效 http://blog.csdn.net/wanghuan203/article/details/50615609
+参考：Log4J 在系统运行时更改log4j的配置 http://blog.sina.com.cn/s/blog_4b81125f0100fo95.html
+
 
 动态修改日志级别的实现思路：
 思路1：
