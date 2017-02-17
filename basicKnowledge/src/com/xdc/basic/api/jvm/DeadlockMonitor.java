@@ -15,11 +15,11 @@ public class DeadlockMonitor
     {
         ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
 
-        List<ThreadInfo> deadlockedThreadInfos = new ArrayList<ThreadInfo>();
-
         long[] deadlockedThreadIds = threadMXBean.findDeadlockedThreads();
         if (ArrayUtils.isNotEmpty(deadlockedThreadIds))
         {
+            List<ThreadInfo> deadlockedThreadInfos = new ArrayList<ThreadInfo>();
+
             ThreadInfo[] allThreadInfos = threadMXBean.dumpAllThreads(true, true);
             for (long deadlockedThreadId : deadlockedThreadIds)
             {
@@ -33,6 +33,7 @@ public class DeadlockMonitor
             }
 
             StringBuilder sb = new StringBuilder();
+            sb.append(SystemUtils.LINE_SEPARATOR);
             sb.append("Found java level deadlocks, java stack information for the deadlock threads:");
             sb.append(SystemUtils.LINE_SEPARATOR);
             sb.append("============================================================================");
