@@ -21,7 +21,7 @@ public class GetPath
      */
     public static String getPackagePath()
     {
-        // 获取当前路径
+        // 获取包路径
         String curClassName = new Throwable().getStackTrace()[1].getClassName();
         String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
         String packagePath = curPackage.replace(".", fileSpt) + fileSpt;
@@ -35,12 +35,12 @@ public class GetPath
      */
     public static String getRelativePath()
     {
-        // 获取当前路径
+        // 获取包路径
         String curClassName = new Throwable().getStackTrace()[1].getClassName();
         String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
         String packagePath = curPackage.replace(".", fileSpt) + fileSpt;
 
-        // 获得相对路径
+        // 获取相对路径
         String relativePath = "src" + fileSpt + packagePath;
         return relativePath;
     }
@@ -52,17 +52,18 @@ public class GetPath
      */
     public static String getAbsolutePath()
     {
-        // 获取当前路径
+        // 获取包路径
         String curClassName = new Throwable().getStackTrace()[1].getClassName();
         String curPackage = curClassName.substring(0, curClassName.lastIndexOf("."));
         String packagePath = curPackage.replace(".", fileSpt) + fileSpt;
 
-        // 获得相对路径
+        // 获取相对路径
         String relativePath = "src" + fileSpt + packagePath;
 
-        // 用户的当前工作目录
+        // 获取用户的当前工作目录
         String userDir = System.getProperty("user.dir");
 
+        // 获取绝对路径
         String absolutePath = userDir + fileSpt + relativePath;
         return absolutePath;
     }
