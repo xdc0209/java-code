@@ -4,11 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * ConcurrentHashMap并没有实现Lock-Free，只是使用了分离锁的办法使得能够支持多个Writer并发。
- * ConcurrentHashMap需要使用更多的内存。
- * 
- * @author xdc
- * 
+ * ConcurrentHashMap并没有实现Lock-Free，只是使用了分离锁的办法使得能够支持多个Writer并发。ConcurrentHashMap需要使用更多的内存。
  */
 public class BeanManagerConcurrentMap
 {
@@ -19,8 +15,19 @@ public class BeanManagerConcurrentMap
         Object bean = map.get(key);
         if (bean == null)
         {
-            map.putIfAbsent(key, createBean(key));
-            bean = map.get(key);
+            Object newBean = createBean(key);
+            Object oldBean = map.putIfAbsent(key, newBean);
+            if (oldBean != null)
+            {
+                bean = oldBean;
+
+                // 销毁bean，以免导致资源泄露。例如缓存对象是MessageProducer时，销毁对象要调用MessageProducer.close()关闭连接。
+                destroyBean(newBean);
+            }
+            else
+            {
+                bean = newBean;
+            }
         }
         return bean;
     }
@@ -28,5 +35,9 @@ public class BeanManagerConcurrentMap
     private Object createBean(String key)
     {
         return key;
+    }
+
+    private void destroyBean(Object bean)
+    {
     }
 }
