@@ -1,0 +1,28 @@
+(1)PropertiesConfiguration.setProperty：可以显示属性名称，但是不能打印修改前的值，只能打印修改后的值。
+Received event! org.apache.commons.configuration.event.ConfigurationEvent@d82990[
+  type=3
+  propertyName=org.apache.commons.logging.Log
+  propertyValue=otherLog
+  beforeUpdate=true
+]
+Received event! org.apache.commons.configuration.event.ConfigurationEvent@1ce3a26[
+  type=3
+  propertyName=org.apache.commons.logging.Log
+  propertyValue=otherLog
+  beforeUpdate=false
+]
+
+(2)手工修改文件：不能显示修改哪个属性修改了。
+Received event! org.apache.commons.configuration.event.ConfigurationEvent@18be596[
+  type=20
+  propertyName=<null>
+  propertyValue=file:/D:/JavaTools/source-code/java-code/basicKnowledge/src/common-logging.properties
+  beforeUpdate=true
+]
+Received event! org.apache.commons.configuration.event.ConfigurationEvent@18de5e7[
+  type=20
+  propertyName=<null>
+  propertyValue=file:/D:/JavaTools/source-code/java-code/basicKnowledge/src/common-logging.properties
+  beforeUpdate=false
+]
+
