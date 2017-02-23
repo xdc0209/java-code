@@ -43,6 +43,10 @@ public class StopWatchTest
         sw.stop();
         System.out.println("秒表计时(ms):" + sw.getTime());
         System.out.println("秒表计时(ns):" + sw.getNanoTime());
+
+        // 重置计时器，以便重用
+        // This method clears the internal values to allow the object to be reused.
+        sw.reset();
     }
 
     private static void doSomething()
