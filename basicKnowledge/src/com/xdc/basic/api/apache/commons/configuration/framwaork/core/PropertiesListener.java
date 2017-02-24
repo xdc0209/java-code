@@ -1,6 +1,6 @@
 package com.xdc.basic.api.apache.commons.configuration.framwaork.core;
 
-public abstract class PropertiesConfigurationListener
+public abstract class PropertiesListener
 {
     /**
      * 如果对此事件的处理事件较长，建议在此方法内启动新线程处理。

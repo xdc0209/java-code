@@ -13,30 +13,39 @@ import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.valida
 
 public class Property<T>
 {
-    private static Logger                 logger = LoggerFactory.getLogger(PropertiesConfigurationHolder.class);
+    private static Logger    logger = LoggerFactory.getLogger(PropertiesHolder.class);
 
-    private PropertiesConfigurationHolder propertiesConfigurationHolder;
+    private PropertiesHolder propertiesHolder;
 
-    private String                        key;
+    private String           key;
 
     // 旧值：在内存中记录旧值，当配置文件中的值不合法时，使用此值
-    private volatile String               oldValue;
+    private volatile String  oldValue;
 
     // 默认值：配置文件中的值不合法时，使用旧值，旧值也不合法时，使用默认值。因为此值写死在代码中，不涉及用户修改，不做校验，由编码人员保证合法。
-    private String                        defaultValue;
+    private String           defaultValue;
 
-    private Validator                     validator;
+    private Validator        validator;
 
-    private Class<T>                      valueClass;
+    private Class<T>         valueClass;
 
     // 因为目前没有发现较好的方式获取到泛型的具体类型，所以暂时通过参数指定。
-    public Property(PropertiesConfigurationHolder propertiesConfigurationHolder, String key, String defaultValue,
-            Validator validator, Class<T> valueClass)
+    public Property(PropertiesHolder propertiesHolder, String key, String defaultValue, Validator validator,
+            Class<T> valueClass)
     {
-        this.propertiesConfigurationHolder = propertiesConfigurationHolder;
+        this.propertiesHolder = propertiesHolder;
         this.key = key;
         this.defaultValue = defaultValue;
         this.validator = validator;
+
+        if (valueClass == null)
+        {
+            String error = String.format(
+                    "Unsupport type:[%s] for valueClass. Support type:[String.class, Boolean.class, Integer.class, Long.class, Float.class, Double.class].",
+                    valueClass);
+            logger.error(error);
+            throw new IllegalArgumentException(error);
+        }
 
         // 字符串
         if (String.class.isAssignableFrom(valueClass))
@@ -89,7 +98,9 @@ public class Property<T>
         }
         else
         {
-            String error = "Unsupport type for valueClass. Unsupport type:[String.class, Boolean.class, Integer.class, Long.class, Float.class, Double.class].";
+            String error = String.format(
+                    "Unsupport type:[%s] for valueClass. Support type:[String.class, Boolean.class, Integer.class, Long.class, Float.class, Double.class].",
+                    valueClass);
             logger.error(error);
             throw new IllegalArgumentException(error);
         }
@@ -123,7 +134,7 @@ public class Property<T>
         // PropertiesConfiguration.getBigDecimal()
         // PropertiesConfiguration.getBigInteger()
 
-        String newValue = propertiesConfigurationHolder.getString(key, oldValue, defaultValue, validator);
+        String newValue = propertiesHolder.getString(key, oldValue, defaultValue, validator);
         oldValue = newValue;
 
         // 字符串
@@ -168,18 +179,17 @@ public class Property<T>
 
     public void setValue(T newValue)
     {
-        propertiesConfigurationHolder.setString(key, String.valueOf(newValue), validator);
+        propertiesHolder.setString(key, String.valueOf(newValue), validator);
         oldValue = String.valueOf(newValue);
     }
 
-    public void listen(PropertiesConfigurationListener propertiesConfigurationListener)
+    public void listen(PropertiesListener propertiesListener)
     {
-        listen(propertiesConfigurationListener, getValue());
+        listen(propertiesListener, getValue());
     }
 
-    public void listen(PropertiesConfigurationListener propertiesConfigurationListener, T oldValue)
+    public void listen(PropertiesListener propertiesListener, T oldValue)
     {
-        propertiesConfigurationHolder.addListener(key, String.valueOf(oldValue), defaultValue, validator,
-                propertiesConfigurationListener);
+        propertiesHolder.addListener(key, String.valueOf(oldValue), defaultValue, validator, propertiesListener);
     }
 }

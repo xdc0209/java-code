@@ -2,7 +2,7 @@ package com.xdc.basic.api.apache.commons.configuration.framwaork.config;
 
 import com.xdc.basic.skills.GetPath;
 
-public class PathConffig
+public class PathConfig
 {
     public static String getUserHome()
     {
@@ -26,5 +26,15 @@ public class PathConffig
     {
         // 获取应用存放配置文件的目录
         return GetPath.connect(getAppHome(), "config");
+    }
+
+    public static String getModule1ConfigPath()
+    {
+        return GetPath.connect(GetPath.getAbsolutePath(), "../../PropertiesConfigurationTest1.properties");
+    }
+
+    public static String getModule2ConfigPath()
+    {
+        return GetPath.connect(GetPath.getAbsolutePath(), "../../PropertiesConfigurationTest2.properties");
     }
 }

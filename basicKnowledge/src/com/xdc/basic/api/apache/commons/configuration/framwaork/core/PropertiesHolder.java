@@ -1,5 +1,6 @@
 package com.xdc.basic.api.apache.commons.configuration.framwaork.core;
 
+import java.io.FileNotFoundException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -8,6 +9,8 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.event.ConfigurationEvent;
 import org.apache.commons.configuration.event.ConfigurationListener;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -18,13 +21,12 @@ import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.valida
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.LongValidator;
 import com.xdc.basic.api.thread.executor.threadfactory.NamePrefixThreadFactory;
 
-public class PropertiesConfigurationHolder
+public class PropertiesHolder
 {
     /**
      * 日志工具类
      */
-    private static Logger                   logger                   = LoggerFactory
-            .getLogger(PropertiesConfigurationHolder.class);
+    private static Logger                   logger                   = LoggerFactory.getLogger(PropertiesHolder.class);
 
     /**
      * properties文件路径
@@ -42,10 +44,15 @@ public class PropertiesConfigurationHolder
     private static ScheduledExecutorService scheduledExecutorService = Executors
             .newSingleThreadScheduledExecutor(new NamePrefixThreadFactory("Check-Config-File-Change"));
 
-    public PropertiesConfigurationHolder(String propertiesFilePath)
+    public PropertiesHolder(String propertiesFilePath)
     {
         try
         {
+            if (!FileUtils.getFile(propertiesFilePath).exists())
+            {
+                throw new FileNotFoundException(propertiesFilePath);
+            }
+
             this.propertiesFilePath = propertiesFilePath;
 
             // PropertiesConfiguration的使用要点，一定要看，否则容易掉坑。
@@ -102,8 +109,11 @@ public class PropertiesConfigurationHolder
         }
         catch (Throwable e)
         {
-            logger.error(String.format("Construct PropertiesConfigurationHolder failed, propertiesFilePath=[%s].",
-                    propertiesFilePath), e);
+            logger.error(
+                    String.format("Construct PropertiesHolder failed, propertiesFilePath=[%s].", propertiesFilePath),
+                    e);
+
+            throw new RuntimeException(e);
         }
     }
 
@@ -116,7 +126,7 @@ public class PropertiesConfigurationHolder
         {
             logger.debug(
                     "Get string success, newValue and oldValue is same, return newValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}].",
-                    propertiesFilePath, key, newValue, oldValue);
+                    FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue);
             return newValue;
         }
 
@@ -125,7 +135,7 @@ public class PropertiesConfigurationHolder
         {
             logger.debug(
                     "Get string success, newValue, oldValue and defaultValue is empty, return newValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], defaultValue=[{}].",
-                    propertiesFilePath, key, newValue, oldValue, defaultValue);
+                    FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, defaultValue);
             return newValue;
         }
 
@@ -134,28 +144,28 @@ public class PropertiesConfigurationHolder
         {
             logger.debug(
                     "Get string success, newValue is valid, return newValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}].",
-                    propertiesFilePath, key, newValue, oldValue);
+                    FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue);
             return newValue;
         }
         logger.debug(
                 "NewValue is not valid. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], validator=[{}].",
-                propertiesFilePath, key, newValue, oldValue, validator.detail());
+                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, validator.detail());
 
         // 如果新值非法，旧值合法，返回旧值
         if (validator.validate(oldValue))
         {
             logger.debug(
                     "Get string success, newValue is not valid, oldValue is valid, return oldValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}].",
-                    propertiesFilePath, key, newValue, oldValue);
+                    FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue);
             return oldValue;
         }
         logger.debug(
                 "OldValue is not valid. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], validator=[{}].",
-                propertiesFilePath, key, newValue, oldValue, validator.detail());
+                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, validator.detail());
 
         logger.debug(
                 "Get string success, newValue is not valid, oldValue is not valid, return defaultValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], defaultValue=[{}].",
-                propertiesFilePath, key, newValue, oldValue, defaultValue);
+                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, defaultValue);
         // 新值非法，旧值非法，返回默认值
         return defaultValue;
     }
@@ -165,8 +175,8 @@ public class PropertiesConfigurationHolder
         if (!validator.validate(newValue))
         {
             String error = String.format(
-                    "Set string failed, due to validating value failed. propertiesFilePath=[%s] key=[%s], newValue=[%s], validator=[%s].",
-                    propertiesFilePath, key, newValue, validator.detail());
+                    "Set string failed, due to validating value failed. propertiesFilePath=[%s], key=[%s], newValue=[%s], validator=[%s].",
+                    FilenameUtils.getName(propertiesFilePath), key, newValue, validator.detail());
             logger.error(error);
             throw new IllegalArgumentException(error);
         }
@@ -176,29 +186,29 @@ public class PropertiesConfigurationHolder
     }
 
     public void addListener(final String key, String oldValue, String defaultValue, Validator validator,
-            final PropertiesConfigurationListener propertiesConfigurationListener)
+            final PropertiesListener propertiesListener)
     {
-        propertiesConfiguration.addConfigurationListener(new InternalPropertiesConfigurationListener(key, oldValue,
-                defaultValue, validator, propertiesConfigurationListener));
+        propertiesConfiguration.addConfigurationListener(
+                new InternalPropertiesListener(key, oldValue, defaultValue, validator, propertiesListener));
     }
 
-    class InternalPropertiesConfigurationListener implements ConfigurationListener
+    class InternalPropertiesListener implements ConfigurationListener
     {
-        private String                          key;
-        private String                          oldValue;
-        private String                          defaultValue;
-        private Validator                       validator;
-        private PropertiesConfigurationListener propertiesConfigurationListener;
+        private String             key;
+        private String             oldValue;
+        private String             defaultValue;
+        private Validator          validator;
+        private PropertiesListener propertiesListener;
 
-        public InternalPropertiesConfigurationListener(String key, String oldValue, String defaultValue,
-                Validator validator, PropertiesConfigurationListener propertiesConfigurationListener)
+        public InternalPropertiesListener(String key, String oldValue, String defaultValue, Validator validator,
+                PropertiesListener propertiesListener)
         {
             super();
             this.key = key;
             this.oldValue = oldValue;
             this.defaultValue = defaultValue;
             this.validator = validator;
-            this.propertiesConfigurationListener = propertiesConfigurationListener;
+            this.propertiesListener = propertiesListener;
         }
 
         // 常量列表，蛋疼的api
@@ -218,7 +228,8 @@ public class PropertiesConfigurationHolder
                 return;
             }
 
-            logger.debug("The properties configuration [{}] is changed. ConfigurationEvent=[{}].", propertiesFilePath,
+            logger.debug("The properties file [{}] is changed. configurationEvent=[{}].",
+                    FilenameUtils.getName(propertiesFilePath),
                     ToStringBuilder.reflectionToString(event, ToStringStyle.MULTI_LINE_STYLE));
 
             String newValue = getString(key, oldValue, defaultValue, validator);
@@ -226,14 +237,13 @@ public class PropertiesConfigurationHolder
             {
                 try
                 {
-                    propertiesConfigurationListener.configurationChanged(propertiesFilePath, key, oldValue, newValue);
+                    propertiesListener.configurationChanged(propertiesFilePath, key, oldValue, newValue);
                 }
                 catch (Throwable e)
                 {
                     logger.error(String.format(
-                            "Handle properties configuration changed event failed. The properties configuration [%s] is changed. ConfigurationEvent=[%s].",
-                            propertiesFilePath,
-                            ToStringBuilder.reflectionToString(event, ToStringStyle.MULTI_LINE_STYLE)), e);
+                            "Handle properties file [%s] changed event fail. key=[%s], oldValue=[%s], newValue=[%s].",
+                            FilenameUtils.getName(propertiesFilePath), key, oldValue, newValue), e);
                 }
 
                 oldValue = newValue;

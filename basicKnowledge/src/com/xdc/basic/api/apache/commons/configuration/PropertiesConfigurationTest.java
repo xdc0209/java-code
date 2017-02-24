@@ -22,13 +22,17 @@ public class PropertiesConfigurationTest
 
         // PropertiesConfiguration的使用要点，一定要看，否则容易掉坑。
         // PropertiesConfiguration.clear(); // 清除内存中的配置项集合。
-        // PropertiesConfiguration.load(); // 读取磁盘中的配置项集合到内存。千万注意：禁止调用此方法，不知道是否为bug，调用此方法会导致内存中的配置项的值重复。该方法内部被refresh()使用，refresh()中的调用方法不会出现重复问题！！！
+        // PropertiesConfiguration.load(); // 读取磁盘中的配置项集合到内存。千万注意：调用PropertiesConfiguration.setReloadingStrategy()后，禁止调用此方法，因为此时用此方法会导致内存中的配置项的值重复。
         // PropertiesConfiguration.refresh(); // 相当于先clear()，再load()。
         // PropertiesConfiguration.reload(); // 先检测文件时间戳是否变更，如果有变化，再调用refresh()。
         // PropertiesConfiguration.save(); // 写入文件，写入时可以保证头部注释、配置项注释、空行数量都写入正确，但尾部注释会被丢弃，不过不是问题，没有人会用尾部注释。设置autoSave为true后，不必单独调用此方法。
         // PropertiesConfiguration.clearProperty(String key) // 删除指定key的配置项
         // PropertiesConfiguration.setProperty(String key, Object value); // 设置指定key的配置项，不存在则添加，存在则覆盖。推荐使用。
         // PropertiesConfiguration.addProperty(String key, Object value); // 添加指定key的配置项，不存在则添加，存在则追加为数组。一般不使用此方法。
+        //
+        // 通过以上分析得出结论，初始化配置的方法有两种：
+        // （1）先调用PropertiesConfiguration.load()，再调用PropertiesConfiguration.setReloadingStrategy()；
+        // （2）先调用PropertiesConfiguration.setReloadingStrategy()，再调用PropertiesConfiguration.reload()。
         PropertiesConfiguration config = new PropertiesConfiguration();
 
         // 禁用抛异常：配置项的key不存在时返回null，而不是报异常
@@ -48,10 +52,10 @@ public class PropertiesConfigurationTest
         // 设置编码为UTF-8
         config.setEncoding("UTF-8");
 
-        // 设置文件路径
+        // 设置properties文件路径
         config.setFileName(propertiesFilePath);
 
-        // 初始化读取配置，注意此处是PropertiesConfiguration.reload()，千万不使用PropertiesConfiguration.load()
+        // 初始化读取配置
         config.reload();
 
         // 添加监听器，配置项变化会收到通知
@@ -65,7 +69,7 @@ public class PropertiesConfigurationTest
         config.setProperty("key1", "value1-new");
         config.setProperty("key6", "value6");
 
-        // 下面不停地打印配置，验证设置的更改策略
+        // 下面不停地打印配置，验证配置项变化时的重加载策略
         while (true)
         {
             key1Value = config.getString("key1");
