@@ -45,7 +45,7 @@ public class ExpressionParse
             }
             else
             {
-                System.out.println("表达式不合法!");
+                System.out.println(String.format("表达式[%s]不合法!", line));
             }
         }
     }
