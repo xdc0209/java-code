@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class NamePrefixThreadFactory implements ThreadFactory
 {
-    // 未捕获的异常处理类：当run方法中出现异常且未捕获而导致线程死亡时，进行兜底处理，处理方式就是简单的打印日志，便于定位问题。
+    // 未捕获异常的处理类：当run方法中出现异常且未捕获而导致线程死亡时，进行兜底处理，处理方式就是简单的打印日志，便于定位问题。
     private static final ThreadUncaughtExceptionHandler threadUncaughtExceptionHandler = new ThreadUncaughtExceptionHandler();
 
     // 记录线程的个数
@@ -22,6 +22,12 @@ public class NamePrefixThreadFactory implements ThreadFactory
 
     // 线程名称前缀
     private final String                                namePrefix;
+
+    // 设置全局的未捕获异常的处理类，保证以非线程池的方式启动线程Thread.start()也可以受益。不过前提是这个类得被别人引用一次，以执行静态代码块。
+    static
+    {
+        Thread.setDefaultUncaughtExceptionHandler(threadUncaughtExceptionHandler);
+    }
 
     public NamePrefixThreadFactory(String name)
     {
