@@ -2,7 +2,7 @@ package com.xdc.basic.api.thread.wait;
 
 public class WaitUtils
 {
-    private final static long SLEEP_STEP = 500;
+    private final static long SLEEP_STEP = 1000;
 
     /**
      * 等待条件、超时时间（毫秒）
@@ -12,6 +12,8 @@ public class WaitUtils
      */
     public static void waitConditionUtilTimeout(WaitCondition condition, long timeout)
     {
+        condition.waitConditionStart();
+
         long waittime = 0;
         while (!condition.evalCondition() && waittime < timeout)
         {
@@ -28,33 +30,13 @@ public class WaitUtils
             waittime += SLEEP_STEP;
         }
 
-        if (!condition.evalCondition())
+        if (condition.evalCondition())
+        {
+            condition.waitConditionEnd();
+        }
+        else
         {
             condition.waitConditionTimeout();
         }
     }
-
-    // public static class WaitCondition
-    // {
-    // /**
-    // * 如果返回值为false，则一直等待直到超时
-    // */
-    // public boolean evalCondition()
-    // {
-    // return false;
-    // }
-    //
-    // public void doActionPerInterval()
-    // {
-    //
-    // }
-    //
-    // /**
-    // * 超时之后的回调接口
-    // */
-    // public void waitConditionTimeout()
-    // {
-    //
-    // }
-    // }
 }
