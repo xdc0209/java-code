@@ -1,4 +1,4 @@
-package com.xdc.basic.api.thread;
+package com.xdc.basic.api.thread.interrupt;
 
 public class InterruptTest
 {
