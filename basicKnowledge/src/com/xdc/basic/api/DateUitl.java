@@ -63,6 +63,7 @@ public class DateUitl
         return dayOfMonth > actualMaxDayOfMonth - 7;
     }
 
+    @SuppressWarnings("deprecation")
     public static void main(String[] args)
     {
         Assert.assertEquals(false, isLastDayOfMonth(new Date(2016 - 1900, 11 - 1, 29)));
