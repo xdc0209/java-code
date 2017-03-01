@@ -1,12 +1,9 @@
-package com.xdc.basic.tools.restclient.tools;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.xdc.basic.commons.network;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-public class IpTool
+public class IpUtil
 {
     // IP >>>> 127.0.0.1
     private static final String ipv4IpRegExp                = "^((?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))\\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$";
@@ -19,9 +16,6 @@ public class IpTool
 
     // DynamicPort >>>> 1024-65535
     private static final String ipv4DynamicPortRegExp       = "^102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
-
-    // Mac >>>> 00:0C:29:C2:A9:A0
-    private static final String macRegExp                   = "^([a-fA-F0-9]{2}[-:]){5}([a-fA-F0-9]){2}$";
 
     // IP1,IP2,IP3 >>>> 127.0.0.1,127.0.0.2,127.0.0.3
     private static final String ipv4IpListRegExp            = String.format("^(%s)(,(%s))*$",
@@ -147,40 +141,12 @@ public class IpTool
         return ipInt;
     }
 
-    public static boolean isMac(String mac, boolean filterSpecialMac)
-    {
-        if (StringUtils.isBlank(mac))
-        {
-            return false;
-        }
-
-        if (filterSpecialMac)
-        {
-            // 过滤掉特殊的mac
-            List<String> specialMacs = new ArrayList<String>();
-
-            // 全0的mac一般有两个原因：
-            // 1.网卡绑定配置出错。
-            // 2.服务器预置了多个网卡，但是根据业务规划没有全部使用，为了节约成本，可以在出厂时要求部分网卡不烧录，这些未烧录的网卡mac就是全为0的。
-            specialMacs.add("00:00:00:00:00:00");
-            specialMacs.add("00-00-00-00-00-00");
-
-            if (specialMacs.contains(mac))
-            {
-                return false;
-            }
-        }
-
-        return mac.matches(macRegExp);
-    }
-
     public static void main(String[] args)
     {
         System.out.println(ipv4IpRegExp);
         System.out.println(ipv4MaskRegExp);
         System.out.println(ipv4PortRegExp);
         System.out.println(ipv4DynamicPortRegExp);
-        System.out.println(macRegExp);
         System.out.println(ipv4IpListRegExp);
         System.out.println(ipv4IpDynamicPortListRegExp);
 

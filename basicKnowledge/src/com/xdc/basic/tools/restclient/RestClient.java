@@ -21,6 +21,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import com.xdc.basic.commons.network.IpUtil;
 import com.xdc.basic.tools.restclient.constants.Constants;
 import com.xdc.basic.tools.restclient.constants.HttpConstants;
 import com.xdc.basic.tools.restclient.constants.HttpMethod;
@@ -28,7 +29,6 @@ import com.xdc.basic.tools.restclient.constants.HttpProtocol;
 import com.xdc.basic.tools.restclient.message.Request;
 import com.xdc.basic.tools.restclient.message.Response;
 import com.xdc.basic.tools.restclient.message.RestClientException;
-import com.xdc.basic.tools.restclient.tools.IpTool;
 import com.xdc.basic.tools.restclient.tools.JsonTool;
 import com.xdc.basic.tools.restclient.tools.XmlTool;
 
@@ -47,7 +47,7 @@ public class RestClient
     public RestClient(HttpProtocol protocol, String host, String port, String user, String password)
     {
         super();
-        if (!IpTool.isIpv4Port(port))
+        if (!IpUtil.isIpv4Port(port))
         {
             throw new IllegalArgumentException("Port [" + port + "] is not leagal. Port should be in [1,65535].");
         }

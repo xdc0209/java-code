@@ -78,7 +78,7 @@ public class ExecTest
 
         // 设置超时时间，超时后，ExecuteWatchdog.timeoutOccured(Watchdog w)调用Process.destroy()杀死命令行进程，类似于kill命令，但是此时命令行进程的返回值是不可信的，就是说无法确认是程序正常执行完毕，返回了一个值，还是因为超时返回了一个值。为了区分是否超时，可以配合使用DefaultExecuteResultHandler.waitFor(long timeout)进行区分，具体操作是：假设外界要求的超时时间是60秒，那么watchdog设置成60+10秒，waitFor参数设置成60秒，这样就能做到可以区分是否超时，并在超时后杀死命令行进程。
         // 通过测试发现：
-        // (1)在window上：命令行进程被Process.destroy()杀死，返回值为1；在任务管理器被结束进程杀死，返回值为1。
+        // (1)在windows上：命令行进程被Process.destroy()杀死，返回值为1；在任务管理器被结束进程杀死，返回值为1。
         // (2)在linux(suse)上：命令行进程被Process.destroy()杀死，返回值为143；在任务管理器被结束进程杀死，返回值为137。
         ExecuteWatchdog watchdog = new ExecuteWatchdog(20 * 1000L);
         executor.setWatchdog(watchdog);
@@ -86,7 +86,10 @@ public class ExecTest
         // 设置期望返回值，不符合抛异常ExecuteException。这里置为空，禁用此功能，由业务自己处理返回值，无需业务捕获异常。
         executor.setExitValues(null);
 
-        // 设置关闭钩子，当jvm退出时，杀死正在执行的命令行进程
+        // 设置关闭钩子，当jvm退出时，杀死正在执行的命令行进程。
+        // 在不设置关闭钩子的情况下，通过测试发现：
+        // (1)windows进程退出特点(使用procexp.exe观察)：父进程退出后，子进程还是在运行的，并且子进程的父进程id无变化。(感觉有些不合理，父进程id已经不存在了，不知道windows为什么这么设计)
+        // (2)linux进程退出特点(使用ps观察)：父进程退出后，子进程还是在运行的，但是子进程的父进程id会变成1，也就是1号进程。
         executor.setProcessDestroyer(new ShutdownHookProcessDestroyer());
 
         return executor;

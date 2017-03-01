@@ -16,6 +16,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xdc.basic.commons.codec.Base64Util;
+import com.xdc.basic.commons.codec.BytesUtil;
+import com.xdc.basic.commons.network.IpUtil;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.Constants;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpConstants;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpMethodType;
@@ -24,9 +27,6 @@ import com.xdc.basic.tools.restclientbasedonhttpclient3.easyssl.EasySSLProtocolS
 import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Request;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Response;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.message.RestClientException;
-import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.Base64Util;
-import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.BytesUtil;
-import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.IpTool;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.JsonTool;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.XmlTool;
 
@@ -48,7 +48,7 @@ public class RestClient
 
     public RestClient(HttpProtocol protocol, String host, String port, String user, String password)
     {
-        if (!IpTool.isIpv4Port(port))
+        if (!IpUtil.isIpv4Port(port))
         {
             throw new IllegalArgumentException("Port [ " + port + " ] is not leagal. Port should be in [1,65535].");
         }

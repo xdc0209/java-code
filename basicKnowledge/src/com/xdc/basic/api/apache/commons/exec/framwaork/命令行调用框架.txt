@@ -1,0 +1,71 @@
+参考：http://blog.csdn.net/a19881029/article/details/8063758/
+参考：http://www.cnblogs.com/lisperl/archive/2012/06/28/2568494.html
+
+======================================================================
+命令行调用框架：
+通过错误值判断是否成功         --ok，返回值由业务判断。
+通过错误输出判断是否执行成功   --ok，返回值由业务判断。
+支持sudo                       --ok，无需特殊处理，跟普通命令执行一样
+支持超时设置，超时杀死         --ok
+jvm退出时子进程退出            --ok
+
+
+======================================================================
+Java执行命令行的方式大致有三种：
+(1)java.lang.ProcessBuilder.ProcessBuilder(String...)
+(2)java.lang.Runtime.exec(String[], String[], File)
+(3)org.apache.commons.exec.DefaultExecutor.execute(CommandLine)
+
+其中(1)和(2)为Java原生方法，(3)为第三方方法。根据下面的调用堆栈可以发现，他们其实就是层层封装的关系。因为java.lang.Runtime.exec()是对java.lang.ProcessBuilder.ProcessBuilder()的封装，更好用一些，所以若想使用原生方法就使用java.lang.Runtime.exec()，若想使用第三方方法就使用org.apache.commons.exec.DefaultExecutor.execute()。
+  java.lang.ProcessBuilder.ProcessBuilder(String...)
+    java.lang.Runtime.exec(String[], String[], File)
+      org.apache.commons.exec.launcher.Java13CommandLauncher.exec(CommandLine, Map, File)
+        org.apache.commons.exec.launcher.VmsCommandLauncher.exec(CommandLine, Map, File)
+          org.apache.commons.exec.DefaultExecutor.launch(CommandLine, Map, File)
+            org.apache.commons.exec.DefaultExecutor.executeInternal(CommandLine, Map, File, ExecuteStreamHandler)
+              org.apache.commons.exec.DefaultExecutor.execute(CommandLine, Map)
+                org.apache.commons.exec.DefaultExecutor.execute(CommandLine)
+
+java.lang.Runtime.exec()有很多重载方法，查看源码发现最终所有的方法都是调用Process exec(String[] cmdarray, String[] envp, File dir)，调用前command会变解析成cmdarray，再查看注释和代码得知：命令行数组的第一个元素是可执行程序，剩下的元素是其参数。
+  Process exec(String command)                              在单独的进程中执行指定的字符串命令。
+  Process exec(String command, String[] envp)               在指定环境的单独进程中执行指定的字符串命令。
+  Process exec(String command, String[] envp, File dir)     在有指定环境和工作目录的独立进程中执行指定的字符串命令。
+  Process exec(String[] cmdarray)                           在单独的进程中执行指定命令和变量。
+  Process exec(String[] cmdarray, String[] envp)            在指定环境的独立进程中执行指定命令和变量。
+  Process exec(String[] cmdarray, String[] envp, File dir)  在指定环境和工作目录的独立进程中执行指定的命令和变量。
+参数说明：
+  command：一条指定的系统命令。
+  envp：环境变量字符串数组，其中每个环境变量的设置格式为name=value；如果子进程应该继承当前进程的环境，则该参数为null。
+  dir：子进程的工作目录；如果子进程应该继承当前进程的工作目录，则该参数为null。
+  cmdarray：包含所调用命令及其参数的数组。
+
+Process类: 执行java.lang.Runtime.exec()后返回Process对象，与命令行进程一一对应，提供了获取进程输出流、错误流、输入流，等待进程完成，检查进程的退出状态，以及shutdown掉进程。
+  Process.waitFor(); 同步等待命令行进程结束，并获取返回值
+  Process.destroy(); 杀死进程
+  Process.getErrorStream(); 获取错误流
+  Process.getInputStream(); 获取输入流
+  Process.getOutputStream(); 获取输出流
+
+通过上面的方法分析，发现java原生的api只能执行一个命令，带有管道的复合命令(例如：ps -ef | grep java)是执行不了的。其实不光如此，管道符和重定向符都是不支持的，因为Java具有使用Runtime.exec对本地程序调用进行重定向的能力(重定向到了Java进程中)，因此使用重定向或者管道进行命令调用将会出错。解决这一问题的办法是通过shell运行命令。在Java中调用本地程序会破坏平台独立性规则，但是经常需要这么做才行。
+linux：
+String command = "ping -c 8 127.0.0.1 | grep ttl";
+Process process = Runtime.getRuntime().exec(new String[] { "sh", "-c", command });
+
+windows：
+String command = "ping -n 8 127.0.0.1 | findstr TTL";
+Process process = Runtime.getRuntime().exec(new String[] { "cmd", "/c", command });
+
+特别地，这种方式是兼容一个命令的情况的：
+String[] cmd = { "sh", "-c", "lsmod | grep linuxVmux" }
+String[] cmd = { "sh", "-c", "./load_driver.sh" }
+
+
+======================================================================
+使用独立线程及时处理流：
+因为有些操作系统仅针对标准输入和输出流提供有限的缓冲区大小，如果读写子进程的输出流或输入流迅速出现失败，则可能导致子进程阻塞，甚至产生死锁。
+
+
+======================================================================
+命令行调用很耗费资源，避免频繁调用：
+Runtime.getRuntime().exec()这种调用方式在java虚拟机中是十分消耗资源的，即使命令可以很快的执行完毕，频繁的调用时创建进程消耗十分可观的。java虚拟机执行这个命令的过程是，首先克隆一条和当前虚拟机拥有一样环境变量的进程，再用这个新的进程执行外部命令，最后退出这个进程。频繁的创建对CPU和内存的消耗很大。
+

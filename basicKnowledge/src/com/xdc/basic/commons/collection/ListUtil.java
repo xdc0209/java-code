@@ -1,4 +1,4 @@
-package com.xdc.basic.api;
+package com.xdc.basic.commons.collection;
 
 import java.util.List;
 

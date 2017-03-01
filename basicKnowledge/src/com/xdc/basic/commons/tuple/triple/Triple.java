@@ -1,4 +1,4 @@
-package com.xdc.basic.skills.tuple.triple;
+package com.xdc.basic.commons.tuple.triple;
 
 import java.io.Serializable;
 

@@ -1,13 +1,12 @@
 package com.xdc.basic.api.restserver.jersey;
 
-import java.util.Scanner;
-
 import com.xdc.basic.api.restserver.jersey.application.AsyncdemoApplication;
 import com.xdc.basic.api.restserver.jersey.application.CommonApplication;
 import com.xdc.basic.api.restserver.jersey.application.SchoolApplication;
 import com.xdc.basic.api.restserver.jersey.core.DefaultRestServer;
 import com.xdc.basic.api.restserver.jersey.core.api.RestServer;
 import com.xdc.basic.api.restserver.jersey.core.api.ServerException;
+import com.xdc.basic.commons.PauseUtils;
 
 public class ServerMain
 {
@@ -39,16 +38,5 @@ public class ServerMain
         {
             e.printStackTrace();
         }
-    }
-}
-
-class PauseUtils
-{
-    private static Scanner scanner = new Scanner(System.in);
-
-    public static void pressEnterToContinue()
-    {
-        System.out.println("Press enter to continue...");
-        scanner.nextLine();
     }
 }

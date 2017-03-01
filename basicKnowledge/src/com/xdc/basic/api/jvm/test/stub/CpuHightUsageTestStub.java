@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.teststub;
+package com.xdc.basic.api.jvm.test.stub;
 
 /**
  * 模拟单个cpu的100%占用

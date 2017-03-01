@@ -1,4 +1,4 @@
-package com.xdc.basic.tools.restclientbasedonhttpclient3.tools;
+package com.xdc.basic.commons.codec;
 
 import org.apache.commons.codec.binary.Base64;
 

@@ -1,37 +1,37 @@
-package com.xdc.basic.skills.tuple.pair;
+package com.xdc.basic.commons.tuple.pair;
 
 import java.io.Serializable;
 
-public class Pair<T1, T2> implements Serializable
+public class StringPair implements Serializable
 {
-    private static final long serialVersionUID = 2598094911126860655L;
+    private static final long serialVersionUID = 3118267258639752674L;
 
-    private T1                first;
+    private String            first;
 
-    private T2                second;
+    private String            second;
 
-    public Pair(T1 first, T2 second)
+    public StringPair(String first, String second)
     {
         this.first = first;
         this.second = second;
     }
 
-    public T1 getFirst()
+    public String getFirst()
     {
         return first;
     }
 
-    public void setFirst(T1 first)
+    public void setFirst(String first)
     {
         this.first = first;
     }
 
-    public T2 getSecond()
+    public String getSecond()
     {
         return second;
     }
 
-    public void setSecond(T2 second)
+    public void setSecond(String second)
     {
         this.second = second;
     }
@@ -67,7 +67,7 @@ public class Pair<T1, T2> implements Serializable
         {
             return false;
         }
-        Pair<?, ?> other = (Pair<?, ?>) obj;
+        StringPair other = (StringPair) obj;
         if (first == null)
         {
             if (other.first != null)

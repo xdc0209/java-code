@@ -1,53 +1,39 @@
-package com.xdc.basic.skills.tuple.triple;
+package com.xdc.basic.commons.tuple.pair;
 
 import java.io.Serializable;
 
-public class StringTriple implements Serializable
+public class Pair<T1, T2> implements Serializable
 {
-    private static final long serialVersionUID = 3294424131662177114L;
+    private static final long serialVersionUID = 2598094911126860655L;
 
-    private String            first;
+    private T1                first;
 
-    private String            second;
+    private T2                second;
 
-    private String            third;
-
-    public StringTriple(String first, String second, String third)
+    public Pair(T1 first, T2 second)
     {
-        super();
         this.first = first;
         this.second = second;
-        this.third = third;
     }
 
-    public String getFirst()
+    public T1 getFirst()
     {
         return first;
     }
 
-    public void setFirst(String first)
+    public void setFirst(T1 first)
     {
         this.first = first;
     }
 
-    public String getSecond()
+    public T2 getSecond()
     {
         return second;
     }
 
-    public void setSecond(String second)
+    public void setSecond(T2 second)
     {
         this.second = second;
-    }
-
-    public String getThird()
-    {
-        return third;
-    }
-
-    public void setThird(String third)
-    {
-        this.third = third;
     }
 
     /**
@@ -60,7 +46,6 @@ public class StringTriple implements Serializable
         int result = 1;
         result = prime * result + ((first == null) ? 0 : first.hashCode());
         result = prime * result + ((second == null) ? 0 : second.hashCode());
-        result = prime * result + ((third == null) ? 0 : third.hashCode());
         return result;
     }
 
@@ -71,39 +56,46 @@ public class StringTriple implements Serializable
     public boolean equals(Object obj)
     {
         if (this == obj)
+        {
             return true;
+        }
         if (obj == null)
+        {
             return false;
+        }
         if (getClass() != obj.getClass())
+        {
             return false;
-        StringTriple other = (StringTriple) obj;
+        }
+        Pair<?, ?> other = (Pair<?, ?>) obj;
         if (first == null)
         {
             if (other.first != null)
+            {
                 return false;
+            }
         }
         else if (!first.equals(other.first))
+        {
             return false;
+        }
         if (second == null)
         {
             if (other.second != null)
+            {
                 return false;
+            }
         }
         else if (!second.equals(other.second))
-            return false;
-        if (third == null)
         {
-            if (other.third != null)
-                return false;
-        }
-        else if (!third.equals(other.third))
             return false;
+        }
         return true;
     }
 
     @Override
     public String toString()
     {
-        return first + ":" + second + ":" + third;
+        return first + ":" + second;
     }
 }
