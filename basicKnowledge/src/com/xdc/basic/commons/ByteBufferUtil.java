@@ -1,4 +1,4 @@
-package com.xdc.basic.skills;
+package com.xdc.basic.commons;
 
 import java.nio.ByteBuffer;
 
