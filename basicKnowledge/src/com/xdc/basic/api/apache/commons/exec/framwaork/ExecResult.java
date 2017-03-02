@@ -42,11 +42,17 @@ public class ExecResult
 
     public ExecResult(int[] expectedExitValues, int exitValue, String stdOut, String stdErr)
     {
+        this(expectedExitValues, exitValue, stdOut, stdErr, null);
+    }
+
+    public ExecResult(int[] expectedExitValues, int exitValue, String stdOut, String stdErr, Throwable throwable)
+    {
         super();
         this.expectedExitValues = expectedExitValues;
         this.exitValue = exitValue;
         this.stdOut = stdOut;
         this.stdErr = stdErr;
+        this.throwable = throwable;
     }
 
     public int[] getExpectedExitValues()

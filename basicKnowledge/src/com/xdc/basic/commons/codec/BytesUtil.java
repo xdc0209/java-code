@@ -1,9 +1,20 @@
 package com.xdc.basic.commons.codec;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 public class BytesUtil
 {
+    public static byte[] getBytes(String string, Charset charset)
+    {
+        return string == null ? null : string.getBytes(charset);
+    }
+
+    public static String newString(byte[] bytes, Charset charset)
+    {
+        return bytes == null ? null : new String(bytes, charset);
+    }
+
     /**
      * 根据指定编码将字符串转换成字节数组
      * 

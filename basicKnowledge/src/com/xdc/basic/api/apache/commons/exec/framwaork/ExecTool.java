@@ -83,8 +83,7 @@ public class ExecTool
             // 执行失败，获取异常
             ExecResult execResult = new ExecResult(execCommand.getExpectedExitValues(), ExecResult.EXEC_FAILURE,
                     BytesUtil.bytes2String(stdOut.toByteArray(), CMD_ENCODING),
-                    BytesUtil.bytes2String(stdErr.toByteArray(), CMD_ENCODING));
-            execResult.setThrowable(e);
+                    BytesUtil.bytes2String(stdErr.toByteArray(), CMD_ENCODING), e);
 
             return execResult;
         }
@@ -92,14 +91,10 @@ public class ExecTool
         if (defaultExecuteResultHandler.hasResult())
         {
             // 执行完成，获取返回值
-            ExecResult execResult = new ExecResult(execCommand.getExpectedExitValues(),
-                    defaultExecuteResultHandler.getExitValue(),
+            return new ExecResult(execCommand.getExpectedExitValues(), defaultExecuteResultHandler.getExitValue(),
                     BytesUtil.bytes2String(stdOut.toByteArray(), CMD_ENCODING),
-                    BytesUtil.bytes2String(stdErr.toByteArray(), CMD_ENCODING));
-
-            execResult.setThrowable(defaultExecuteResultHandler.getException());
-
-            return execResult;
+                    BytesUtil.bytes2String(stdErr.toByteArray(), CMD_ENCODING),
+                    defaultExecuteResultHandler.getException());
         }
         else
         {
