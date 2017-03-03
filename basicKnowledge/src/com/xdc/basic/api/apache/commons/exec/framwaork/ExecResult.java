@@ -1,17 +1,26 @@
 package com.xdc.basic.api.apache.commons.exec.framwaork;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.commons.exec.Executor;
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.xdc.basic.commons.codec.BytesUtil;
 
 public class ExecResult
 {
     /**
-     * 命令行调用框架异常，出现此返回值，需要考虑修改框架缺陷。
+     * 命令行调用框架异常，非命令行进程返回值。出现此返回值，代表ExecCommand中的值设置的不合理。
      */
     public static final int EXEC_FAILURE       = -1;
 
     /**
-     * 命令行调用超时，出现此返回值，需要排查脚本和可执行命令中是否有死循环等错误。
+     * 命令行调用超时，非命令行进程返回值。出现此返回值，需要排查脚本和可执行命令中是否有死循环等错误。
      */
     public static final int EXEC_TIMEOUT       = -2;
 
@@ -21,17 +30,17 @@ public class ExecResult
     private int[]           expectedExitValues = new int[] { 0 };
 
     /**
-     * 命令行调用的返回值
+     * 命令行调用的返回值。
      */
     private int             exitValue;
 
     /**
-     * 命令行调用的标准输出流
+     * 命令行调用的标准输出流。
      */
     private String          stdOut;
 
     /**
-     * 命令行调用的标准错误流
+     * 命令行调用的标准错误流。
      */
     private String          stdErr;
 
@@ -49,7 +58,17 @@ public class ExecResult
     {
         super();
         this.expectedExitValues = expectedExitValues;
-        this.exitValue = exitValue;
+
+        // 统一框架异常错误值，将Apache的框架异常错误值改为框架异常错误值。
+        if (exitValue == Executor.INVALID_EXITVALUE && throwable == null)
+        {
+            this.exitValue = EXEC_FAILURE;
+        }
+        else
+        {
+            this.exitValue = exitValue;
+        }
+
         this.stdOut = stdOut;
         this.stdErr = stdErr;
         this.throwable = throwable;
@@ -80,6 +99,25 @@ public class ExecResult
         return stdOut;
     }
 
+    public List<String> getStdOutLines()
+    {
+        byte[] stdOutBytes = BytesUtil.getBytes(stdOut, Charsets.UTF_8);
+        ByteArrayInputStream stdOutBAIS = new ByteArrayInputStream(stdOutBytes);
+
+        try
+        {
+            return IOUtils.readLines(stdOutBAIS);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+        finally
+        {
+            IOUtils.closeQuietly(stdOutBAIS);
+        }
+    }
+
     public void setStdOut(String stdOut)
     {
         this.stdOut = stdOut;
@@ -88,6 +126,25 @@ public class ExecResult
     public String getStdErr()
     {
         return stdErr;
+    }
+
+    public List<String> getStdErrLines()
+    {
+        byte[] stdErrBytes = BytesUtil.getBytes(stdErr, Charsets.UTF_8);
+        ByteArrayInputStream stdErrBAIS = new ByteArrayInputStream(stdErrBytes);
+
+        try
+        {
+            return IOUtils.readLines(stdErrBAIS);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+        finally
+        {
+            IOUtils.closeQuietly(stdErrBAIS);
+        }
     }
 
     public void setStdErr(String stdErr)
@@ -139,7 +196,7 @@ public class ExecResult
         return false;
     }
 
-    public boolean isFailure(final int exitValue)
+    public boolean isFailure()
     {
         return !isSuccess();
     }

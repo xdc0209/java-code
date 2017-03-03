@@ -14,12 +14,13 @@ public class ExecCommand
     private String              command;
 
     /**
-     * 命令行调用的标准输入流。比如删除文件要确认，测试命令：touch xdc.log && rm -i xdc.log
+     * 命令行调用的标准输入流。z比如删除文件要确认，测试命令：touch xdc.log && rm -i xdc.log
+     * 注意：在linux上，如果命令行进程本身不需要输入(即默认的标准输入流未打开)，但是又在本处指定输入，当命令行进程执行完成后，java会flush输入到命令进程，导致抛出异常。windows无此问题。
      */
     private String              stdIn              = null;
 
     /**
-     * 设置执行目录。一般是不需要的，有些场景需要切换到其他目录执行目录。
+     * 设置执行目录。一般是默认当前目录就可以了，特殊场景下需要切换到其他目录执行。
      */
     private File                workingDirectory   = new File(".");
 
