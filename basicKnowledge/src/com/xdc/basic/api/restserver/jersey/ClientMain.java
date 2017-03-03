@@ -72,6 +72,11 @@ import com.xdc.basic.api.restserver.jersey.application.domain.school.Student;
 import com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo.BlockingPostChatResource;
 import com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo.FireAndForgetChatResource;
 import com.xdc.basic.api.restserver.jersey.application.resource.asyncdemo.SimpleLongRunningResource;
+import com.xdc.basic.api.restserver.jersey.core.config.RestServerConfig;
+import com.xdc.basic.api.restserver.jersey.core.filter.authentication.AwsClientAuthenticationFilter;
+import com.xdc.basic.api.restserver.jersey.core.filter.authentication.credentials.Credentials;
+import com.xdc.basic.api.restserver.jersey.core.filter.authentication.sign.AwsSigner;
+import com.xdc.basic.api.restserver.jersey.core.filter.authentication.sign.api.Signer;
 
 import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 
@@ -85,10 +90,15 @@ public class ClientMain
 
     private WebTarget target()
     {
+        Credentials credentials = new Credentials(RestServerConfig.getAccessKey(), RestServerConfig.getSecretKey());
+        Signer signer = new AwsSigner();
+
         Client client = ClientBuilder.newClient();
         client.register(new JacksonJsonProvider());
+        client.register(new AwsClientAuthenticationFilter(credentials, signer));
 
         WebTarget target = client.target("http://127.0.0.1:8080");
+
         return target;
     }
 
@@ -109,9 +119,26 @@ public class ClientMain
         {
             Student student = response.readEntity(Student.class);
             System.out.println("get result: " + student);
+        }
+        else
+        {
+            System.out.println(String.format("return code: %s; reason: %s", response.getStatus(),
+                    response.readEntity(String.class)));
+        }
+    }
 
-            // String string = response.readEntity(String.class);
-            // System.out.println("get result: " + string);
+    @Test
+    public void testCreateStudent() throws InterruptedException
+    {
+        Builder builder = target().path("school/student/json/student").request(MediaType.APPLICATION_JSON_TYPE)
+                .header("Date", System.currentTimeMillis());
+
+        Response response = builder.post(Entity.json(new Student(System.currentTimeMillis(), "xiaofang", "Ů")));
+
+        if (response.getStatus() == 200)
+        {
+            String string = response.readEntity(String.class);
+            System.out.println("get result: " + string);
         }
         else
         {

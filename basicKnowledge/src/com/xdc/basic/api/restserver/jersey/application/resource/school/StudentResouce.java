@@ -16,6 +16,7 @@ import javax.xml.namespace.QName;
 
 import com.xdc.basic.api.restserver.jersey.application.database.school.StudentDao;
 import com.xdc.basic.api.restserver.jersey.application.domain.school.Student;
+import com.xdc.basic.api.restserver.jersey.application.exceptionmapper.common.RESTServiceException;
 
 // 摘自：http://liugang594.iteye.com/blog/1491434
 // JAX-RS是一套用java实现REST服务的规范，提供了一些标注将一个资源类，一个POJOJava类，封装为Web资源。标注包括：
@@ -34,8 +35,16 @@ public class StudentResouce
     @Consumes(MediaType.APPLICATION_JSON)
     public void addStudentInJson(Student student)
     {
-        // 生成id
-        student.setId(System.currentTimeMillis());
+        if (student.getId() == 0)
+        {
+            // 生成id
+            student.setId(System.currentTimeMillis());
+        }
+        else if (StudentDao.query(student.getId()) != null)
+        {
+            throw RESTServiceException.resourceNotUnique("学号冲突。");
+        }
+
         StudentDao.insert(student);
     }
 
@@ -51,6 +60,11 @@ public class StudentResouce
     @Consumes(MediaType.APPLICATION_JSON)
     public void modifyStudentInJson(@PathParam("id") long id, Student student)
     {
+        if (StudentDao.query(id) == null)
+        {
+            throw RESTServiceException.resourceNotExist("此学生不存在。");
+        }
+
         student.setId(id);
         StudentDao.update(student);
     }
@@ -60,7 +74,13 @@ public class StudentResouce
     @Produces(MediaType.APPLICATION_JSON)
     public Student getStudentInJson(@PathParam("id") long id)
     {
-        return StudentDao.query(id);
+        Student student = StudentDao.query(id);
+        if (student == null)
+        {
+            throw RESTServiceException.resourceNotExist("此学生不存在。");
+        }
+
+        return student;
     }
 
     @GET

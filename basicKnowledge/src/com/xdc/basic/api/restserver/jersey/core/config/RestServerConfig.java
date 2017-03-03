@@ -14,4 +14,14 @@ public class RestServerConfig
     {
         return 8080;
     }
+
+    public static String getAccessKey()
+    {
+        return "miMNcYnPXFkiff1y";
+    }
+
+    public static String getSecretKey()
+    {
+        return "ZP7O+Agq5dCiZlPuvEwhqzpQGFIN0/S+hsGT8gtdZ5M=";
+    }
 }
