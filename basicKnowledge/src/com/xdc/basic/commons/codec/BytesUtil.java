@@ -5,11 +5,17 @@ import java.nio.charset.Charset;
 
 public class BytesUtil
 {
+    /**
+     * @see org.apache.commons.io.Charsets
+     */
     public static byte[] getBytes(String string, Charset charset)
     {
         return string == null ? null : string.getBytes(charset);
     }
 
+    /**
+     * @see org.apache.commons.io.Charsets
+     */
     public static String newString(byte[] bytes, Charset charset)
     {
         return bytes == null ? null : new String(bytes, charset);
