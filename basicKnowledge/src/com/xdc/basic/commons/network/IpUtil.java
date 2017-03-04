@@ -5,28 +5,42 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 public class IpUtil
 {
-    // IP >>>> 127.0.0.1
-    private static final String ipv4IpRegExp                = "^((?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))\\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$";
+    // IP 示例：127.0.0.1
+    private static final String ipv4IpRegex                = "^((?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))\\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$";
 
-    // Mask >>>> 255.255.0.0
-    private static final String ipv4MaskRegExp              = "^((254|252|248|240|224|192|128|0)\\.0\\.0\\.0)$|^(255\\.(254|252|248|240|224|192|128|0)\\.0\\.0)$|^(255\\.255\\.(254|252|248|240|224|192|128|0)\\.0)$|^(255\\.255\\.255\\.(254|252|248|240|224|192|128|0))$";
+    // Mask 示例：255.255.0.0
+    private static final String ipv4MaskRegex              = "^((254|252|248|240|224|192|128|0)\\.0\\.0\\.0)$|^(255\\.(254|252|248|240|224|192|128|0)\\.0\\.0)$|^(255\\.255\\.(254|252|248|240|224|192|128|0)\\.0)$|^(255\\.255\\.255\\.(254|252|248|240|224|192|128|0))$";
 
-    // Port >>>> 1-65535
-    private static final String ipv4PortRegExp              = "^[1-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
+    // Port 范围：1-65535
+    private static final String ipv4PortRegex              = "^[1-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
 
-    // DynamicPort >>>> 1024-65535
-    private static final String ipv4DynamicPortRegExp       = "^102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
+    // DynamicPort 范围：1024-65535
+    private static final String ipv4DynamicPortRegex       = "^102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]$";
 
-    // IP1,IP2,IP3 >>>> 127.0.0.1,127.0.0.2,127.0.0.3
-    private static final String ipv4IpListRegExp            = String.format("^(%s)(,(%s))*$",
-            StringUtils.substringBetween(ipv4IpRegExp, "^", "$"), StringUtils.substringBetween(ipv4IpRegExp, "^", "$"));
+    // IP:Port 示例：127.0.0.1:1023
+    private static final String ipv4IpPortRegex            = String.format("^(%s):(%s)$",
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"), StringUtils.substringBetween(ipv4PortRegex, "^", "$"));
 
-    // IP1:Port1,IP2:Port2,IP3:Port3 >>>> 127.0.0.1:1024,127.0.0.2:1025,127.0.0.3:65535
-    private static final String ipv4IpDynamicPortListRegExp = String.format("^((%s):(%s))(,((%s):(%s)))*$",
-            StringUtils.substringBetween(ipv4IpRegExp, "^", "$"),
-            StringUtils.substringBetween(ipv4PortRegExp, "^", "$"),
-            StringUtils.substringBetween(ipv4IpRegExp, "^", "$"),
-            StringUtils.substringBetween(ipv4PortRegExp, "^", "$"));
+    // IP:DynamicPort 示例：127.0.0.1:1024
+    private static final String ipv4IpDynamicPortRegex     = String.format("^(%s):(%s)$",
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"),
+            StringUtils.substringBetween(ipv4DynamicPortRegex, "^", "$"));;
+
+    // IP1,IP2,IP3,... 示例：127.0.0.1,127.0.0.2,127.0.0.3
+    private static final String ipv4IpListRegex            = String.format("^(%s)(,(%s))*$",
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"), StringUtils.substringBetween(ipv4IpRegex, "^", "$"));
+
+    // IP1:Port1,IP2:Port2,IP3:Port3,... 示例：127.0.0.1:1023,127.0.0.2:1024,127.0.0.3:65535
+    private static final String ipv4IpPortListRegex        = String.format("^((%s):(%s))(,((%s):(%s)))*$",
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"), StringUtils.substringBetween(ipv4PortRegex, "^", "$"),
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"), StringUtils.substringBetween(ipv4PortRegex, "^", "$"));
+
+    // IP1:DynamicPort1,IP2:DynamicPort2,IP3:DynamicPort3,... 示例：127.0.0.1:1024,127.0.0.2:1025,127.0.0.3:65535
+    private static final String ipv4IpDynamicPortListRegex = String.format("^((%s):(%s))(,((%s):(%s)))*$",
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"),
+            StringUtils.substringBetween(ipv4DynamicPortRegex, "^", "$"),
+            StringUtils.substringBetween(ipv4IpRegex, "^", "$"),
+            StringUtils.substringBetween(ipv4DynamicPortRegex, "^", "$"));
 
     public static boolean isIpv4Ip(String ip)
     {
@@ -35,7 +49,17 @@ public class IpUtil
             return false;
         }
 
-        return ip.matches(ipv4IpRegExp);
+        return ip.matches(ipv4IpRegex);
+    }
+
+    public static boolean isIpv4Mask(String mask)
+    {
+        if (StringUtils.isBlank(mask))
+        {
+            return false;
+        }
+
+        return mask.matches(ipv4MaskRegex);
     }
 
     public static boolean isIpv4Port(String port)
@@ -54,24 +78,24 @@ public class IpUtil
         return false;
     }
 
-    public static boolean isIpv4PortRegExp(String port)
+    public static boolean isIpv4PortRegex(String port)
     {
         if (StringUtils.isBlank(port))
         {
             return true;
         }
 
-        return port.matches(ipv4PortRegExp);
+        return port.matches(ipv4PortRegex);
     }
 
-    public static boolean isIpv4DynamicPort(String port)
+    public static boolean isIpv4DynamicPort(String dynamicPort)
     {
-        if (StringUtils.isBlank(port))
+        if (StringUtils.isBlank(dynamicPort))
         {
             return true;
         }
 
-        int portNumber = NumberUtils.toInt(port, -1);
+        int portNumber = NumberUtils.toInt(dynamicPort, -1);
         if (portNumber >= 1024 && portNumber <= 65535)
         {
             return true;
@@ -80,29 +104,69 @@ public class IpUtil
         return false;
     }
 
-    public static boolean isIpv4DynamicPortRegExp(String port)
+    public static boolean isIpv4DynamicPortRegex(String dynamicPort)
     {
-        if (StringUtils.isBlank(port))
+        if (StringUtils.isBlank(dynamicPort))
         {
             return true;
         }
 
-        return port.matches(ipv4DynamicPortRegExp);
+        return dynamicPort.matches(ipv4DynamicPortRegex);
     }
 
-    public static boolean isMask(String mask)
+    public static boolean isIpv4IpPort(String ipPort)
     {
-        if (StringUtils.isBlank(mask))
+        if (StringUtils.isBlank(ipPort))
         {
             return false;
         }
 
-        return mask.matches(ipv4MaskRegExp);
+        return ipPort.matches(ipv4IpPortRegex);
+    }
+
+    public static boolean isIpv4IpDynamicPort(String ipDynamicPort)
+    {
+        if (StringUtils.isBlank(ipDynamicPort))
+        {
+            return false;
+        }
+
+        return ipDynamicPort.matches(ipv4IpDynamicPortRegex);
+    }
+
+    public static boolean isIpv4IpList(String ipList)
+    {
+        if (StringUtils.isBlank(ipList))
+        {
+            return false;
+        }
+
+        return ipList.matches(ipv4IpListRegex);
+    }
+
+    public static boolean isIpv4IpPortList(String ipPortList)
+    {
+        if (StringUtils.isBlank(ipPortList))
+        {
+            return false;
+        }
+
+        return ipPortList.matches(ipv4IpPortListRegex);
+    }
+
+    public static boolean isIpv4IpDynamicPortList(String ipDynamicPortList)
+    {
+        if (StringUtils.isBlank(ipDynamicPortList))
+        {
+            return false;
+        }
+
+        return ipDynamicPortList.matches(ipv4IpDynamicPortListRegex);
     }
 
     public static boolean isInSameSubnet(String ip1, String ip2, String mask)
     {
-        if (!isIpv4Ip(ip1) || !isIpv4Ip(ip2) || !isMask(mask))
+        if (!isIpv4Ip(ip1) || !isIpv4Ip(ip2) || !isIpv4Mask(mask))
         {
             return false;
         }
@@ -143,12 +207,12 @@ public class IpUtil
 
     public static void main(String[] args)
     {
-        System.out.println(ipv4IpRegExp);
-        System.out.println(ipv4MaskRegExp);
-        System.out.println(ipv4PortRegExp);
-        System.out.println(ipv4DynamicPortRegExp);
-        System.out.println(ipv4IpListRegExp);
-        System.out.println(ipv4IpDynamicPortListRegExp);
+        System.out.println(ipv4IpRegex);
+        System.out.println(ipv4MaskRegex);
+        System.out.println(ipv4PortRegex);
+        System.out.println(ipv4DynamicPortRegex);
+        System.out.println(ipv4IpListRegex);
+        System.out.println(ipv4IpDynamicPortListRegex);
 
         String ip1 = "254.1.1.1";
         String ip2 = "244.1.1.1";
@@ -164,9 +228,9 @@ public class IpUtil
         String mask1 = "255.0.0.0";
         String mask2 = "252.0.0.0";
         String mask3 = "128.0.0.0";
-        System.out.println(isMask(mask1));
-        System.out.println(isMask(mask2));
-        System.out.println(isMask(mask3));
+        System.out.println(isIpv4Mask(mask1));
+        System.out.println(isIpv4Mask(mask2));
+        System.out.println(isIpv4Mask(mask3));
 
         System.out.println(isInSameSubnet("128.128.5.2", "128.128.5.2", "255.255.0.0"));
 
@@ -174,18 +238,18 @@ public class IpUtil
         long start1 = System.currentTimeMillis();
         for (int i = 0; i < 100000; i++)
         {
-            isIpv4DynamicPortRegExp("-1");
-            isIpv4DynamicPortRegExp("0");
-            isIpv4DynamicPortRegExp("1");
-            isIpv4DynamicPortRegExp("999");
-            isIpv4DynamicPortRegExp("1023");
-            isIpv4DynamicPortRegExp("1024");
-            isIpv4DynamicPortRegExp("1025");
-            isIpv4DynamicPortRegExp("9999");
-            isIpv4DynamicPortRegExp("65534");
-            isIpv4DynamicPortRegExp("65535");
-            isIpv4DynamicPortRegExp("65536");
-            isIpv4DynamicPortRegExp("99999");
+            isIpv4DynamicPortRegex("-1");
+            isIpv4DynamicPortRegex("0");
+            isIpv4DynamicPortRegex("1");
+            isIpv4DynamicPortRegex("999");
+            isIpv4DynamicPortRegex("1023");
+            isIpv4DynamicPortRegex("1024");
+            isIpv4DynamicPortRegex("1025");
+            isIpv4DynamicPortRegex("9999");
+            isIpv4DynamicPortRegex("65534");
+            isIpv4DynamicPortRegex("65535");
+            isIpv4DynamicPortRegex("65536");
+            isIpv4DynamicPortRegex("99999");
         }
         long end1 = System.currentTimeMillis();
 
