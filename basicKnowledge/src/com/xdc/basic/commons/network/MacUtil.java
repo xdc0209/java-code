@@ -10,10 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class MacUtil
 {
-    // Mac >>>> 00:0C:29:C2:A9:A0
+    // Mac 示例：00:0C:29:C2:A9:A0
     private static final String       macRegExp   = "^([a-fA-F0-9]{2}[-:]){5}([a-fA-F0-9]){2}$";
 
-    // 特殊的mac
+    // 特殊的Mac
     private static final List<String> specialMacs = new ArrayList<String>();
 
     static
