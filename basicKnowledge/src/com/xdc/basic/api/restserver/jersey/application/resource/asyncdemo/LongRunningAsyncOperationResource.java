@@ -43,12 +43,14 @@ import java.text.MessageFormat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
+import javax.ws.rs.core.MediaType;
 
 import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 
@@ -59,7 +61,8 @@ import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
  */
 // TODO move the test to integration tests.
 // @Path(App.LONG_RUNNING_ASYNC_OP_PATH)
-@Produces("text/plain")
+@Produces(MediaType.TEXT_PLAIN)
+@Consumes(MediaType.TEXT_PLAIN)
 public class LongRunningAsyncOperationResource
 {
     private static final ExecutorService TASK_EXECUTOR         = Executors
