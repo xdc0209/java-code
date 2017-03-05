@@ -5,8 +5,11 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.TreeSet;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.xdc.basic.commons.StringUtil;
 
 public class MacUtil
 {
@@ -32,20 +35,17 @@ public class MacUtil
 
     public static boolean isMac(String mac, boolean filterSpecialMac)
     {
-        if (StringUtils.isBlank(mac))
+        if (!StringUtil.matches(mac, macRegExp))
         {
             return false;
         }
 
-        if (filterSpecialMac)
+        if (filterSpecialMac && specialMacs.contains(mac))
         {
-            if (specialMacs.contains(mac))
-            {
-                return false;
-            }
+            return false;
         }
 
-        return mac.matches(macRegExp);
+        return true;
     }
 
     public static List<String> getMacs() throws SocketException
@@ -53,19 +53,51 @@ public class MacUtil
         return getMacs(true);
     }
 
+    /**
+     * 参考：http://www.jb51.net/article/93343.htm
+     * 参考：http://www.cnblogs.com/KnowledgeShare/p/6184383.html
+     */
     public static List<String> getMacs(boolean filterSpecialMac) throws SocketException
     {
-        // TODO 待实现
-
-        List<String> macs = new ArrayList<String>();
+        // 使用TreeSet：保证唯一，保证升序。
+        TreeSet<String> macTreeSet = new TreeSet<String>();
 
         Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
         while (networkInterfaces.hasMoreElements())
         {
             NetworkInterface networkInterface = networkInterfaces.nextElement();
-            byte[] hardwareAddress = networkInterface.getHardwareAddress();
+            if (networkInterface.isLoopback() || networkInterface.isVirtual())
+            {
+                continue;
+            }
+
+            byte[] macBytes = networkInterface.getHardwareAddress();
+            if (ArrayUtils.isEmpty(macBytes))
+            {
+                continue;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < macBytes.length; i++)
+            {
+                sb.append(String.format("%02X%s", macBytes[i], (i < macBytes.length - 1) ? "-" : ""));
+            }
+            String mac = sb.toString();
+
+            if (filterSpecialMac && specialMacs.contains(mac))
+            {
+                continue;
+            }
+
+            macTreeSet.add(mac);
         }
 
-        return macs;
+        List<String> macList = new ArrayList<String>();
+        for (String mac : macTreeSet)
+        {
+            macList.add(mac);
+        }
+
+        return macList;
     }
 }

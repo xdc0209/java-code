@@ -1,5 +1,14 @@
 package com.xdc.basic.commons.network;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.TreeSet;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -139,5 +148,41 @@ public class IpUtil
         int ipInt = part1 | part2 | part3 | part4;
 
         return ipInt;
+    }
+
+    public static List<String> getIps() throws SocketException
+    {
+        // 使用TreeSet：保证唯一，保证升序。
+        TreeSet<String> ipTreeSet = new TreeSet<String>();
+
+        Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+        while (networkInterfaces.hasMoreElements())
+        {
+            NetworkInterface networkInterface = networkInterfaces.nextElement();
+            if (networkInterface.isLoopback() || networkInterface.isVirtual() || !networkInterface.isUp())
+            {
+                continue;
+            }
+
+            Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
+            while (inetAddresses.hasMoreElements())
+            {
+                InetAddress inetAddress = inetAddresses.nextElement();
+                if (!(inetAddress instanceof Inet4Address))
+                {
+                    continue;
+                }
+
+                ipTreeSet.add(inetAddress.getHostAddress());
+            }
+        }
+
+        List<String> ipList = new ArrayList<String>();
+        for (String ip : ipTreeSet)
+        {
+            ipList.add(ip);
+        }
+
+        return ipList;
     }
 }
