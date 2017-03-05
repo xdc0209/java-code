@@ -133,7 +133,7 @@ public class ClientMain
         Builder builder = target().path("school/student/json/student").request(MediaType.APPLICATION_JSON_TYPE)
                 .header("Date", System.currentTimeMillis());
 
-        Response response = builder.post(Entity.json(new Student(System.currentTimeMillis(), "xiaofang", "Ů")));
+        Response response = builder.post(Entity.json(new Student(System.currentTimeMillis(), "xiaofang", "女")));
 
         if (response.getStatus() == 200)
         {
@@ -215,7 +215,8 @@ public class ClientMain
                                 attemptCounter++;
                                 try
                                 {
-                                    final String response = resourceTarget.request()
+                                    final String response = resourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
+                                            .header("Date", System.currentTimeMillis())
                                             .post(Entity.text(String.format("%02d", requestId)), String.class);
                                     postResponses.put(requestId, response);
                                     break;
@@ -273,8 +274,9 @@ public class ClientMain
                                 attemptCounter++;
                                 try
                                 {
-                                    final String response = resourceTarget.queryParam("id", requestId).request()
-                                            .get(String.class);
+                                    final String response = resourceTarget.queryParam("id", requestId)
+                                            .request(MediaType.APPLICATION_JSON_TYPE)
+                                            .header("Date", System.currentTimeMillis()).get(String.class);
                                     getResponses.put(requestId, response);
                                     break;
                                 }
