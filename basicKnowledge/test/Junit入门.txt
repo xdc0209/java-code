@@ -1,0 +1,30 @@
+参考：http://www.cnblogs.com/AloneSword/p/4109407.html
+
+生成测试框架代码：
+选择待测试的类--右键--新建--Junit测试用例
+
+运行所选项目、包或源文件夹的中所有测试：
+选择包--右键--运行方式--运行配置--JUnit--新建--运行所选项目、包或源文件夹的中所有测试
+
+方法注解：
+@BeforeClass 全局只会执行一次，而且是第一个运行
+@Before      在测试方法运行之前运行
+@Test        测试方法
+@After       在测试方法运行之后运行
+@AfterClass  全局只会执行一次，而且是最后一个运行
+@Ignore      忽略此方法
+
+Assert类断言方法：
+Assert.assertTrue(String message, boolean condition)                      要求condition==true
+Assert.assertFalse(String message, boolean condition)                     要求condition==false
+Assert.fail(String message)                                               必然失败，同样要求代码不可达
+Assert.assertEquals(String message, XXX expected, XXX actual)             要求expected.equals(actual)
+Assert.assertArrayEquals(String message, XXX[] expecteds, XXX [] actuals) 要求expected.equalsArray(actual)
+Assert.assertNotNull(String message, Object object)                       要求object!=null
+Assert.assertNull(String message, Object object)                          要求object==null
+Assert.assertSame(String message, Object expected, Object actual)         要求expected==actual
+Assert.assertNotSame(String message, Object unexpected, Object actual)    要求expected!=actual
+Assert.assertThat(String reason, T actual, Matcher matcher)               要求matcher.matches(actual)==true
+
+注意：JUnit3的package是junit.framework，而JUnit4的package是org.junit。推荐使用JUnit4。
+
