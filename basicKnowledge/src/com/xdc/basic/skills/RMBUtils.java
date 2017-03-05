@@ -2,9 +2,6 @@ package com.xdc.basic.skills;
 
 import java.math.BigDecimal;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 public class RMBUtils
 {
     public final static String Prefix    = "人民币";
@@ -12,7 +9,7 @@ public class RMBUtils
     public final static String Digits    = "零壹贰叁肆伍陆柒捌玖";
     public final static String Positions = "分角元拾佰仟万拾佰仟亿拾佰仟";
 
-    public static String convert(double money) throws Exception
+    public static String convert(double money)
     {
         String digits = double2String(money);
 
@@ -76,13 +73,13 @@ public class RMBUtils
         return RMB.replaceAll("零[^元万亿]", "零");
     }
 
-    private static String digits2RMB(String digits) throws Exception
+    private static String digits2RMB(String digits)
     {
         int pointIndex = digits.indexOf(".");
         int positionCursor = pointIndex + 1;
         if (positionCursor >= Positions.length())
         {
-            throw new Exception("钱数超出范围！");
+            throw new RuntimeException("钱数超出范围！");
         }
 
         StringBuilder sb = new StringBuilder();
@@ -106,28 +103,5 @@ public class RMBUtils
         BigDecimal bd = new BigDecimal(money);
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_DOWN);
         return bd.toString();
-    }
-
-    @Test
-    public void testConvert() throws Exception
-    {
-        Assert.assertEquals("人民币壹仟贰佰叁拾肆亿伍仟陆佰柒拾捌万玖仟零壹拾贰元整", RMBUtils.convert(123456789012D));
-        Assert.assertEquals("人民币玖仟玖佰玖拾玖亿玖仟玖佰玖拾玖万玖仟玖佰玖拾玖元整", RMBUtils.convert(999999999999D));
-        Assert.assertEquals("人民币壹仟亿零贰佰元整", RMBUtils.convert(100000000200D));
-        Assert.assertEquals("人民币伍拾陆万柒仟捌佰玖拾元整", RMBUtils.convert(567890D));
-        Assert.assertEquals("人民币壹佰元整", RMBUtils.convert(100D));
-        Assert.assertEquals("人民币壹元整", RMBUtils.convert(1D));
-        Assert.assertEquals("人民币零元整", RMBUtils.convert(0D));
-
-        Assert.assertEquals("人民币壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾元零壹分", RMBUtils.convert(1234567890.01D));
-        Assert.assertEquals("人民币玖拾玖亿玖仟玖佰玖拾玖万玖仟玖佰玖拾玖元壹角壹分", RMBUtils.convert(9999999999.11D));
-        Assert.assertEquals("人民币伍拾陆万柒仟捌佰玖拾元玖角贰分", RMBUtils.convert(567890.92D));
-        Assert.assertEquals("人民币壹佰元叁角玖分", RMBUtils.convert(100.39D));
-        Assert.assertEquals("人民币壹元贰角贰分", RMBUtils.convert(1.22D));
-        Assert.assertEquals("人民币壹元贰角", RMBUtils.convert(1.20D));
-        Assert.assertEquals("人民币壹元零贰分", RMBUtils.convert(1.02D));
-        Assert.assertEquals("人民币玖角玖分", RMBUtils.convert(0.99D));
-        Assert.assertEquals("人民币壹角", RMBUtils.convert(0.1D));
-        Assert.assertEquals("人民币壹分", RMBUtils.convert(0.01D));
     }
 }
