@@ -150,6 +150,10 @@ public class IpUtil
         return ipInt;
     }
 
+    /**
+     * 参考：http://www.jb51.net/article/93343.htm
+     * 参考：http://www.cnblogs.com/KnowledgeShare/p/6184383.html
+     */
     public static List<String> getIps() throws SocketException
     {
         // 使用TreeSet：保证唯一，保证升序。

@@ -11,6 +11,7 @@ import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.xdc.basic.api.restserver.jersey.application.exceptionmapper.common.RESTServiceException;
@@ -95,7 +96,7 @@ public class AwsServerAuthenticationFilter implements ContainerRequestFilter
 
             String signatured = signer.sign(credentials, request);
 
-            if (null == signatured || !signatured.equals(signaturedFromRequest))
+            if (null == signatured || !StringUtils.equals(signatured, signaturedFromRequest))
             {
                 throw RESTServiceException.unauthorized("Authorize failed because of signature matched failed.");
             }

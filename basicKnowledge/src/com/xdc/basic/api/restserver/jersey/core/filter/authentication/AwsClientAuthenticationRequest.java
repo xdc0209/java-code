@@ -72,7 +72,7 @@ public class AwsClientAuthenticationRequest implements AuthenticationRequest
         String[] tokens = query.split("&");
         for (String token : tokens)
         {
-            if (StringUtils.contains(token, "="))
+            if (!StringUtils.contains(token, "="))
             {
                 continue;
             }

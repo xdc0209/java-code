@@ -62,6 +62,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -88,7 +89,7 @@ public class ClientMain
     public static final String  ASYNC_MESSAGING_BLOCKING_PATH      = "async/messaging/blocking";
     public static final String  ASYNC_LONG_RUNNING_OP_PATH         = "async/longrunning";
 
-    private WebTarget target()
+    private WebTarget newTarget()
     {
         Credentials credentials = new Credentials(RestServerConfig.getAccessKey(), RestServerConfig.getSecretKey());
         Signer signer = new AwsSigner();
@@ -110,8 +111,8 @@ public class ClientMain
     @Test
     public void testGetStudent() throws InterruptedException
     {
-        Builder builder = target().path("school/student/json/student/{id}").resolveTemplate("id", 20082890)
-                .request(MediaType.APPLICATION_JSON_TYPE).header("Date", System.currentTimeMillis());
+        Builder builder = newTarget().path("school/student/json/student/{id}").resolveTemplate("id", 20082890)
+                .request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.DATE, System.currentTimeMillis());
 
         Response response = builder.get();
 
@@ -130,8 +131,8 @@ public class ClientMain
     @Test
     public void testCreateStudent() throws InterruptedException
     {
-        Builder builder = target().path("school/student/json/student").request(MediaType.APPLICATION_JSON_TYPE)
-                .header("Date", System.currentTimeMillis());
+        Builder builder = newTarget().path("school/student/json/student").request(MediaType.APPLICATION_JSON_TYPE)
+                .header(HttpHeaders.DATE, System.currentTimeMillis());
 
         Response response = builder.post(Entity.json(new Student(System.currentTimeMillis(), "xiaofang", "女")));
 
@@ -150,14 +151,14 @@ public class ClientMain
     @Test
     public void testFireAndForgetChatResource() throws InterruptedException
     {
-        executeChatTest(target().path(ClientMain.ASYNC_MESSAGING_FIRE_N_FORGET_PATH),
+        executeChatTest(newTarget().path(ClientMain.ASYNC_MESSAGING_FIRE_N_FORGET_PATH),
                 FireAndForgetChatResource.POST_NOTIFICATION_RESPONSE);
     }
 
     @Test
     public void testBlockingPostChatResource() throws InterruptedException
     {
-        executeChatTest(target().path(ClientMain.ASYNC_MESSAGING_BLOCKING_PATH),
+        executeChatTest(newTarget().path(ClientMain.ASYNC_MESSAGING_BLOCKING_PATH),
                 BlockingPostChatResource.POST_NOTIFICATION_RESPONSE);
     }
 
@@ -215,8 +216,8 @@ public class ClientMain
                                 attemptCounter++;
                                 try
                                 {
-                                    final String response = resourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-                                            .header("Date", System.currentTimeMillis())
+                                    final String response = resourceTarget.request()
+                                            .header(HttpHeaders.DATE, System.currentTimeMillis())
                                             .post(Entity.text(String.format("%02d", requestId)), String.class);
                                     postResponses.put(requestId, response);
                                     break;
@@ -274,9 +275,8 @@ public class ClientMain
                                 attemptCounter++;
                                 try
                                 {
-                                    final String response = resourceTarget.queryParam("id", requestId)
-                                            .request(MediaType.APPLICATION_JSON_TYPE)
-                                            .header("Date", System.currentTimeMillis()).get(String.class);
+                                    final String response = resourceTarget.queryParam("id", requestId).request()
+                                            .header(HttpHeaders.DATE, System.currentTimeMillis()).get(String.class);
                                     getResponses.put(requestId, response);
                                     break;
                                 }
@@ -372,7 +372,7 @@ public class ClientMain
     @Test
     public void testLongRunningResource() throws InterruptedException
     {
-        final WebTarget resourceTarget = target().path(ClientMain.ASYNC_LONG_RUNNING_OP_PATH);
+        final WebTarget resourceTarget = newTarget().path(ClientMain.ASYNC_LONG_RUNNING_OP_PATH);
         final String expectedResponse = SimpleLongRunningResource.NOTIFICATION_RESPONSE;
 
         final int MAX_MESSAGES = 100;
