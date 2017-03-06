@@ -39,17 +39,17 @@ public class RestClient
     private String       port;
     private String       authorization;
 
-    public RestClient()
-    {
-        super();
-    }
-
     public RestClient(HttpProtocol protocol, String host, String port, String user, String password)
     {
-        super();
-        if (!IpUtil.isIpv4Port(port))
+        // port不为空，也不是一个合法的端口，抛异常。
+        if (port != null && !IpUtil.isIpv4Port(port))
         {
-            throw new IllegalArgumentException("Port [" + port + "] is not leagal. Port should be in [1,65535].");
+            throw new IllegalArgumentException("Port [" + port + "] is not leagal. Port should be in [0, 65535].");
+        }
+
+        if (port == null)
+        {
+            port = protocol.getDefaultPort();
         }
 
         this.protocol = protocol;
