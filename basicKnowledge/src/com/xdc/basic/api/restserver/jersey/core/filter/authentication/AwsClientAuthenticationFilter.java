@@ -55,6 +55,9 @@ public class AwsClientAuthenticationFilter implements ClientRequestFilter
         this.signer = signer;
     }
 
+    /**
+     * 参考网上资料，实现AWS-S3摘要认证机制（客户端）（HTTP Digest增强）
+     */
     @Override
     public void filter(ClientRequestContext context) throws IOException
     {

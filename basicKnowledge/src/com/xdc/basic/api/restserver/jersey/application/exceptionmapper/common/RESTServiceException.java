@@ -9,6 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * JAX-RS服务错误相关的异常，用于包装应用层错误信息，方便JAX-RS框架输出客户端更友好的响应消息。
+ * 其实java的ws内置很多异常，但是太多，又不太好用，所以定义此异常。
+ * 
+ * @see javax.ws.rs.WebApplicationException
  */
 public class RESTServiceException extends RuntimeException
 {

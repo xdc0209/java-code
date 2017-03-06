@@ -109,6 +109,10 @@ public class Credentials implements Cloneable
         }
     }
 
+    /**
+     * Cloneable接口和Object的clone()方法
+     * http://www.cnblogs.com/szlbm/p/5504649.html
+     */
     public Credentials clone() throws CloneNotSupportedException
     {
         return (Credentials) super.clone();

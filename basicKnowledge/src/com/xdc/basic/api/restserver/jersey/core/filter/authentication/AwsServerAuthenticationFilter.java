@@ -42,6 +42,9 @@ public class AwsServerAuthenticationFilter implements ContainerRequestFilter
         this.signer = signer;
     }
 
+    /**
+     * 参考网上资料，实现AWS-S3摘要认证机制（服务端）（HTTP Digest增强）
+     */
     @Override
     public void filter(ContainerRequestContext context) throws IOException
     {

@@ -14,8 +14,8 @@ import com.xdc.basic.api.restserver.jersey.core.filter.authentication.credential
 /**
  * 客户/用户身份凭证管理。
  * （1）生成：第三应用开发者到AWS凭证管理页面申请，然后写入自己的应用中，用于与AWS交互时的鉴权。
- * （2）立即销毁：第三方应用保存不当，凭证泄露，AWS凭证管理页面申请立即销毁此凭证。销毁只是把凭证的状态改为销毁状态，并不会删除。销毁后不能再启动。
- * （3）过期销毁：每个凭证都有一个有效期，过期后系统把凭证的状态改为销毁
+ * （2）立即销毁：第三方应用保存不当，凭证泄露，到AWS凭证管理页面申请立即销毁此凭证。销毁只是把凭证的状态改为销毁状态，并不会删除。销毁后不能再启动。
+ * （3）过期销毁：每个凭证都有一个有效期，过期后系统把凭证的状态改为销毁。
  */
 public class CredentialsManager
 {
@@ -27,7 +27,7 @@ public class CredentialsManager
         credentialsMap.put(credentials.getAccessKey(), credentials);
     }
 
-    public static Credentials creatCredentials()
+    public static Credentials createCredentials()
     {
         SecureRandom secureRandom = new SecureRandom();
 
@@ -42,7 +42,7 @@ public class CredentialsManager
 
         credentialsMap.put(credentials.getAccessKey(), credentials);
 
-        return credentials;
+        return clone(credentials);
     }
 
     public static void destroyCredentials(String accessKey)
@@ -54,7 +54,6 @@ public class CredentialsManager
         }
 
         credentials.refreshStatus();
-
         credentials.setStatus(Status.ImmediateDestroy);
     }
 
@@ -67,8 +66,7 @@ public class CredentialsManager
         }
 
         credentials.refreshStatus();
-
-        return credentialsMap.get(accessKey);
+        return clone(credentials);
     }
 
     public static List<Credentials> getAllCredentials()
@@ -77,17 +75,24 @@ public class CredentialsManager
         for (Credentials credentials : credentialsMap.values())
         {
             credentials.refreshStatus();
-
-            try
-            {
-                credentialsList.add(credentials.clone());
-            }
-            catch (CloneNotSupportedException e)
-            {
-                e.printStackTrace();
-            }
+            credentialsList.add(clone(credentials));
         }
 
         return credentialsList;
+    }
+
+    /**
+     * 克隆副本，只返回副本，防止外部更改凭证状态。
+     */
+    private static Credentials clone(Credentials credentials)
+    {
+        try
+        {
+            return credentials.clone();
+        }
+        catch (CloneNotSupportedException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
