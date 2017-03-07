@@ -89,7 +89,10 @@ public class ClientMain
     public static final String  ASYNC_MESSAGING_BLOCKING_PATH      = "async/messaging/blocking";
     public static final String  ASYNC_LONG_RUNNING_OP_PATH         = "async/longrunning";
 
-    private WebTarget newTarget()
+    /**
+     * 注意：HTTP连接的建立比较耗时，使用WebTarget进行第一次访问时耗时达到秒级，是后续访问耗时(毫秒级)的级数倍，在密集访问下，建议尽量重用WebTarget实例。
+     */
+    private WebTarget newWebTarget()
     {
         Credentials credentials = new Credentials(RestServerConfig.getAccessKey(), RestServerConfig.getSecretKey());
         Signer signer = new AwsSigner();
@@ -111,7 +114,7 @@ public class ClientMain
     @Test
     public void testGetStudent() throws InterruptedException
     {
-        Builder builder = newTarget().path("school/student/json/student/{id}").resolveTemplate("id", 20082890)
+        Builder builder = newWebTarget().path("school/student/json/student/{id}").resolveTemplate("id", 20082890)
                 .request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.DATE, System.currentTimeMillis());
 
         Response response = builder.get();
@@ -131,7 +134,7 @@ public class ClientMain
     @Test
     public void testCreateStudent() throws InterruptedException
     {
-        Builder builder = newTarget().path("school/student/json/student").request(MediaType.APPLICATION_JSON_TYPE)
+        Builder builder = newWebTarget().path("school/student/json/student").request(MediaType.APPLICATION_JSON_TYPE)
                 .header(HttpHeaders.DATE, System.currentTimeMillis());
 
         Response response = builder.post(Entity.json(new Student(System.currentTimeMillis(), "xiaofang", "女")));
@@ -151,14 +154,14 @@ public class ClientMain
     @Test
     public void testFireAndForgetChatResource() throws InterruptedException
     {
-        executeChatTest(newTarget().path(ClientMain.ASYNC_MESSAGING_FIRE_N_FORGET_PATH),
+        executeChatTest(newWebTarget().path(ClientMain.ASYNC_MESSAGING_FIRE_N_FORGET_PATH),
                 FireAndForgetChatResource.POST_NOTIFICATION_RESPONSE);
     }
 
     @Test
     public void testBlockingPostChatResource() throws InterruptedException
     {
-        executeChatTest(newTarget().path(ClientMain.ASYNC_MESSAGING_BLOCKING_PATH),
+        executeChatTest(newWebTarget().path(ClientMain.ASYNC_MESSAGING_BLOCKING_PATH),
                 BlockingPostChatResource.POST_NOTIFICATION_RESPONSE);
     }
 
@@ -372,7 +375,7 @@ public class ClientMain
     @Test
     public void testLongRunningResource() throws InterruptedException
     {
-        final WebTarget resourceTarget = newTarget().path(ClientMain.ASYNC_LONG_RUNNING_OP_PATH);
+        final WebTarget resourceTarget = newWebTarget().path(ClientMain.ASYNC_LONG_RUNNING_OP_PATH);
         final String expectedResponse = SimpleLongRunningResource.NOTIFICATION_RESPONSE;
 
         final int MAX_MESSAGES = 100;

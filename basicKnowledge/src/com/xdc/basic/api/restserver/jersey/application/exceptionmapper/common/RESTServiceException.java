@@ -108,6 +108,9 @@ public class RESTServiceException extends RuntimeException
         return details;
     }
 
+    /**
+     * errorId与errorMessage字段为必备，可附加其他参数，目的是帮助客户端理解导致错误的原因，后续在恰当的时间能够重建请求。
+     */
     public RESTServiceException addDetail(String name, Object value)
     {
         details.put(name, value);
