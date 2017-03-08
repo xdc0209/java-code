@@ -19,7 +19,7 @@ public class Main
             ExecCommand execCommand = new ExecCommand("ping -n 5 127.0.0.1 | findstr TTL");
             System.out.println(execCommand);
 
-            execCommand.setTimeout(10000);
+            execCommand.setTimeout(10000L);
             execCommand.setExpectedExitValues(new int[] { 0, 1, 2 });
             ExecResult execResult = ExecTool.exec(execCommand);
             System.out.println(execResult);

@@ -84,30 +84,62 @@ public class ExecTool
         }
         executor.setStreamHandler(new PumpStreamHandler(stdOut, stdErr, stdIn));
 
-        // 设置看门狗，超时后，再等待10秒钟，杀死命令行进程，否则会残留，浪费资源。等10秒的原因是为了区分正常返回和执行超时。
-        // 因为杀死进程后，进程也是有返回值的，看起来与执行完成没有区别。虽然执行成功（惯例是0）、失败、超时被杀死的返回码不同，也是不能根据返回值判断是否超时的，那样代码就跟操作系统的耦合了。
-        ExecuteWatchdog watchdog = new ExecuteWatchdog(execCommand.getTimeout() + 10 * 1000L);
-        executor.setWatchdog(watchdog);
-
         // 设置执行目录。
         executor.setWorkingDirectory(execCommand.getWorkingDirectory());
 
         // 设置期望返回值，不符合抛异常ExecuteException。这里置为空，禁用此功能，由业务自己处理返回值，无需业务捕获异常。
         executor.setExitValues(null);
 
-        // 设置关闭钩子，当jvm退出时，杀死正在执行的命令行进程。
-        executor.setProcessDestroyer(new ShutdownHookProcessDestroyer());
-
-        // 创建执行结果处理器
-        DefaultExecuteResultHandler defaultExecuteResultHandler = new DefaultExecuteResultHandler();
+        if (execCommand.isDestroyProcessOnJvmExit())
+        {
+            // 设置关闭钩子，当jvm退出时，杀死正在执行的命令行进程。
+            executor.setProcessDestroyer(new ShutdownHookProcessDestroyer());
+        }
 
         try
         {
-            // 执行命令。
-            executor.execute(commandLine, execCommand.getEnvironment(), defaultExecuteResultHandler);
+            if (execCommand.getTimeout() != null)
+            {
+                // 设置看门狗，超时后，再等待10秒钟，杀死命令行进程，否则会残留，浪费资源。等10秒的原因是为了区分正常返回和执行超时。
+                // 因为杀死进程后，进程也是有返回值的，看起来与执行完成没有区别。虽然执行成功（惯例是0）、失败、超时被杀死的返回码不同，也是不能根据返回值判断是否超时的，那样代码就跟操作系统的耦合了。
+                ExecuteWatchdog watchdog = new ExecuteWatchdog(execCommand.getTimeout() + 10 * 1000L);
+                executor.setWatchdog(watchdog);
 
-            // 同步等待命令行进程完成。
-            defaultExecuteResultHandler.waitFor(execCommand.getTimeout());
+                // 创建执行结果处理器
+                DefaultExecuteResultHandler defaultExecuteResultHandler = new DefaultExecuteResultHandler();
+
+                // 执行命令。
+                executor.execute(commandLine, execCommand.getEnvironment(), defaultExecuteResultHandler);
+
+                // 同步等待命令行进程完成。
+                defaultExecuteResultHandler.waitFor(execCommand.getTimeout());
+
+                if (defaultExecuteResultHandler.hasResult())
+                {
+                    // 执行完成，获取返回值。
+                    return new ExecResult(execCommand.getExpectedExitValues(),
+                            defaultExecuteResultHandler.getExitValue(),
+                            BytesUtil.newString(stdOut.toByteArray(), CONSOLE_ENCODING_CHARSET),
+                            BytesUtil.newString(stdErr.toByteArray(), CONSOLE_ENCODING_CHARSET),
+                            defaultExecuteResultHandler.getException());
+                }
+                else
+                {
+                    // 执行超时，返回值设置为空。
+                    return new ExecResult(execCommand.getExpectedExitValues(), ExecResult.EXEC_TIMEOUT,
+                            BytesUtil.newString(stdOut.toByteArray(), CONSOLE_ENCODING_CHARSET),
+                            BytesUtil.newString(stdErr.toByteArray(), CONSOLE_ENCODING_CHARSET));
+                }
+            }
+            else
+            {
+                int exitValue = executor.execute(commandLine, execCommand.getEnvironment());
+
+                // 执行完成，获取返回值。
+                return new ExecResult(execCommand.getExpectedExitValues(), exitValue,
+                        BytesUtil.newString(stdOut.toByteArray(), CONSOLE_ENCODING_CHARSET),
+                        BytesUtil.newString(stdErr.toByteArray(), CONSOLE_ENCODING_CHARSET));
+            }
         }
         catch (Throwable e)
         {
@@ -115,22 +147,6 @@ public class ExecTool
             return new ExecResult(execCommand.getExpectedExitValues(), ExecResult.EXEC_FAILURE,
                     BytesUtil.newString(stdOut.toByteArray(), CONSOLE_ENCODING_CHARSET),
                     BytesUtil.newString(stdErr.toByteArray(), CONSOLE_ENCODING_CHARSET), e);
-        }
-
-        if (defaultExecuteResultHandler.hasResult())
-        {
-            // 执行完成，获取返回值。
-            return new ExecResult(execCommand.getExpectedExitValues(), defaultExecuteResultHandler.getExitValue(),
-                    BytesUtil.newString(stdOut.toByteArray(), CONSOLE_ENCODING_CHARSET),
-                    BytesUtil.newString(stdErr.toByteArray(), CONSOLE_ENCODING_CHARSET),
-                    defaultExecuteResultHandler.getException());
-        }
-        else
-        {
-            // 执行超时，返回值设置为空。
-            return new ExecResult(execCommand.getExpectedExitValues(), ExecResult.EXEC_TIMEOUT,
-                    BytesUtil.newString(stdOut.toByteArray(), CONSOLE_ENCODING_CHARSET),
-                    BytesUtil.newString(stdErr.toByteArray(), CONSOLE_ENCODING_CHARSET));
         }
     }
 }
