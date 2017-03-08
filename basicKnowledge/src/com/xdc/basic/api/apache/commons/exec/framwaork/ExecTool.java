@@ -41,6 +41,18 @@ public class ExecTool
         }
     }
 
+    /**
+     * 使用字符串作为参数，使用ExecCommand的默认配置。
+     */
+    public static ExecResult exec(String command)
+    {
+        ExecCommand execCommand = new ExecCommand(command);
+        return exec(execCommand);
+    }
+
+    /**
+     * 使用ExecCommand作为参数，可以自由定制ExecCommand。
+     */
     public static ExecResult exec(ExecCommand execCommand)
     {
         if (CONSOLE_ENCODING_CHARSET == null)
@@ -90,7 +102,7 @@ public class ExecTool
         // 设置期望返回值，不符合抛异常ExecuteException。这里置为空，禁用此功能，由业务自己处理返回值，无需业务捕获异常。
         executor.setExitValues(null);
 
-        if (execCommand.isDestroyProcessOnJvmExit())
+        if (execCommand.isDestroyCmdProcessOnJvmExit())
         {
             // 设置关闭钩子，当jvm退出时，杀死正在执行的命令行进程。
             executor.setProcessDestroyer(new ShutdownHookProcessDestroyer());
