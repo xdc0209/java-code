@@ -4,16 +4,11 @@ import java.util.ArrayList;
 
 /**
  * 数组列表测试类
- * 
- * @author xdc
- * 
  */
 public class ArrayListTest
 {
-
     public static void main(String[] args)
     {
-
         // 继承关系： Iterator(接口：迭代器) <-- Collection(接口：类集) <-- List(接口：列表) <--
         // ArrayList(类：数组列表)
         ArrayList<String> arrayList = new ArrayList<String>();

@@ -8,7 +8,6 @@ public class HashSetTest
 {
     public static void main(String[] args)
     {
-
         // 继承关系： Iterator(接口：迭代器) <-- Collection(接口：类集) <-- Set(接口：集合)
         // <--HashSet(类：哈希集合)
         Set<String> set = new HashSet<String>();

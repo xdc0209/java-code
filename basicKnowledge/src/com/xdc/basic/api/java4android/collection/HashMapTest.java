@@ -5,16 +5,11 @@ import java.util.Map;
 
 /**
  * 哈希映射测试类
- * 
- * @author xdc
- * 
  */
 public class HashMapTest
 {
-
     public static void main(String[] args)
     {
-
         Map<String, String> map = new HashMap<String, String>();
         map.put("name", "xudacaho");
         map.put("age", "24");
