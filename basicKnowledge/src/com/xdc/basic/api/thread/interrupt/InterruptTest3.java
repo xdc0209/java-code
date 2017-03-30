@@ -73,6 +73,7 @@ public class InterruptTest3
                         // 等待命令行进程结束，结束阻塞的情况有两个：
                         // (1)命令行进程执行完毕，此时exitValue会被正常赋值。
                         // (2)其他线程对此线程设置了中断位，使此线程处于中断状态，process.waitFor()检测到此中断后，抛出异常InterruptedException，此时exitValue不会被赋值，还是为空的。
+                        // 注：最新版的jdk8已支持超时参数：java.lang.Process.waitFor(long, TimeUnit)，样例代码见：http://surenpi.com/2017/03/24/java_exec_local_progress/
                         exitValue = process.waitFor();
 
                         System.out.println("2-" + Thread.currentThread().isInterrupted());
