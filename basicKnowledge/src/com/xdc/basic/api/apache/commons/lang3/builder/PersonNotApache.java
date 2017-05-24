@@ -14,23 +14,38 @@ public class PersonNotApache
         this.smoker = smoker;
     }
 
-    @Override
-    public String toString()
+    // eclipse自动生成：字符串连接
+    public String toString1()
     {
-        // eclipse 自动生成的
         return "PersonNotApache [name=" + name + ", age=" + age + ", smoker=" + smoker + "]";
     }
 
+    // eclipse自动生成：StringBuilder/StringBuffer
     public String toString2()
     {
-        // 普通的方式，这种写法比eclipse生成的效率要高
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getClass().getSimpleName());
-        sb.append(" [name=").append(name);
-        sb.append(", age=").append(age);
-        sb.append(", smoker=").append(smoker);
-        sb.append("]");
+        StringBuilder builder = new StringBuilder();
+        builder.append("PersonNotApache [name=");
+        builder.append(name);
+        builder.append(", age=");
+        builder.append(age);
+        builder.append(", smoker=");
+        builder.append(smoker);
+        builder.append("]");
+        return builder.toString();
+    }
 
-        return sb.toString();
+    // eclipse自动生成：StringBuilder/StringBuffer - 链式调用
+    public String toString3()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append("PersonNotApache [name=").append(name).append(", age=").append(age).append(", smoker=")
+                .append(smoker).append("]");
+        return builder.toString();
+    }
+
+    // eclipse自动生成：String.format/MessageFormat
+    public String toString4()
+    {
+        return String.format("PersonNotApache [name=%s, age=%s, smoker=%s]", name, age, smoker);
     }
 }

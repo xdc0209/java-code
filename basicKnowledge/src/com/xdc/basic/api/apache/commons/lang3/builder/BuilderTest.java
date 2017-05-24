@@ -17,8 +17,10 @@ public class BuilderTest
 
         // PersonNotApache ===============================
         PersonNotApache personNotApache = new PersonNotApache("xdc", 25, false);
-        System.out.println(personNotApache.toString());
+        System.out.println(personNotApache.toString1());
         System.out.println(personNotApache.toString2());
+        System.out.println(personNotApache.toString3());
+        System.out.println(personNotApache.toString4());
 
         // PersonReflection ==============================
         PersonReflection personReflection = new PersonReflection("xdc", 25, false);
