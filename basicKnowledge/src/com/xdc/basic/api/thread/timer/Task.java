@@ -15,8 +15,6 @@ public class Task
 {
     private static Logger            log                  = LoggerFactory.getLogger(Task.class);
 
-    private static SimpleDateFormat  hourMinuteFormat     = new SimpleDateFormat("HH:mm");
-
     private static long              oneDayInMilliSeconds = 24 * 60 * 60 * 1000L;
 
     private TaskFile                 taskFile             = null;
@@ -53,6 +51,9 @@ public class Task
         }
 
         log.info("Schedule task start. taskFile=[{}].", taskFile);
+
+        // SimpleDateFormat是线程不安全的类，一般不要定义为static变量，每次使用要重新new一个。JDK8可以使用线程安全的DateTimeFormatter，以便重用。
+        SimpleDateFormat hourMinuteFormat = new SimpleDateFormat("HH:mm");
 
         // 获取当前时间，并进行处理，只保留小时、分钟。
         Date nowDate = new Date();

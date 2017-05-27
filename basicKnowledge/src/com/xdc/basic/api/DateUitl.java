@@ -1,6 +1,7 @@
 
 package com.xdc.basic.api;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -61,6 +62,15 @@ public class DateUitl
         int actualMaxDayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         return dayOfMonth > actualMaxDayOfMonth - 7;
+    }
+
+    /**
+     * SimpleDateFormat是线程不安全的类，一般不要定义为static变量，每次使用要重新new一个。JDK8可以使用线程安全的DateTimeFormatter，以便重用。
+     */
+    public static String format(Date date, String pattern)
+    {
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        return format.format(date);
     }
 
     @SuppressWarnings("deprecation")
