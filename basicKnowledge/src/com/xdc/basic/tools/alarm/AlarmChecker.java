@@ -15,7 +15,7 @@ public class AlarmChecker
         }
 
         alarmCheckerThread = new AlarmCheckerThread();
-        alarmCheckerThread.setName("AlarmCheckerThread");
+        // alarmCheckerThread.setName("AlarmCheckerThread");
         alarmCheckerThread.start();
     }
 
@@ -33,6 +33,11 @@ public class AlarmChecker
     private static class AlarmCheckerThread extends Thread
     {
         private volatile boolean running = true;
+
+        public AlarmCheckerThread()
+        {
+            super("AlarmCheckerThread");
+        }
 
         public boolean isRunning()
         {
