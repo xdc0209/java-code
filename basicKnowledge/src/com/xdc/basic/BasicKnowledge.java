@@ -51,7 +51,7 @@ public class BasicKnowledge
         StringBuilder sb = new StringBuilder();
         sb.append("Hello");
         sb.append("World");
-        sb.reverse();// 反转字符串
+        sb.reverse(); // 反转字符串
         sb.toString();
 
         // 5. 数字
@@ -62,7 +62,7 @@ public class BasicKnowledge
         Integer.toOctalString(15); // 整数 -> 八进制字符串
         Integer.toHexString(15); // 整数 -> 十六进制字符串
 
-        Math.round(3.4); // // 浮点数的舍入,结果为3
+        Math.round(3.4); // 浮点数的舍入，结果为3
 
         // 随机数
         Random r = new Random();
