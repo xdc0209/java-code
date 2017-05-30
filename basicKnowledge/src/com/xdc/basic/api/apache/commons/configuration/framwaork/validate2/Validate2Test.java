@@ -1,5 +1,6 @@
 package com.xdc.basic.api.apache.commons.configuration.framwaork.validate2;
 
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.results.atomic.ValidateResult;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.Validator;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.DoubleValidator;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.EnumStringValidator;
@@ -19,7 +20,9 @@ public class Validate2Test
         {
             public void run()
             {
-                System.out.println(validator.validate("17.0"));
+                ValidateResult validateResult = validator.validate("17.0");
+                System.out.println(validateResult);
+                System.out.println(ValidateResult.isPassed(validateResult));
                 System.out.println();
             }
         });
@@ -29,7 +32,9 @@ public class Validate2Test
         {
             public void run()
             {
-                System.out.println(validator.validate("asdfg"));
+                ValidateResult validateResult = validator.validate("asdfg");
+                System.out.println(validateResult);
+                System.out.println(ValidateResult.isPassed(validateResult));
                 System.out.println();
             }
         });

@@ -24,7 +24,7 @@ public class NotValidator extends BaseValidator
     {
         ValidateResult validateResult = validator.validate(value);
 
-        NotValidateResult notValidateResult = new NotValidateResult(value, null, null, null);
+        NotValidateResult notValidateResult = new NotValidateResult(value);
         notValidateResult.setValidateResult(validateResult);
 
         notValidateResult.setReslut(!ValidateResult.isPassed(validateResult));

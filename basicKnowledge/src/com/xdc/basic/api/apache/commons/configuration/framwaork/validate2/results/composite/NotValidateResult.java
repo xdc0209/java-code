@@ -1,16 +1,15 @@
 package com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.results.composite;
 
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.results.atomic.ValidateResult;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.Validator;
 
 public class NotValidateResult extends ValidateResult
 {
     @SuppressWarnings("unused")
     private ValidateResult validateResult;
 
-    public NotValidateResult(String value, Validator validator, Boolean reslut, String detail)
+    public NotValidateResult(String value)
     {
-        super(value, validator, reslut, detail);
+        super(value, null, null, null);
     }
 
     public void setValidateResult(ValidateResult validateResult)

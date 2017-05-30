@@ -28,7 +28,7 @@ public class AndValidator extends BaseValidator
     @Override
     public ValidateResult validate(String value)
     {
-        AndValidateResult andValidateResult = new AndValidateResult(value, null, null, null);
+        AndValidateResult andValidateResult = new AndValidateResult(value);
 
         for (Validator validator : validators)
         {
@@ -38,11 +38,12 @@ public class AndValidator extends BaseValidator
             if (!ValidateResult.isPassed(validateResult))
             {
                 andValidateResult.setReslut(false);
-                return andValidateResult;
+
+                // 对于and逻辑来说，存在一个为非真，其结果为非真，可以直接返回。注释掉此返回语句，可保证一次性校验所有的错误。
+                // return andValidateResult;
             }
         }
 
-        andValidateResult.setReslut(true);
         return andValidateResult;
     }
 }

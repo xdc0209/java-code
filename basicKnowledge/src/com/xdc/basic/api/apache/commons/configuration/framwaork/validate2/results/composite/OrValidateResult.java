@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.results.atomic.ValidateResult;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.Validator;
 
 public class OrValidateResult extends ValidateResult
 {
     private List<ValidateResult> validateResults = new ArrayList<ValidateResult>();
 
-    public OrValidateResult(String value, Validator validator, Boolean reslut, String detail)
+    public OrValidateResult(String value)
     {
-        super(value, validator, reslut, detail);
+        super(value, null, false, null);
     }
 
     public void addValidateResult(ValidateResult validateResult)
