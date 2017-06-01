@@ -40,7 +40,7 @@
 		</triggeringPolicy>
 	</appender>
 
-	<logger name="com.xdc.basic.api.log.apache.commons.logging" additivity="false" level="INFO">
+	<logger name="com.xdc.basic" additivity="false" level="DEBUG">
 		<appender-ref ref="packageAppender" />
 	</logger>
 
