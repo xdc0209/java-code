@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonTool
 {
@@ -19,6 +20,7 @@ public class JsonTool
     static
     {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
         // 设置此参数后，Java对象转换为的Json字符串带有类型信息。对于Java对象成员包含Object类型时，Json字符串转换为Java对象转换时，Object类型对应的字段能还原当时对应的类。不指定的话，默认Object类型的将转换为LinkedHashMap。
         // mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.OBJECT_AND_NON_CONCRETE, JsonTypeInfo.As.PROPERTY);
