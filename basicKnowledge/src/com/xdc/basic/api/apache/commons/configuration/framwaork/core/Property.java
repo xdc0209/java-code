@@ -3,13 +3,13 @@ package com.xdc.basic.api.apache.commons.configuration.framwaork.core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.Validator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.BooleanValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.DoubleValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.FloatValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.IntegerValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.LongValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.NotEmptyStringValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.Validator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.BooleanValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.DoubleValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.FloatValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.IntegerValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.LongValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.NotEmptyStringValidator;
 
 public class Property<T>
 {

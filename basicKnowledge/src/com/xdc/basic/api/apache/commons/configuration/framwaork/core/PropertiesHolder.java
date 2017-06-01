@@ -17,8 +17,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.Validator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.LongValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.results.atomic.ValidateResult;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.Validator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.LongValidator;
 import com.xdc.basic.api.thread.executor.threadfactory.NamePrefixThreadFactory;
 
 public class PropertiesHolder
@@ -140,7 +141,8 @@ public class PropertiesHolder
         }
 
         // 如果新值合法直接返回新值
-        if (validator.validate(newValue))
+        ValidateResult newValueValidateResult = validator.validate(newValue);
+        if (ValidateResult.isPassed(newValueValidateResult))
         {
             logger.debug(
                     "Get string success, newValue is valid, return newValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}].",
@@ -148,11 +150,12 @@ public class PropertiesHolder
             return newValue;
         }
         logger.debug(
-                "NewValue is not valid. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], validator=[{}].",
-                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, validator.detail());
+                "NewValue is not valid. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], validatorResult=[{}].",
+                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, newValueValidateResult);
 
         // 如果新值非法，旧值合法，返回旧值
-        if (validator.validate(oldValue))
+        ValidateResult oldValueValidateResult = validator.validate(oldValue);
+        if (ValidateResult.isPassed(oldValueValidateResult))
         {
             logger.debug(
                     "Get string success, newValue is not valid, oldValue is valid, return oldValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}].",
@@ -160,8 +163,8 @@ public class PropertiesHolder
             return oldValue;
         }
         logger.debug(
-                "OldValue is not valid. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], validator=[{}].",
-                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, validator.detail());
+                "OldValue is not valid. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], validatorResult=[{}].",
+                FilenameUtils.getName(propertiesFilePath), key, newValue, oldValue, oldValueValidateResult);
 
         logger.debug(
                 "Get string success, newValue is not valid, oldValue is not valid, return defaultValue. propertiesFilePath=[{}], key=[{}], newValue=[{}], oldValue=[{}], defaultValue=[{}].",
@@ -172,11 +175,12 @@ public class PropertiesHolder
 
     public void setString(String key, String newValue, Validator validator)
     {
-        if (!validator.validate(newValue))
+        ValidateResult newValueValidateResult = validator.validate(newValue);
+        if (!ValidateResult.isPassed(newValueValidateResult))
         {
             String error = String.format(
-                    "Set string failed, due to validating value failed. propertiesFilePath=[%s], key=[%s], newValue=[%s], validator=[%s].",
-                    FilenameUtils.getName(propertiesFilePath), key, newValue, validator.detail());
+                    "Set string failed, due to validating value failed. propertiesFilePath=[%s], key=[%s], newValue=[%s], validatorResult=[%s].",
+                    FilenameUtils.getName(propertiesFilePath), key, newValue, newValueValidateResult);
             logger.error(error);
             throw new IllegalArgumentException(error);
         }

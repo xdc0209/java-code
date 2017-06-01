@@ -2,9 +2,9 @@ package com.xdc.basic.api.apache.commons.configuration.framwaork.config;
 
 import com.xdc.basic.api.apache.commons.configuration.framwaork.core.PropertiesHolder;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.core.Property;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.IntegerValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.IpValidator;
-import com.xdc.basic.api.apache.commons.configuration.framwaork.validate1.validators.atomic.PortValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.IntegerValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.IpValidator;
+import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.PortValidator;
 
 // 注意：接口的属性的权限默认是public static final。
 public interface Module2Config
