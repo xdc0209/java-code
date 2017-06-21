@@ -1,6 +1,10 @@
+.git/
 .svn/
 .settings/
 bin/
 target/
 .project
 .classpath
+.idea
+*.iml
+
