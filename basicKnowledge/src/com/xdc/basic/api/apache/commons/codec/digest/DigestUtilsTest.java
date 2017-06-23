@@ -20,13 +20,14 @@ public class DigestUtilsTest
         InputStream inputMd5 = null;
         InputStream inputSha1 = null;
         InputStream inputSha256 = null;
+        InputStream inputSha384 = null;
+        InputStream inputSha512 = null;
 
-        String md5Hex;
         try
         {
             // 算法强度小于sha1
             inputMd5 = new FileInputStream(file);
-            md5Hex = DigestUtils.md5Hex(inputMd5);
+            String md5Hex = DigestUtils.md5Hex(inputMd5);
             System.out.println("MD5值:" + md5Hex);
 
             // 算法强度小于sha256
@@ -37,11 +38,18 @@ public class DigestUtilsTest
             inputSha256 = new FileInputStream(file);
             String sha256Hex = DigestUtils.sha256Hex(inputSha256);
             System.out.println("SHA256值:" + sha256Hex);
+
+            inputSha384 = new FileInputStream(file);
+            String sha384Hex = DigestUtils.sha384Hex(inputSha384);
+            System.out.println("SHA384值:" + sha384Hex);
+
+            inputSha512 = new FileInputStream(file);
+            String sha512Hex = DigestUtils.sha512Hex(inputSha512);
+            System.out.println("SHA512值:" + sha512Hex);
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-
     }
 }
