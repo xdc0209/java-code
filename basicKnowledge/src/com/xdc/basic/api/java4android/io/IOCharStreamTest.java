@@ -24,10 +24,10 @@ class IOCharStreamTest
             fr = new FileReader(curPath + "from.txt");
             fw = new FileWriter(curPath + "to.txt");
             char[] buffer = new char[1024];
-            int len;
-            while ((len = fr.read(buffer, 0, buffer.length)) != -1)
+            int bufferUsed = 0;
+            while ((bufferUsed = fr.read(buffer, 0, buffer.length)) > 0)
             {
-                fw.write(buffer, 0, len);
+                fw.write(buffer, 0, bufferUsed);
                 String s = new String(buffer);
                 s = s.trim();
                 System.out.println(s);

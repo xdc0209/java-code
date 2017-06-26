@@ -27,12 +27,12 @@ class IOByteStreamTest
             fos = new FileOutputStream(curPath + "to.txt");
             // 生成一个字节数组
             byte[] buffer = new byte[1024];
-            int len;
+            int bufferUsed = 0;
             // 调用输入流的read方法，读取数据
-            while ((len = fis.read(buffer, 0, buffer.length)) != -1)
+            while ((bufferUsed = fis.read(buffer, 0, buffer.length)) > 0)
             {
                 // 调用输出流的write方法，写入数据
-                fos.write(buffer, 0, len);
+                fos.write(buffer, 0, bufferUsed);
                 // 将字节还原成字符
                 String s = new String(buffer);
                 // 调用一个String对象的trim方法，将会去除这个字符串的首位空格和空字符。
