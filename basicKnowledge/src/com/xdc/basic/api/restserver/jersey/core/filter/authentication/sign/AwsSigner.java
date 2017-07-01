@@ -175,7 +175,7 @@ public class AwsSigner implements Signer
         while (it.hasNext())
         {
             Entry<String, String> entry = it.next();
-            sb.append(StringUtils.lowerCase(entry.getKey(), Locale.ENGLISH));
+            sb.append(StringUtils.lowerCase(entry.getKey(), Locale.US));
             sb.append('=');
             sb.append(entry.getValue());
             if (it.hasNext())
