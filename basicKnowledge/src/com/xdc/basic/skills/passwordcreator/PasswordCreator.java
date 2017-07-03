@@ -21,19 +21,34 @@ public class PasswordCreator
         List<String> lines = IOUtils.readLines(input);
         IOUtils.closeQuietly(input);
 
+        // 每次换密码时，更改盐值，产生新的密码
+        String salt = "春暖花开";
+
         for (String line : lines)
         {
-            if (StringUtils.isNotBlank(line))
+            if (StringUtils.isBlank(line))
             {
-                String createPassword = createPassword(line);
+                System.out.println();
+            }
+            else
+            {
+                String createPassword = createPassword(line, salt);
                 System.out.printf("%s %s\n", createPassword, line);
             }
         }
     }
 
-    private static String createPassword(String s) throws IOException
+    private static String createPassword(String text, String salt) throws IOException
     {
-        String sha512Hex = DigestUtils.sha512Hex(s);
+        if (StringUtils.isBlank(text))
+        {
+            return null;
+        }
+
+        String textTrimed = StringUtils.trim(text);
+        String textWithSalt = StringUtils.join(salt, textTrimed);
+
+        String sha512Hex = DigestUtils.sha512Hex(textWithSalt);
 
         String alpha = extractAlpha(sha512Hex);
         String numeric = extractNumeric(sha512Hex);
