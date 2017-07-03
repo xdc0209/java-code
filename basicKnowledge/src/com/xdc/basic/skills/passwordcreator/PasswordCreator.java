@@ -33,7 +33,7 @@ public class PasswordCreator
             else
             {
                 String createPassword = createPassword(line, salt);
-                System.out.printf("%s %s\n", createPassword, line);
+                System.out.printf("%s  %s\n", createPassword, line);
             }
         }
     }
