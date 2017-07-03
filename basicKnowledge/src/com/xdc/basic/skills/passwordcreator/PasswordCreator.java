@@ -54,9 +54,9 @@ public class PasswordCreator
         String numeric = extractNumeric(sha512Hex);
 
         String alpha4 = leftAndRightPad(alpha, 4, 'x');
-        String numeric6 = leftAndRightPad(numeric, 8, '8');
+        String numeric8 = leftAndRightPad(numeric, 8, '8');
 
-        String password = StringUtils.capitalize(alpha4 + numeric6);
+        String password = StringUtils.join(alpha4, " ", format(numeric8, 3, " "));
 
         return password;
     }
@@ -114,5 +114,32 @@ public class PasswordCreator
         String rightPad = StringUtils.rightPad(left, len, c);
 
         return rightPad;
+    }
+
+    /**
+     * 美化字符串使其更易阅读。如12345678--》123 456 78
+     * 
+     * @param s
+     *            美化前的字符串
+     * @param width
+     *            每个单元的宽度
+     * @param delimiter
+     *            分隔符
+     * @return 美化后的字符串
+     */
+    private static String format(String s, int width, String delimiter)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (i > 0 && i % width == 0)
+            {
+                sb.append(delimiter);
+            }
+
+            sb.append(s.charAt(i));
+        }
+
+        return sb.toString();
     }
 }
