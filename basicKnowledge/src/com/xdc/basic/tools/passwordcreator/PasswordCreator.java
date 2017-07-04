@@ -1,4 +1,4 @@
-package com.xdc.basic.skills.passwordcreator;
+package com.xdc.basic.tools.passwordcreator;
 
 import java.io.FileReader;
 import java.io.IOException;
