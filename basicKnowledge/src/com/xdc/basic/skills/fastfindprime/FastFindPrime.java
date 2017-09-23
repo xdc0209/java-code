@@ -182,7 +182,7 @@ public class FastFindPrime
         ansArrayList.clear();
 
         // ///////////////////////////////////////////////////////////////////
-        System.out.println("6. 并将上限由 i/2 缩小到 根号i,内层步进改为2，忽略偶数");
+        System.out.println("6. 并将上限由 i/2 缩小到 根号i，内层步进改为2，忽略偶数");
         startTime = System.currentTimeMillis();
         for (int i = startNum; i <= endNum; i++)
         {
