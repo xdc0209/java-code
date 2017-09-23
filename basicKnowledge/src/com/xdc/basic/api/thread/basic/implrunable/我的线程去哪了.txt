@@ -12,6 +12,7 @@ class RunnableImpl implements Runnable
         {
             // dosomething
         }
+        // 要捕获java.lang.Throwable，不能捕获java.lang.Exception，否则会遗漏java.lang.OutOfMemoryError: unable to create new native thread等。
         catch (Throwable e)
         {
             // log and throw
