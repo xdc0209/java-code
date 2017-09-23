@@ -69,7 +69,6 @@ public class DbmsOutput
      * It will print this output on stdout by default (just reset what
      * System.out is to change or redirect this output).
      */
-
     public void show() throws SQLException
     {
         show_stmt.registerOutParameter(2, java.sql.Types.INTEGER);
