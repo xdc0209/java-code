@@ -26,6 +26,9 @@ public class PasswordCreator
 
         for (String line : lines)
         {
+            line = StringUtils.substringBefore(line, "(");
+            line = StringUtils.trim(line);
+
             if (StringUtils.isBlank(line))
             {
                 System.out.println();
