@@ -19,6 +19,8 @@ public class BinarySearch
         {
             int mid = (low + high) / 2;
 
+            if (n[mid] > search)
+            {
                 high = mid - 1;
             }
             else if (n[mid] < search)
