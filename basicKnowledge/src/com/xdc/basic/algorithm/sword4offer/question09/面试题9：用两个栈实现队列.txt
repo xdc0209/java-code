@@ -1,0 +1,13 @@
+摘自：《剑指offer(第2版)》 >>> 面试题9：用两个栈实现队列
+摘自：用两个栈实现队列 >>> https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+问题描述：
+用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+
+解题思路：
+入队(enqueue)：将元素进栈A
+出队(dequeue)：判断栈B是否为空，如果为空，则将栈A中所有元素pop，并push进栈B，栈B出栈； 如果不为空，栈B直接出栈。
+
+相关题目：
+用两个队列来实现一个栈。
+

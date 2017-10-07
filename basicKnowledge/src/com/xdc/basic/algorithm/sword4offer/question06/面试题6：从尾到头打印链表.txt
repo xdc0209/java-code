@@ -1,0 +1,12 @@
+摘自：《剑指offer(第2版)》 >>> 面试题6：从尾到头打印链表
+摘自：从尾到头打印链表 >>> https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+问题描述：
+输入一个链表，从尾到头打印链表每个节点的值。
+
+解题思路一：
+链表的遍历顺序是从头到尾，可是输出却要求是从尾到头，这是典型的“先进后出”，我们可以用栈实现这种顺序。
+
+解题思路二：
+既然想到了用栈来实现这个函数，而递归在本质上就是一个栈结构，于是很自然地又想到了用递归实现。
+
