@@ -31,7 +31,7 @@ public class ALG
         // 从数组结尾找到第一个马上有下降趋势的元素。
         int high = n.length - 1;
         int j = high - 1;
-        for (; j >= 0; j--)
+        for (; j > low; j--)
         {
             if (n[high] != n[j])
             {
