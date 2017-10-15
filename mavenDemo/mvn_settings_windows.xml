@@ -52,7 +52,7 @@ under the License.
    | Default: ${user.home}/.m2/repository
   <localRepository>/path/to/local/repo</localRepository>
   -->
-  <localRepository>D:\JavaTools\apache-maven-repository</localRepository>
+  <localRepository>D:\DevRepo\apache-maven-repository</localRepository>
 
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
