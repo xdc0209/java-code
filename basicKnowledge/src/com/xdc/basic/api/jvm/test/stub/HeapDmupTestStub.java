@@ -26,7 +26,7 @@ public class HeapDmupTestStub
                     Thread.sleep(1000 * 60 * 2);
 
                     StringBuilder sb = new StringBuilder();
-                    for (long i = 0; i < 100000l; i++)
+                    for (long i = 0; i < 100000L; i++)
                     {
                         sb.append("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     }
