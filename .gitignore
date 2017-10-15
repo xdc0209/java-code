@@ -1,10 +1,21 @@
+# 忽略版本库文件##
 .git/
 .svn/
-.settings/
-bin/
-target/
-.project
-.classpath
-.idea
-*.iml
 
+# 忽略idea工程文件##
+*.iml
+.idea/
+
+# 忽略eclipse工程构建后生成的文件##
+basicKnowledge/bin/
+headFirstDesignPattern/bin/
+
+# 忽略maven工程的无用文件##
+mavenDemo/**/.project
+mavenDemo/**/.classpath
+mavenDemo/**/.settings/
+mavenDemo/**/target/
+springInAction/**/.project
+springInAction/**/.classpath
+springInAction/**/.settings/
+springInAction/**/target/
