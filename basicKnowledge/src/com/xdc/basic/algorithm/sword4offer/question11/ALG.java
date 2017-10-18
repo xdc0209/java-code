@@ -10,7 +10,7 @@ public class ALG
             throw new RuntimeException("Invalid input!");
         }
 
-        // 如果旋转数组是在原始非递减有序数组基础上旋转了一个0个元素，即无移动，那么数组的第一个元素就是最小的。
+        // 如果旋转数组是在原始非递减有序数组基础上旋转了0个元素(或旋转了n.length个元素)，即无移动，那么数组的第一个元素就是最小的。
         if (n[0] < n[n.length - 1])
         {
             return n[0];
