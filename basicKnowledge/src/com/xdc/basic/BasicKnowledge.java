@@ -29,7 +29,7 @@ public class BasicKnowledge
         System.getProperty("file.separator"); // 文件分隔符：在Unix和Unix-like(Linux，MacOS，FreeBSD，AIX)系统中是'/'，在Windows系统中是'\'
         System.getProperty("line.separator"); // 行分隔符，也叫换行符：在Unix和Unix-like(Linux，MacOS10，FreeBSD，AIX)系统中是'\n'，在Windows系统中是'\r\n'，在MacOS9系统及以前的MacOS系统中是'\r'
 
-        // apache 类库
+        // apache类库
         String PATH_SEPARATOR = SystemUtils.PATH_SEPARATOR;
         String LINE_SEPARATOR = SystemUtils.FILE_SEPARATOR;
         String FILE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
@@ -62,7 +62,12 @@ public class BasicKnowledge
         Integer.toOctalString(15); // 整数 -> 八进制字符串
         Integer.toHexString(15); // 整数 -> 十六进制字符串
 
-        Math.round(3.4); // 浮点数的舍入，结果为3
+        // 浮点数比较
+        Float.compare(1.0f, 2.0f);
+        Double.compare(1.0d, 2.0d);
+
+        // 浮点数的舍入，结果为3
+        Math.round(3.4);
 
         // 随机数
         Random r = new Random();
