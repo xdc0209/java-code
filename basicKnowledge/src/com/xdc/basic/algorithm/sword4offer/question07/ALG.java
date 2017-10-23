@@ -163,17 +163,26 @@ public class ALG
     {
         if (root == null)
         {
+            for (int i = 0; i < deep; i++)
+            {
+                System.out.print("....");
+            }
+            System.out.println("$");
+
             return;
         }
 
+        // 输出右子树
         treeGraph(root.right, deep + 1);
 
+        // 输出根节点
         for (int i = 0; i < deep; i++)
         {
             System.out.print("....");
         }
         System.out.println(root.val);
 
+        // 输出左子树
         treeGraph(root.left, deep + 1);
     }
 
