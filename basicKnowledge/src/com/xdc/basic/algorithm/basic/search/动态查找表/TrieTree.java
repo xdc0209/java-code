@@ -1,4 +1,4 @@
-package com.xdc.basic.algorithm.basic.search.dynamicsearch;
+package com.xdc.basic.algorithm.basic.search.动态查找表;
 
 /**
  * Trie树， 又称字典树，单词查找树。它来源于retrieval(检索)中取中间四个字符构成(读音同try)。

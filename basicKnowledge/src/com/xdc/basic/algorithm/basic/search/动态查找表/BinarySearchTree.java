@@ -1,4 +1,4 @@
-package com.xdc.basic.algorithm.basic.search.dynamicsearch;
+package com.xdc.basic.algorithm.basic.search.动态查找表;
 
 import java.util.ArrayList;
 import java.util.List;

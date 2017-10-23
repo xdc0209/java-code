@@ -1,4 +1,4 @@
-package com.xdc.basic.algorithm.basic.search.staticsearch;
+package com.xdc.basic.algorithm.basic.search.静态查找表;
 
 public class BinarySearch
 {
