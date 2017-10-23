@@ -115,7 +115,7 @@ public class ALG
         treeLinkNode6.next = treeLinkNode3;
         treeLinkNode7.next = treeLinkNode3;
 
-        TreeLinkNode alg2 = alg1(treeLinkNode1);
+        TreeLinkNode alg2 = alg2(treeLinkNode1);
         System.out.println(alg2 != null ? alg2.val : null);
     }
 }
