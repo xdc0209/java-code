@@ -14,10 +14,10 @@ public class BasicArray2ObjectArray
     {
         int[] array = new int[] { 1, 2, 3 };
 
-        // 基本数组 --> 对象数组
+        // 基本数组-->对象数组
         Integer[] array2 = ArrayUtils.toObject(array);
 
-        // 对象数组 --> 基本数组
+        // 对象数组-->基本数组
         int[] array3 = ArrayUtils.toPrimitive(array2);
 
         System.out.println(array3.length);
