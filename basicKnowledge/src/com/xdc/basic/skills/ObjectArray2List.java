@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * 对象数组和链表的相互转换
+ * 
+ * @SEE org.eclipse.jetty.util.ArrayUtil.asMutableList(E[])
  */
 public class ObjectArray2List
 {
