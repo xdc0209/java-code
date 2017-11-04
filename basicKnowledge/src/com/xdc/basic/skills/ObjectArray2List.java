@@ -7,9 +7,6 @@ import java.util.List;
 
 /**
  * 对象数组和链表的相互转换
- * 
- * @author xdc
- * 
  */
 public class ObjectArray2List
 {
@@ -35,8 +32,6 @@ public class ObjectArray2List
         return new ArrayList<T>(Arrays.asList(array));
     }
 
-    // 由于使用反射创建泛型数组，性能不好，比原始写法慢几倍。
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static <T> T[] listToArray(List<T> list, Class<T> clazz)
     {
