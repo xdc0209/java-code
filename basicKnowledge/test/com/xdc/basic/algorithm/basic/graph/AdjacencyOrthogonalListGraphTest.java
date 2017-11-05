@@ -1,15 +1,15 @@
-package com.xdc.basic.algorithm.basic.sort.graph;
+package com.xdc.basic.algorithm.basic.graph;
 
 import org.junit.Test;
 
-import com.xdc.basic.algorithm.basic.graph.AdjacencyMatrixGraph;
+import com.xdc.basic.algorithm.basic.graph.AdjacencyOrthogonalListGraph;
 import com.xdc.basic.algorithm.basic.graph.Graph;
 
-public class AdjacencyMatrixGraphTest
+public class AdjacencyOrthogonalListGraphTest
 {
     private <T> Graph<T> newGraph(boolean directed)
     {
-        return new AdjacencyMatrixGraph<T>(100, directed);
+        return new AdjacencyOrthogonalListGraph<T>(100, directed);
     }
 
     @Test
