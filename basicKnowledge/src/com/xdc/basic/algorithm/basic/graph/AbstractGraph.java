@@ -144,16 +144,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
             int j = stack2.pop();
 
             // 查找下一个未曾访问过的邻接点。
-            j = getNextNeighbor(i, j);
-            while (j > -1)
-            {
-                if (!visited[j])
-                {
-                    break;
-                }
-
-                j = getNextNeighbor(i, j);
-            }
+            j = getNextUnvisitedNeighbor(i, j, visited);
 
             // 还存在未曾访问过的邻接点。
             if (j > -1)
@@ -193,16 +184,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
             int j = stack2.peek();
 
             // 查找下一个未曾访问过的邻接点。
-            j = getNextNeighbor(i, j);
-            while (j > -1)
-            {
-                if (!visited[j])
-                {
-                    break;
-                }
-
-                j = getNextNeighbor(i, j);
-            }
+            j = getNextUnvisitedNeighbor(i, j, visited);
 
             if (j > -1) // 还存在未曾访问过的邻接点。
             {
@@ -854,5 +836,21 @@ public abstract class AbstractGraph<T> implements Graph<T>
         {
             throw new IllegalArgumentException("Weight:" + weight + ", Range:(" + 0 + "," + Integer.MAX_VALUE + ").");
         }
+    }
+
+    private int getNextUnvisitedNeighbor(int v, int i, boolean[] visited)
+    {
+        i = getNextNeighbor(v, i);
+        while (i > -1)
+        {
+            if (!visited[i])
+            {
+                break;
+            }
+
+            i = getNextNeighbor(v, i);
+        }
+
+        return i;
     }
 }
