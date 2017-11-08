@@ -129,6 +129,108 @@ public abstract class AbstractGraph<T> implements Graph<T>
     @SuppressWarnings("unused")
     private void DFS4(int v, boolean[] visited)
     {
+        Stack<Integer> stack1 = new Stack<Integer>(); // 存储已访问，但是可能存在未访问的邻接点的顶点的序号。
+        Stack<Integer> stack2 = new Stack<Integer>(); // 存储stack1中对应位置的顶点刚刚访问过的邻接点的序号。
+
+        // 访问顶点。
+        System.out.println(getVertex(v));
+        visited[v] = true;
+
+        stack1.push(v); // 可能存在未访问的邻接点，入栈。
+        stack2.push(-1); // 入栈-1，代表还未访问i的任何邻接点。
+        while (!stack1.isEmpty())
+        {
+            int i = stack1.pop();
+            int j = stack2.pop();
+
+            // 查找下一个未曾访问过的邻接点。
+            j = getNextNeighbor(i, j);
+            while (j > -1)
+            {
+                if (!visited[j])
+                {
+                    break;
+                }
+
+                j = getNextNeighbor(i, j);
+            }
+
+            // 还存在未曾访问过的邻接点。
+            if (j > -1)
+            {
+                // 访问顶点。
+                System.out.println(getVertex(j));
+                visited[j] = true;
+
+                stack1.push(i); // 可能存在未访问的邻接点，重新入栈。
+                stack2.push(j); // 入栈刚刚访问过的邻接点。
+
+                stack1.push(j); // 入栈刚刚访问过的邻接点。
+                stack2.push(-1); // 入栈-1，代表还未访问j的任何邻接点。
+            }
+        }
+    }
+
+    /**
+     * 深度优先遍历图的连通分量(栈实现)。
+     */
+    @SuppressWarnings("unused")
+    private void DFS5(int v, boolean[] visited)
+    {
+        Stack<Integer> stack1 = new Stack<Integer>(); // 存储已访问，但是可能存在未访问的邻接点的顶点的序号。
+        Stack<Integer> stack2 = new Stack<Integer>(); // 存储stack1中对应位置的顶点刚刚访问过的邻接点的序号。
+
+        // 访问顶点。
+        System.out.println(getVertex(v));
+        visited[v] = true;
+
+        stack1.push(v); // 可能存在未访问的邻接点，入栈。
+        stack2.push(-1); // 入栈-1，代表还未访问i的任何邻接点。
+        while (!stack1.isEmpty())
+        {
+            // 注意这里只是取栈顶元素，并不出栈。
+            int i = stack1.peek();
+            int j = stack2.peek();
+
+            // 查找下一个未曾访问过的邻接点。
+            j = getNextNeighbor(i, j);
+            while (j > -1)
+            {
+                if (!visited[j])
+                {
+                    break;
+                }
+
+                j = getNextNeighbor(i, j);
+            }
+
+            if (j > -1) // 还存在未曾访问过的邻接点。
+            {
+                // 访问顶点。
+                System.out.println(getVertex(j));
+                visited[j] = true;
+
+                // 更新顶点访问过的邻接点。
+                stack2.pop();
+                stack2.push(j);
+
+                stack1.push(j); // 入栈刚刚访问过的邻接点。
+                stack2.push(-1); // 入栈-1，代表还未访问j的任何邻接点。
+            }
+            else // 不存在未曾访问过的邻接点，该顶点出栈。
+            {
+                stack1.pop();
+                stack2.pop();
+            }
+        }
+    }
+
+    /**
+     * 深度优先遍历图的连通分量(栈实现)。
+     */
+    @SuppressWarnings("unused")
+    private void DFS6(int v, boolean[] visited)
+    {
         // 倒序存储未访问过的邻接点的序号。
         Stack<Integer> stack1 = new Stack<Integer>();
 
