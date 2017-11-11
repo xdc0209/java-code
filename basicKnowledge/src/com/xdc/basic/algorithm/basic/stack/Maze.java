@@ -49,7 +49,7 @@ public class Maze
     /**
      * 获得当前位置的当前方向上的下个位置。
      */
-    private static Point nextPosition(Point position, int direction)
+    private static Point nextPoint(Point point, int direction)
     {
         // 合法值：0、1、2、3。
         if (direction < 0 || direction > 3)
@@ -58,8 +58,8 @@ public class Maze
                     "Direction [" + direction + "] is not leagal. Direction should be in [0, 3].");
         }
 
-        int x = position.getX() + DIRECTION_X[direction];
-        int y = position.getY() + DIRECTION_Y[direction];
+        int x = point.getX() + DIRECTION_X[direction];
+        int y = point.getY() + DIRECTION_Y[direction];
 
         return new Point(x, y);
     }
@@ -67,19 +67,19 @@ public class Maze
     /**
      * 当前位置是否可通过。位置必须在迷宫内，且必须在通道块上。
      */
-    private static boolean isPositionPassable(int[][] maze, Point position)
+    private static boolean isPositionPassable(int[][] maze, Point point)
     {
-        if (position.getX() < 0 || position.getX() > maze.length - 1)
+        if (point.getX() < 0 || point.getX() > maze.length - 1)
         {
             return false;
         }
 
-        if (position.getY() < 0 || position.getY() > maze[position.getX()].length - 1)
+        if (point.getY() < 0 || point.getY() > maze[point.getX()].length - 1)
         {
             return false;
         }
 
-        return maze[position.getX()][position.getY()] == MAZE_PASSAGE;
+        return maze[point.getX()][point.getY()] == MAZE_PASSAGE;
     }
 
     /**
@@ -97,9 +97,9 @@ public class Maze
         }
 
         int step = 1;
-        for (Point position : path)
+        for (Point point : path)
         {
-            clone[position.getX()][position.getY()] = step++;
+            clone[point.getX()][point.getY()] = step++;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -181,6 +181,16 @@ public class Maze
      */
     public static void paths1(int[][] maze, List<Point> path, List<List<Point>> paths, Point start, Point end)
     {
+        if (!isPositionPassable(maze, start))
+        {
+            throw new IllegalArgumentException("Start point is not a passage.");
+        }
+
+        if (!isPositionPassable(maze, end))
+        {
+            throw new IllegalArgumentException("End point is not a passage.");
+        }
+
         path.add(start);
         // printPath(maze, path);
 
@@ -192,7 +202,7 @@ public class Maze
 
         for (int d = 0; d < DIRECTION_N; d++)
         {
-            Point next = nextPosition(start, d);
+            Point next = nextPoint(start, d);
             if (isPositionPassable(maze, next) && !path.contains(next))
             {
                 paths1(maze, path, paths, next, end);
@@ -208,7 +218,24 @@ public class Maze
      */
     public static List<List<Point>> paths2(int[][] maze, Point start, Point end)
     {
+        if (!isPositionPassable(maze, start))
+        {
+            throw new IllegalArgumentException("Start point is not a passage.");
+        }
+
+        if (!isPositionPassable(maze, end))
+        {
+            throw new IllegalArgumentException("End point is not a passage.");
+        }
+
         List<List<Point>> paths = new ArrayList<List<Point>>();
+        if (start.equals(end))
+        {
+            List<Point> path = new ArrayList<Point>();
+            path.add(start);
+            paths.add(path);
+            return paths;
+        }
 
         Stack<Point> stack1 = new Stack<Point>(); // 存储已访问，但是可能存在未访问的方向的位置。
         Stack<Integer> stack2 = new Stack<Integer>(); // 存储stack1中对应位置的刚刚访问过的方向。
@@ -219,11 +246,11 @@ public class Maze
         while (!stack1.isEmpty())
         {
             Point point = stack1.pop();
-            Integer direction = stack2.pop();
+            Integer d = stack2.pop();
 
-            for (int d = nextDirection(direction); d > -1; d = nextDirection(d))
+            for (d = nextDirection(d); d > -1; d = nextDirection(d))
             {
-                Point next = nextPosition(point, d);
+                Point next = nextPoint(point, d);
                 if (isPositionPassable(maze, next) && !stack1.contains(next))
                 {
                     stack1.push(point); // 可能存在未访问的方向，重新入栈。
@@ -258,7 +285,24 @@ public class Maze
      */
     public static List<List<Point>> paths3(int[][] maze, Point start, Point end)
     {
+        if (!isPositionPassable(maze, start))
+        {
+            throw new IllegalArgumentException("Start point is not a passage.");
+        }
+
+        if (!isPositionPassable(maze, end))
+        {
+            throw new IllegalArgumentException("End point is not a passage.");
+        }
+
         List<List<Point>> paths = new ArrayList<List<Point>>();
+        if (start.equals(end))
+        {
+            List<Point> path = new ArrayList<Point>();
+            path.add(start);
+            paths.add(path);
+            return paths;
+        }
 
         Stack<Point> stack1 = new Stack<Point>();
         Stack<Integer> stack2 = new Stack<Integer>();
@@ -269,14 +313,14 @@ public class Maze
         while (!stack1.isEmpty())
         {
             Point point = stack1.pop();
-            Integer direction = stack2.pop();
+            Integer d = stack2.pop();
 
             // 循环直到找到下个未访问的方向，或者到所有方向都访问完。
             Point next = null;
-            int d = nextDirection(direction);
+            d = nextDirection(d);
             while (d > -1)
             {
-                next = nextPosition(point, d);
+                next = nextPoint(point, d);
                 if (isPositionPassable(maze, next) && !stack1.contains(next))
                 {
                     break;
@@ -316,7 +360,24 @@ public class Maze
      */
     public static List<List<Point>> paths4(int[][] maze, Point start, Point end)
     {
+        if (!isPositionPassable(maze, start))
+        {
+            throw new IllegalArgumentException("Start point is not a passage.");
+        }
+
+        if (!isPositionPassable(maze, end))
+        {
+            throw new IllegalArgumentException("End point is not a passage.");
+        }
+
         List<List<Point>> paths = new ArrayList<List<Point>>();
+        if (start.equals(end))
+        {
+            List<Point> path = new ArrayList<Point>();
+            path.add(start);
+            paths.add(path);
+            return paths;
+        }
 
         Stack<Point> stack1 = new Stack<Point>();
         Stack<Integer> stack2 = new Stack<Integer>();
@@ -328,14 +389,14 @@ public class Maze
         {
             // 注意这里只是取栈顶元素，并不出栈。
             Point point = stack1.peek();
-            Integer direction = stack2.peek();
+            Integer d = stack2.peek();
 
             // 循环直到找到下个未访问的方向，或者到所有方向都访问完。
             Point next = null;
-            int d = nextDirection(direction);
+            d = nextDirection(d);
             while (d > -1)
             {
-                next = nextPosition(point, d);
+                next = nextPoint(point, d);
                 if (isPositionPassable(maze, next) && !stack1.contains(next))
                 {
                     break;
@@ -377,13 +438,126 @@ public class Maze
     }
 
     /**
+     * 迷宫的第一条最短路径(BFS)
+     */
+    public static List<Point> shortestPath(int[][] maze, Point start, Point end)
+    {
+        if (!isPositionPassable(maze, start))
+        {
+            throw new IllegalArgumentException("Start point is not a passage.");
+        }
+
+        if (!isPositionPassable(maze, end))
+        {
+            throw new IllegalArgumentException("End point is not a passage.");
+        }
+
+        List<Point> path = new ArrayList<Point>();
+        if (start.equals(end))
+        {
+            path.add(start);
+            return path;
+        }
+
+        int[][] distances = new int[maze.length][maze[0].length]; // 存储各个位置到起始位置的最短距离。
+        int[][] father = new int[maze.length][maze[0].length]; // 存储各个位置在BFS拓展过程中的父亲位置到此位置的方向。
+        for (int i = 0; i < maze.length; i++)
+        {
+            for (int j = 0; j < maze[i].length; j++)
+            {
+                distances[i][j] = maze[i][j];
+                father[i][j] = maze[i][j];
+            }
+        }
+
+        // 使用BFS，计算距离矩阵。
+        Queue<Point> queue = new LinkedBlockingQueue<Point>();
+
+        queue.add(start);
+        distances[start.getX()][start.getY()] = 0;
+        father[start.getX()][start.getY()] = 8;
+
+        while (!queue.isEmpty())
+        {
+            Point point = queue.remove();
+
+            for (int d = 0; d < 4; d++)
+            {
+                Point next = nextPoint(point, d);
+                if (isPositionPassable(maze, next) && distances[next.getX()][next.getY()] == Maze.MAZE_PASSAGE) // 下个位置可通过，且没有计算过最短距离。
+                {
+                    queue.add(next);
+                    distances[next.getX()][next.getY()] = distances[point.getX()][point.getY()] + 1;
+                    father[next.getX()][next.getY()] = d;
+
+                    if (next.equals(end))
+                    {
+                        queue.clear();
+                        break; // 遍历到终点就可以了，不用遍历整个迷宫。
+                    }
+                }
+            }
+        }
+
+        // 打印迷宫中各个位置到起始位置的最短距离。
+        // printPath(distances, new ArrayList<Point>());
+
+        // 打印迷宫中各个位置在BFS拓展过程中的父亲位置到此位置的方向。
+        // printPath(father, new ArrayList<Point>());
+
+        // 如果终点没有计算过最短距离，则终点被障碍物包围，不可达。
+        if (distances[end.getX()][end.getY()] == Maze.MAZE_PASSAGE)
+        {
+            return path;
+        }
+
+        // 根据记录的方向，逆向地从终点到起点。
+        Stack<Point> stack = new Stack<Point>();
+        Point point = end;
+        while (father[point.getX()][point.getY()] >= 0 && father[point.getX()][point.getY()] <= 3)
+        {
+            stack.push(point);
+
+            int x = point.getX() - DIRECTION_X[father[point.getX()][point.getY()]];
+            int y = point.getY() - DIRECTION_Y[father[point.getX()][point.getY()]];
+
+            point = new Point(x, y);
+        }
+        stack.push(start);
+
+        while (!stack.isEmpty())
+        {
+            path.add(stack.pop());
+        }
+
+        return path;
+    }
+
+    /**
      * 迷宫的所有最短路径(BFS+栈DFS+回溯)
      */
     public static List<List<Point>> shortestPaths(int[][] maze, Point start, Point end)
     {
-        List<List<Point>> paths = new ArrayList<List<Point>>();
+        if (!isPositionPassable(maze, start))
+        {
+            throw new IllegalArgumentException("Start point is not a passage.");
+        }
 
-        // 初始化距离矩阵中所有元素为无穷远。
+        if (!isPositionPassable(maze, end))
+        {
+            throw new IllegalArgumentException("End point is not a passage.");
+        }
+
+        List<List<Point>> paths = new ArrayList<List<Point>>();
+        if (start.equals(end))
+        {
+            List<Point> path = new ArrayList<Point>();
+            path.add(start);
+            paths.add(path);
+            return paths;
+        }
+
+        // 存储各个位置到起始位置的最短距离。
         int[][] distances = new int[maze.length][maze[0].length];
         for (int i = 0; i < maze.length; i++)
         {
@@ -395,15 +569,17 @@ public class Maze
 
         // 使用BFS，计算距离矩阵。
         Queue<Point> queue = new LinkedBlockingQueue<Point>();
+
         queue.add(start);
         distances[start.getX()][start.getY()] = 0;
+
         while (!queue.isEmpty())
         {
             Point point = queue.remove();
 
             for (int d = 0; d < 4; d++)
             {
-                Point next = nextPosition(point, d);
+                Point next = nextPoint(point, d);
                 if (isPositionPassable(maze, next) && distances[next.getX()][next.getY()] == Maze.MAZE_PASSAGE) // 下个位置可通过，且没有计算过最短距离。
                 {
                     queue.add(next);
@@ -418,11 +594,11 @@ public class Maze
             }
         }
 
-        // 打印迷宫中各个位置到起始位置的距离。
+        // 打印迷宫中各个位置到起始位置的最短距离。
         // printPath(distances, new ArrayList<Point>());
 
-        // 如果终点的距离为无穷远，则终点被障碍物包围，不可达。
-        if (distances[end.getX()][end.getY()] == Integer.MAX_VALUE)
+        // 如果终点没有计算过最短距离，则终点被障碍物包围，不可达。
+        if (distances[end.getX()][end.getY()] == Maze.MAZE_PASSAGE)
         {
             return paths;
         }
@@ -437,11 +613,11 @@ public class Maze
         while (!stack1.isEmpty())
         {
             Point point = stack1.pop();
-            Integer direction = stack2.pop();
+            Integer d = stack2.pop();
 
-            for (int d = nextDirection(direction); d > -1; d = nextDirection(d))
+            for (d = nextDirection(d); d > -1; d = nextDirection(d))
             {
-                Point next = nextPosition(point, d);
+                Point next = nextPoint(point, d);
                 if (isPositionPassable(maze, next) && !stack1.contains(next)
                         && distances[next.getX()][next.getY()] < distances[point.getX()][point.getY()]) // 下个位置可通过，且下个位置的最短距离比当前位置的小。
                 {
