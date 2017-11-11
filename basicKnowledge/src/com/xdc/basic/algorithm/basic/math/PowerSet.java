@@ -38,18 +38,18 @@ public class PowerSet
     /**
      * 幂集。(增量构造法)
      */
-    public static List<List<String>> powerset(List<String> elements)
+    public static <T> List<List<T>> powerset(List<T> elements)
     {
-        List<List<String>> powersets = new ArrayList<List<String>>();
+        List<List<T>> powersets = new ArrayList<List<T>>();
 
-        powersets.add(new ArrayList<String>());
+        powersets.add(new ArrayList<T>());
 
         for (int i = 0; i < elements.size(); i++)
         {
             int size = powersets.size();
             for (int j = 0; j < size; j++)
             {
-                List<String> powerset = new ArrayList<String>(powersets.get(j));
+                List<T> powerset = new ArrayList<T>(powersets.get(j));
                 powerset.add(elements.get(i));
                 powersets.add(powerset);
             }
@@ -61,13 +61,13 @@ public class PowerSet
     /**
      * 幂集。(二进制法)
      */
-    public static List<List<String>> powerset2(List<String> elements)
+    public static <T> List<List<T>> powerset2(List<T> elements)
     {
-        List<List<String>> powersets = new ArrayList<List<String>>();
+        List<List<T>> powersets = new ArrayList<List<T>>();
 
         for (int i = 0; i < (1 << elements.size()); i++) // 幂集个数为2的元素个数次幂。
         {
-            List<String> powerset = new ArrayList<String>();
+            List<T> powerset = new ArrayList<T>();
             for (int j = 0; j < elements.size(); j++)
             {
                 if ((i & (1 << j)) != 0) // 从i的低位到高位，依次判断该位是否为1。
@@ -84,15 +84,15 @@ public class PowerSet
     /**
      * 幂集。(二进制法)
      */
-    public static List<List<String>> powerset3(List<String> elements)
+    public static <T> List<List<T>> powerset3(List<T> elements)
     {
-        List<List<String>> powersets = new ArrayList<List<String>>();
+        List<List<T>> powersets = new ArrayList<List<T>>();
 
         int[] bits = new int[elements.size()];
 
         for (int i = 0; i < (1 << elements.size()); i++) // 幂集个数为2的元素个数次幂。
         {
-            List<String> powerset = new ArrayList<String>();
+            List<T> powerset = new ArrayList<T>();
             for (int j = 0; j < bits.length; j++)
             {
                 if (bits[bits.length - 1 - j] == 1) // 从bits的低位到高位，依次判断该位是否为1。
