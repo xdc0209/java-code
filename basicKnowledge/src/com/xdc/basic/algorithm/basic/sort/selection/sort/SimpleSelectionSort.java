@@ -2,8 +2,6 @@ package com.xdc.basic.algorithm.basic.sort.selection.sort;
 
 import java.util.Arrays;
 
-import com.xdc.basic.algorithm.basic.sort.insertion.sort.StraightInsertionSort;
-
 /**
  * 简单选择排序
  */
@@ -41,7 +39,7 @@ public class SimpleSelectionSort
     public static void main(String[] args)
     {
         int[] n = new int[] { 6, 5, 3, 1, 8, 7, 2, 4 };
-        StraightInsertionSort.sort(n);
+        SimpleSelectionSort.sort(n);
         System.out.println(Arrays.toString(n));
     }
 }
