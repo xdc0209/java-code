@@ -2,8 +2,6 @@ package com.xdc.basic.algorithm.basic.sort.exchange.sort;
 
 import java.util.Arrays;
 
-import com.xdc.basic.algorithm.basic.sort.selection.sort.HeapSelectionSort;
-
 /**
  * 冒泡排序
  */
@@ -41,7 +39,7 @@ public class BubbleSort
     public static void main(String[] args)
     {
         int[] n = new int[] { 6, 5, 3, 1, 8, 7, 2, 4 };
-        HeapSelectionSort.sort(n);
+        BubbleSort.sort(n);
         System.out.println(Arrays.toString(n));
     }
 }
