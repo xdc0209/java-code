@@ -144,7 +144,7 @@ public class Solution
         System.out.println(headNode);
     }
 
-    private ListNode addNodes(ListNode headNode, int... values)
+    private static ListNode addNodes(ListNode headNode, int... values)
     {
         // 添加一个临时的头结点，避免很多空判断。
         ListNode newHeadNode = new ListNode(Integer.MIN_VALUE);
