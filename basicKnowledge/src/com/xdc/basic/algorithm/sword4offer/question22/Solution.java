@@ -31,6 +31,26 @@ public class Solution
 
     public static ListNode FindKthToTail2(ListNode head, int k)
     {
+        int i = 0;
+        ListNode node1 = head;
+        ListNode node2 = head;
+
+        while (node1 != null)
+        {
+            if (i >= k)
+            {
+                node2 = node2.next;
+            }
+
+            i++;
+            node1 = node1.next;
+        }
+
+        return i < k ? null : node2;
+    }
+
+    public static ListNode FindKthToTail3(ListNode head, int k)
+    {
         if (head == null || k <= 0)
         {
             return null;
