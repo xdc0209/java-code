@@ -544,7 +544,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         bst.put(9, "9");
 
         System.out.println("树结构：");
-        bst.treeGraph(bst.root, 1);
+        bst.treeGraph(bst.root);
         System.out.println();
 
         System.out.println("大小：");
@@ -582,7 +582,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         System.out.println();
 
         System.out.println("树结构：");
-        bst.treeGraph(bst.root, 1);
+        bst.treeGraph(bst.root);
         System.out.println();
 
         System.out.println("查找和插入：");
@@ -596,7 +596,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         System.out.println();
 
         System.out.println("树结构：");
-        bst.treeGraph(bst.root, 1);
+        bst.treeGraph(bst.root);
         System.out.println();
 
         System.out.println("删除最小键：" + bst.min());
@@ -604,7 +604,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         System.out.println();
 
         System.out.println("树结构：");
-        bst.treeGraph(bst.root, 1);
+        bst.treeGraph(bst.root);
         System.out.println();
 
         System.out.println("删除最大键：" + bst.max());
@@ -612,7 +612,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         System.out.println();
 
         System.out.println("树结构：");
-        bst.treeGraph(bst.root, 1);
+        bst.treeGraph(bst.root);
         System.out.println();
 
         System.out.println("删除键：5");
@@ -620,8 +620,16 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         System.out.println();
 
         System.out.println("树结构：");
-        bst.treeGraph(bst.root, 1);
+        bst.treeGraph(bst.root);
         System.out.println();
+    }
+
+    /**
+     * 输出树的图形
+     */
+    private void treeGraph(Node root)
+    {
+        treeGraph(root, 1);
     }
 
     /**
