@@ -156,36 +156,6 @@ public class ALG
         return -1;
     }
 
-    /**
-     * 输出树的图形
-     */
-    public static void treeGraph(TreeNode root, int deep)
-    {
-        if (root == null)
-        {
-            for (int i = 0; i < deep; i++)
-            {
-                System.out.print("....");
-            }
-            System.out.println("$");
-
-            return;
-        }
-
-        // 输出右子树
-        treeGraph(root.right, deep + 1);
-
-        // 输出根节点
-        for (int i = 0; i < deep; i++)
-        {
-            System.out.print("....");
-        }
-        System.out.println(root.val);
-
-        // 输出左子树
-        treeGraph(root.left, deep + 1);
-    }
-
     public static void main(String[] args)
     {
         int[] pre = { 1, 2, 4, 7, 3, 5, 6, 8 };
@@ -193,7 +163,7 @@ public class ALG
 
         TreeNode alg = alg2(pre, in);
 
-        treeGraph(alg, 1);
+        TreeNode.treeGraph(alg);
     }
 }
 
@@ -223,5 +193,43 @@ class TreeNode
     public String toString()
     {
         return String.valueOf(val);
+    }
+
+    /**
+     * 输出树的图形
+     */
+    public static void treeGraph(TreeNode root)
+    {
+        TreeNode.treeGraph(root, 1);
+    }
+
+    /**
+     * 输出树的图形
+     */
+    public static void treeGraph(TreeNode root, int deep)
+    {
+        if (root == null)
+        {
+            for (int i = 0; i < deep; i++)
+            {
+                System.out.print("....");
+            }
+            System.out.println("$");
+
+            return;
+        }
+
+        // 输出右子树
+        treeGraph(root.right, deep + 1);
+
+        // 输出根节点
+        for (int i = 0; i < deep; i++)
+        {
+            System.out.print("....");
+        }
+        System.out.println(root.val);
+
+        // 输出左子树
+        treeGraph(root.left, deep + 1);
     }
 }
