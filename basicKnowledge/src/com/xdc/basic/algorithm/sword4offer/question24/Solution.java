@@ -2,6 +2,9 @@ package com.xdc.basic.algorithm.sword4offer.question24;
 
 public class Solution
 {
+    /**
+     * 循环实现。
+     */
     public static ListNode ReverseList(ListNode head)
     {
         ListNode node1 = null;
@@ -15,6 +18,26 @@ public class Solution
         }
 
         return node1;
+    }
+
+    /**
+     * 递归实现。
+     */
+    public static ListNode ReverseList2(ListNode head)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+
+        ListNode node = head.next;
+
+        ListNode reversed = ReverseList2(head.next);
+
+        head.next = null;
+        node.next = head;
+
+        return reversed;
     }
 
     public static void main(String[] args)
