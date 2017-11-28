@@ -46,7 +46,7 @@ public class Solution
     }
 
     /**
-     * 面试题18：删除链表中的节点 题目二：删除链表中重复的节点。
+     * 面试题18：删除链表中的节点 题目二：删除有序链表中重复的节点。
      */
     public static ListNode deleteDuplication(ListNode headNode)
     {
@@ -82,7 +82,7 @@ public class Solution
     }
 
     /**
-     * 面试题18：删除链表中的节点 题目二：删除链表中重复的节点。
+     * 面试题18：删除链表中的节点 题目二：删除有序链表中重复的节点。
      */
     public static ListNode deleteDuplication2(ListNode headNode)
     {
