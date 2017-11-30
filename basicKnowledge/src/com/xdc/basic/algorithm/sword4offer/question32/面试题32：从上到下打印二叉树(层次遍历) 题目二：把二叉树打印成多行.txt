@@ -1,0 +1,5 @@
+摘自：《剑指offer(第2版)》 >>> 面试题32：从上到下打印二叉树(层次遍历) 题目二：把二叉树打印成多行
+摘自：https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288?tpId=13&tqId=11213&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+问题描述：
+从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。

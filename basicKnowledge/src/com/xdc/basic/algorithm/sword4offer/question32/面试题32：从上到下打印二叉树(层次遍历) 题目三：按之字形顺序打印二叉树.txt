@@ -1,0 +1,5 @@
+摘自：《剑指offer(第2版)》 >>> 面试题32：从上到下打印二叉树(层次遍历) 题目三：按之字形顺序打印二叉树
+摘自：https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&tqId=11212&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+问题描述：
+请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。

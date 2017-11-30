@@ -1,0 +1,5 @@
+摘自：《剑指offer(第2版)》 >>> 面试题32：从上到下打印二叉树(层次遍历) 题目一：不分行从上往下打印二叉树
+摘自：https://www.nowcoder.com/practice/7fe2212963db4790b57431d9ed259701?tpId=13&tqId=11175&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+问题描述：
+从上往下打印出二叉树的每个节点，同层节点从左至右打印。
