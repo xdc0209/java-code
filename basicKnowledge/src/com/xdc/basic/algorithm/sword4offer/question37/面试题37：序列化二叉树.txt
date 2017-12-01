@@ -1,0 +1,5 @@
+摘自：《剑指offer(第2版)》 >>> 面试题37：序列化二叉树
+摘自：https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&tqId=11214&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+问题描述：
+请实现两个函数，分别用来序列化和反序列化二叉树。
