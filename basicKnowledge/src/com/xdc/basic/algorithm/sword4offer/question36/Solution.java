@@ -103,7 +103,7 @@ public class Solution
     public static void main(String[] args)
     {
         final Integer X = null;
-        TreeNode root = TreeNode.createTree(9, 5, 3, X, 4, X, X, 7, 6, X, X, 8, X, X, 11, 10, X, X, 12, X);
+        TreeNode root = TreeNode.createTree(9, 5, 3, X, 4, X, X, 7, 6, X, X, 8, X, X, 11, 10, X, X, 12, X, X);
 
         TreeNode.treeGraph(root);
         System.out.println();
