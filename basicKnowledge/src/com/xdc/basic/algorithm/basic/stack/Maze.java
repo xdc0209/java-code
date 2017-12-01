@@ -191,12 +191,14 @@ public class Maze
             throw new IllegalArgumentException("End point is not a passage.");
         }
 
-        path.add(start);
+        path.add(start); // 添加到路径。记住一个规则，最好在同一层方法中进行尝试和回溯，在代码上的特点是尝试和回溯的代码是对称的，但注意这个对称不是指的数量，而是在各个分支中对称。
         // printPath(maze, path);
 
         if (start.equals(end))
         {
             paths.add(new ArrayList<Point>(path));
+            path.remove(path.size() - 1); // 从路径移除。
+            // printPath(maze, path);
             return;
         }
 
@@ -206,11 +208,11 @@ public class Maze
             if (isPositionPassable(maze, next) && !path.contains(next))
             {
                 paths1(maze, path, paths, next, end);
-
-                path.remove(path.size() - 1);
-                // printPath(maze, path);
             }
         }
+
+        path.remove(path.size() - 1); // 从路径移除。
+        // printPath(maze, path);
     }
 
     /**
