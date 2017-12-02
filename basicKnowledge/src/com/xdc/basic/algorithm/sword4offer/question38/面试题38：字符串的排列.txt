@@ -1,0 +1,8 @@
+摘自：《剑指offer(第2版)》 >>> 面试题38：字符串的排列
+摘自：https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&tqId=11180&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+牛客中的问题描述：
+输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
+
+注意：
+本题剑指offer中和牛客中的描述不一致，以剑指offer为准，不考虑重复字符，不考虑结果集顺序。
