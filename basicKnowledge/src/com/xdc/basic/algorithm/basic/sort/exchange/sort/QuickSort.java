@@ -36,14 +36,14 @@ public class QuickSort
         // 从表的两端交替的向中间扫描
         while (low < high)
         {
-            // 将比枢轴记录小的记录移到低端
+            // 将比枢轴记录小的记录移到低端，注意此处存在等号
             while (low < high && n[high] >= pivot)
             {
                 high--;
             }
             n[low] = n[high];
 
-            // 将比枢轴记录大的记录移到高端
+            // 将比枢轴记录大的记录移到高端，注意此处存在等号，因为上下都存在等号，这将导致相等的元素可能划分到两个区，不过对于排序来说，这是无关紧要的
             while (low < high && n[low] <= pivot)
             {
                 low++;
