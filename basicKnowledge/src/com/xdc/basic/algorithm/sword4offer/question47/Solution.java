@@ -19,14 +19,14 @@ public class Solution
             {
                 int maxValue = 0;
 
-                if (i - 1 >= 0 && j < values[i - 1].length && values[i - 1][j] > maxValue)
+                if (i - 1 >= 0 && j < values[i - 1].length && maxValues[i - 1][j] > maxValue)
                 {
-                    maxValue = values[i - 1][j];
+                    maxValue = maxValues[i - 1][j];
                 }
 
-                if (j - 1 >= 0 && values[i][j - 1] > maxValue)
+                if (j - 1 >= 0 && maxValues[i][j - 1] > maxValue)
                 {
-                    maxValue = values[i][j - 1];
+                    maxValue = maxValues[i][j - 1];
                 }
 
                 maxValues[i][j] = values[i][j] + maxValue;
