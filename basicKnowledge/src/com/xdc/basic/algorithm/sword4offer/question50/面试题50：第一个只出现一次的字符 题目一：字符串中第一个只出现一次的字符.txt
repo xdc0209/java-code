@@ -1,0 +1,5 @@
+摘自：《剑指offer(第2版)》 >>> 面试题50：第一个只出现一次的字符 题目一：字符串中第一个只出现一次的字符
+摘自：https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+问题描述：
+在一个字符串(1<=字符串长度<=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置。
