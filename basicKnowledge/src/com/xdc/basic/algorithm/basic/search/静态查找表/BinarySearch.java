@@ -27,7 +27,7 @@ public class BinarySearch
             {
                 low = mid + 1;
             }
-            else
+            else // n[mid] == search。
             {
                 return mid;
             }
