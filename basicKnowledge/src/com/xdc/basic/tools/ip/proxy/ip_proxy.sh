@@ -79,7 +79,7 @@ function start()
         [ -z "$line" ] && continue
 
         do_start_check $line
-    done <$BASE_DIR/ip_proxy.cfg
+    done <$BASE_DIR/ip_proxy.conf
 
     # 启动##
     while read line
@@ -88,7 +88,7 @@ function start()
         [ -z "$line" ] && continue
 
         do_start $line
-    done <$BASE_DIR/ip_proxy.cfg
+    done <$BASE_DIR/ip_proxy.conf
     echo ""
 
     echo "INFO: Start successfully."
@@ -111,7 +111,7 @@ function stop()
         [ -z "$line" ] && continue
 
         do_stop $line
-    done <$BASE_DIR/ip_proxy.cfg
+    done <$BASE_DIR/ip_proxy.conf
     echo ""
 
     echo "INFO: Stop successfully."
@@ -129,7 +129,7 @@ function status()
         [ -z "$line" ] && continue
 
         do_process_status $line
-    done <$BASE_DIR/ip_proxy.cfg
+    done <$BASE_DIR/ip_proxy.conf
     echo ""
 
     # 检查端口状态##
@@ -142,7 +142,7 @@ function status()
 
         proxy_port=$(echo $line | awk '{print $1}')
         do_network_status $proxy_port
-    done <$BASE_DIR/ip_proxy.cfg
+    done <$BASE_DIR/ip_proxy.conf
     echo ""
 }
 
