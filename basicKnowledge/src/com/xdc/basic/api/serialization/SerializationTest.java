@@ -19,7 +19,7 @@ public class SerializationTest
             Student student1 = new Student("xdc", 25);
             System.out.println("student1: " + student1);
 
-            FileOutputStream fos = new FileOutputStream(curPath + "serial");
+            FileOutputStream fos = new FileOutputStream(curPath + "serial.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
             oos.writeObject(student1);
@@ -37,7 +37,7 @@ public class SerializationTest
         try
         {
             Student student2;
-            FileInputStream fis = new FileInputStream(curPath + "serial");
+            FileInputStream fis = new FileInputStream(curPath + "serial.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             student2 = (Student) ois.readObject();
