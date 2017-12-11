@@ -136,6 +136,86 @@ public class Solution
         return seqs;
     }
 
+    /**
+     * 面试题57：和为S的数字 题目二：和为S的连续正数序列。
+     */
+    public static ArrayList<ArrayList<Integer>> FindContinuousSequence3(int sum)
+    {
+        ArrayList<ArrayList<Integer>> seqs = new ArrayList<ArrayList<Integer>>();
+
+        int low = 1;
+        int high = 2;
+        int mid = (sum + 1) / 2;
+        int curSum = low + high;
+        while (low < mid)
+        {
+            if (curSum < sum)
+            {
+                high++;
+                curSum += high;
+            }
+            else if (curSum > sum)
+            {
+                curSum -= low;
+                low++;
+            }
+            else // curSum == sum
+            {
+                ArrayList<Integer> seq = new ArrayList<Integer>();
+                for (int i = low; i <= high; i++)
+                {
+                    seq.add(i);
+                }
+                seqs.add(seq);
+
+                high++;
+                curSum += high;
+            }
+        }
+
+        return seqs;
+    }
+
+    /**
+     * 面试题57：和为S的数字 题目二：和为S的连续正数序列。
+     */
+    public static ArrayList<ArrayList<Integer>> FindContinuousSequence4(int sum)
+    {
+        ArrayList<ArrayList<Integer>> seqs = new ArrayList<ArrayList<Integer>>();
+
+        int low = 1;
+        int high = 2;
+        int mid = (sum + 1) / 2;
+        int curSum = low + high;
+        while (low < mid)
+        {
+            if (curSum < sum)
+            {
+                high++;
+                curSum += high;
+            }
+            else if (curSum > sum)
+            {
+                curSum -= low;
+                low++;
+            }
+            else // curSum == sum
+            {
+                ArrayList<Integer> seq = new ArrayList<Integer>();
+                for (int i = low; i <= high; i++)
+                {
+                    seq.add(i);
+                }
+                seqs.add(seq);
+
+                curSum -= low;
+                low++;
+            }
+        }
+
+        return seqs;
+    }
+
     public static void main(String[] args)
     {
         System.out.println(FindNumbersWithSum(newArray(2, 3, 5, 7, 8, 9), 6));
