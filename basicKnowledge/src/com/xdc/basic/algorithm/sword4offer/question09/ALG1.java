@@ -11,7 +11,7 @@ public class ALG1
     Stack<Integer> stack2 = new Stack<Integer>();
 
     /**
-     * 入队列，叫enqueue更合适
+     * 加入队尾，叫enqueue更合适
      */
     public void push(int node)
     {
@@ -19,7 +19,7 @@ public class ALG1
     }
 
     /**
-     * 出队列，叫dequeue更合适
+     * 移除队首，叫dequeue更合适
      */
     public int pop()
     {
