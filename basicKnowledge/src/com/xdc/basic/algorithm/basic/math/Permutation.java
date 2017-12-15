@@ -27,7 +27,7 @@ public class Permutation
      * @param permutates
      *            所有排列。
      */
-    public static <T> void permutate(List<T> elements, int m, List<T> permutate, List<List<T>> permutates)
+    public static <T> void permutate1(List<T> elements, int m, List<T> permutate, List<List<T>> permutates)
     {
         if (m < 0 || m > elements.size())
         {
@@ -47,7 +47,7 @@ public class Permutation
             {
                 permutate.add(element);
 
-                permutate(elements, m, permutate, permutates);
+                permutate1(elements, m, permutate, permutates);
 
                 permutate.remove(permutate.size() - 1);
             }
@@ -59,7 +59,7 @@ public class Permutation
      * 
      * 算法思路：将n个元素看出一个完全图，从各个顶点依次深度遍历。
      */
-    public static <T> List<List<T>> permutate(List<T> elements, int m)
+    public static <T> List<List<T>> permutate2(List<T> elements, int m)
     {
         if (m < 0 || m > elements.size())
         {
@@ -123,6 +123,141 @@ public class Permutation
         return permutates;
     }
 
+    /**
+     * 从n取m组成排列。(递归)
+     * 
+     * 网上关于排列的代码大多是这个代码，但是此代码有个缺点，就是排列不是按照字典序排序的，而且会修改原始列表的元素的顺序。
+     * 
+     * @param elements
+     *            元素集合。
+     * @param k
+     *            递归辅助变量，外部调用时应填0。
+     * @param m
+     *            取m个元素。
+     * @param permutates
+     *            所有排列。
+     */
+    public static <T> void permutation3(List<T> elements, int k, int m, List<List<T>> permutates)
+    {
+        if (m < 0 || m > elements.size())
+        {
+            throw new IllegalArgumentException("M is illegal.");
+        }
+
+        if (k == m)
+        {
+            permutates.add(new ArrayList<T>(elements.subList(0, m)));
+            return;
+        }
+
+        for (int i = k; i < elements.size(); i++)
+        {
+            swap(elements, k, i);
+
+            permutation3(elements, k + 1, m, permutates);
+
+            swap(elements, k, i);
+        }
+    }
+
+    /**
+     * 从n取m组成排列。
+     * 
+     * 算法思路：C++ STL算法next_permutation的思想。
+     * 
+     * 摘自：http://blog.csdn.net/v_july_v/article/details/6879101
+     * 
+     * @param elements
+     *            元素集合。
+     * @param m
+     *            取m个元素。
+     */
+    public static <T extends Comparable<T>> List<List<T>> permutate4(List<T> elements, int m)
+    {
+        if (m < 0 || m > elements.size())
+        {
+            throw new IllegalArgumentException("M is illegal.");
+        }
+
+        List<List<T>> permutates = new ArrayList<List<T>>();
+
+        if (m == 0)
+        {
+            List<T> permutate = new ArrayList<T>();
+            permutates.add(permutate);
+            return permutates;
+        }
+
+        // 计算“从n取m组成排列”在“全排列”中重复的个数，重复的排列只取一个。
+        int count = 0;
+        int repeat = 1;
+        for (int i = elements.size() - m; i > 1; i--)
+        {
+            repeat = repeat * i;
+        }
+
+        while (true)
+        {
+            // 过滤重复排列。
+            count++;
+            if (count % repeat == 0)
+            {
+                permutates.add(new ArrayList<T>(elements.subList(0, m)));
+            }
+
+            // 对当前排列从后向前扫描，找到一对为升序的相邻元素，记为i和i+1。
+            int i;
+            for (i = elements.size() - 2; i >= 0; i--)
+            {
+                if (elements.get(i).compareTo(elements.get(i + 1)) < 0)
+                {
+                    break;
+                }
+            }
+
+            // 如果不存在这样一对为升序的相邻元素，则所有排列均已找到，算法结束。
+            if (i < 0)
+            {
+                break;
+            }
+
+            // 重新对当前排列从后向前扫描，找到第一个大于i的元素k。
+            int k;
+            for (k = elements.size() - 1; k > i; k--)
+            {
+                if (elements.get(k).compareTo(elements.get(i)) > 0)
+                {
+                    break;
+                }
+            }
+
+            // 交换i和k，然后对从i+1开始到结束的子序列反转，则此时得到的新排列就为下一个字典序排列。
+            swap(elements, i, k);
+            reverse(elements, i + 1, elements.size());
+        }
+
+        return permutates;
+    }
+
+    private static <T> void swap(List<T> elements, int i, int j)
+    {
+        T t = elements.get(i);
+        elements.set(i, elements.get(j));
+        elements.set(j, t);
+    }
+
+    private static <T> void reverse(List<T> elements, int i, int j)
+    {
+        j--;
+        while (i < j)
+        {
+            swap(elements, i, j);
+
+            i++;
+            j--;
+        }
+    }
+
     public static void main(String[] args)
     {
         List<String> elements = new ArrayList<String>();
@@ -133,10 +268,17 @@ public class Permutation
 
         List<String> permutate1 = new ArrayList<String>();
         List<List<String>> permutates1 = new ArrayList<List<String>>();
-        permutate(elements, 2, permutate1, permutates1);
+        permutate1(elements, 2, permutate1, permutates1);
         System.out.println(permutates1);
 
-        List<List<String>> permutate2 = permutate(elements, 2);
-        System.out.println(permutate2);
+        List<List<String>> permutates2 = permutate2(elements, 2);
+        System.out.println(permutates2);
+
+        List<List<String>> permutates3 = new ArrayList<List<String>>();
+        permutation3(elements, 0, 2, permutates3);
+        System.out.println(permutates3);
+
+        List<List<String>> permutates4 = permutate4(elements, 2);
+        System.out.println(permutates4);
     }
 }

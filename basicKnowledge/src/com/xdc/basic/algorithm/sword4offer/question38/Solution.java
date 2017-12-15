@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Solution
 {
     /**
-     * 面试题38：字符串的排列。更全面的代码参考：com.xdc.basic.algorithm.basic.math.Permutation
+     * 面试题38：字符串的排列。
+     * 网上关于排列的代码大多是这个代码，但是此代码有个缺点，就是排列不是按照字典序排序的，更全面的代码参考：com.xdc.basic.algorithm.basic.math.Permutation
      */
     public static ArrayList<String> Permutation(String str)
     {
