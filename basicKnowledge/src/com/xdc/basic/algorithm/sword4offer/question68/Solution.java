@@ -6,6 +6,31 @@ import java.util.List;
 
 public class Solution
 {
+    /**
+     * 面试题68：树中两个节点的最低公共祖先。
+     */
+    public static TreeNode getLastCommonParent(TreeNode root, TreeNode node1, TreeNode node2)
+    {
+        List<TreeNode> path1 = new ArrayList<TreeNode>();
+        getNodePath(root, node1, path1);
+
+        List<TreeNode> path2 = new ArrayList<TreeNode>();
+        getNodePath(root, node2, path2);
+
+        TreeNode commonParent = null;
+        for (int i = 0; i < path1.size() && i < path2.size(); i++)
+        {
+            if (path1.get(i) != path2.get(i))
+            {
+                break;
+            }
+
+            commonParent = path1.get(i);
+        }
+
+        return commonParent;
+    }
+
     private static boolean getNodePath(TreeNode root, TreeNode node, List<TreeNode> path)
     {
         if (root == null || node == null || path == null)
@@ -35,26 +60,44 @@ public class Solution
         return false;
     }
 
-    public static TreeNode getLastCommonParent(TreeNode root, TreeNode node1, TreeNode node2)
+    /**
+     * 面试题68：树中两个节点的最低公共祖先。
+     */
+    public static TreeNode getLastCommonParent2(TreeNode root, TreeNode node1, TreeNode node2)
     {
-        List<TreeNode> path1 = new ArrayList<TreeNode>();
-        getNodePath(root, node1, path1);
+        List<TreeNode> commonPath = new ArrayList<TreeNode>();
 
-        List<TreeNode> path2 = new ArrayList<TreeNode>();
-        getNodePath(root, node2, path2);
+        getCommonPath(root, node1, node2, commonPath);
 
-        TreeNode commonParent = null;
-        for (int i = 0; i < path1.size() && i < path2.size(); i++)
+        return commonPath.isEmpty() ? null : commonPath.get(0);
+    }
+
+    private static int getCommonPath(TreeNode root, TreeNode node1, TreeNode node2, List<TreeNode> commonPath)
+    {
+        if (root == null)
         {
-            if (path1.get(i) != path2.get(i))
-            {
-                break;
-            }
-
-            commonParent = path1.get(i);
+            return 0;
         }
 
-        return commonParent;
+        int leftScore = getCommonPath(root.left, node1, node2, commonPath);
+        int rightScore = getCommonPath(root.right, node1, node2, commonPath);
+
+        int score = leftScore + rightScore;
+        if (node1 == root)
+        {
+            score++;
+        }
+        if (node2 == root)
+        {
+            score++;
+        }
+
+        if (score == 2)
+        {
+            commonPath.add(root);
+        }
+
+        return score;
     }
 
     public static void main(String[] args)
@@ -69,6 +112,14 @@ public class Solution
         System.out.println(getLastCommonParent(root, root, null));
         System.out.println(getLastCommonParent(root, root, root));
         System.out.println(getLastCommonParent(root, root.left.right.left, root.left.right.right));
+        System.out.println();
+
+        System.out.println(getLastCommonParent2(null, null, null));
+        System.out.println(getLastCommonParent2(root, null, null));
+        System.out.println(getLastCommonParent2(root, root, null));
+        System.out.println(getLastCommonParent2(root, root, root));
+        System.out.println(getLastCommonParent2(root, root.left.right.left, root.left.right.right));
+        System.out.println();
     }
 }
 
