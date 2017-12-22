@@ -99,6 +99,24 @@ public class Heap<T extends Comparable<T>>
     }
 
     /**
+     * 获取并替换堆顶元素。
+     */
+    public T top(T t)
+    {
+        if (size <= 0)
+        {
+            throw new RuntimeException("Head is empty.");
+        }
+
+        T top = data[0];
+        data[0] = t;
+
+        shiftDown(data, 0, size);
+
+        return top;
+    }
+
+    /**
      * 获取堆内部数组的副本。
      */
     public T[] toArray()
