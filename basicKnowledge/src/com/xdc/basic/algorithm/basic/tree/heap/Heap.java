@@ -51,6 +51,16 @@ public class Heap<T extends Comparable<T>>
         // }
     }
 
+    public int size()
+    {
+        return size;
+    }
+
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+
     /**
      * 向堆中添加元素。
      */
