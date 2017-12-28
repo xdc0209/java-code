@@ -22,6 +22,8 @@ public class Maps
     // （4）TreeMap能够把它保存的记录根据键排序，默认是按升序排序，也可以指定排序的比较器。当用Iteraor遍历TreeMap时，得到的记录是排过序的。TreeMap的键不能为空。
     //
     // 另外还有一个不常用的Map，这里简单介绍下： WeakHashMap是一种改进的HashMap，它对key实行“弱引用”，如果一个key不再被外部所引用，那么该key可以被GC回收。
+    //
+    // 还有一点：TreeMap是基于红黑树实现的，而其他名称带有hash的映射表是基于哈希表的。
 
     public static void init(Map<String, String> map)
     {
