@@ -2,7 +2,6 @@ package com.xdc.basic.api.thread.interrupt;
 
 public class InterruptTest
 {
-
     public static void main(String[] args)
     {
         Thread t = new Thread()
