@@ -2,10 +2,10 @@ package com.xdc.basic.skills.encrypt.aes.aes2.core;
 
 import org.junit.Test;
 
+import com.xdc.basic.commons.SystemUtil;
+import com.xdc.basic.commons.codec.HexUtil;
+import com.xdc.basic.commons.idgen.IdGenerate;
 import com.xdc.basic.skills.encrypt.aes.aes2.util.CRC16Util;
-import com.xdc.basic.skills.encrypt.aes.aes2.util.CodecUtil;
-import com.xdc.basic.skills.encrypt.aes.aes2.util.RandomUtil;
-import com.xdc.basic.skills.encrypt.aes.aes2.util.SystemUtil;
 
 public class EncKeyMgr
 {
@@ -14,8 +14,8 @@ public class EncKeyMgr
      */
     public static String genRootKeyHex()
     {
-        byte[] randomBytes = RandomUtil.randomBytes(16);
-        return CodecUtil.bytes2HexString(randomBytes);
+        byte[] randomBytes = IdGenerate.randomBytes(16);
+        return HexUtil.bytes2HexString(randomBytes);
     }
 
     /**
@@ -23,8 +23,8 @@ public class EncKeyMgr
      */
     public static String genWorkKeyHex()
     {
-        byte[] randomBytes = RandomUtil.randomBytes(16);
-        return CodecUtil.bytes2HexString(randomBytes);
+        byte[] randomBytes = IdGenerate.randomBytes(16);
+        return HexUtil.bytes2HexString(randomBytes);
     }
 
     /**
@@ -36,8 +36,8 @@ public class EncKeyMgr
         byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector, algorithm,
                 keyLength, iterationCount);
 
-        byte[] cipherWorkKeyBytes = Enc.encode(CodecUtil.hexString2Bytes(plainWorkKeyHex), initKeyBytes);
-        return CodecUtil.bytes2HexString(cipherWorkKeyBytes);
+        byte[] cipherWorkKeyBytes = Enc.encode(HexUtil.hexString2Bytes(plainWorkKeyHex), initKeyBytes);
+        return HexUtil.bytes2HexString(cipherWorkKeyBytes);
     }
 
     /**
@@ -49,8 +49,8 @@ public class EncKeyMgr
         byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector, algorithm,
                 keyLength, iterationCount);
 
-        byte[] plainWorkKeyBytes = Enc.decode(CodecUtil.hexString2Bytes(cipherWorkKeyHex), initKeyBytes);
-        return CodecUtil.bytes2HexString(plainWorkKeyBytes);
+        byte[] plainWorkKeyBytes = Enc.decode(HexUtil.hexString2Bytes(cipherWorkKeyHex), initKeyBytes);
+        return HexUtil.bytes2HexString(plainWorkKeyBytes);
     }
 
     /**
@@ -60,8 +60,8 @@ public class EncKeyMgr
     {
         byte[] initKeyBytes = EncKeyHolder.getInitKeyBytes(keyPath);
 
-        byte[] cipherWorkKeyBytes = Enc.encode(CodecUtil.hexString2Bytes(plainWorkKeyHex), initKeyBytes);
-        return CodecUtil.bytes2HexString(cipherWorkKeyBytes);
+        byte[] cipherWorkKeyBytes = Enc.encode(HexUtil.hexString2Bytes(plainWorkKeyHex), initKeyBytes);
+        return HexUtil.bytes2HexString(cipherWorkKeyBytes);
     }
 
     /**
@@ -71,8 +71,8 @@ public class EncKeyMgr
     {
         byte[] initKeyBytes = EncKeyHolder.getInitKeyBytes(keyPath);
 
-        byte[] plainWorkKeyBytes = Enc.decode(CodecUtil.hexString2Bytes(cipherWorkKeyHex), initKeyBytes);
-        return CodecUtil.bytes2HexString(plainWorkKeyBytes);
+        byte[] plainWorkKeyBytes = Enc.decode(HexUtil.hexString2Bytes(cipherWorkKeyHex), initKeyBytes);
+        return HexUtil.bytes2HexString(plainWorkKeyBytes);
     }
 
     /**
@@ -89,7 +89,7 @@ public class EncKeyMgr
 
         // 新工作秘钥密文
         byte[] newCipherWorkKeyBytes = Enc.encode(plainWorkKeyBytes, newInitKeyBytes);
-        return CodecUtil.bytes2HexString(newCipherWorkKeyBytes);
+        return HexUtil.bytes2HexString(newCipherWorkKeyBytes);
     }
 
     /**
@@ -119,7 +119,7 @@ public class EncKeyMgr
         String workKeyHex = genWorkKeyHex();
         String rootKeyHex = genRootKeyHex();
 
-        String rootKeyCrc = CRC16Util.crc(CodecUtil.hexString2Bytes(rootKeyHex));
+        String rootKeyCrc = CRC16Util.crc(HexUtil.hexString2Bytes(rootKeyHex));
 
         SystemUtil.outPrintln("workKeyHex: " + workKeyHex);
         SystemUtil.outPrintln("rootKeyHex: " + rootKeyHex);

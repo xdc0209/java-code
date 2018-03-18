@@ -49,41 +49,49 @@ public class EUCJPStatistics extends nsEUCStatistics
     private static float   mSecondByteMean;
     private static float   mSecondByteWeight;
 
+    @Override
     public float[] mFirstByteFreq()
     {
         return mFirstByteFreq;
     }
 
+    @Override
     public float mFirstByteStdDev()
     {
         return mFirstByteStdDev;
     }
 
+    @Override
     public float mFirstByteMean()
     {
         return mFirstByteMean;
     }
 
+    @Override
     public float mFirstByteWeight()
     {
         return mFirstByteWeight;
     }
 
+    @Override
     public float[] mSecondByteFreq()
     {
         return mSecondByteFreq;
     }
 
+    @Override
     public float mSecondByteStdDev()
     {
         return mSecondByteStdDev;
     }
 
+    @Override
     public float mSecondByteMean()
     {
         return mSecondByteMean;
     }
 
+    @Override
     public float mSecondByteWeight()
     {
         return mSecondByteWeight;

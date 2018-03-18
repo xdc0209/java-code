@@ -61,6 +61,7 @@ public class Calculator extends JFrame implements ActionListener
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    @Override
     public void actionPerformed(ActionEvent j)
     {
         double n;
@@ -118,7 +119,9 @@ public class Calculator extends JFrame implements ActionListener
         constraints.gridheight = height;
         layout.setConstraints(component, constraints);
         if (component instanceof JButton)
+        {
             ((JButton) component).addActionListener(this);
+        }
         getContentPane().add(component);
     }
 

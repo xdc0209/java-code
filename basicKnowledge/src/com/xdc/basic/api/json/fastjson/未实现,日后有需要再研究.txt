@@ -1,0 +1,1 @@
+fastjson这么快老外为啥还是热衷 jackson? https://www.zhihu.com/question/44199956

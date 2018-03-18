@@ -9,9 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
+import com.xdc.basic.commons.codec.HexUtil;
 import com.xdc.basic.skills.encrypt.aes.aes2.util.CRC16Util;
-import com.xdc.basic.skills.encrypt.aes.aes2.util.CodecUtil;
 
 public class EncKeyHolder
 {
@@ -65,11 +65,11 @@ public class EncKeyHolder
     {
         try
         {
-            Properties p = loadProperties(GetPath.connect(keyPath, ENC_ROOT_KEY_CONF));
+            Properties p = loadProperties(PathUtil.connect(keyPath, ENC_ROOT_KEY_CONF));
 
             String rootKey = p.getProperty(ENC_ROOT_KEY);
             String rootKeyCRC = p.getProperty(ENC_ROOT_KEY_CRC);
-            if (!CRC16Util.match(CodecUtil.hexString2Bytes(rootKey), rootKeyCRC))
+            if (!CRC16Util.match(HexUtil.hexString2Bytes(rootKey), rootKeyCRC))
             {
                 throw new EncException("root key and root key crc not match.");
             }
@@ -97,11 +97,11 @@ public class EncKeyHolder
         byte[] workKeyBytes = workKeyBytesMap.get(keyPath);
         if (workKeyBytes == null)
         {
-            Properties p = loadProperties(GetPath.connect(keyPath, ENC_WORK_KEY_CONF));
+            Properties p = loadProperties(PathUtil.connect(keyPath, ENC_WORK_KEY_CONF));
 
             String workKey = p.getProperty(ENC_WORK_KEY);
 
-            workKeyBytes = Enc.decode(CodecUtil.hexString2Bytes(workKey), getInitKeyBytes(keyPath));
+            workKeyBytes = Enc.decode(HexUtil.hexString2Bytes(workKey), getInitKeyBytes(keyPath));
             workKeyBytesMap.put(keyPath, workKeyBytes);
         }
 

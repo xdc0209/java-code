@@ -6,7 +6,7 @@ import com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Course;
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Score;
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Student;
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.StudentService;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Main
 {
@@ -19,7 +19,7 @@ public class Main
             DomainClasses.addDomainClasses(Score.class);
 
             SpringBeanFactory.addSpringConfigPath(
-                    GetPath.connect(GetPath.getPackagePath(), "framwaork/core/application-context.xml"));
+                    PathUtil.connect(PathUtil.getPackagePath(), "framwaork/core/application-context.xml"));
             SpringBeanFactory.init();
 
             StudentService studentService = SpringBeanFactory.getBean("studentService", StudentService.class);

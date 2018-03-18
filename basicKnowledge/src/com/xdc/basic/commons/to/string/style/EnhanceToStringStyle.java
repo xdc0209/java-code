@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 增强ToStringStyle：
  * （1）支持解码字节数组成字符串。
  * （2）支持过滤map中的某些key。
- * （3）支持递归放射子对象。
+ * （3）支持递归反射子对象。
  * 
  * 参考自：org.apache.commons.lang3.builder.ToStringStyle
  */
@@ -33,7 +33,7 @@ public class EnhanceToStringStyle extends ToStringStyle
     private Object[]          excludeMapKeys               = new Object[] {};
 
     /**
-     * 支持递归放射子对象。
+     * 支持递归反射子对象。
      */
     private boolean           recursiveReflectionSubobject = true;
 
@@ -114,6 +114,7 @@ public class EnhanceToStringStyle extends ToStringStyle
     /**
      * 处理字节数组。
      */
+    @Override
     protected void appendDetail(StringBuffer buffer, String fieldName, byte[] array)
     {
         if (bytesToStringCharset == null)
@@ -131,6 +132,7 @@ public class EnhanceToStringStyle extends ToStringStyle
     /**
      * 处理对象。
      */
+    @Override
     protected void appendDetail(StringBuffer buffer, String fieldName, Object value)
     {
         // 如果不递归反射，则直接调用父类的方法。
@@ -158,6 +160,7 @@ public class EnhanceToStringStyle extends ToStringStyle
      * 
      * 参考自：java.util.AbstractCollection.toString()
      */
+    @Override
     protected void appendDetail(StringBuffer buffer, String fieldName, Collection<?> collection)
     {
         buffer.append("[");
@@ -194,6 +197,7 @@ public class EnhanceToStringStyle extends ToStringStyle
      * 
      * 参考自：java.util.AbstractMap.toString()
      */
+    @Override
     protected void appendDetail(StringBuffer buffer, String fieldName, Map<?, ?> map)
     {
         buffer.append("{");

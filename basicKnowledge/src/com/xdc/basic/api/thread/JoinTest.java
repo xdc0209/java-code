@@ -9,6 +9,7 @@ public class JoinTest
         // 启动一线程，等待控制台输入，使用join()方法来暂停当前线程，直到其他线程调用
         Thread t = new Thread()
         {
+            @Override
             public void run()
             {
                 System.out.println("Reading");

@@ -81,6 +81,7 @@ public class CurrentTime extends JFrame implements ActionListener, Refreshable
         }
     }
 
+    @Override
     public void actionPerformed(ActionEvent e)
     {
         if (e.getActionCommand().equals("CurrentTime"))
@@ -89,13 +90,14 @@ public class CurrentTime extends JFrame implements ActionListener, Refreshable
         }
     }
 
+    @Override
     public boolean isCurrent()
     {
         return true;
     }
 
+    @Override
     public void refresh() throws RefreshFailedException
     {
-
     }
 }

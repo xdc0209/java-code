@@ -25,8 +25,8 @@ public class ObjectMapperSample
 
         // deserialize data
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-        Person clone_of_bob = mapper.readValue(bais, Person.class);
+        Person cloneOfBob = mapper.readValue(bais, Person.class);
 
-        assert bob.getName().equals(clone_of_bob.getName());
+        assert bob.getName().equals(cloneOfBob.getName());
     }
 }

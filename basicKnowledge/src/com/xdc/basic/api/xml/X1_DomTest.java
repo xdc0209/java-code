@@ -10,13 +10,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.xdc.basic.api.xml.security.avoid.xxe.x1.dom.SecurityDocumentBuilderFactory;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class X1_DomTest
 {
     public static void main(String arge[])
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         File file = new File(curPath + "students.xml");
         try
         {

@@ -17,6 +17,7 @@ public class GetListFromList
         // Google 提供的类库
         List<String> numbers = Lists.transform(students, new Function<Student, String>()
         {
+            @Override
             public String apply(Student input)
             {
                 return input.getNumber();
@@ -28,6 +29,5 @@ public class GetListFromList
         {
             System.out.println(number);
         }
-
     }
 }

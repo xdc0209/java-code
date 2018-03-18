@@ -207,7 +207,7 @@ public class Latin1Prober extends CharsetProber
             ASV, ASV, ASV, ASV, ASV, ASV, ASV, ASV,                                                                // E8 - EF
             ASO, ASO, ASV, ASV, ASV, ASV, ASV, OTH,                                                                // F0 - F7
             ASV, ASV, ASV, ASV, ASV, ASO, ASO, ASO,                                                                // F8 - FF
-                                                    };
+    };
 
     private static final byte[] latin1ClassModel  = new byte[] {
                                                                                                                    /* UDF OTH ASC ASS ACV ACO ASV ASO */

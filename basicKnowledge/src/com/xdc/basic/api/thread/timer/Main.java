@@ -10,7 +10,7 @@ import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Main
 {
@@ -24,7 +24,7 @@ public class Main
 
     private static void initTask() throws Exception
     {
-        String taskDir = GetPath.connect(GetPath.getAbsolutePath(), "tasks");
+        String taskDir = PathUtil.connect(PathUtil.getAbsolutePath(), "tasks");
 
         // 列出任务目录的所有文件, 注意java的api设计的比较怪异，扩展名明前不能加点。
         Collection<File> files = FileUtils.listFiles(new File(taskDir), new String[] { "txt" }, true);
@@ -44,12 +44,12 @@ public class Main
 
     private static void monitorTaskDir() throws Exception
     {
-        TaskDirMonitor TaskDirMonitor = new TaskDirMonitor();
+        TaskDirMonitor taskDirMonitor = new TaskDirMonitor();
 
-        String taskDir = GetPath.connect(GetPath.getAbsolutePath(), "tasks");
+        String taskDir = PathUtil.connect(PathUtil.getAbsolutePath(), "tasks");
         FileAlterationObserver taskDirObserver = new FileAlterationObserver(taskDir,
                 FileFilterUtils.suffixFileFilter(".txt"));
-        taskDirObserver.addListener(TaskDirMonitor);
+        taskDirObserver.addListener(taskDirMonitor);
 
         // 配置Monitor，第一个参数单位是毫秒，是监听的间隔；第二个参数就是绑定我们之前的观察对象。
         FileAlterationMonitor fileMonitor = new FileAlterationMonitor(5000, taskDirObserver);

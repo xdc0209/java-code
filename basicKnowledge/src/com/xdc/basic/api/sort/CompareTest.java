@@ -39,7 +39,9 @@ public class CompareTest
             {
                 int scoreDiff = o1.getScore() - o2.getScore();
                 if (scoreDiff != 0)
+                {
                     return scoreDiff;
+                }
 
                 int ageDiff = o1.getAge() - o2.getAge();
                 return ageDiff;
@@ -62,7 +64,9 @@ public class CompareTest
             {
                 int scoreDiff = o1.getScore() - o2.getScore();
                 if (scoreDiff != 0)
+                {
                     return scoreDiff;
+                }
 
                 int ageDiff = o1.getAge() - o2.getAge();
                 return ageDiff;

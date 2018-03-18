@@ -101,7 +101,7 @@ public class EUCTWSMModel extends SMModel
             PkgInt.pack4bits(3, 3, 3, 3, 3, 3, 3, 3),                                                                      // e8 - ef
             PkgInt.pack4bits(3, 3, 3, 3, 3, 3, 3, 3),                                                                      // f0 - f7
             PkgInt.pack4bits(3, 3, 3, 3, 3, 3, 3, 0)                                                                       // f8 - ff
-                                             };
+    };
 
     private static int[] euctwStateTable   = new int[] { PkgInt.pack4bits(ERROR, ERROR, START, 3, 3, 3, 4, ERROR),         // 00-07
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ITSME, ITSME),                                      // 08-0f
@@ -109,7 +109,7 @@ public class EUCTWSMModel extends SMModel
             PkgInt.pack4bits(START, START, START, ERROR, ERROR, ERROR, ERROR, ERROR),                                      // 18-1f
             PkgInt.pack4bits(5, ERROR, ERROR, ERROR, START, ERROR, START, START),                                          // 20-27
             PkgInt.pack4bits(START, ERROR, START, START, START, START, START, START)                                       // 28-2f
-                                             };
+    };
 
     private static int[] euctwCharLenTable = new int[] { 0, 0, 1, 2, 2, 2, 3 };
 }

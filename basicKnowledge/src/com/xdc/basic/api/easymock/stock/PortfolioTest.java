@@ -18,6 +18,7 @@ public class PortfolioTest extends TestCase
     private StockMarket marketMock;
 
     @Before
+    @Override
     public void setUp()
     {
         portfolio = new Portfolio();

@@ -18,6 +18,7 @@ public class SbusProxy implements InvocationHandler
         this.sbusClient = sbusClient;
     }
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
         SbusInvokeInfo invokeInfo = new SbusInvokeInfo(method, args);

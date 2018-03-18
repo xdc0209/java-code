@@ -64,7 +64,7 @@ public class ShellInsertionSort
     private static void genShellDeltas()
     {
         // 假设待排序的数组长度为100000000
-        int N = 100000000;
+        final int N = 100000000;
 
         List<Long> deltas = new ArrayList<Long>();
 

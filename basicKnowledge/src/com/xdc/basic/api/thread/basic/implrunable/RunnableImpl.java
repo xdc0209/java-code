@@ -4,6 +4,7 @@ class RunnableImpl implements Runnable
 {
     int i = 100;
 
+    @Override
     public void run()
     {
         while (true)
@@ -16,6 +17,5 @@ class RunnableImpl implements Runnable
                 break;
             }
         }
-
     }
 }

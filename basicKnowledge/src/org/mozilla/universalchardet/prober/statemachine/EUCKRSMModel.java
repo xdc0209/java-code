@@ -101,12 +101,12 @@ public class EUCKRSMModel extends SMModel
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2),                                        // e8 - ef
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2),                                        // f0 - f7
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 0)                                         // f8 - ff
-                                             };
+    };
 
     private static int[] euckrStateTable   = new int[] {
             PkgInt.pack4bits(ERROR, START, 3, ERROR, ERROR, ERROR, ERROR, ERROR),            // 00-07
             PkgInt.pack4bits(ITSME, ITSME, ITSME, ITSME, ERROR, ERROR, START, START)         // 08-0f
-                                             };
+    };
 
     private static int[] euckrCharLenTable = new int[] { 0, 1, 2, 0 };
 

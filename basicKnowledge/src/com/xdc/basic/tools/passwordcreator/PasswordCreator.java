@@ -9,13 +9,13 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class PasswordCreator
 {
     public static void main(String[] args) throws IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         FileReader input = new FileReader(curPath + "PasswordCreator.txt");
         List<String> lines = IOUtils.readLines(input);

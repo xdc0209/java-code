@@ -353,6 +353,7 @@ public class UniversalDetector
 
         UniversalDetector detector = new UniversalDetector(new CharsetListener()
         {
+            @Override
             public void report(String name)
             {
                 System.out.println("charset = " + name);

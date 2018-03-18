@@ -25,6 +25,7 @@ public class SocketClient implements MessageClient
         this.port = port;
     }
 
+    @Override
     public byte[] send(byte[] request) throws Exception
     {
         try

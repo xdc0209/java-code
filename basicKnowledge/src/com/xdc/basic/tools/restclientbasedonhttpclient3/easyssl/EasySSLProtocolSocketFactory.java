@@ -77,6 +77,7 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
     /**
      * @see ProtocolSocketFactory#createSocket(java.lang.String,int)
      */
+    @Override
     public Socket createSocket(String host, int port) throws IOException, UnknownHostException
     {
         return getSSLContext().getSocketFactory().createSocket(host, port);
@@ -85,6 +86,7 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
     /**
      * @see ProtocolSocketFactory#createSocket(java.lang.String,int,java.net.InetAddress,int)
      */
+    @Override
     public Socket createSocket(String host, int port, InetAddress clientHost, int clientPort)
             throws IOException, UnknownHostException
     {
@@ -111,6 +113,7 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
      * @throws UnknownHostException
      *             if the IP address of the host cannot be determined
      */
+    @Override
     public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort,
             final HttpConnectionParams params) throws IOException, UnknownHostException, ConnectTimeoutException
     {
@@ -132,6 +135,7 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
+    @Override
     public boolean equals(Object obj)
     {
         return ((obj != null) && obj.getClass().equals(EasySSLProtocolSocketFactory.class));
@@ -140,6 +144,7 @@ public class EasySSLProtocolSocketFactory implements ProtocolSocketFactory
     /**
      * @see java.lang.Object#hashCode()
      */
+    @Override
     public int hashCode()
     {
         return EasySSLProtocolSocketFactory.class.hashCode();

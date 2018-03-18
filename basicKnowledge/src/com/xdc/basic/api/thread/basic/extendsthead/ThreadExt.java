@@ -2,6 +2,7 @@ package com.xdc.basic.api.thread.basic.extendsthead;
 
 class ThreadExt extends Thread
 {
+    @Override
     public void run()
     {
         for (int i = 0; i < 100; i++)

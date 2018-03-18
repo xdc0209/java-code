@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="lib/guava-14.0.1.jar" sourcepath="libsrc/guava-14.0.1-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="lib/guava-24.0-jre.jar" sourcepath="libsrc/guava-24.0-jre-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-beanutils-1.8.3.jar" sourcepath="libsrc/apache/commons/commons-beanutils-1.8.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-beanutils-bean-collections-1.8.3.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-beanutils-core-1.8.3.jar"/>
@@ -41,7 +41,7 @@
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar" sourcepath="libsrc/spring/spring-webmvc-portlet-3.2.2.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar" sourcepath="libsrc/easymock-3.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/http-3.1/commons-httpclient-3.1.jar" sourcepath="libsrc/apache/http-3.1/commons-httpclient-3.1-src.zip"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/classmate-0.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-2.2.4.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-api-2.2.4.jar"/>
@@ -58,9 +58,9 @@
 	<classpathentry kind="lib" path="lib/json/jsonsmart/lib/asm-1.0-RC3.jar"/>
 	<classpathentry kind="lib" path="lib/json/jsonsmart/lib/asm-3.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/json/jsonsmart/json-smart-2.0-RC3.jar"/>
-	<classpathentry kind="lib" path="lib/json/jackson/jackson-annotations-2.2.3.jar"/>
-	<classpathentry kind="lib" path="lib/json/jackson/jackson-core-2.2.3.jar"/>
-	<classpathentry kind="lib" path="lib/json/jackson/jackson-databind-2.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/json/jackson/jackson-annotations-2.9.4.jar" sourcepath="libsrc/json/jackson/jackson-annotations-2.9.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/json/jackson/jackson-core-2.9.4.jar" sourcepath="libsrc/json/jackson/jackson-core-2.9.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/json/jackson/jackson-databind-2.9.4.jar" sourcepath="libsrc/json/jackson/jackson-databind-2.9.4-sources.jar"/>
 	<classpathentry kind="lib" path="lib/xml/xmlpull/kxml2-2.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/xml/xmlpull/xmlpull_1_1_3_4c.jar"/>
 	<classpathentry kind="lib" path="lib/xml/dom4j-1.6.1.jar"/>

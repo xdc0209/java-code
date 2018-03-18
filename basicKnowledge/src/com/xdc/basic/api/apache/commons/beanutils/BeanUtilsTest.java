@@ -25,7 +25,10 @@ public class BeanUtilsTest
     {
         Person origPerson = new Person("xdc", 21, false, new Date());
         Person destPerson = new Person();
-        BeanUtils.copyProperties(destPerson, origPerson);
+
+        // Ali-P3C-AvoidApacheBeanUtilsCopyRule：Apache BeanUtils性能较差，可以使用其他方案比如Spring BeanUtils, Cglib BeanCopier。
+        // BeanUtils.copyProperties(destPerson, origPerson);
+        org.springframework.beans.BeanUtils.copyProperties(origPerson, destPerson);
     }
 
     /**

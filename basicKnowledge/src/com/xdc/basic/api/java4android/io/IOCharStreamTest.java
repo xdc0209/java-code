@@ -3,7 +3,7 @@ package com.xdc.basic.api.java4android.io;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 /**
  * io字符流测试
@@ -15,7 +15,7 @@ class IOCharStreamTest
 {
     public static void main(String[] args)
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         FileReader fr = null;
         FileWriter fw = null;

@@ -2,6 +2,9 @@ package com.xdc.basic.api.thread.wait;
 
 import java.util.Date;
 
+import com.xdc.basic.commons.thread.wait.WaitCondition;
+import com.xdc.basic.commons.thread.wait.WaitUtils;
+
 public class Main
 {
     public static void main(String[] args)

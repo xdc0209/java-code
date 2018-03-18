@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class FindSame
 {
     public static void main(String[] args) throws IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         FileReader fr1 = null;
         FileReader fr2 = null;
@@ -78,7 +78,6 @@ public class FindSame
                 System.out.println("       " + list2.get(j));
                 j++;
             }
-
         }
         catch (Exception e)
         {
@@ -91,6 +90,5 @@ public class FindSame
             IOUtils.closeQuietly(fr1);
             IOUtils.closeQuietly(fr2);
         }
-
     }
 }

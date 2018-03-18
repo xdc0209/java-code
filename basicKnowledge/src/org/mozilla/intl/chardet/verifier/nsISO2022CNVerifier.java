@@ -51,21 +51,25 @@ public class nsISO2022CNVerifier extends nsVerifier
     private static int    stFactor;
     private static String charset;
 
+    @Override
     public int[] cclass()
     {
         return cclass;
     }
 
+    @Override
     public int[] states()
     {
         return states;
     }
 
+    @Override
     public int stFactor()
     {
         return stFactor;
     }
 
+    @Override
     public String charset()
     {
         return charset;
@@ -169,6 +173,7 @@ public class nsISO2022CNVerifier extends nsVerifier
         stFactor = 9;
     }
 
+    @Override
     public boolean isUCS2()
     {
         return false;

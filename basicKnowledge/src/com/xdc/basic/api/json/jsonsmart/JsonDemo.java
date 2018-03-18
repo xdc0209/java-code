@@ -16,11 +16,10 @@ import net.minidev.json.parser.ParseException;
  * Home page: http://code.google.com/p/json-smart/
  * 
  */
-
 public class JsonDemo
 {
     @Test
-    public void EncodeJsonObject()
+    public void encodeJsonObject()
     {
         // Json Object is an HashMap<String, Object> extends
         JSONObject obj = new JSONObject();
@@ -43,7 +42,7 @@ public class JsonDemo
     }
 
     @Test
-    public void DecodingJsonText() throws ParseException
+    public void decodingJsonText() throws ParseException
     {
         System.out.println("=======decode=======");
 
@@ -73,7 +72,7 @@ public class JsonDemo
     }
 
     @Test
-    public void DecodingJsonText2() throws ParseException
+    public void decodingJsonText2() throws ParseException
     {
         Student student = new Student("xudachao", 100, 25);
         List<String> goodFriends = new ArrayList<String>();
@@ -105,7 +104,7 @@ public class JsonDemo
     }
 
     @Test
-    public void Merge2JsonObject() throws ParseException
+    public void merge2JsonObject() throws ParseException
     {
         String json1 = "{'car':{'color':'blue'}}";
         String json2 = "{'car':{'size':'3.5m'}}";
@@ -121,18 +120,24 @@ public class JsonDemo
     }
 
     @Test
-    public void ValidatingJsonInput() throws ParseException
+    public void validatingJsonInput() throws ParseException
     {
         // JSONValue.isValidJson(String) To validate a string that conforms to the (non-strict) JSON Smart mode.
         // JSONValue.isValidStrictJson(String) To validate a string of JSON for strict conformance to RFC4627.
 
         String s = "{intValue:123}";
         if (JSONValue.isValidJson(s))
+        {
             System.out.println(s + " validates as Smart JSON");
+        }
 
         if (JSONValue.isValidJsonStrict(s))
+        {
             System.out.println(s + " validates as strict JSON");
+        }
         else
+        {
             System.out.println(s + " does not validate as strict JSON");
+        }
     }
 }

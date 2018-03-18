@@ -72,11 +72,13 @@ public class UTF8Prober extends CharsetProber
         reset();
     }
 
+    @Override
     public String getCharSetName()
     {
         return Constants.CHARSET_UTF_8;
     }
 
+    @Override
     public ProbingState handleData(final byte[] buf, int offset, int length)
     {
         int codingState;
@@ -115,11 +117,13 @@ public class UTF8Prober extends CharsetProber
         return this.state;
     }
 
+    @Override
     public ProbingState getState()
     {
         return this.state;
     }
 
+    @Override
     public void reset()
     {
         this.codingSM.reset();
@@ -127,6 +131,7 @@ public class UTF8Prober extends CharsetProber
         this.state = ProbingState.DETECTING;
     }
 
+    @Override
     public float getConfidence()
     {
         float unlike = 0.99f;
@@ -145,6 +150,7 @@ public class UTF8Prober extends CharsetProber
         }
     }
 
+    @Override
     public void setOption()
     {
     }

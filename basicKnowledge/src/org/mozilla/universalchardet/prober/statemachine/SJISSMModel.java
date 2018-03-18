@@ -103,13 +103,13 @@ public class SJISSMModel extends SMModel
             PkgInt.pack4bits(3, 3, 3, 3, 3, 4, 4, 4),                                         // e8 - ef
             PkgInt.pack4bits(4, 4, 4, 4, 4, 4, 4, 4),                                         // f0 - f7
             PkgInt.pack4bits(4, 4, 4, 4, 4, 0, 0, 0)                                          // f8 - ff
-                                            };
+    };
 
     private static int[] sjisStateTable   = new int[] {
             PkgInt.pack4bits(ERROR, START, START, 3, ERROR, ERROR, ERROR, ERROR),             // 00-07
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ITSME, ITSME, ITSME, ITSME),         // 08-0f
             PkgInt.pack4bits(ITSME, ITSME, ERROR, ERROR, START, START, START, START)          // 10-17
-                                            };
+    };
 
     private static int[] sjisCharLenTable = new int[] { 0, 1, 1, 2, 0, 0 };
 }

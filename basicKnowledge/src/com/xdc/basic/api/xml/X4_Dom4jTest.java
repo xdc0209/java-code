@@ -8,13 +8,13 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.xdc.basic.api.xml.security.avoid.xxe.x4.dom4j.SecuritySAXReader;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class X4_Dom4jTest
 {
     public static void main(String arge[])
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         File file = new File(curPath + "students.xml");
         try
         {

@@ -6,6 +6,7 @@ public class AopTest
     {
         Before before = new Before()
         {
+            @Override
             public void before()
             {
                 System.out.println("...before...");
@@ -14,6 +15,7 @@ public class AopTest
 
         After after = new After()
         {
+            @Override
             public void after()
             {
                 System.out.println("...after...");

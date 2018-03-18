@@ -11,13 +11,13 @@ import org.apache.commons.io.filefilter.CanReadFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.lang.SystemUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class FileUtilsTest
 {
     public static void main(String[] args)
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         File fromFile = FileUtils.getFile(curPath + "from.txt");
         File toFile = FileUtils.getFile(curPath + "to.txt");

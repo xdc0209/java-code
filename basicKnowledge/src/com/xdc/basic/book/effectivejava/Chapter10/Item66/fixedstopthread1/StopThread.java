@@ -22,12 +22,15 @@ public class StopThread
     {
         Thread backgroundThread = new Thread(new Runnable()
         {
+            @Override
             public void run()
             {
                 @SuppressWarnings("unused")
                 int i = 0;
                 while (!stopRequested())
+                {
                     i++;
+                }
             }
         });
         backgroundThread.start();

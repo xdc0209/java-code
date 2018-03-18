@@ -99,7 +99,7 @@ public class UCS2BESMModel extends SMModel
             PkgInt.pack4bits(0, 0, 0, 0, 0, 0, 0, 0),                                                                   // e8 - ef
             PkgInt.pack4bits(0, 0, 0, 0, 0, 0, 0, 0),                                                                   // f0 - f7
             PkgInt.pack4bits(0, 0, 0, 0, 0, 0, 4, 5)                                                                    // f8 - ff
-                                              };
+    };
 
     private static int[] ucs2beStateTable   = new int[] { PkgInt.pack4bits(5, 7, 7, ERROR, 4, 3, ERROR, ERROR),         // 00-07
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ITSME, ITSME, ITSME, ITSME),                                   // 08-0f
@@ -108,7 +108,7 @@ public class UCS2BESMModel extends SMModel
             PkgInt.pack4bits(6, 6, 6, 6, 5, 7, 7, ERROR),                                                               // 20-27
             PkgInt.pack4bits(5, 8, 6, 6, ERROR, 6, 6, 6),                                                               // 28-2f
             PkgInt.pack4bits(6, 6, 6, 6, ERROR, ERROR, START, START)                                                    // 30-37
-                                              };
+    };
 
     private static int[] ucs2beCharLenTable = new int[] { 2, 2, 2, 0, 2, 2 };
 }

@@ -52,6 +52,5 @@ public class GetMapFromList
             result.put(student.getNumber(), student);
         }
         return result;
-
     }
 }

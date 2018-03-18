@@ -144,7 +144,9 @@ public class PasswordHash
     {
         int diff = a.length ^ b.length;
         for (int i = 0; i < a.length && i < b.length; i++)
+        {
             diff |= a[i] ^ b[i];
+        }
         return diff == 0;
     }
 
@@ -199,9 +201,13 @@ public class PasswordHash
         String hex = bi.toString(16);
         int paddingLength = (array.length * 2) - hex.length();
         if (paddingLength > 0)
+        {
             return String.format("%0" + paddingLength + "d", 0) + hex;
+        }
         else
+        {
             return hex;
+        }
     }
 
     /**
@@ -216,7 +222,9 @@ public class PasswordHash
         {
             // Print out 10 hashes
             for (int i = 0; i < 10; i++)
+            {
                 System.out.println(PasswordHash.createHash("p\r\nassw0Rd!"));
+            }
 
             // Test password validation
             boolean failure = false;
@@ -244,9 +252,13 @@ public class PasswordHash
                 }
             }
             if (failure)
+            {
                 System.out.println("TESTS FAILED!");
+            }
             else
+            {
                 System.out.println("TESTS PASSED!");
+            }
         }
         catch (Exception ex)
         {

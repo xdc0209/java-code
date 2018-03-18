@@ -3,7 +3,7 @@ package com.xdc.basic.api.java4android.io;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 /**
  * io字节流示例
@@ -15,7 +15,7 @@ class IOByteStreamTest
 {
     public static void main(String[] args)
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         // 声明输入流、输出流引用
         FileInputStream fis = null;

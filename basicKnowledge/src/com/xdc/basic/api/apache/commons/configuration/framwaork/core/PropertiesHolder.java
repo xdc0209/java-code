@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.results.atomic.ValidateResult;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.Validator;
 import com.xdc.basic.api.apache.commons.configuration.framwaork.validate2.validators.atomic.LongValidator;
-import com.xdc.basic.api.thread.executor.threadfactory.NamePrefixThreadFactory;
+import com.xdc.basic.commons.thread.executor.threadfactory.NamePrefixThreadFactory;
 
 public class PropertiesHolder
 {

@@ -12,6 +12,7 @@ public class LogHandler implements InvocationHandler
         this.targetObject = obj;
     }
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
         doBefore();

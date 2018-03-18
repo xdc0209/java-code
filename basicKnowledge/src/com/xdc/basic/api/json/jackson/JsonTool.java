@@ -1,21 +1,18 @@
 package com.xdc.basic.api.json.jackson;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
 public class JsonTool
 {
-    private static final ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+    private static final ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally.
 
     static
     {
@@ -26,141 +23,120 @@ public class JsonTool
         // mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.OBJECT_AND_NON_CONCRETE, JsonTypeInfo.As.PROPERTY);
     }
 
-    public static void main(String[] args)
+    /**
+     * java-->json
+     */
+    public static String toJson(Object o)
     {
-        // ----------------------------------------------------------
-        // json object ----------------------------------------------
-        String userString = "{\"name\":{\"first\":\"Joe\",\"last\":\"Sixpack\"},\"gender\":\"MALE\",\"verified\":false,\"userImage\":\"Rm9vYmFyIQ==\"}";
-
-        // json string --> object
-        User userObject = JsonTool.fromJsonString(userString, User.class);
-        System.out.println(userObject);
-
-        Map<String, Object> userMap = JsonTool.fromJsonStringToMap(userString);
-        System.out.println(userMap);
-
-        // object --> json string
-        String userString2 = JsonTool.toJsonString(userObject);
-        System.out.println(userString2);
-
-        // ----------------------------------------------------------
-        // json array -----------------------------------------------
-        ArrayList<User> users = new ArrayList<User>();
-        users.add(userObject);
-        users.add(userObject);
-
-        // array --> json string
-        String usersString = JsonTool.toJsonString(users);
-        System.out.println(usersString);
-
-        // json string --> array
-        User[] usersArray = JsonTool.fromJsonString(usersString, User[].class);
-        System.out.println(Arrays.toString(usersArray));
+        return toJson(o, false);
     }
 
-    public static byte[] toJsonBytes(Object o)
-    {
-        byte[] bytes = null;
-        try
-        {
-            bytes = mapper.writeValueAsBytes(o);
-        }
-        catch (JsonProcessingException e)
-        {
-            e.printStackTrace();
-        }
-        return bytes;
-    }
-
-    public static <T> T fromJsonBytes(byte[] bytes, Class<T> clazz)
-    {
-        T t = null;
-        try
-        {
-            t = mapper.readValue(bytes, clazz);
-        }
-        catch (JsonParseException e)
-        {
-            e.printStackTrace();
-        }
-        catch (JsonMappingException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        return t;
-    }
-
-    public static String toJsonString(Object o)
+    /**
+     * java-->json
+     */
+    public static String toJson(Object o, boolean pretty)
     {
         String s = null;
         try
         {
-            s = mapper.writeValueAsString(o);
-
-            // 漂亮的输出
-            // mapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
+            if (pretty)
+            {
+                // 漂亮，体积稍大。
+                s = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
+            }
+            else
+            {
+                // 正常，体积稍小。
+                s = mapper.writeValueAsString(o);
+            }
         }
         catch (JsonProcessingException e)
         {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return s;
     }
 
-    public static <T> T fromJsonString(String s, Class<T> clazz)
+    /**
+     * json object-->java bean
+     */
+    public static <T> T toBean(String s, Class<T> clazz)
     {
         T t = null;
         try
         {
             t = mapper.readValue(s, clazz);
         }
-        catch (JsonParseException e)
-        {
-            e.printStackTrace();
-        }
-        catch (JsonMappingException e)
-        {
-            e.printStackTrace();
-        }
         catch (IOException e)
         {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return t;
     }
 
+    /**
+     * json array-->java beans
+     */
+    public static <T> List<T> toBeans(String s, Class<T> clazz)
+    {
+        List<T> ts = null;
+        try
+        {
+            CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, clazz);
+            ts = mapper.readValue(s, collectionType);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return ts;
+    }
+
+    /**
+     * json object-->java map
+     */
     @SuppressWarnings("unchecked")
-    public static Map<String, Object> fromJsonStringToMap(String s)
+    public static Map<String, Object> toMap(String s)
     {
         Map<String, Object> map = null;
         try
         {
-            map = mapper.readValue(s, Map.class);
-        }
-        catch (JsonParseException e)
-        {
-            e.printStackTrace();
-        }
-        catch (JsonMappingException e)
-        {
-            e.printStackTrace();
+            map = (Map<String, Object>) mapper.readValue(s, Object.class);
+
+            // 替代方案：map = mapper.readValue(s, Map.class);
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return map;
     }
 
-    public static <T> List<T> fromJsonStringToArray(String s, Class<T> clazz)
+    /**
+     * json array-->java maps
+     */
+    public static List<Map<String, Object>> toMaps(String s)
     {
-        // TODO 待研究
-        // List<T> list = mapper.readValue(s, TypeFactory.collectionType(ArrayList.class, clazz));
-        // return list;
-        return null;
+        List<Map<String, Object>> maps = null;
+        try
+        {
+            CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, Object.class);
+            maps = mapper.readValue(s, collectionType);
+
+            // 替代方案：maps = mapper.readValue(s, List.class);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return maps;
+    }
+
+    /**
+     * 格式化json字符串。
+     */
+    public static String format(String s)
+    {
+        return toJson(toBean(s, Object.class), true);
     }
 }

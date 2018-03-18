@@ -14,8 +14,8 @@ import java.util.Random;
 import org.apache.commons.lang3.StringUtils;
 
 import com.xdc.basic.algorithm.basic.tree.losertree.LoserTree;
+import com.xdc.basic.commons.PathUtil;
 import com.xdc.basic.commons.collection.ListUtil;
-import com.xdc.basic.skills.GetPath;
 
 /**
  * k路归并排序。
@@ -237,8 +237,8 @@ public class ExternalSort
 
     public static void main(String[] args) throws IOException
     {
-        String curPath = GetPath.getRelativePath();
-        String filePath = GetPath.connect(curPath, "sort.txt");
+        String curPath = PathUtil.getRelativePath();
+        String filePath = PathUtil.connect(curPath, "sort.txt");
 
         System.out.println(new Date() + " 生成原始文件开始：" + filePath);
         creatBigFile(filePath);

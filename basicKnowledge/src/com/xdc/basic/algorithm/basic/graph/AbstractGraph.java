@@ -298,6 +298,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
     /**
      * 最小生成树(普里姆)：边权值的和最小的生成树。时间复杂度O(n*n)。
      */
+    @Override
     @SuppressWarnings("unchecked")
     public void minCostSpanTreePrim(int v)
     {
@@ -418,6 +419,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
     /**
      * 最小生成树(克鲁斯卡尔)：边权值的和最小的生成树。
      */
+    @Override
     @SuppressWarnings("unchecked")
     public void minCostSpanTreeKruskal()
     {
@@ -492,6 +494,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
     /**
      * 拓扑排序：有向无环图排序。
      */
+    @Override
     public void toplogicalSort()
     {
         int vertexCount = getVertexCount();
@@ -541,6 +544,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
     /**
      * 关键路径：有向无环图中，源点(图中唯一的入度为0的顶点)到汇点(图中唯一的出度为0的顶点)的关键路径。图中可能存在多条关键路径。
      */
+    @Override
     public void criticalPath()
     {
         int vertexCount = getVertexCount();
@@ -643,6 +647,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
     /**
      * 单源最短路径(迪杰斯特拉)。
      */
+    @Override
     public void shortestPathDijkstra(int v)
     {
         final int NO_PRE = -1;
@@ -727,6 +732,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
     /**
      * 多源最短路径(弗洛伊德)。
      */
+    @Override
     public void shortestPathFloyd()
     {
         int vertexCount = getVertexCount();
@@ -809,6 +815,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
         System.out.println();
     }
 
+    @Override
     public void addEdge(T data1, T data2, int weight)
     {
         int v1 = getVertexIndex(data1);
@@ -817,6 +824,7 @@ public abstract class AbstractGraph<T> implements Graph<T>
         addEdge(v1, v2, weight);
     }
 
+    @Override
     public int getFirstNeighbor(int v)
     {
         return getNextNeighbor(v, -1);

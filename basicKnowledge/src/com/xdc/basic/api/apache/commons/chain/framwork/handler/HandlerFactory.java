@@ -48,28 +48,28 @@ public class HandlerFactory
     private static void registerHander(Class<?> requestClazz, Class<? extends Command> handlerClazz,
             Class<? extends Command>... remainHandlerClazzes)
     {
-        ArrayList<Class<? extends Command>> HandlerClazzes = new ArrayList<Class<? extends Command>>();
-        HandlerClazzes.add(handlerClazz);
+        ArrayList<Class<? extends Command>> handlerClazzes = new ArrayList<Class<? extends Command>>();
+        handlerClazzes.add(handlerClazz);
         for (Class<? extends Command> clazz : remainHandlerClazzes)
         {
-            HandlerClazzes.add(clazz);
+            handlerClazzes.add(clazz);
         }
 
-        map.put(requestClazz, HandlerClazzes);
+        map.put(requestClazz, handlerClazzes);
     }
 
     public static List<Command> getHanders(Class<?> requestClazz)
     {
         List<Command> commands = new ArrayList<Command>();
 
-        List<Class<? extends Command>> HandlerClazzes = map.get(requestClazz);
-        if (CollectionUtils.isEmpty(HandlerClazzes))
+        List<Class<? extends Command>> handlerClazzes = map.get(requestClazz);
+        if (CollectionUtils.isEmpty(handlerClazzes))
         {
             log.error(String.format("Handler for [%s] not found.", requestClazz.getName()));
             return commands;
         }
 
-        for (Class<? extends Command> clazz : HandlerClazzes)
+        for (Class<? extends Command> clazz : handlerClazzes)
         {
             try
             {

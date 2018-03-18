@@ -6,15 +6,16 @@ import java.lang.reflect.Proxy;
 
 import org.apache.http.HttpStatus;
 
+import com.xdc.basic.commons.json.JsonUtil;
 import com.xdc.basic.tools.restclient.constants.HttpMethod;
 import com.xdc.basic.tools.restclient.message.Request;
 import com.xdc.basic.tools.restclient.message.Response;
-import com.xdc.basic.tools.restclient.tools.JsonTool;
 import com.xdc.basic.tools.restframework.message.CallerException;
 import com.xdc.basic.tools.restframework.util.CallerTool;
 
 public class CallProxy implements InvocationHandler
 {
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
         // 存放结果
@@ -40,7 +41,7 @@ public class CallProxy implements InvocationHandler
 
             req.setMethod(HttpMethod.POST.toString());
             req.setUrl(CallerTool.expandUrl(url, urlVariables));
-            req.setBody(JsonTool.toJSONString(body));
+            req.setBody(JsonUtil.toJson(body));
         }
         else if (methodType == MethodType.PUT)
         {
@@ -49,7 +50,7 @@ public class CallProxy implements InvocationHandler
 
             req.setMethod(HttpMethod.PUT.toString());
             req.setUrl(CallerTool.expandUrl(url, urlVariables));
-            req.setBody(JsonTool.toJSONString(body));
+            req.setBody(JsonUtil.toJson(body));
         }
         else if (methodType == MethodType.DELETE)
         {
@@ -75,7 +76,7 @@ public class CallProxy implements InvocationHandler
 
         if (needResolveRespose(method))
         {
-            result = JsonTool.parse(rsp.getBody(), method.getReturnType());
+            result = JsonUtil.fromJson(rsp.getBody(), method.getReturnType());
         }
 
         return result;

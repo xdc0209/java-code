@@ -34,6 +34,7 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T>
         }
     }
 
+    @Override
     public boolean isDirected()
     {
         return directed;

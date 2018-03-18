@@ -28,6 +28,7 @@ public class ClientToProxyIoHandler extends AbstractProxyIoHandler
     {
         this.connector.connect(this.remoteAddress).addListener(new IoFutureListener<ConnectFuture>()
         {
+            @Override
             public void operationComplete(ConnectFuture future)
             {
                 try

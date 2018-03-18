@@ -9,6 +9,7 @@ import com.xdc.basic.api.args.args4j.subcommand.sqlcommand.OracleCommand;
 
 public class SqlCommand extends AbstractDispatchCommand
 {
+    @Override
     protected void initSubcommmands(Map<String, Class<? extends AbstractAtomCommand>> subcommands)
     {
         subcommands.put("mysql", MySqlCommand.class);

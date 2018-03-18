@@ -73,8 +73,8 @@ public class JmxReflectionUtil
             Method vmdIdMethod = vmdClazz.getMethod("id", (Class[]) null);
             Method vmdDisplayNameMethod = vmdClazz.getMethod("displayName", (Class[]) null);
 
-            List<?> AttachableVMs = (List<?>) vmListMethod.invoke(null, (Object[]) null);
-            for (Object vmd : AttachableVMs)
+            List<?> attachableVMs = (List<?>) vmListMethod.invoke(null, (Object[]) null);
+            for (Object vmd : attachableVMs)
             {
                 String id = (String) vmdIdMethod.invoke(vmd, (Object[]) null);
                 String displayName = (String) vmdDisplayNameMethod.invoke(vmd, (Object[]) null);

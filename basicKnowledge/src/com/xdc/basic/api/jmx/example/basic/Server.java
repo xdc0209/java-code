@@ -157,7 +157,7 @@ public class Server
             {
                 echo(" ** NAME:  " + notifInfo[i].getName());
                 echo("    DESCR: " + notifInfo[i].getDescription());
-                String notifTypes[] = notifInfo[i].getNotifTypes();
+                String[] notifTypes = notifInfo[i].getNotifTypes();
                 echo("    TYPE:");
                 for (int j = 0; j < notifTypes.length; j++)
                 {

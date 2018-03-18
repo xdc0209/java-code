@@ -80,7 +80,9 @@ public class DbmsOutput
             show_stmt.executeUpdate();
             System.out.print(show_stmt.getString(3));
             if (show_stmt.getInt(2) == 1)
+            {
                 break;
+            }
         }
     }
 

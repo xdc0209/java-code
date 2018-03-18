@@ -27,7 +27,7 @@ public class DataSourceTracer
 {
     private static Map<Object, Object> map = BTraceUtils.newHashMap();
 
-    @OnMethod(clazz = "org.apache.commons.dbcp.BasicDataSource", method = "getConnection", location = @Location(Kind.RETURN) )
+    @OnMethod(clazz = "org.apache.commons.dbcp.BasicDataSource", method = "getConnection", location = @Location(Kind.RETURN))
     public static void traceExecute(@ProbeClassName String name, @ProbeMethodName String method,
             @Return Connection conn)
     {

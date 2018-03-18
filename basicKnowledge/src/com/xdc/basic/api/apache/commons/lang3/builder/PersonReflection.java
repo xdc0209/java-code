@@ -8,9 +8,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * ReflectionToStringBuilder 继承自 ToStringBuilder，所以更加强大，具有排除功能
- * 
- * @author xdc
- * 
  */
 public class PersonReflection implements Comparable<PersonReflection>
 {
@@ -54,6 +51,11 @@ public class PersonReflection implements Comparable<PersonReflection>
     @Override
     public int compareTo(PersonReflection that)
     {
+        if (that == null)
+        {
+            return 1;
+        }
+
         return CompareToBuilder.reflectionCompare(this, that);
     }
 }

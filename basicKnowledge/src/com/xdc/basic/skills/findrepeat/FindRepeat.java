@@ -10,13 +10,13 @@ import java.util.Map.Entry;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class FindRepeat
 {
     public static void main(String[] args) throws IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         FileReader input = new FileReader(curPath + "site.txt");
         List<String> lines = IOUtils.readLines(input);

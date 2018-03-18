@@ -100,7 +100,7 @@ public class ISO2022JPSMModel extends SMModel
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2),                                                            // e8 - ef
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2),                                                            // f0 - f7
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2)                                                             // f8 - ff
-                                                 };
+    };
 
     private static int[] iso2022jpStateTable   = new int[] {
             PkgInt.pack4bits(START, 3, ERROR, START, START, START, START, START),                                // 00-07
@@ -112,7 +112,7 @@ public class ISO2022JPSMModel extends SMModel
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ITSME, ITSME),                            // 30-37
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ITSME, ERROR, ERROR, ERROR, ERROR),                            // 38-3f
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ITSME, ERROR, START, START)                             // 40-47
-                                                 };
+    };
 
     private static int[] iso2022jpCharLenTable = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 }

@@ -7,13 +7,13 @@ import org.xml.sax.InputSource;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.xdc.basic.api.xml.security.avoid.xxe.x2.sax.SecuritySAXParserFactory;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class X2_SaxTest extends DefaultHandler
 {
     public static void main(String[] args) throws Exception
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         InputSource is = new InputSource(curPath + "students.xml");
         SAXParserFactory parserFactory = SecuritySAXParserFactory.newInstance();
         SAXParser parser = parserFactory.newSAXParser();

@@ -51,6 +51,7 @@ public class Note extends JFrame implements ActionListener
         new Note().setVisible(true);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e)
     {
         if (e.getActionCommand().equals("楷体"))

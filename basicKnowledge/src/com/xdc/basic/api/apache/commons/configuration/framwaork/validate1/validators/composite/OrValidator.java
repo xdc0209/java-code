@@ -25,6 +25,7 @@ public class OrValidator extends BaseValidator
         validators.add(validator);
     }
 
+    @Override
     public void reset()
     {
         super.reset();

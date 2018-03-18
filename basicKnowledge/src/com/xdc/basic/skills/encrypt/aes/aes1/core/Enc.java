@@ -17,8 +17,9 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.xdc.basic.skills.encrypt.aes.aes1.util.CodecUtil;
-import com.xdc.basic.skills.encrypt.aes.aes1.util.RandomUtil;
+import com.xdc.basic.commons.BytesUtil;
+import com.xdc.basic.commons.codec.HexUtil;
+import com.xdc.basic.commons.idgen.IdGenerate;
 
 public class Enc
 {
@@ -27,15 +28,15 @@ public class Enc
         try
         {
             CipherSuit cipherSuit = CipherSuit.AES_CBC_PKCS5Padding;
-            byte[] plainBytes = CodecUtil.string2Bytes(plainText);
-            byte[] keyBytes = CodecUtil.hexString2Bytes(keyHex);
-            byte[] ivBytes = RandomUtil.randomBytes(16);
+            byte[] plainBytes = BytesUtil.getBytesUtf8(plainText);
+            byte[] keyBytes = HexUtil.hexString2Bytes(keyHex);
+            byte[] ivBytes = IdGenerate.randomBytes(16);
 
             byte[] cipherBytes = encode(cipherSuit, plainBytes, keyBytes, ivBytes);
 
             // 将加密结果的字节数组进行编码(主要编解码方式有Base64, HEX, UUE),
-            String cipherText = String.format("%s:%s:%s", cipherSuit.toHexString(), CodecUtil.bytes2HexString(ivBytes),
-                    CodecUtil.bytes2HexString(cipherBytes));
+            String cipherText = String.format("%s:%s:%s", cipherSuit.toHexString(), HexUtil.bytes2HexString(ivBytes),
+                    HexUtil.bytes2HexString(cipherBytes));
             return cipherText;
         }
         catch (Exception e)
@@ -64,9 +65,9 @@ public class Enc
                 throw new EncException("The cipher suit in cipher text is not valid.");
             }
 
-            byte[] ivBytes = CodecUtil.hexString2Bytes(ivHex);
-            byte[] keyBytes = CodecUtil.hexString2Bytes(keyHex);
-            byte[] cipherBytes = CodecUtil.hexString2Bytes(cipherHex);
+            byte[] ivBytes = HexUtil.hexString2Bytes(ivHex);
+            byte[] keyBytes = HexUtil.hexString2Bytes(keyHex);
+            byte[] cipherBytes = HexUtil.hexString2Bytes(cipherHex);
 
             if (keyBytes.length != 16)
             {
@@ -75,7 +76,7 @@ public class Enc
 
             byte[] plainBytes = decode(cipherSuit, cipherBytes, keyBytes, ivBytes);
 
-            String plainText = CodecUtil.bytes2String(plainBytes);
+            String plainText = BytesUtil.newStringUtf8(plainBytes);
             return plainText;
         }
         catch (Exception e)
@@ -100,7 +101,7 @@ public class Enc
 
     private static byte[] doFinal(int mode, String cipherParam, String keyParam, byte[] inputBytes, byte[] keyBytes,
             byte[] ivBytes) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
-                    InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
+            InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
     {
         Cipher cipher = Cipher.getInstance(cipherParam);
 

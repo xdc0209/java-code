@@ -7,13 +7,13 @@ import java.io.InputStream;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class DigestUtilsTest
 {
     public static void main(String[] args)
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         File file = new File(curPath + "data.txt");
 

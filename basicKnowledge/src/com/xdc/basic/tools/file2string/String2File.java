@@ -15,7 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 import com.xdc.basic.skills.encrypt.aes.aes2.core.EncException;
 import com.xdc.basic.skills.encrypt.aes.aes2.util.EncUtil;
 
@@ -26,7 +26,7 @@ public class String2File
 {
     public static void main(String[] args) throws IOException, EncException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         Collection<File> txtFiles = FileUtils.listFiles(new File(curPath), new String[] { "txt" }, false);
         for (File txtFile : txtFiles)
         {
@@ -38,7 +38,7 @@ public class String2File
 
     private static void string2File(String fromFileName) throws FileNotFoundException, IOException, EncException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         // 读取文件内容
         Reader fromFileReader = new FileReader(curPath + fromFileName);

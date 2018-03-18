@@ -1,6 +1,5 @@
 package com.xdc.basic.skills;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
  * 对象数组和链表的相互转换
  * 
  * @SEE org.eclipse.jetty.util.ArrayUtil.asMutableList(E[])
+ * @SEE com.xdc.basic.commons.collection.ListUtil
  */
 public class ObjectArray2List
 {
@@ -26,18 +26,5 @@ public class ObjectArray2List
         String[] s = sl.toArray(new String[sl.size()]);
         System.out.println(sl.getClass().getCanonicalName());
         System.out.println(s.getClass().getCanonicalName());
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> List<T> arrayToList(T... array)
-    {
-        return new ArrayList<T>(Arrays.asList(array));
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> T[] listToArray(List<T> list, Class<T> clazz)
-    {
-        T[] array = (T[]) Array.newInstance(clazz, list.size());
-        return list.toArray(array);
     }
 }

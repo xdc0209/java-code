@@ -29,7 +29,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.security.Constraint;
 
 import com.xdc.basic.api.jetty.HelloHandler;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class SecuredHelloHandler
 {
@@ -49,7 +49,7 @@ public class SecuredHelloHandler
         // started and stopped according to the lifecycle of the server itself.
         // In this example the name can be whatever you like since we are not
         // dealing with webapp realms.
-        LoginService loginService = new HashLoginService("MyRealm", GetPath.getRelativePath() + "realm.properties");
+        LoginService loginService = new HashLoginService("MyRealm", PathUtil.getRelativePath() + "realm.properties");
         server.addBean(loginService);
 
         // A security handler is a jetty handler that secures content behind a

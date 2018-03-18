@@ -15,7 +15,6 @@ import org.apache.commons.io.IOUtils;
 
 public class ExecutorTool
 {
-
     private DefaultExecutor       executor;
     private ByteArrayOutputStream out;            // 设置输出流
     private ByteArrayOutputStream err;            // 设置输出流

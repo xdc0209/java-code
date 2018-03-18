@@ -2,8 +2,8 @@ package com.xdc.basic.api.thread.interrupt;
 
 import java.io.IOException;
 
-import com.xdc.basic.api.thread.wait.WaitCondition;
-import com.xdc.basic.api.thread.wait.WaitUtils;
+import com.xdc.basic.commons.thread.wait.WaitCondition;
+import com.xdc.basic.commons.thread.wait.WaitUtils;
 
 /**
  * 本例主要展示中断的用法，对于命令行的数据流采用伪代码方式说明。
@@ -62,6 +62,7 @@ public class InterruptTest3
                 return exitValue;
             }
 
+            @Override
             public void run()
             {
                 if (process != null)
@@ -108,12 +109,14 @@ public class InterruptTest3
 
         WaitUtils.waitConditionUtilTimeout(new WaitCondition()
         {
+            @Override
             public boolean evalCondition()
             {
                 // 判断与命令行进程对应的等待线程是否存在返回值，进而判断命令行进程是否结束
                 return waitProcessExitThread.getExitValue() != null;
             }
 
+            @Override
             public void waitConditionTimeout()
             {
                 // 等待超时，向与命令行进程对应的等待线程发中断信号，不再等待

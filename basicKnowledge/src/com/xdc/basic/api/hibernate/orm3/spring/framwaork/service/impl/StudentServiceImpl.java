@@ -7,7 +7,7 @@ import com.xdc.basic.api.hibernate.orm3.spring.framwaork.dao.StudentDao;
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Score;
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.entity.Student;
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.service.StudentService;
-import com.xdc.basic.skills.encrypt.aes.aes1.util.RandomUtil;
+import com.xdc.basic.commons.idgen.IdGenerate;
 
 public class StudentServiceImpl implements StudentService
 {
@@ -33,7 +33,7 @@ public class StudentServiceImpl implements StudentService
         student.setId("20082890");
         student.setName("xudachao");
         student.setAge(25);
-        student.setImage(RandomUtil.randomBytes(1234));
+        student.setImage(IdGenerate.randomBytes(1234));
         student.setContent("123456789");
         student.getExtProperties().put("score", new Score());
         studentDao.save(student);
@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService
         student2.setId("20082891");
         student2.setName("xudachao");
         student2.setAge(25);
-        student2.setImage(RandomUtil.randomBytes(1234));
+        student2.setImage(IdGenerate.randomBytes(1234));
         student2.setContent("123456789");
         student2.getExtProperties().put("score", new Score());
         studentDao.save(student2);

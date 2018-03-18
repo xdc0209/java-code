@@ -5,7 +5,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class HibernateUtil
 {
@@ -13,7 +13,7 @@ public class HibernateUtil
 
     private static SessionFactory buildSessionFactory()
     {
-        String curPath = GetPath.getPackagePath();
+        String curPath = PathUtil.getPackagePath();
         try
         {
             // Create the SessionFactory from hibernate.cfg.xml

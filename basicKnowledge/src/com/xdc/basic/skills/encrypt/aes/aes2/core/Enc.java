@@ -15,8 +15,9 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.xdc.basic.skills.encrypt.aes.aes2.util.CodecUtil;
-import com.xdc.basic.skills.encrypt.aes.aes2.util.RandomUtil;
+import com.xdc.basic.commons.codec.HexUtil;
+import com.xdc.basic.commons.idgen.IdGenerate;
+import com.xdc.basic.skills.encrypt.aes.aes2.util.CharsUtil;
 
 public class Enc
 {
@@ -32,17 +33,17 @@ public class Enc
 
     public static String encodeChars(char[] plainChars, byte[] keyBytes) throws EncException
     {
-        byte[] plainBytes = CodecUtil.chars2Bytes(plainChars);
+        byte[] plainBytes = CharsUtil.chars2Bytes(plainChars);
         byte[] cipherBytes = encode(plainBytes, keyBytes);
-        String cipherText = CodecUtil.bytes2HexString(cipherBytes);
+        String cipherText = HexUtil.bytes2HexString(cipherBytes);
         return cipherText;
     }
 
     public static char[] decodeChars(String cipherText, byte[] keyBytes) throws EncException
     {
-        byte[] cipherBytes = CodecUtil.hexString2Bytes(cipherText);
+        byte[] cipherBytes = HexUtil.hexString2Bytes(cipherText);
         byte[] plainBytes = decode(cipherBytes, keyBytes);
-        char[] plainText = CodecUtil.bytes2Chars(plainBytes);
+        char[] plainText = CharsUtil.bytes2Chars(plainBytes);
         return plainText;
     }
 
@@ -51,7 +52,7 @@ public class Enc
         try
         {
             CipherSuit cipherSuit = CipherSuit.AES_CBC_PKCS5Padding;
-            byte[] ivBytes = RandomUtil.randomBytes(16);
+            byte[] ivBytes = IdGenerate.randomBytes(16);
 
             byte[] baseCipherBytes = encode(cipherSuit, plainBytes, keyBytes, ivBytes);
 
@@ -116,7 +117,7 @@ public class Enc
 
     private static byte[] doFinal(int mode, String cipherParam, String keyParam, byte[] inputBytes, byte[] keyBytes,
             byte[] ivBytes) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
-                    InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
+            InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
     {
         Cipher cipher = Cipher.getInstance(cipherParam);
 

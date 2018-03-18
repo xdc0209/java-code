@@ -127,7 +127,7 @@ public class ReflectionTest
      * @throws ClassNotFoundException
      */
     @Test
-    public void ClassLoaderTest() throws ClassNotFoundException
+    public void classLoaderTest() throws ClassNotFoundException
     {
         Class<String> c1 = String.class;
 

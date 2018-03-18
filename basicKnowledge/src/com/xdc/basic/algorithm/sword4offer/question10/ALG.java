@@ -37,17 +37,17 @@ public class ALG
             return 1;
         }
 
-        long FibonacciNMinusTwo = 0;
-        long FibonacciNMinusOne = 1;
-        long FibonacciN = 0;
+        long fibonacciNMinusTwo = 0;
+        long fibonacciNMinusOne = 1;
+        long fibonacciN = 0;
         for (long i = 2; i <= n; i++)
         {
-            FibonacciN = FibonacciNMinusOne + FibonacciNMinusTwo;
-            FibonacciNMinusTwo = FibonacciNMinusOne;
-            FibonacciNMinusOne = FibonacciN;
+            fibonacciN = fibonacciNMinusOne + fibonacciNMinusTwo;
+            fibonacciNMinusTwo = fibonacciNMinusOne;
+            fibonacciNMinusOne = fibonacciN;
         }
 
-        return FibonacciN;
+        return fibonacciN;
     }
 
     public static void main(String[] args)

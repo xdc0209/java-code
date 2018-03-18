@@ -48,6 +48,7 @@ class Producer implements Runnable
         this.dataQueue = dataQueue;
     }
 
+    @Override
     public void run()
     {
         try
@@ -77,13 +78,16 @@ class Consumer implements Runnable
         this.dataQueue = dataQueue;
     }
 
+    @Override
     public void run()
     {
         String msg = null;
         try
         {
             while (!((msg = dataQueue.take()).equals("END")))
+            {
                 System.out.println(msg + " is token!");
+            }
         }
         catch (InterruptedException e)
         {

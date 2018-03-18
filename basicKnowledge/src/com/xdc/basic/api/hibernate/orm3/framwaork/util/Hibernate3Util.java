@@ -3,7 +3,7 @@ package com.xdc.basic.api.hibernate.orm3.framwaork.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Hibernate3Util
 {
@@ -12,7 +12,7 @@ public class Hibernate3Util
     @SuppressWarnings("deprecation")
     private static SessionFactory buildSessionFactory()
     {
-        String curPath = GetPath.getPackagePath();
+        String curPath = PathUtil.getPackagePath();
         try
         {
             // Create the SessionFactory from hibernate.cfg.xml

@@ -8,13 +8,13 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
 import com.xdc.basic.api.xml.security.avoid.xxe.x3.jdom2.SecuritySAXBuilder;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class X3_Jdom2Test
 {
     public static void main(String arge[])
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         File file = new File(curPath + "students.xml");
         try
         {

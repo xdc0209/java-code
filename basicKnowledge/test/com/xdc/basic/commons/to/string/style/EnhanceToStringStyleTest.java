@@ -10,7 +10,7 @@ import org.apache.commons.io.Charsets;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.junit.Test;
 
-import com.xdc.basic.commons.codec.BytesUtil;
+import com.xdc.basic.commons.BytesUtil;
 
 public class EnhanceToStringStyleTest
 {

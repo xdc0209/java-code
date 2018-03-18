@@ -3,6 +3,8 @@ package com.xdc.basic.api.thread.lock.splitinglock;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.xdc.basic.commons.thread.lock.splitinglock.SplitingLock;
+
 public class BankService
 {
     private Map<String, User>    bank = new HashMap<String, User>();

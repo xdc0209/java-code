@@ -23,13 +23,13 @@ import javax.net.ssl.SSLServerSocket;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Server
 {
     public static void main(String[] args) throws Exception
     {
-        String keystorePath = GetPath.getRelativePath() + "keystore/keystore.jks";
+        String keystorePath = PathUtil.getRelativePath() + "keystore/keystore.jks";
         String keystorePass = "123456";
 
         ServerSocket serverSocket = createSSLServerSocket(8443, keystorePath, keystorePass);

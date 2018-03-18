@@ -52,12 +52,14 @@ public class nsDetector extends nsPSMDetector implements nsICharsetDetector
         super(langFlag);
     }
 
+    @Override
     public void Init(nsICharsetDetectionObserver aObserver)
     {
         mObserver = aObserver;
         return;
     }
 
+    @Override
     public boolean DoIt(byte[] aBuf, int aLen, boolean oDontFeedMe)
     {
         if (aBuf == null || oDontFeedMe)
@@ -69,12 +71,14 @@ public class nsDetector extends nsPSMDetector implements nsICharsetDetector
         return mDone;
     }
 
+    @Override
     public void Done()
     {
         this.DataEnd();
         return;
     }
 
+    @Override
     public void Report(String charset)
     {
         this.detectedCharset = charset;

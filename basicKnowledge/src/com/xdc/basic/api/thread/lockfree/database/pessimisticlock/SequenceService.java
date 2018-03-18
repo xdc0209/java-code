@@ -13,7 +13,7 @@ public class SequenceService
 {
     private SequenceDao dao;
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public synchronized void increment2(String sequenceName)
     {
         int value = dao.getValueForUpdate(sequenceName);

@@ -1,5 +1,9 @@
 package com.xdc.basic.skills;
 
+/**
+ * @see com.google.common.math.IntMath.checkedAdd(int, int)
+ * @see com.xdc.basic.api.google.guava.math.IntMathTest
+ */
 public class IntOverflow
 {
     public static boolean isAddOverflow(int x, int y)

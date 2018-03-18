@@ -17,7 +17,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 import com.xdc.basic.skills.encrypt.aes.aes2.core.EncException;
 import com.xdc.basic.skills.encrypt.aes.aes2.util.EncUtil;
 
@@ -28,7 +28,7 @@ public class File2String
 {
     public static void main(String[] args) throws IOException, EncException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         Collection<File> compressedFiles = FileUtils.listFiles(new File(curPath), new String[] { "rar", "zip" }, false);
         for (File compressedFile : compressedFiles)
         {
@@ -41,7 +41,7 @@ public class File2String
 
     private static void file2String(String fromFileName, String toFileName) throws IOException, EncException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         File toFile = new File(curPath + toFileName);
         if (toFile.exists())

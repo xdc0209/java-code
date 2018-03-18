@@ -41,13 +41,13 @@ public class Heap<T extends Comparable<T>>
         // 构建堆方法一(推荐)。
         for (int i = getParentIndex(size - 1); i >= 0; i--)
         {
-            shiftDown(this.data, i, size);
+            siftDown(this.data, i, size);
         }
 
         // // 构建堆方法二。
         // for (int i = 1; i <= size; i++)
         // {
-        // shiftUp(data, 0, i);
+        // siftUp(data, 0, i);
         // }
     }
 
@@ -73,7 +73,7 @@ public class Heap<T extends Comparable<T>>
 
         data[size++] = t;
 
-        shiftUp(data, 0, size);
+        siftUp(data, 0, size);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Heap<T extends Comparable<T>>
         data[0] = data[--size];
         data[size] = null;
 
-        shiftDown(data, 0, size);
+        siftDown(data, 0, size);
 
         return top;
     }
@@ -121,7 +121,7 @@ public class Heap<T extends Comparable<T>>
         T top = data[0];
         data[0] = t;
 
-        shiftDown(data, 0, size);
+        siftDown(data, 0, size);
 
         return top;
     }
@@ -144,7 +144,7 @@ public class Heap<T extends Comparable<T>>
         for (int i = clonedArray.length - 1; i >= 0; i--)
         {
             swap(clonedArray, 0, i);
-            shiftDown(clonedArray, 0, i);
+            siftDown(clonedArray, 0, i);
         }
 
         return clonedArray;
@@ -160,7 +160,7 @@ public class Heap<T extends Comparable<T>>
      * @param end
      *            终止元素位置(不包含此元素)
      */
-    private void shiftUp(T[] data, int start, int end)
+    private void siftUp(T[] data, int start, int end)
     {
         // 记录堆中最后一个元素的值。
         T last = data[end - 1];
@@ -193,7 +193,7 @@ public class Heap<T extends Comparable<T>>
      * @param end
      *            终止元素位置(不包含此元素)
      */
-    private void shiftDown(T[] data, int start, int end)
+    private void siftDown(T[] data, int start, int end)
     {
         // 记录堆顶元素的值。
         T top = data[start];

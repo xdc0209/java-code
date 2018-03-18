@@ -101,13 +101,13 @@ public class Big5SMModel extends SMModel
             PkgInt.pack4bits(3, 3, 3, 3, 3, 3, 3, 3),                                         // e8 - ef
             PkgInt.pack4bits(3, 3, 3, 3, 3, 3, 3, 3),                                         // f0 - f7
             PkgInt.pack4bits(3, 3, 3, 3, 3, 3, 3, 0)                                          // f8 - ff
-                                            };
+    };
 
     private static int[] big5StateTable   = new int[] {
             PkgInt.pack4bits(ERROR, START, START, 3, ERROR, ERROR, ERROR, ERROR),             // 00-07
             PkgInt.pack4bits(ERROR, ERROR, ITSME, ITSME, ITSME, ITSME, ITSME, ERROR),         // 08-0f
             PkgInt.pack4bits(ERROR, START, START, START, START, START, START, START)          // 10-17
-                                            };
+    };
 
     private static int[] big5CharLenTable = new int[] { 0, 1, 1, 2, 0 };
 }

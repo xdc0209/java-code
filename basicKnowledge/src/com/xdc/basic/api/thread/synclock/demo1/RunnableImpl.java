@@ -5,6 +5,7 @@ class RunnableImpl implements Runnable
     // 火车票张数
     int i = 100000;
 
+    @Override
     public void run()
     {
         while (true)

@@ -99,7 +99,7 @@ public class GB18030SMModel extends SMModel
             PkgInt.pack4bits(6, 6, 6, 6, 6, 6, 6, 6),                                                          // e8 - ef
             PkgInt.pack4bits(6, 6, 6, 6, 6, 6, 6, 6),                                                          // f0 - f7
             PkgInt.pack4bits(6, 6, 6, 6, 6, 6, 6, 0)                                                           // f8 - ff
-                                               };
+    };
 
     private static int[] gb18030StateTable   = new int[] {
             PkgInt.pack4bits(ERROR, START, START, START, START, START, 3, ERROR),                              // 00-07
@@ -108,7 +108,7 @@ public class GB18030SMModel extends SMModel
             PkgInt.pack4bits(4, ERROR, START, START, ERROR, ERROR, ERROR, ERROR),                              // 18-1f
             PkgInt.pack4bits(ERROR, ERROR, 5, ERROR, ERROR, ERROR, ITSME, ERROR),                              // 20-27
             PkgInt.pack4bits(ERROR, ERROR, START, START, START, START, START, START)                           // 28-2f
-                                               };
+    };
 
     private static int[] gb18030CharLenTable = new int[] { 0, 1, 1, 1, 1, 1, 2 };
 }

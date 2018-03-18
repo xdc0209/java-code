@@ -78,6 +78,7 @@ public class HtmlCharsetDetector
         // The Notify() will be called when a matching charset is found.
         det.Init(new nsICharsetDetectionObserver()
         {
+            @Override
             public void Notify(String charset)
             {
                 HtmlCharsetDetector.found = true;
@@ -97,11 +98,15 @@ public class HtmlCharsetDetector
         {
             // Check if the stream is only ascii.
             if (isAscii)
+            {
                 isAscii = det.isAscii(buf, len);
+            }
 
             // DoIt if non-ascii and not done yet.
             if (!isAscii && !done)
+            {
                 done = det.DoIt(buf, len, false);
+            }
         }
         det.DataEnd();
 

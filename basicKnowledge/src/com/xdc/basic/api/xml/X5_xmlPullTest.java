@@ -11,13 +11,13 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.xdc.basic.api.xml.security.avoid.xxe.x5.xmlpull.SecurityXmlPullParserFactory;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class X5_xmlPullTest
 {
     public static void main(String[] args)
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         try
         {
             XmlPullParserFactory pullParserFactory = SecurityXmlPullParserFactory.newInstance();

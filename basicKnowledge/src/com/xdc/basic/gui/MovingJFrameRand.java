@@ -33,6 +33,7 @@ public class MovingJFrameRand extends JFrame
             this.tjf = tjf;
         }
 
+        @Override
         public void run()
         {
             while (true)

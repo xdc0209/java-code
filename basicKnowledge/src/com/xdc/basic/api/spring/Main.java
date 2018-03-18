@@ -1,7 +1,7 @@
 package com.xdc.basic.api.spring;
 
 import com.xdc.basic.api.hibernate.orm3.spring.framwaork.core.SpringBeanFactory;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Main
 {
@@ -9,7 +9,8 @@ public class Main
     {
         try
         {
-            SpringBeanFactory.addSpringConfigPath(GetPath.connect(GetPath.getPackagePath(), "application-context.xml"));
+            SpringBeanFactory
+                    .addSpringConfigPath(PathUtil.connect(PathUtil.getPackagePath(), "application-context.xml"));
             SpringBeanFactory.init();
 
             MyFirstBean myFirstBean = SpringBeanFactory.getBean("myFirstBean", MyFirstBean.class);

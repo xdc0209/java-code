@@ -57,6 +57,7 @@ public class ReentrantLockTest
         // 新建任务1，调用lockTest的addValue方法
         Runnable task1 = new Runnable()
         {
+            @Override
             public void run()
             {
                 lockTest.addValue(55.55);
@@ -65,6 +66,7 @@ public class ReentrantLockTest
         // 新建任务2，调用lockTest的getValue方法
         Runnable task2 = new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println("value: " + lockTest.getValue());

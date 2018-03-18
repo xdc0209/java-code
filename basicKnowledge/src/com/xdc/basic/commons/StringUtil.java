@@ -4,7 +4,8 @@ public class StringUtil
 {
     public static boolean matches(String string, String regex)
     {
-        if (string == null)
+        // 字符串为空，或者正则表达式为空，则认为未匹配。
+        if (string == null || regex == null)
         {
             return false;
         }
@@ -18,9 +19,16 @@ public class StringUtil
      */
     public static String[] split(String string, String regex)
     {
+        // 字符串为空，返回空数组。
         if (string == null)
         {
             return new String[0];
+        }
+
+        // 正则表达式为空，则认为未匹配，此时返回整个字符串。
+        if (regex == null)
+        {
+            return new String[] { string };
         }
 
         return string.split(regex, -1);

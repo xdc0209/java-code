@@ -13,11 +13,13 @@ public class PersonImpl implements Person
         this.name = name;
     }
 
+    @Override
     public int getAge()
     {
         return age;
     }
 
+    @Override
     public String getName()
     {
         return name;

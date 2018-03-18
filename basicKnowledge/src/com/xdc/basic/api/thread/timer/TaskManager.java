@@ -12,8 +12,8 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xdc.basic.api.json.jackson.JsonTool;
-import com.xdc.basic.api.thread.executor.threadfactory.NamePrefixThreadFactory;
+import com.xdc.basic.commons.json.JsonUtil;
+import com.xdc.basic.commons.thread.executor.threadfactory.NamePrefixThreadFactory;
 
 public class TaskManager
 {
@@ -66,7 +66,7 @@ public class TaskManager
     private static TaskFile parseTaskFile(File file) throws IOException
     {
         String taskString = FileUtils.readFileToString(file);
-        TaskFile taskFile = JsonTool.fromJsonString(taskString, TaskFile.class);
+        TaskFile taskFile = JsonUtil.fromJson(taskString, TaskFile.class);
         taskFile.setPath(file.getAbsolutePath());
         taskFile.checkAndTrim();
         return taskFile;

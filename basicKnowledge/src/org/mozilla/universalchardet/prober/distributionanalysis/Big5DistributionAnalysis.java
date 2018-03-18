@@ -62,6 +62,7 @@ public class Big5DistributionAnalysis extends CharDistributionAnalysis
         this.typicalDistributionRatio = BIG5_TYPICAL_DISTRIBUTION_RATIO;
     }
 
+    @Override
     protected int getOrder(final byte[] buf, int offset)
     {
         int highbyte = buf[offset] & 0xFF;

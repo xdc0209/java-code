@@ -8,12 +8,12 @@ public class StringEscapeUtilsTest
     public static void main(String[] args)
     {
         String java = "He didn't say, \"Stop!\"";
-        String JavaScript = "He didn't say, \"Stop!\"";
+        String javaScript = "He didn't say, \"Stop!\"";
         String xml = "\"bread\" & \"butter\"";
         String html4 = "\"bread\" & \"butter\"";
 
         String escapeJava = StringEscapeUtils.escapeJava(java);
-        String escapeEcmaScript = StringEscapeUtils.escapeEcmaScript(JavaScript); // EcmaScript，即JavaScript
+        String escapeEcmaScript = StringEscapeUtils.escapeEcmaScript(javaScript); // EcmaScript，即JavaScript
         String escapeXml = StringEscapeUtils.escapeXml(xml);
         String escapeHtml4 = StringEscapeUtils.escapeHtml4(html4);
 

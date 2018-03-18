@@ -31,7 +31,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.SslConnectionFactory;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 /**
  * A Jetty server with multiple connectors.
@@ -45,7 +45,7 @@ public class ManyConnectors
         // to get access to a keystore that we use in many unit tests and should
         // probably be a direct path to your own keystore.
 
-        String jettyDistKeystore = GetPath.getRelativePath() + "keystore.jks";
+        String jettyDistKeystore = PathUtil.getRelativePath() + "keystore.jks";
         String keystorePath = System.getProperty("example.keystore", jettyDistKeystore);
         File keystoreFile = new File(keystorePath);
         if (!keystoreFile.exists())

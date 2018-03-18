@@ -101,7 +101,7 @@ public class UTF8SMModel extends SMModel
             PkgInt.pack4bits(8, 8, 8, 8, 8, 9, 8, 8),                                                    // e8 - ef
             PkgInt.pack4bits(10, 11, 11, 11, 11, 11, 11, 11),                                            // f0 - f7
             PkgInt.pack4bits(12, 13, 13, 13, 14, 15, 0, 0)                                               // f8 - ff
-                                            };
+    };
 
     private static int[] utf8StateTable   = new int[] {
             PkgInt.pack4bits(ERROR, START, ERROR, ERROR, ERROR, ERROR, 12, 10),                          // 00-07
@@ -130,7 +130,7 @@ public class UTF8SMModel extends SMModel
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR),                    // b8-bf
             PkgInt.pack4bits(ERROR, ERROR, START, START, START, START, ERROR, ERROR),                    // c0-c7
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR)                     // c8-cf
-                                            };
+    };
 
     private static int[] utf8CharLenTable = new int[] { 0, 1, 0, 0, 0, 0, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6 };
 }

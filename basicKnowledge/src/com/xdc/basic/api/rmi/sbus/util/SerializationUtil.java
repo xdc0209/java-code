@@ -9,6 +9,8 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
+import com.xdc.basic.commons.ExceptionUtil;
+import com.xdc.basic.commons.IOUtil;
 
 public class SerializationUtil
 {
@@ -42,21 +44,11 @@ public class SerializationUtil
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            throw ExceptionUtil.unchecked(e);
         }
         finally
         {
-            try
-            {
-                if (os != null)
-                {
-                    os.close();
-                }
-            }
-            catch (IOException ex)
-            {
-                // ignore close exception
-            }
+            IOUtil.closeQuietly(os);
         }
 
         return os.toByteArray();
@@ -80,21 +72,11 @@ public class SerializationUtil
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            throw ExceptionUtil.unchecked(e);
         }
         finally
         {
-            try
-            {
-                if (is != null)
-                {
-                    is.close();
-                }
-            }
-            catch (IOException ex)
-            {
-                // ignore close exception
-            }
+            IOUtil.closeQuietly(is);
         }
     }
 }

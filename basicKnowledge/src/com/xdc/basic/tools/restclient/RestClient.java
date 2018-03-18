@@ -21,7 +21,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import com.xdc.basic.commons.json.JsonUtil;
 import com.xdc.basic.commons.network.IpUtil;
+import com.xdc.basic.commons.xml.XmlUtil;
 import com.xdc.basic.tools.restclient.constants.Constants;
 import com.xdc.basic.tools.restclient.constants.HttpConstants;
 import com.xdc.basic.tools.restclient.constants.HttpMethod;
@@ -29,8 +31,6 @@ import com.xdc.basic.tools.restclient.constants.HttpProtocol;
 import com.xdc.basic.tools.restclient.message.Request;
 import com.xdc.basic.tools.restclient.message.Response;
 import com.xdc.basic.tools.restclient.message.RestClientException;
-import com.xdc.basic.tools.restclient.tools.JsonTool;
-import com.xdc.basic.tools.restclient.tools.XmlTool;
 
 public class RestClient
 {
@@ -171,12 +171,12 @@ public class RestClient
         String bodyType = null;
         if (StringUtils.contains(response.getEntity().getContentType().getValue(), HttpConstants.ContentType.JSON))
         {
-            body = JsonTool.format(body);
+            body = JsonUtil.format(body);
             bodyType = Constants.BodyType.json;
         }
         if (StringUtils.contains(response.getEntity().getContentType().getValue(), HttpConstants.ContentType.XML))
         {
-            body = XmlTool.format(body);
+            body = XmlUtil.format(body);
             bodyType = Constants.BodyType.xml;
         }
 

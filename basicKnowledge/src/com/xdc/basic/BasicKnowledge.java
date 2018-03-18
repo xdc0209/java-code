@@ -31,8 +31,8 @@ public class BasicKnowledge
 
         // apache类库
         String PATH_SEPARATOR = SystemUtils.PATH_SEPARATOR;
-        String LINE_SEPARATOR = SystemUtils.FILE_SEPARATOR;
-        String FILE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
+        String FILE_SEPARATOR = SystemUtils.FILE_SEPARATOR;
+        String LINE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
         System.out.println(PATH_SEPARATOR);
         System.out.println(FILE_SEPARATOR);
         System.out.println(LINE_SEPARATOR);
@@ -61,6 +61,15 @@ public class BasicKnowledge
         Integer.toBinaryString(15); // 整数 -> 二进制字符串
         Integer.toOctalString(15); // 整数 -> 八进制字符串
         Integer.toHexString(15); // 整数 -> 十六进制字符串
+
+        int i2 = 0b11; // 二进制
+        int i8 = 011; // 八进制
+        int i10 = 11; // 十进制
+        int i16 = 0x11; // 十六进制
+        System.out.println(i2);
+        System.out.println(i8);
+        System.out.println(i10);
+        System.out.println(i16);
 
         // 浮点数比较
         Float.compare(1.0f, 2.0f);

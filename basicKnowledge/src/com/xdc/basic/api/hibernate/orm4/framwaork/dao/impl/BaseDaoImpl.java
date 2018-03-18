@@ -386,15 +386,25 @@ public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializabl
     public Long getStatisticsValue(DetachedCriteria detachedCriteria, String propertyName, String statisticsName)
     {
         if (statisticsName.toLowerCase().equals("max"))
+        {
             detachedCriteria.setProjection(Projections.max(propertyName));
+        }
         else if (statisticsName.toLowerCase().equals("min"))
+        {
             detachedCriteria.setProjection(Projections.min(propertyName));
+        }
         else if (statisticsName.toLowerCase().equals("avg"))
+        {
             detachedCriteria.setProjection(Projections.avg(propertyName));
+        }
         else if (statisticsName.toLowerCase().equals("sum"))
+        {
             detachedCriteria.setProjection(Projections.sum(propertyName));
+        }
         else
+        {
             return null;
+        }
 
         Session session = getSession();
         session.getTransaction().begin();

@@ -14,7 +14,7 @@ import java.util.Enumeration;
 
 import org.junit.Test;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 /**
  * 摘自：http://developer.51cto.com/art/200512/13785.htm
@@ -27,7 +27,7 @@ public class KeyTool
     @Test
     public void readCertificateFromFile() throws CertificateException, FileNotFoundException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         FileInputStream in = new FileInputStream(curPath + "selfsignedcert.cer");
@@ -42,7 +42,7 @@ public class KeyTool
     public void readCertificateFromKeystore()
             throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         String password = "123456";
         FileInputStream in = new FileInputStream(curPath + "keystore.jks");
@@ -60,7 +60,7 @@ public class KeyTool
     @Test
     public void listAliases() throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         String password = "123456";
         FileInputStream in = new FileInputStream(curPath + "keystore.jks");
@@ -82,7 +82,7 @@ public class KeyTool
     public void modifyKeyStorePassword()
             throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         // 为了不对密钥库进行更改，新密码和旧密码一样
         String oldPassword = "123456";

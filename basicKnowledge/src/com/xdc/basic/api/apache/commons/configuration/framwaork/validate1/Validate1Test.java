@@ -17,6 +17,7 @@ public class Validate1Test
 
         Thread thread1 = new Thread(new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println(validator.validate("17.0"));
@@ -28,6 +29,7 @@ public class Validate1Test
 
         Thread thread2 = new Thread(new Runnable()
         {
+            @Override
             public void run()
             {
                 System.out.println(validator.validate("asdfg"));

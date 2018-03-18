@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.exec.CommandLine;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Pscp
 {
@@ -15,7 +15,7 @@ public class Pscp
     public Pscp(Authentication authentication)
     {
         super();
-        this.exePath = GetPath.getRelativePath() + "pscp.exe";
+        this.exePath = PathUtil.getRelativePath() + "pscp.exe";
         this.authentication = authentication;
         this.executorTool = new ExecutorTool();
     }

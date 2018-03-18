@@ -13,24 +13,25 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 
-import com.xdc.basic.api.json.jackson.JsonTool;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
+import com.xdc.basic.commons.json.JsonUtil;
 import com.xdc.basic.tools.json2javacode.define.ClassDefine;
 import com.xdc.basic.tools.json2javacode.define.FieldDefine;
 
 public class Main
 {
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws IOException
     {
         String javaPackageName = "com.xdc.soft";
         String objectClassName = "Student";
 
         // 读取json文件
-        File jsonFile = FileUtils.getFile(GetPath.getRelativePath() + "demo.json");
+        File jsonFile = FileUtils.getFile(PathUtil.getRelativePath() + "demo.json");
         String jsonString = FileUtils.readFileToString(jsonFile, "UTF8");
 
         // 先解析成Map类型
-        Map<String, Object> map = JsonTool.fromJsonStringToMap(jsonString);
+        Map<String, Object> map = (Map<String, Object>) JsonUtil.fromJson(jsonString, Map.class);
 
         // 生成类型定义
         List<ClassDefine> classDefines = generateClassDefines(javaPackageName, objectClassName, map);

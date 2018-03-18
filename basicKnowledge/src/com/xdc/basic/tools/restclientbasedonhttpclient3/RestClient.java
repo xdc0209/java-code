@@ -16,9 +16,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xdc.basic.commons.BytesUtil;
 import com.xdc.basic.commons.codec.Base64Util;
-import com.xdc.basic.commons.codec.BytesUtil;
+import com.xdc.basic.commons.json.JsonUtil;
 import com.xdc.basic.commons.network.IpUtil;
+import com.xdc.basic.commons.xml.XmlUtil;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.Constants;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpConstants;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpMethodType;
@@ -27,8 +29,6 @@ import com.xdc.basic.tools.restclientbasedonhttpclient3.easyssl.EasySSLProtocolS
 import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Request;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.message.Response;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.message.RestClientException;
-import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.JsonTool;
-import com.xdc.basic.tools.restclientbasedonhttpclient3.tools.XmlTool;
 
 public class RestClient
 {
@@ -202,7 +202,7 @@ public class RestClient
         {
             handleException(req, e);
         }
-        String body = BytesUtil.bytes2String(responseBody, Constants.Charset.UTF8);
+        String body = BytesUtil.newString(responseBody, Constants.Charset.UTF8);
 
         String bodyType = null;
 
@@ -210,12 +210,12 @@ public class RestClient
         String contentType = (header != null ? contentType = header.getValue() : null);
         if (StringUtils.contains(contentType, HttpConstants.ContentType.JSON))
         {
-            body = JsonTool.format(body);
+            body = JsonUtil.format(body);
             bodyType = Constants.BodyType.json;
         }
         if (StringUtils.contains(contentType, HttpConstants.ContentType.XML))
         {
-            body = XmlTool.format(body);
+            body = XmlUtil.format(body);
             bodyType = Constants.BodyType.xml;
         }
 

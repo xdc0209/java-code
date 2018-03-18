@@ -7,20 +7,20 @@ import java.net.DatagramSocket;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 class FortuneServer
 {
     public static void main(String args[])
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
-        DatagramSocket ServerSocket = null;
+        DatagramSocket serverSocket = null;
         FileInputStream inStream = null;
         try
         {
             // 创建绑定到1114端口的ServerSocket对象
-            ServerSocket = new DatagramSocket(1114);
+            serverSocket = new DatagramSocket(1114);
 
             while (true)
             {
@@ -31,7 +31,7 @@ class FortuneServer
 
                 System.out.println("等待客户端连接...");
                 // 等待接收数据包
-                ServerSocket.receive(rPacket);
+                serverSocket.receive(rPacket);
                 System.out.println("已有客户端发来请求: " + rPacket.getAddress().getHostAddress() + ":" + rPacket.getPort());
 
                 // 读取待发送的内容
@@ -44,7 +44,7 @@ class FortuneServer
                 // 创建发送数据包
                 DatagramPacket sPacket = new DatagramPacket(data, data.length, rPacket.getAddress(), rPacket.getPort());
                 // 发送报文
-                ServerSocket.send(sPacket);
+                serverSocket.send(sPacket);
             }
         }
         catch (Exception e)
@@ -53,7 +53,7 @@ class FortuneServer
         }
         finally
         {
-            IOUtils.closeQuietly(ServerSocket);
+            IOUtils.closeQuietly(serverSocket);
             IOUtils.closeQuietly(inStream);
         }
     }

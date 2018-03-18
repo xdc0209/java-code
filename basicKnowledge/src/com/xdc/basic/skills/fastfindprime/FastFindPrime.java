@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class FastFindPrime
 {
@@ -13,7 +13,7 @@ public class FastFindPrime
     {
         // 求1--1000000之间的素数
 
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
 
         long startTime;
         long endTime;

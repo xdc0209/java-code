@@ -99,7 +99,7 @@ public class ISO2022CNSMModel extends SMModel
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2),                                                            // e8 - ef
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2),                                                            // f0 - f7
             PkgInt.pack4bits(2, 2, 2, 2, 2, 2, 2, 2)                                                             // f8 - ff
-                                                 };
+    };
 
     private static int[] iso2022cnStateTable   = new int[] {
             PkgInt.pack4bits(START, 3, ERROR, START, START, START, START, START),                                // 00-07
@@ -110,7 +110,7 @@ public class ISO2022CNSMModel extends SMModel
             PkgInt.pack4bits(5, 6, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR),                                    // 28-2f
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ITSME, ERROR, ERROR, ERROR, ERROR),                            // 30-37
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ERROR, ITSME, ERROR, START)                             // 38-3f
-                                                 };
+    };
 
     private static int[] iso2022cnCharLenTable = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 }

@@ -44,5 +44,4 @@ public class GetIntersectionAndUnion
         List<String> list4 = (List<String>) CollectionUtils.union(list1, list2);
         System.out.println(list4);
     }
-
 }

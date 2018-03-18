@@ -6,6 +6,7 @@ public class InterruptTest
     {
         Thread t = new Thread()
         {
+            @Override
             public void run()
             {
                 System.out.println("执行run方法");

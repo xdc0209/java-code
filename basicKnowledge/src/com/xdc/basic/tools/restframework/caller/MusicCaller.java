@@ -20,11 +20,11 @@ public interface MusicCaller
     GetMusicResponse getMusic(String keyWord, int pageNum, int pageSize);
 
     @RestMethod(method = MethodType.POST, url = "/XXX?YYY")
-    AddMusicResponse AddMusic(AddMusicRequest request, String... args);
+    AddMusicResponse addMusic(AddMusicRequest request, String... args);
 
     @RestMethod(method = MethodType.PUT, url = "/XXX?YYY")
-    ModifyMusicResponse ModifyMusic(ModifyMusicRequst request, String... args);
+    ModifyMusicResponse modifyMusic(ModifyMusicRequst request, String... args);
 
     @RestMethod(method = MethodType.DELETE, url = "/XXX?YYY")
-    ModifyMusicResponse DeleteMusic(String... args);
+    ModifyMusicResponse deleteMusic(String... args);
 }

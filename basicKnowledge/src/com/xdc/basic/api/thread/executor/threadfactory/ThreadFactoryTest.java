@@ -3,11 +3,9 @@ package com.xdc.basic.api.thread.executor.threadfactory;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * 
- * @author xdc
- * 
- */
+import com.xdc.basic.commons.thread.executor.threadfactory.NamePrefixThreadFactory;
+import com.xdc.basic.commons.thread.executor.threadfactory.ThreadUncaughtExceptionHandler;
+
 public class ThreadFactoryTest
 {
     public static void main(String[] args)

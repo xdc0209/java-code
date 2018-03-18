@@ -101,14 +101,14 @@ public class EUCJPSMModel extends SMModel
             PkgInt.pack4bits(0, 0, 0, 0, 0, 0, 0, 0),                                                                      // e8 - ef
             PkgInt.pack4bits(0, 0, 0, 0, 0, 0, 0, 0),                                                                      // f0 - f7
             PkgInt.pack4bits(0, 0, 0, 0, 0, 0, 0, 5)                                                                       // f8 - ff
-                                             };
+    };
 
     private static int[] eucjpStateTable   = new int[] { PkgInt.pack4bits(3, 4, 3, 5, START, ERROR, ERROR, ERROR),         // 00-07
             PkgInt.pack4bits(ERROR, ERROR, ERROR, ERROR, ITSME, ITSME, ITSME, ITSME),                                      // 08-0f
             PkgInt.pack4bits(ITSME, ITSME, START, ERROR, START, ERROR, ERROR, ERROR),                                      // 10-17
             PkgInt.pack4bits(ERROR, ERROR, START, ERROR, ERROR, ERROR, 3, ERROR),                                          // 18-1f
             PkgInt.pack4bits(3, ERROR, ERROR, ERROR, START, START, START, START)                                           // 20-27
-                                             };
+    };
 
     private static int[] eucjpCharLenTable = new int[] { 2, 2, 2, 3, 1, 0 };
 }

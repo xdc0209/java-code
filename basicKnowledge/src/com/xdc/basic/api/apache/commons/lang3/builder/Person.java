@@ -102,10 +102,13 @@ public class Person implements Comparable<Person>
     // compare equal using compareTo(Object).
     // 先比较年龄，再比较姓名，再比较是否抽烟
     @Override
-    public int compareTo(Person o)
+    public int compareTo(Person that)
     {
-        // 用不用判断null呢？
-        Person that = o;
+        if (that == null)
+        {
+            return 1;
+        }
+
         return new CompareToBuilder().append(this.age, that.age).append(this.name, that.name)
                 .append(this.smoker, that.smoker).toComparison();
     }

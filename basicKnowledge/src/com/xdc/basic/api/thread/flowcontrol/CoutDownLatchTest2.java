@@ -37,7 +37,7 @@ public class CoutDownLatchTest2
         }
 
         // do xxx
-        System.out.println("主线程马上其他线程可以继续执行了。");
+        System.out.println("主线程执行了countDown，其他线程可以继续执行了。");
         startLatch.countDown();
     }
 }

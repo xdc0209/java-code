@@ -99,7 +99,7 @@ public class HZSMModel extends SMModel
             PkgInt.pack4bits(1, 1, 1, 1, 1, 1, 1, 1),                                                      // e8 - ef
             PkgInt.pack4bits(1, 1, 1, 1, 1, 1, 1, 1),                                                      // f0 - f7
             PkgInt.pack4bits(1, 1, 1, 1, 1, 1, 1, 1)                                                       // f8 - ff
-                                           };
+    };
 
     private static int[] hzsStateTable   = new int[] {
             PkgInt.pack4bits(START, ERROR, 3, START, START, START, ERROR, ERROR),                          // 00-07
@@ -108,7 +108,7 @@ public class HZSMModel extends SMModel
             PkgInt.pack4bits(5, ERROR, 6, ERROR, 5, 5, 4, ERROR),                                          // 18-1f
             PkgInt.pack4bits(4, ERROR, 4, 4, 4, ERROR, 4, ERROR),                                          // 20-27
             PkgInt.pack4bits(4, ITSME, START, START, START, START, START, START)                           // 28-2f
-                                           };
+    };
 
     private static int[] hzsCharLenTable = new int[] { 0, 0, 0, 0, 0, 0 };
 }

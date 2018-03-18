@@ -14,13 +14,13 @@ import com.xdc.basic.api.apache.poi.model.xls.ScoreRowObj;
 import com.xdc.basic.api.apache.poi.model.xls.StudentRowObj;
 import com.xdc.basic.api.apache.poi.utils.XlsToBeanBuilder;
 import com.xdc.basic.api.apache.poi.utils.XlsUtils;
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 public class Main
 {
     public static void main(String[] args) throws IOException
     {
-        String curPath = GetPath.getRelativePath();
+        String curPath = PathUtil.getRelativePath();
         String xlsFilePath = curPath + "school.xlsx";
 
         List<StudentRowObj> studentRowObjs = XlsUtils.parseSheet(xlsFilePath, StudentRowObj.class);

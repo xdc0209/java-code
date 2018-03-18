@@ -24,24 +24,24 @@ public class ChainTest
 
         // 同步调用
         Executor executor = new Executor();
-        Response CreateInstanceResponse = executor.execute(new CreateInstanceRequest());
-        System.out.println(ToStringBuilder.reflectionToString(CreateInstanceResponse));
+        Response createInstanceResponse = executor.execute(new CreateInstanceRequest());
+        System.out.println(ToStringBuilder.reflectionToString(createInstanceResponse));
 
         // 异步调用
         ExecuteResultHandler resultHandler = new ExecuteResultHandler();
         executor.execute(new DeleteInstanceRequest(), resultHandler);
         resultHandler.waitFor(500 * 1000);
-        Response DeleteInstanceResponse = null;
+        Response deleteInstanceResponse = null;
         if (!resultHandler.hasResult())
         {
             final long EXECUTE_TIME_OUT_ERR_CODE = 888000;
-            DeleteInstanceResponse = new Response();
-            DeleteInstanceResponse.setCode(EXECUTE_TIME_OUT_ERR_CODE);
+            deleteInstanceResponse = new Response();
+            deleteInstanceResponse.setCode(EXECUTE_TIME_OUT_ERR_CODE);
         }
         else
         {
-            DeleteInstanceResponse = resultHandler.getResponse();
+            deleteInstanceResponse = resultHandler.getResponse();
         }
-        System.out.println(ToStringBuilder.reflectionToString(DeleteInstanceResponse));
+        System.out.println(ToStringBuilder.reflectionToString(deleteInstanceResponse));
     }
 }

@@ -6,7 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import com.xdc.basic.api.DateUitl;
+import com.xdc.basic.commons.time.DateFormatUtil;
 
 /**
  * http://ketqi.blog.51cto.com/1130608/687681
@@ -57,7 +57,7 @@ public class ScheduledThreadPoolExecutorTest
             @Override
             public void run()
             {
-                System.out.println("cancelSchedule: " + DateUitl.format(new Date(), DATE_FORMAT));
+                System.out.println("cancelSchedule: " + DateFormatUtil.format(new Date(), DATE_FORMAT));
             }
         }, initialDelay, period, TimeUnit.MILLISECONDS);
 
@@ -71,8 +71,8 @@ public class ScheduledThreadPoolExecutorTest
         }
 
         scheduledFuture.cancel(false);
-        System.out
-                .println("cancelSchedule: the schedule has been canceled!" + DateUitl.format(new Date(), DATE_FORMAT));
+        System.out.println(
+                "cancelSchedule: the schedule has been canceled!" + DateFormatUtil.format(new Date(), DATE_FORMAT));
     }
 
     /**
@@ -93,7 +93,7 @@ public class ScheduledThreadPoolExecutorTest
             @Override
             public void run()
             {
-                System.out.println("scheduleAtFixedRate: " + DateUitl.format(new Date(), DATE_FORMAT));
+                System.out.println("scheduleAtFixedRate: " + DateFormatUtil.format(new Date(), DATE_FORMAT));
             }
         }, initialDelay, period, TimeUnit.MILLISECONDS);
     }
@@ -114,7 +114,7 @@ public class ScheduledThreadPoolExecutorTest
             @Override
             public void run()
             {
-                System.out.println("scheduleWithFixedDelay-begin: " + DateUitl.format(new Date(), DATE_FORMAT));
+                System.out.println("scheduleWithFixedDelay-begin: " + DateFormatUtil.format(new Date(), DATE_FORMAT));
                 try
                 {
                     Thread.sleep(2000);
@@ -123,7 +123,7 @@ public class ScheduledThreadPoolExecutorTest
                 {
                     e.printStackTrace();
                 }
-                System.out.println("scheduleWithFixedDelay-end: " + DateUitl.format(new Date(), DATE_FORMAT));
+                System.out.println("scheduleWithFixedDelay-end: " + DateFormatUtil.format(new Date(), DATE_FORMAT));
             }
         }, initialDelay, period, TimeUnit.MILLISECONDS);
     }

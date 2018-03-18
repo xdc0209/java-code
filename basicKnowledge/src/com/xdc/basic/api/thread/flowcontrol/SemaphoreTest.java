@@ -10,7 +10,7 @@ public class SemaphoreTest
     {
         try
         {
-            // 申请一个信号量。
+            // 获取一个许可。
             semaphore.acquire();
         }
         catch (InterruptedException e)
@@ -28,7 +28,7 @@ public class SemaphoreTest
             e.printStackTrace();
         }
 
-        // 释放一个信号量。
+        // 释放一个许可。
         semaphore.release();
         System.out.println(Thread.currentThread().getName() + "走了。");
     }

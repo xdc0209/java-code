@@ -33,7 +33,9 @@ public class AnnotationTest
         {
             boolean otherFlag = method[i].isAnnotationPresent(Name.class);
             if (otherFlag)
+            {
                 set.add(method[i]);
+            }
         }
         for (Method m : set)
         {

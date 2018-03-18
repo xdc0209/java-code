@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.xdc.basic.commons.ExceptionUtil;
+
 public class TimeKnowledge
 {
     /**
@@ -54,13 +56,7 @@ public class TimeKnowledge
         }
         catch (ParseException e)
         {
-            e.printStackTrace();
-            return null;
+            throw ExceptionUtil.unchecked(e);
         }
-    }
-
-    public boolean inDaylightTime(Date date)
-    {
-        return TimeZone.getDefault().inDaylightTime(date);
     }
 }

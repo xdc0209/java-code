@@ -2,10 +2,10 @@ package com.xdc.basic.skills.encrypt.aes.aes1.core;
 
 import org.junit.Test;
 
+import com.xdc.basic.commons.SystemUtil;
+import com.xdc.basic.commons.codec.HexUtil;
+import com.xdc.basic.commons.idgen.IdGenerate;
 import com.xdc.basic.skills.encrypt.aes.aes1.util.CRC16Util;
-import com.xdc.basic.skills.encrypt.aes.aes1.util.CodecUtil;
-import com.xdc.basic.skills.encrypt.aes.aes1.util.RandomUtil;
-import com.xdc.basic.skills.encrypt.aes.aes1.util.SystemUtil;
 
 public class EncKeyMgr
 {
@@ -14,8 +14,8 @@ public class EncKeyMgr
      */
     public static String genRootKeyHex()
     {
-        byte[] randomBytes = RandomUtil.randomBytes(16);
-        return CodecUtil.bytes2HexString(randomBytes);
+        byte[] randomBytes = IdGenerate.randomBytes(16);
+        return HexUtil.bytes2HexString(randomBytes);
     }
 
     /**
@@ -23,8 +23,8 @@ public class EncKeyMgr
      */
     public static String genWorkKeyHex()
     {
-        byte[] randomBytes = RandomUtil.randomBytes(16);
-        return CodecUtil.bytes2HexString(randomBytes);
+        byte[] randomBytes = IdGenerate.randomBytes(16);
+        return HexUtil.bytes2HexString(randomBytes);
     }
 
     /**
@@ -35,7 +35,7 @@ public class EncKeyMgr
     {
         byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector, algorithm,
                 keyLength, iterationCount);
-        String initKeyHex = CodecUtil.bytes2HexString(initKeyBytes);
+        String initKeyHex = HexUtil.bytes2HexString(initKeyBytes);
         return Enc.encode(plainWorkKeyHex, initKeyHex);
     }
 
@@ -47,7 +47,7 @@ public class EncKeyMgr
     {
         byte[] initKeyBytes = Enc.encodeWithPBKDF2(rootKeyHex.toCharArray(), EncKeyHolder.initVector, algorithm,
                 keyLength, iterationCount);
-        String initKeyHex = CodecUtil.bytes2HexString(initKeyBytes);
+        String initKeyHex = HexUtil.bytes2HexString(initKeyBytes);
         return Enc.decode(cipherWorkKeyHex, initKeyHex);
     }
 
@@ -113,7 +113,7 @@ public class EncKeyMgr
         String workKeyHex = genWorkKeyHex();
         String rootKeyHex = genRootKeyHex();
 
-        String rootKeyCrc = CRC16Util.crc(CodecUtil.hexString2Bytes(rootKeyHex));
+        String rootKeyCrc = CRC16Util.crc(HexUtil.hexString2Bytes(rootKeyHex));
 
         SystemUtil.outPrintln("workKeyHex: " + workKeyHex);
         SystemUtil.outPrintln("rootKeyHex: " + rootKeyHex);

@@ -6,7 +6,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 
-import com.xdc.basic.skills.GetPath;
+import com.xdc.basic.commons.PathUtil;
 
 /**
  * PropertiesConfiguration 这个类在内存中有缓存，设置文件改变策略后，当文件变化时会重新读取属性文件刷新内存
@@ -17,8 +17,8 @@ public class PropertiesConfigurationTest
 {
     public static void main(String[] args) throws ConfigurationException, InterruptedException
     {
-        String curPath = GetPath.getRelativePath();
-        String propertiesFilePath = GetPath.connect(curPath, "PropertiesConfigurationTest1.properties");
+        String curPath = PathUtil.getRelativePath();
+        String propertiesFilePath = PathUtil.connect(curPath, "PropertiesConfigurationTest1.properties");
 
         // PropertiesConfiguration的使用要点，一定要看，否则容易掉坑。
         // PropertiesConfiguration.clear(); // 清除内存中的配置项集合。

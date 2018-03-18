@@ -13,6 +13,7 @@ public class SbusServer implements MessageListener
 {
     private static Logger log = LoggerFactory.getLogger(SbusServer.class);
 
+    @Override
     public byte[] receive(byte[] invokeInfoBytes)
     {
         // 反序列化调用信息
