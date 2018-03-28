@@ -6,7 +6,6 @@ import java.util.Comparator;
 
 public class ImportErrorCode
 {
-
     public static void main(String[] args)
     {
         ArrayList<ErrorCodeElement> errorCodeElementsArrayList = new ArrayList<ErrorCodeElement>();
@@ -35,5 +34,4 @@ public class ImportErrorCode
             System.out.println(errorCodeElementsArrayList.get(i));
         }
     }
-
 }

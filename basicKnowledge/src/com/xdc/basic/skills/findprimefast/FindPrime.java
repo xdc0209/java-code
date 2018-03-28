@@ -1,4 +1,4 @@
-package com.xdc.basic.skills.fastfindprime;
+package com.xdc.basic.skills.findprimefast;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.xdc.basic.commons.PathUtil;
 
-public class FastFindPrime
+public class FindPrime
 {
     public static void main(String[] args)
     {
