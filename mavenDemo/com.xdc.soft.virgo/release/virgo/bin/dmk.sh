@@ -3,145 +3,135 @@
 SCRIPT="$0"
 
 # SCRIPT may be an arbitrarily deep series of symlinks. Loop until we have the concrete path.
-while [ -h "$SCRIPT" ] ; do
-  ls=`ls -ld "$SCRIPT"`
-  # Drop everything prior to ->
-  link=`expr "$ls" : '.*-> \(.*\)$'`
-  if expr "$link" : '/.*' > /dev/null; then
-    SCRIPT="$link"
-  else
-    SCRIPT=`dirname "$SCRIPT"`/"$link"
-  fi
+while [ -h "$SCRIPT" ]
+do
+    ls=$(ls -ld "$SCRIPT")
+    # Drop everything prior to ->
+    link=$(expr "$ls" : '.*-> \(.*\)$')
+    if expr "$link" : '/.*' >/dev/null; then
+        SCRIPT="$link"
+    else
+        SCRIPT=$(dirname "$SCRIPT")/"$link"
+    fi
 done
 
 # determine kernel home
-KERNEL_HOME=`dirname "$SCRIPT"`/..
+KERNEL_HOME=$(dirname "$SCRIPT")/..
 
 # make KERNEL_HOME absolute
-KERNEL_HOME=`cd "$KERNEL_HOME"; pwd`
+KERNEL_HOME=$(cd "$KERNEL_HOME" && pwd)
 
 # setup classpath and java environment
 . "$KERNEL_HOME/bin/setupClasspath.sh"
 
 # execute user setenv script if needed
-if [ -r "$KERNEL_HOME/bin/setenv.sh" ]
-then
-	. $KERNEL_HOME/bin/setenv.sh
+if [ -r "$KERNEL_HOME/bin/setenv.sh" ]; then
+    . $KERNEL_HOME/bin/setenv.sh
 fi
-
 
 # Run java version check with the discovered java jvm.
 . "$KERNEL_HOME/bin/checkJava.sh"
 
 shopt -s extglob
-	
+
 # parse the command we executing
 COMMAND=$1
-shift;
-	
-if [ "$COMMAND" = "start" ]
-then
-	
-	# parse the standard arguments
-	CONFIG_DIR=$KERNEL_HOME/configuration
-	CLEAN_FLAG=
-	NO_START_FLAG=
+shift
 
-	SHELL_FLAG=
-	
-	DEBUG_FLAG=
-	DEBUG_PORT=8000
-	SUSPEND=n
-	if [ -z "$JMX_PORT" ]
-	then
-		JMX_PORT=9875
-	fi
-	
-	if [ -z "$KEYSTORE_PASSWORD" ]
-	then
-		KEYSTORE_PASSWORD=changeit
-	fi
-	
-	ADDITIONAL_ARGS=
+if [ "$COMMAND" = "start" ]; then
 
-	while (($# > 0))
-		do
-		case $1 in
-		-debug)
-				DEBUG_FLAG=1
-				if [[ "$2" == +([0-9]) ]]
-				then
-					DEBUG_PORT=$2
-					shift;
-				fi
-				;;
-		-clean)
-				CLEAN_FLAG=1
-				;;
-		-configDir)
-				CONFIG_DIR=$2
-				shift;
-				;;
-		-jmxport)
-				JMX_PORT=$2
-				shift;
-				;;
-		-keystore)
-				KEYSTORE_PATH=$2
-				shift;
-				;;
-		-keystorePassword)
-				KEYSTORE_PASSWORD=$2
-				shift;
-				;;
-		-noStart)
-				NO_START_FLAG=1
-				;;
-				
-		-suspend)
-				SUSPEND=y
-				;;
-		-shell)
-				SHELL_FLAG=1
-				;;
-		*)
-				ADDITIONAL_ARGS="$ADDITIONAL_ARGS $1"
-				;;
-		esac
-		shift
-	done
-	
-	# start the kernel
-	if [[ "$CONFIG_DIR" != /* ]]
-	then
-	    CONFIG_DIR=$KERNEL_HOME/$CONFIG_DIR
-	fi
+    # parse the standard arguments
+    CONFIG_DIR=$KERNEL_HOME/configuration
+    CLEAN_FLAG=
+    NO_START_FLAG=
 
-	if [ -z "$KEYSTORE_PATH" ]
-	then
-	    KEYSTORE_PATH=$CONFIG_DIR/keystore
-	fi
+    SHELL_FLAG=
 
-	if [ "$DEBUG_FLAG" ]
-	then
-		DEBUG_OPTS=" \
-			-Xdebug \
-			-Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=$SUSPEND"
-	fi
+    DEBUG_FLAG=
+    DEBUG_PORT=8000
+    SUSPEND=n
+    if [ -z "$JMX_PORT" ]; then
+        JMX_PORT=9875
+    fi
 
-	if [ "$CLEAN_FLAG" ]
-	then
+    if [ -z "$KEYSTORE_PASSWORD" ]; then
+        KEYSTORE_PASSWORD=changeit
+    fi
+
+    ADDITIONAL_ARGS=
+
+    while (($# > 0))
+    do
+        case $1 in
+            -debug)
+                DEBUG_FLAG=1
+                if [[ "$2" == +([0-9]) ]]; then
+                    DEBUG_PORT=$2
+                    shift
+                fi
+                ;;
+            -clean)
+                CLEAN_FLAG=1
+                ;;
+            -configDir)
+                CONFIG_DIR=$2
+                shift
+                ;;
+            -jmxport)
+                JMX_PORT=$2
+                shift
+                ;;
+            -keystore)
+                KEYSTORE_PATH=$2
+                shift
+                ;;
+            -keystorePassword)
+                KEYSTORE_PASSWORD=$2
+                shift
+                ;;
+            -noStart)
+                NO_START_FLAG=1
+                ;;
+
+            -suspend)
+                SUSPEND=y
+                ;;
+            -shell)
+                SHELL_FLAG=1
+                ;;
+            *)
+                ADDITIONAL_ARGS="$ADDITIONAL_ARGS $1"
+                ;;
+        esac
+        shift
+    done
+
+    # start the kernel
+    if [[ "$CONFIG_DIR" != /* ]]; then
+        CONFIG_DIR=$KERNEL_HOME/$CONFIG_DIR
+    fi
+
+    if [ -z "$KEYSTORE_PATH" ]; then
+        KEYSTORE_PATH=$CONFIG_DIR/keystore
+    fi
+
+    if [ "$DEBUG_FLAG" ]; then
+        DEBUG_OPTS=" \
+            -Xdebug \
+            -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=$SUSPEND"
+    fi
+
+    if [ "$CLEAN_FLAG" ]; then
         rm -rf $KERNEL_HOME/work
         rm -rf $KERNEL_HOME/serviceability
 
         LAUNCH_OPTS="$LAUNCH_OPTS -clean" #equivalent to setting osgi.clean to "true"
-	fi
-	
-	if [ "$SHELL_FLAG" ]
-	then
-	    echo "Warning: Kernel shell not supported; -shell option ignored."
-		# LAUNCH_OPTS="$LAUNCH_OPTS -Forg.eclipse.virgo.kernel.shell.local=true"
-	fi
+    fi
+
+    if [ "$SHELL_FLAG" ]; then
+        echo "Warning: Kernel shell not supported; -shell option ignored."
+        # LAUNCH_OPTS="$LAUNCH_OPTS -Forg.eclipse.virgo.kernel.shell.local=true"
+    fi
 
     ACCESS_PROPERTIES=$CONFIG_DIR/org.eclipse.virgo.kernel.jmxremote.access.properties
     AUTH_LOGIN=$CONFIG_DIR/org.eclipse.virgo.kernel.authentication.config
@@ -158,54 +148,52 @@ then
         CONFIG_AREA=$(cygpath -wp $CONFIG_AREA)
         JAVA_PROFILE=$(cygpath -wp $JAVA_PROFILE)
     fi
-	
-	# Set the required permissions on the JMX configuration files
-	chmod 600 $ACCESS_PROPERTIES
 
-	JMX_OPTS=" \
-		$JMX_OPTS \
-		-Dcom.sun.management.jmxremote.port=$JMX_PORT \
-		-Dcom.sun.management.jmxremote.authenticate=true \
-		-Dcom.sun.management.jmxremote.login.config=virgo-kernel \
-		-Dcom.sun.management.jmxremote.access.file="$ACCESS_PROPERTIES" \
-		-Djavax.net.ssl.keyStore=$KEYSTORE_PATH \
-		-Djavax.net.ssl.keyStorePassword=$KEYSTORE_PASSWORD \
-		-Dcom.sun.management.jmxremote.ssl=false \
-		-Dcom.sun.management.jmxremote.ssl.need.client.auth=false"
+    # Set the required permissions on the JMX configuration files
+    chmod 600 $ACCESS_PROPERTIES
 
-   	if [ -z "$JAVA_HOME" ]
-    then
-      	JAVA_EXECUTABLE=java
+    JMX_OPTS=" \
+        $JMX_OPTS \
+        -Dcom.sun.management.jmxremote.port=$JMX_PORT \
+        -Dcom.sun.management.jmxremote.authenticate=true \
+        -Dcom.sun.management.jmxremote.login.config=virgo-kernel \
+        -Dcom.sun.management.jmxremote.access.file="$ACCESS_PROPERTIES" \
+        -Djavax.net.ssl.keyStore=$KEYSTORE_PATH \
+        -Djavax.net.ssl.keyStorePassword=$KEYSTORE_PASSWORD \
+        -Dcom.sun.management.jmxremote.ssl=false \
+        -Dcom.sun.management.jmxremote.ssl.need.client.auth=false"
+
+    if [ -z "$JAVA_HOME" ]; then
+        JAVA_EXECUTABLE=java
     else
-     	JAVA_EXECUTABLE=$JAVA_HOME/bin/java
+        JAVA_EXECUTABLE=$JAVA_HOME/bin/java
     fi
 
-	# If we get here we have the correct Java version.
-	
-	if [ -z "$NO_START_FLAG" ]
-	then
-		TMP_DIR=$KERNEL_HOME/work/tmp
-		# Ensure that the tmp directory exists
-		mkdir -p $TMP_DIR
+    # If we get here we have the correct Java version.
+
+    if [ -z "$NO_START_FLAG" ]; then
+        TMP_DIR=$KERNEL_HOME/work/tmp
+        # Ensure that the tmp directory exists
+        mkdir -p $TMP_DIR
 
         JAVA_OPTS="$JAVA_OPTS \
-                    -Xmx512m \
-                    -XX:MaxPermSize=512m"
+            -Xmx512m \
+            -XX:MaxPermSize=512m"
 
-		cd $KERNEL_HOME; exec $JAVA_EXECUTABLE \
-			$JAVA_OPTS \
-			$DEBUG_OPTS \
-			$JMX_OPTS \
-			-XX:+HeapDumpOnOutOfMemoryError \
-			-XX:ErrorFile=$KERNEL_HOME/serviceability/error.log \
-			-XX:HeapDumpPath=$KERNEL_HOME/serviceability/heap_dump.hprof \
-			-Djava.security.auth.login.config=$AUTH_LOGIN \
-			-Dorg.eclipse.virgo.kernel.authentication.file=$AUTH_FILE \
-			-Djava.io.tmpdir=$TMP_DIR \
-			-Dorg.eclipse.virgo.kernel.home=$KERNEL_HOME \
-			-Dorg.eclipse.virgo.kernel.config=$CONFIG_DIR \
-			-Dosgi.sharedConfiguration.area=$CONFIG_DIR \
-			-Dosgi.java.profile="file:$JAVA_PROFILE" \
+        cd $KERNEL_HOME && exec $JAVA_EXECUTABLE \
+            $JAVA_OPTS \
+            $DEBUG_OPTS \
+            $JMX_OPTS \
+            -XX:+HeapDumpOnOutOfMemoryError \
+            -XX:ErrorFile=$KERNEL_HOME/serviceability/error.log \
+            -XX:HeapDumpPath=$KERNEL_HOME/serviceability/heap_dump.hprof \
+            -Djava.security.auth.login.config=$AUTH_LOGIN \
+            -Dorg.eclipse.virgo.kernel.authentication.file=$AUTH_FILE \
+            -Djava.io.tmpdir=$TMP_DIR \
+            -Dorg.eclipse.virgo.kernel.home=$KERNEL_HOME \
+            -Dorg.eclipse.virgo.kernel.config=$CONFIG_DIR \
+            -Dosgi.sharedConfiguration.area=$CONFIG_DIR \
+            -Dosgi.java.profile="file:$JAVA_PROFILE" \
             -Declipse.ignoreApp=true \
             -Dosgi.install.area=$KERNEL_HOME \
             -Dosgi.configuration.area=$CONFIG_AREA \
@@ -213,79 +201,75 @@ then
             -Dosgi.frameworkClassPath=$FWCLASSPATH \
             -Djava.endorsed.dirs="$KERNEL_HOME/lib/endorsed" \
             -classpath $CLASSPATH \
-			org.eclipse.equinox.launcher.Main \
+            org.eclipse.equinox.launcher.Main \
             -noExit \
-			$LAUNCH_OPTS \
-			$ADDITIONAL_ARGS
-	fi
-elif [ "$COMMAND" = "stop" ]
-then
+            $LAUNCH_OPTS \
+            $ADDITIONAL_ARGS
+    fi
 
-	CONFIG_DIR=$KERNEL_HOME/configuration
+elif [ "$COMMAND" = "stop" ]; then
 
-	#parse args for the script
-	if [ -z "$TRUSTSTORE_PATH" ]
-	then
-		TRUSTSTORE_PATH=$CONFIG_DIR/keystore
-	fi
-	
-	if [ -z "$TRUSTSTORE_PASSWORD" ]	
-	then
-		TRUSTSTORE_PASSWORD=changeit
-	fi
+    CONFIG_DIR=$KERNEL_HOME/configuration
 
-	if [ -z "$JMX_PORT" ]
-	then
-		JMX_PORT=9875
-	fi
+    #parse args for the script
+    if [ -z "$TRUSTSTORE_PATH" ]; then
+        TRUSTSTORE_PATH=$CONFIG_DIR/keystore
+    fi
 
-	shopt -s extglob
+    if [ -z "$TRUSTSTORE_PASSWORD" ]; then
+        TRUSTSTORE_PASSWORD=changeit
+    fi
 
-	while (($# > 0))
-		do
-		case $1 in
-		-truststore)
-				TRUSTSTORE_PATH=$2
-				shift;
-				;;
-		-truststorePassword)
-				TRUSTSTORE_PASSWORD=$2
-				shift;
-				;;
-		-configDir)
-				CONFIG_DIR=$2
-				shift;
-				;;
-		-jmxport)
-				JMX_PORT=$2
-				shift;
-				;;
-		*)
-			OTHER_ARGS+=" $1"
-			;;
-		esac
-		shift
-	done
-	
-	JMX_OPTS=" \
-		$JMX_OPTS \
-		-Djavax.net.ssl.trustStore=${TRUSTSTORE_PATH} \
-		-Djavax.net.ssl.trustStorePassword=${TRUSTSTORE_PASSWORD}"
+    if [ -z "$JMX_PORT" ]; then
+        JMX_PORT=9875
+    fi
 
-	OTHER_ARGS+=" -jmxport $JMX_PORT"
+    shopt -s extglob
+
+    while (($# > 0))
+    do
+        case $1 in
+            -truststore)
+                TRUSTSTORE_PATH=$2
+                shift
+                ;;
+            -truststorePassword)
+                TRUSTSTORE_PASSWORD=$2
+                shift
+                ;;
+            -configDir)
+                CONFIG_DIR=$2
+                shift
+                ;;
+            -jmxport)
+                JMX_PORT=$2
+                shift
+                ;;
+            *)
+                OTHER_ARGS+=" $1"
+                ;;
+        esac
+        shift
+    done
+
+    JMX_OPTS=" \
+        $JMX_OPTS \
+        -Djavax.net.ssl.trustStore=${TRUSTSTORE_PATH} \
+        -Djavax.net.ssl.trustStorePassword=${TRUSTSTORE_PASSWORD}"
+
+    OTHER_ARGS+=" -jmxport $JMX_PORT"
 
     if $cygwin; then
         KERNEL_HOME=$(cygpath -wp $KERNEL_HOME)
         CONFIG_DIR=$(cygpath -wp $CONFIG_DIR)
     fi
 
-	exec $JAVA_EXECUTABLE $JAVA_OPTS $JMX_OPTS \
-		-classpath $CLASSPATH \
-		-Dorg.eclipse.virgo.kernel.home=$KERNEL_HOME \
-		-Dorg.eclipse.virgo.kernel.authentication.file=$CONFIG_DIR/org.eclipse.virgo.kernel.users.properties \
-		org.eclipse.virgo.nano.shutdown.ShutdownClient $OTHER_ARGS
-	
-else
-	echo "Unknown command: ${COMMAND}"
-fi
+    exec $JAVA_EXECUTABLE $JAVA_OPTS $JMX_OPTS \
+        -classpath $CLASSPATH \
+        -Dorg.eclipse.virgo.kernel.home=$KERNEL_HOME \
+        -Dorg.eclipse.virgo.kernel.authentication.file=$CONFIG_DIR/org.eclipse.virgo.kernel.users.properties \
+        org.eclipse.virgo.nano.shutdown.ShutdownClient $OTHER_ARGS
 
+else
+    echo "Unknown command: ${COMMAND}"
+fi
