@@ -18,7 +18,6 @@ public abstract class AbstractProcess
                     e.printStackTrace();
                 }
             }
-
         });
         return "success!";
     }

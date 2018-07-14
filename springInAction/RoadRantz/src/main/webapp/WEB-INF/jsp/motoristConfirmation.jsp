@@ -7,7 +7,7 @@
   <head>
     <title>Motorist Confirmation</title>
   </head>
-  
+
   <body>
     <h2>Motorist Confirmation Confirmation (Step 3 of 3)</h2>
     <form:form commandName="motorist" method="POST" action="register.htm">

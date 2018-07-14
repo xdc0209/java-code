@@ -2,7 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
   <alias alias="dukeAlias" name="duke" />
@@ -33,7 +33,7 @@
   <!-- ==================================================================== -->
   <bean id="hank" class="com.springinaction.springidol.OneManBand">
     <property name="instruments">
-      <!-- 
+      <!--
       <list>
 	      <ref bean="guitar" />
 	      <ref bean="saxophone" />
@@ -41,7 +41,7 @@
 	      <ref bean="cymbal" />
       </list>
       -->
-      <!-- 
+      <!--
       <props>
         <prop key="GUITAR">STRUM STRUM STRUM</prop>
         <prop key="CYMBAL">CRASH CRASH CRASH</prop>
@@ -54,21 +54,21 @@
     </property>
   </bean>
 
-  <bean id="duke" 
+  <bean id="duke"
       class="com.springinaction.springidol.PoeticJuggler"
       autowire="constructor">
 <!--     <constructor-arg ref="sonnet29" />  -->
   </bean>
-  
+
   <bean id="sonnet29" class="com.springinaction.springidol.Sonnet29" />
 
-  <bean id="baseSaxophonist" 
-      class="com.springinaction.springidol.Instrumentalist" 
+  <bean id="baseSaxophonist"
+      class="com.springinaction.springidol.Instrumentalist"
       abstract="true">
-    <property name="song" value="Jingle Bells" /> 
-    <property name="instrument" ref="saxophone" />    
+    <property name="song" value="Jingle Bells" />
+    <property name="instrument" ref="saxophone" />
   </bean>
-      
+
   <bean id="kenny" parent="baseSaxophonist" />
-  
+
 </beans>

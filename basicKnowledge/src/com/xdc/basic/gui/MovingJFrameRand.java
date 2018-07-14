@@ -22,7 +22,6 @@ public class MovingJFrameRand extends JFrame
 
     class moveJFrame extends Thread
     {
-
         MovingJFrameRand tjf;
         Dimension        dim     = Toolkit.getDefaultToolkit().getScreenSize();
         int              widthX  = 0;
@@ -57,7 +56,6 @@ public class MovingJFrameRand extends JFrame
                 tjf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 System.out.println(widthX);
-
             }
         }
     }

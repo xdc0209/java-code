@@ -1,5 +1,6 @@
 package headfirst.factory.pizzaaf;
 
-public interface Dough {
-	public String toString();
+public interface Dough
+{
+    public String toString();
 }

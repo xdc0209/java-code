@@ -192,7 +192,6 @@ public class Server
 
         // Get attribute values
         printSimpleAttributes(mbs, mbeanObjectName);
-
     }
 
     private static void printSimpleAttributes(MBeanServer mbs, ObjectName mbeanObjectName)

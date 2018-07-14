@@ -24,7 +24,7 @@ public class Main
 
             CallerFrameWork.init("int.dpool.sina.com.cn");
             IpCaller ipCaller = CallerFactory.getCaller(IpCaller.class);
-            GetIpResponse ip = ipCaller.getIp("218.4.255.255");
+            GetIpResponse ip = ipCaller.getIp("114.114.114.114");
             System.out.println(ReflectionToStringBuilder.toString(ip, ToStringStyle.MULTI_LINE_STYLE));
             CallerFrameWork.destroy();
         }

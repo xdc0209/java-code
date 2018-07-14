@@ -11,7 +11,6 @@ import java.util.Date;
 
 public class QueueSample
 {
-
     private final Date   date;
     private final int    size;
     private final String head;

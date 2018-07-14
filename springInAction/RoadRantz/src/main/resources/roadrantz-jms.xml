@@ -2,19 +2,19 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
   <!-- Marketing gateway implementation, as declared on page 399.   -->
-  <!-- 
+  <!--
   <bean id="marketingGateway"
       class="com.roadrantz.marketing.RantzMarketingGatewayImpl10_3">
     <property name="jmsTemplate" ref="jmsTemplate" />
     <property name="destination" ref="rantzDestination" />
   </bean>
   -->
-  
-  <!-- The JmsTemplate, as originally configured on page 397 and later 
+
+  <!-- The JmsTemplate, as originally configured on page 397 and later
        tweaked throughout the chapter.
    -->
   <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
@@ -22,14 +22,14 @@
     <property name="defaultDestination" ref="rantzDestination" /> <!-- Added on page 399 -->
     <property name="messageConverter" ref="motoristConverter" />  <!-- Added on page 405 -->
   </bean>
-  
+
   <!-- Message converter bean, as configured on page 405. -->
   <bean id="motoristConverter"
       class="com.roadrantz.marketing.MotoristMessageConverter" />
-      
+
   <!-- MarketingMdp, as configured on page 410 -->
   <bean id="rantzMdp" class="com.roadrantz.marketing.MarketingMdp10_7" />
-      
+
   <!-- DefaultMessageListenerContainer, as shown on page 411 -->
   <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
     <property name="connectionFactory" ref="connectionFactory" />
@@ -38,17 +38,17 @@
     <property name="messageListener" ref="rantzMdp" />
     <property name="transactionManager" ref="jmsTransactionManager" />
   </bean>
-  
+
   <!-- JMS transaction manager, as shown on page 411 -->
-  <bean id="jmsTransactionManager" 
+  <bean id="jmsTransactionManager"
       class="org.springframework.jms.connection.JmsTransactionManager">
     <property name="connectionFactory" ref="connectionFactory" />
   </bean>
-  
+
   <bean id="rantzMdp2" class="com.roadrantz.marketing.MarketingMdp" />
-  
+
   <!-- MessageListenerAdapter, as configured on page 413 -->
-  <bean id="pureMdp" 
+  <bean id="pureMdp"
       class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
     <property name="delegate" ref="rantzMdp2" />
     <property name="defaultListenerMethod" value="processMotoristInfo" />

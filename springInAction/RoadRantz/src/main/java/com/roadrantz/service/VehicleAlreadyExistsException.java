@@ -1,5 +1,8 @@
 package com.roadrantz.service;
 
-public class VehicleAlreadyExistsException extends Exception {
-  public VehicleAlreadyExistsException() {}
+public class VehicleAlreadyExistsException extends Exception
+{
+    public VehicleAlreadyExistsException()
+    {
+    }
 }

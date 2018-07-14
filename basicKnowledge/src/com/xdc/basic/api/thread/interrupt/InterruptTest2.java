@@ -12,7 +12,7 @@ public class InterruptTest2 implements Runnable
         // 最近写了些多线程的程序，用Thread.sleep()的时候有时会碰到InterruptedException。查了一些资料，下面是我自己的一些理解。
         //
         // 阻塞方法
-        // 一些多线程相关的方法是阻塞方法，比如Thread.sleep(), Thread.wait(), Thread.join()。
+        // 某些多线程相关的方法是阻塞方法，比如Thread.sleep(), Thread.wait(), Thread.join()。
         // 这些方法的执行通常需要比较长的时间来完成，当代码执行到阻塞方法时，一般要等待该方法返回后
         // 才能继续往下执行，而InterruptedException提供了一种特殊的机制提前结束阻塞方法。
         //
@@ -28,7 +28,7 @@ public class InterruptTest2 implements Runnable
         //
         // 与线程中断相关的所有方法
         // boolean java.lang.Thread.isInterrupted() 判断线程对象是否处于中断(或者说中断变量是否为true)
-        // boolean java.lang.Thread.interrupted() 判断线程对象是否处于中断(或者说中断变量是否为true)，并清除中断，使线程处于非中断状态(或者说将中断变量置为false)。静态方法interrupted会将当前线程的中断状态清除，但这个方法的命名极不直观，很容易造成误解，需要特别注意。一般的处理中断的策略是：在代码的合适位置(while死循环中的某处)，判断中断状态，如果处于中断，则先要清除中断，再对此次中断做对应的逻辑处理(如终止while死循环)。清除中断的原因是避免外界的一次异常中断信号，触发本线程的多次处理。
+        // boolean java.lang.Thread.interrupted() 判断线程对象是否处于中断(或者说中断变量是否为true)，并清除中断，使线程处于非中断状态(或者说将中断变量置为false)。静态方法interrupted会将当前线程的中断状态清除，但这个方法的命名极不直观，很容易造成误解，需要特别注意。一般的处理中断的策略是：在代码的合适位置(如循环代码中的某处)，判断中断状态，如果处于中断，则先要清除中断，再对此次中断做对应的逻辑处理(如终止循环)。清除中断的原因是避免外界的一次异常中断信号，触发本线程的多次处理。
         // void java.lang.Thread.interrupt() 触发线程对象的中断，即使线程处于中断状态(或者说将中断变量置为true)
         //
         // 使用场景

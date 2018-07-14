@@ -23,64 +23,66 @@ import com.springinaction.poker.Suit;
  * 
  * @author wallsc
  */
-public class EvaluateHandJDomEndpoint extends AbstractJDomPayloadEndpoint
-                  implements InitializingBean {
+public class EvaluateHandJDomEndpoint extends AbstractJDomPayloadEndpoint implements InitializingBean
+{
+    private Namespace namespace;
+    private XPath     cardsXPath;
+    private XPath     suitXPath;
+    private XPath     faceXPath;
 
-   private Namespace namespace;
-   private XPath cardsXPath;
-   private XPath suitXPath;
-   private XPath faceXPath;
+    @Override
+    protected Element invokeInternal(Element element) throws Exception
+    {
+        Card cards[] = extractCardsFromRequest(element);
+        PokerHand pokerHand = new PokerHand();
+        pokerHand.setCards(cards);
 
-   @Override
-   protected Element invokeInternal(Element element) throws Exception {
+        PokerHandType handType = pokerHandEvaluator.evaluateHand(pokerHand);
+        return createResponse(handType);
+    }
 
-      Card cards[] = extractCardsFromRequest(element);
-      PokerHand pokerHand = new PokerHand();
-      pokerHand.setCards(cards);
+    private Element createResponse(PokerHandType pokerHand)
+    {
+        Element responseElement = new Element("PokerHandResponse", namespace);
+        responseElement.addContent(new Element("handName", namespace).setText(pokerHand.toString()));
+        return responseElement;
+    }
 
-      PokerHandType handType = pokerHandEvaluator.evaluateHand(pokerHand);
-      return createResponse(handType);
-   }
+    private Card[] extractCardsFromRequest(Element element) throws JDOMException
+    {
+        Card[] cards = new Card[5];
 
-   private Element createResponse(PokerHandType pokerHand) {
-      Element responseElement = new Element("PokerHandResponse", namespace);
-      responseElement.addContent(new Element("handName", namespace)
-                        .setText(pokerHand.toString()));
-      return responseElement;
-   }
+        List cardElements = cardsXPath.selectNodes(element);
 
-   private Card[] extractCardsFromRequest(Element element) throws JDOMException {
-      Card[] cards = new Card[5];
+        for (int i = 0; i < cardElements.size(); i++)
+        {
+            Element cardElement = (Element) cardElements.get(i);
+            Suit suit = Suit.valueOf(suitXPath.valueOf(cardElement));
+            Face face = Face.valueOf(faceXPath.valueOf(cardElement));
+            cards[i] = new Card();
+            cards[i].setFace(face);
+            cards[i].setSuit(suit);
+        }
 
-      List cardElements = cardsXPath.selectNodes(element);
+        return cards;
+    }
 
-      for (int i = 0; i < cardElements.size(); i++) {
-         Element cardElement = (Element) cardElements.get(i);
-         Suit suit = Suit.valueOf(suitXPath.valueOf(cardElement));
-         Face face = Face.valueOf(faceXPath.valueOf(cardElement));
-         cards[i] = new Card();
-         cards[i].setFace(face);
-         cards[i].setSuit(suit);
-      }
+    public void afterPropertiesSet() throws Exception
+    {
+        namespace = Namespace.getNamespace("poker", "http://www.springinaction.com/poker/schemas");
+        cardsXPath = XPath.newInstance("/poker:EvaluateHandRequest/*");
+        cardsXPath.addNamespace(namespace);
+        faceXPath = XPath.newInstance("poker:face");
+        faceXPath.addNamespace(namespace);
+        suitXPath = XPath.newInstance("poker:suit");
+        suitXPath.addNamespace(namespace);
+    }
 
-      return cards;
-   }
+    // injected
+    private PokerHandEvaluator pokerHandEvaluator;
 
-   public void afterPropertiesSet() throws Exception {
-      namespace = Namespace.getNamespace("poker",
-                        "http://www.springinaction.com/poker/schemas");
-      cardsXPath = XPath.newInstance("/poker:EvaluateHandRequest/*");
-      cardsXPath.addNamespace(namespace);
-      faceXPath = XPath.newInstance("poker:face");
-      faceXPath.addNamespace(namespace);
-      suitXPath = XPath.newInstance("poker:suit");
-      suitXPath.addNamespace(namespace);
-   }
-
-   // injected
-   private PokerHandEvaluator pokerHandEvaluator;
-
-   public void setPokerHandEvaluator(PokerHandEvaluator pokerHandEvaluator) {
-      this.pokerHandEvaluator = pokerHandEvaluator;
-   }
+    public void setPokerHandEvaluator(PokerHandEvaluator pokerHandEvaluator)
+    {
+        this.pokerHandEvaluator = pokerHandEvaluator;
+    }
 }

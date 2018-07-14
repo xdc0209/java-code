@@ -2,14 +2,14 @@ package com.xdc.basic.api.apache.commons.chain.framwork.process;
 
 import java.util.concurrent.ThreadFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class MessageProcess implements Runnable
 {
-    private static Log log       = LogFactory.getLog(MessageProcess.class);
+    private static Logger log       = LoggerFactory.getLogger(MessageProcess.class);
 
-    private boolean    isRunning = true;
+    private boolean       isRunning = true;
 
     public boolean isRunning()
     {
@@ -32,7 +32,7 @@ public abstract class MessageProcess implements Runnable
             }
             catch (Exception e)
             {
-                log.error(e);
+                log.error("Handle message fail.", e);
             }
         }
     }

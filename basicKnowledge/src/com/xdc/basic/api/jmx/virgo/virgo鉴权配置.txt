@@ -2,7 +2,7 @@ xdc0209@ubuntu:/home/develop/virgo-kernel-3.6.2.RELEASE/configuration
 
 （1）用户密码设置
 用户为admin、密码为springsource，admin的角色为admin
-xdc0209@ubuntu:/home/develop/virgo-kernel-3.6.2.RELEASE/configuration$ cat org.eclipse.virgo.kernel.users.properties 
+xdc0209@ubuntu:/home/develop/virgo-kernel-3.6.2.RELEASE/configuration$ cat org.eclipse.virgo.kernel.users.properties
 ##################
 # User definitions
 ##################
@@ -15,6 +15,6 @@ user.admin=springsource
 role.admin=admin
 
 （2）（权限设置）
-admin的权限为readwrite。（取值范围：readwrite对MBean的读写权限。 readonly对MBean只读权限。） 
-xdc0209@ubuntu:/home/develop/virgo-kernel-3.6.2.RELEASE/configuration$ cat org.eclipse.virgo.kernel.jmxremote.access.properties 
+admin的权限为readwrite。（取值范围：readwrite对MBean的读写权限。 readonly对MBean只读权限。）
+xdc0209@ubuntu:/home/develop/virgo-kernel-3.6.2.RELEASE/configuration$ cat org.eclipse.virgo.kernel.jmxremote.access.properties
 admin=readwrite

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    elementFormDefault="qualified" 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
     targetNamespace=
-        "http://www.springinaction.com/poker/schemas" 
+        "http://www.springinaction.com/poker/schemas"
     xmlns:schemas=
         "http://www.springinaction.com/poker/schemas">
   <xs:element name="EvaluateHandRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="5" maxOccurs="5" 
+        <xs:element minOccurs="5" maxOccurs="5"
             ref="schemas:card"/> <!-- Changed maxOccurs...added minOccurs -->
       </xs:sequence>
     </xs:complexType>

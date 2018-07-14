@@ -34,7 +34,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory
 {
-
     private final static QName _Sex_QNAME  = new QName("", "sex");
     private final static QName _Age_QNAME  = new QName("", "age");
     private final static QName _Name_QNAME = new QName("", "name");
@@ -96,5 +95,4 @@ public class ObjectFactory
     {
         return new JAXBElement<String>(_Name_QNAME, String.class, null, value);
     }
-
 }

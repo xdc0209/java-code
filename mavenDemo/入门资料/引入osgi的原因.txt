@@ -15,4 +15,3 @@ OSGi缺点：
 使用Spring Framework特性机制来管理服务
 扩张Embedded web containers，支持部署war等
 ...
-

@@ -25,4 +25,3 @@ Many SSL clients, notably JDK 6, use the SSLv2Hello protocol to handshake with t
 However, in Apache, if you disable SSLv3 support, this apparently removes support for the SSLv2Hello protocol. Apache Tomcat has explicit support for SSLv2Hello; that is, you can enable that, but not enable SSLv3.
 
 Is there any way to do this in Apache?
-

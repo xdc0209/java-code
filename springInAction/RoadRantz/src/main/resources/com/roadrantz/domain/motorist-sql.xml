@@ -10,19 +10,19 @@
     from motorist
     where id = #value#
   </select>
-  
-  <select id="findDriverByEmail" 
-      resultClass="com.roadrantz.domain.Motorist">    
+
+  <select id="findDriverByEmail"
+      resultClass="com.roadrantz.domain.Motorist">
     select id, firstName, lastName, email
     from motorist
     where email = #value#
   </select>
-  
+
   <insert id="insertMotoris" parameterClass="com.roadrantz.domain.Motorist">
 	  	<selectKey keyProperty="id" resultClass="java.lang.Integer">
 			call identity()
-		</selectKey>	
-		
+		</selectKey>
+
     insert into Motorist (id, firstName, lastName, email, password)
                 values (null, #firstName#, #lastName#, #email#, #password#)
   </insert>

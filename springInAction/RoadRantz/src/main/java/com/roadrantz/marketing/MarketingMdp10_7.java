@@ -10,25 +10,29 @@ import javax.jms.MessageListener;
  * 
  * @author wallsc
  */
-public class MarketingMdp10_7 implements MessageListener {
+public class MarketingMdp10_7 implements MessageListener
+{
+    public void onMessage(Message message)
+    {
+        MapMessage mapMessage = (MapMessage) message;
 
-   public void onMessage(Message message) {
-      MapMessage mapMessage = (MapMessage) message;
+        try
+        {
+            SpammedMotorist motorist = new SpammedMotorist();
+            motorist.setFirstName(mapMessage.getString("firstName"));
+            motorist.setLastName(mapMessage.getString("lastName"));
+            motorist.setEmail(mapMessage.getString("email"));
 
-      try {
-         SpammedMotorist motorist = new SpammedMotorist();
-         motorist.setFirstName(mapMessage.getString("firstName"));
-         motorist.setLastName(mapMessage.getString("lastName"));
-         motorist.setEmail(mapMessage.getString("email"));
+            processMotoristInfo(motorist);
+        }
+        catch (JMSException e)
+        {
+            // handle--somehow
+        }
+    }
 
-         processMotoristInfo(motorist);
-      }
-      catch (JMSException e) {
-         // handle--somehow
-      }
-   }
-
-   private void processMotoristInfo(SpammedMotorist motorist) {
-   // ...
-   }
+    private void processMotoristInfo(SpammedMotorist motorist)
+    {
+        // ...
+    }
 }

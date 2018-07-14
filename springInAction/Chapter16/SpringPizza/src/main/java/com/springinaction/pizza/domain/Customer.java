@@ -3,81 +3,98 @@ package com.springinaction.pizza.domain;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Customer implements Serializable {
-  private Integer id;
-  private String name;
-  private String streetAddress;
-  private String city;
-  private String state;
-  private String zipCode;
-  private String phoneNumber;
-  private boolean inDeliveryArea;
-  
-  public Customer() {}
+public class Customer implements Serializable
+{
+    private Integer id;
+    private String  name;
+    private String  streetAddress;
+    private String  city;
+    private String  state;
+    private String  zipCode;
+    private String  phoneNumber;
+    private boolean inDeliveryArea;
 
-  public String getCity() {
-    return city;
-  }
+    public Customer()
+    {
+    }
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+    public String getCity()
+    {
+        return city;
+    }
 
-  public Integer getId() {
-    return id;
-  }
+    public void setCity(String city)
+    {
+        this.city = city;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public Integer getId()
+    {
+        return id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String getName()
+    {
+        return name;
+    }
 
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
 
-  public String getState() {
-    return state;
-  }
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
 
-  public void setState(String state) {
-    this.state = state;
-  }
+    public String getState()
+    {
+        return state;
+    }
 
-  public String getStreetAddress() {
-    return streetAddress;
-  }
+    public void setState(String state)
+    {
+        this.state = state;
+    }
 
-  public void setStreetAddress(String streetAddress) {
-    this.streetAddress = streetAddress;
-  }
+    public String getStreetAddress()
+    {
+        return streetAddress;
+    }
 
-  public String getZipCode() {
-    return zipCode;
-  }
+    public void setStreetAddress(String streetAddress)
+    {
+        this.streetAddress = streetAddress;
+    }
 
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
-  }
+    public String getZipCode()
+    {
+        return zipCode;
+    }
 
-  public boolean isInDeliveryArea() {
-    return inDeliveryArea;
-  }
+    public void setZipCode(String zipCode)
+    {
+        this.zipCode = zipCode;
+    }
 
-  public void setInDeliveryArea(boolean inDeliveryArea) {
-    this.inDeliveryArea = inDeliveryArea;
-  }
-  
-  
+    public boolean isInDeliveryArea()
+    {
+        return inDeliveryArea;
+    }
+
+    public void setInDeliveryArea(boolean inDeliveryArea)
+    {
+        this.inDeliveryArea = inDeliveryArea;
+    }
 }

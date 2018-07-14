@@ -42,7 +42,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientChunkEncodedPost
 {
-
     public static void main(String[] args) throws Exception
     {
         if (args.length != 1)
@@ -93,5 +92,4 @@ public class ClientChunkEncodedPost
             httpclient.close();
         }
     }
-
 }

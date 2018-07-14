@@ -2,7 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
   <bean id="vehicleRants.rss"
@@ -12,10 +12,10 @@
     <property name="author" value="RoadRantz.com" />
     <property name="link" value="http://www.roadrantz.com" />
   </bean>
-  
+
   <bean id="vehicleRants.xls"
       class="com.roadrantz.mvc.RantExcelView" />
-  
+
   <bean id="vehicleRants.pdf"
       class="com.roadrantz.mvc.RantPdfView" />
 </beans>

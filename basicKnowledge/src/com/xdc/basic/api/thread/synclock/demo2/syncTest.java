@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 
 public class syncTest
 {
-
     public static void main(String[] args)
     {
         ExecutorService pool = Executors.newCachedThreadPool();
@@ -72,5 +71,4 @@ public class syncTest
             }
         });
     }
-
 }

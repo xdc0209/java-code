@@ -1,4 +1,4 @@
-Osgi框架：equinox
+OSGi框架：equinox
 ---控制 OSGi 框架---
     launch - 启动 OSGi 框架
     shutdown - 关闭 OSGi 框架

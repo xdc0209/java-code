@@ -9,7 +9,7 @@
   <head>
     <title>Motorist Vehicles</title>
   </head>
-  
+
   <body>
     <h2>Motorist Vehicles vehicles (Step 2 of 3)</h2>
 
@@ -24,7 +24,7 @@
       <li><c:out value="${vehicle.state}" /> - <c:out value="${vehicle.plateNumber}" /></li>
       </c:forEach>
       </ul>
-      
+
       <hr />
       State: <rr:stateSelection path="vehicles[${nextVehicle}].state" /><br/>
       Plate: <form:input path="vehicles[${nextVehicle}].plateNumber" /><br/>

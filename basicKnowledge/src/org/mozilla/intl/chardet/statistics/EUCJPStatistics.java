@@ -193,7 +193,6 @@ public class EUCJPStatistics extends nsEUCStatistics
                 0.000000f, // FreqH[fc]
                 0.000080f, // FreqH[fd]
                 0.000000f // FreqH[fe]
-
         };
         mFirstByteStdDev = 0.050407f; // Lead Byte StdDev
         mFirstByteMean = 0.010638f; // Lead Byte Mean
@@ -293,7 +292,6 @@ public class EUCJPStatistics extends nsEUCStatistics
                 0.012127f, // FreqL[fc]
                 0.000718f, // FreqL[fd]
                 0.007380f // FreqL[fe]
-
         };
         mSecondByteStdDev = 0.028247f; // Trail Byte StdDev
         mSecondByteMean = 0.010638f; // Trail Byte Mean

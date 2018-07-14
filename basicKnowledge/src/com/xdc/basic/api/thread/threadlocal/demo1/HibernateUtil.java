@@ -1,17 +1,18 @@
 package com.xdc.basic.api.thread.threadlocal.demo1;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("deprecation")
 public class HibernateUtil
 {
-    private static Log                  log = LogFactory.getLog(HibernateUtil.class);
-    private static final SessionFactory sessionFactory;                              // 定义SessionFactory
+    private static Logger               log = LoggerFactory.getLogger(HibernateUtil.class);
+
+    private static final SessionFactory sessionFactory;                                    // 定义SessionFactory
 
     static
     {

@@ -46,7 +46,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @XmlRootElement(name = "users")
 public class Users
 {
-
     @XmlElement(required = true)
     protected List<User> user;
 

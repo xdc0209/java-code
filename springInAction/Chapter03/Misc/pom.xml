@@ -22,7 +22,7 @@
           <target>1.5</target>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -44,12 +44,12 @@
                 <java classname="com.springinaction.chapter03.propeditor.PropertyEditorMain">
                   <classpath>
                     <path refid="maven.runtime.classpath" />
-                  </classpath> 
+                  </classpath>
                 </java>
                 <java classname="com.springinaction.chapter03.postprocessor.FuddMain">
                   <classpath>
                     <path refid="maven.runtime.classpath" />
-                  </classpath> 
+                  </classpath>
                 </java>
                 <echo>====================================================================</echo>
                 <echo>=============================== FINISHED ===========================</echo>
@@ -61,7 +61,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
     </plugins>
   </build>
 

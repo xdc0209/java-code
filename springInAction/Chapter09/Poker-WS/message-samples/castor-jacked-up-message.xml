@@ -1,11 +1,11 @@
 <!-- NOTE: This was reformatted for readability -->
-<soapenv:Envelope 
-    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <soapenv:Body>
     <tns: xmlns:tns="http://www.habuma.com/poker/schemas">
-      <tns: xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      <tns: xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:type="java:java.lang.String" xmlns:tns="handName">
         NONE
       </tns:>

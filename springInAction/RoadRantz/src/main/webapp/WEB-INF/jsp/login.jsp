@@ -3,12 +3,12 @@
 <html>
   <head><title>Login</title></head>
   <body>
-  
+
     <table border="1"><tr><td>
     <c:if test="${not empty param.login_error}">
       <font color="red">Login failed...try again</font><br><br>
     </c:if>
-  
+
     <form method="POST" action="<c:url value='j_acegi_security_check'/>">
       <b>Username:  </b><input type="text" name="j_username"><br>
       <b>Password:  </b><input type="password" name="j_password"><br>

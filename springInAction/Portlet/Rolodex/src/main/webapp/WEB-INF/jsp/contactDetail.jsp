@@ -13,7 +13,7 @@
 <a href="<portlet:renderURL>
            <portlet:param name="action" value="contacts"/>
            </portlet:renderURL>">Contact List</a>
-           
+
 <br>
 <br>
 
@@ -27,4 +27,3 @@ ${contact.city}, ${contact.state} ${contact.zipCode}<br>
 <b>E-mail: </b>${contact.email}<br>
 
 <br>
-

@@ -26,67 +26,71 @@ import com.roadrantz.service.RantService;
  * 
  * @author wallsc
  */
-public class RantsForVehicleControllerTest2 extends AbstractModelAndViewTests {
-   private static final String TEST_STATE = "TX";
-   private static final String TEST_PLATE_NUMBER = "ABC123";
-   private RantsForVehicleController controller;
+public class RantsForVehicleControllerTest2 extends AbstractModelAndViewTests
+{
+    private static final String       TEST_STATE        = "TX";
+    private static final String       TEST_PLATE_NUMBER = "ABC123";
+    private RantsForVehicleController controller;
 
-   public RantsForVehicleControllerTest2() {}
+    public RantsForVehicleControllerTest2()
+    {
+    }
 
-   private List<Rant> expectedRants;
+    private List<Rant> expectedRants;
 
-   /**
-    * Setups up the test with a mock rant service.
-    * 
-    * From Listing B.2
-    */
-   @Override
-   protected void setUp() throws Exception {
-      controller = new RantsForVehicleController();
-      controller.setCommandClass(Vehicle.class);
-      RantService rantService = createMock(RantService.class);
-      Vehicle testVehicle = new Vehicle();
-      testVehicle.setState(TEST_STATE);
-      testVehicle.setPlateNumber(TEST_PLATE_NUMBER);
-      expectedRants = new ArrayList<Rant>();
-      Rant rant = new Rant();
-      rant.setVehicle(testVehicle);
-      rant.setRantText("Rant 1");
-      expectedRants.add(rant);
-      rant = new Rant();
-      rant.setVehicle(testVehicle);
-      rant.setRantText("Rant 2");
-      expectedRants.add(rant);
-      expect(rantService.getRantsForVehicle(testVehicle)).andReturn(
-                        expectedRants);
-      replay(rantService);
-      controller.setRantService(rantService);
-   }
+    /**
+     * Setups up the test with a mock rant service.
+     * 
+     * From Listing B.2
+     */
+    @Override
+    protected void setUp() throws Exception
+    {
+        controller = new RantsForVehicleController();
+        controller.setCommandClass(Vehicle.class);
+        RantService rantService = createMock(RantService.class);
+        Vehicle testVehicle = new Vehicle();
+        testVehicle.setState(TEST_STATE);
+        testVehicle.setPlateNumber(TEST_PLATE_NUMBER);
+        expectedRants = new ArrayList<Rant>();
+        Rant rant = new Rant();
+        rant.setVehicle(testVehicle);
+        rant.setRantText("Rant 1");
+        expectedRants.add(rant);
+        rant = new Rant();
+        rant.setVehicle(testVehicle);
+        rant.setRantText("Rant 2");
+        expectedRants.add(rant);
+        expect(rantService.getRantsForVehicle(testVehicle)).andReturn(expectedRants);
+        replay(rantService);
+        controller.setRantService(rantService);
+    }
 
-   @Override
-   protected void tearDown() throws Exception {
-      super.tearDown();
-   }
+    @Override
+    protected void tearDown() throws Exception
+    {
+        super.tearDown();
+    }
 
-   public void testSimpleCase() throws Exception {
-      MockHttpServletRequest request = new MockHttpServletRequest();
-      request.setMethod("POST");
-      request.addParameter("state", TEST_STATE);
-      request.addParameter("plateNumber", TEST_PLATE_NUMBER);
-      request
-                        .setRequestURI("http://localhost:8080/roadrantz/rantsForVehicle.htm");
-      HttpServletResponse response = new MockHttpServletResponse();
-      ModelAndView modelAndView = controller.handleRequest(request, response);
-      Rant rant = new Rant();
-      rant.setId(1);
-      Vehicle vehicle = new Vehicle();
-      vehicle.setState("TX");
-      vehicle.setPlateNumber("ABC123");
-      rant.setVehicle(vehicle);
-      rant.setRantText("This is a test rant");
-      assertNotNull("ModelAndView should not be null", modelAndView);
-      assertViewName(modelAndView, "vehicleRants");
-      assertModelAttributeAvailable(modelAndView, "rants");
-      assertCompareListModelAttribute(modelAndView, "rants", expectedRants);
-   }
+    public void testSimpleCase() throws Exception
+    {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setMethod("POST");
+        request.addParameter("state", TEST_STATE);
+        request.addParameter("plateNumber", TEST_PLATE_NUMBER);
+        request.setRequestURI("http://localhost:8080/roadrantz/rantsForVehicle.htm");
+        HttpServletResponse response = new MockHttpServletResponse();
+        ModelAndView modelAndView = controller.handleRequest(request, response);
+        Rant rant = new Rant();
+        rant.setId(1);
+        Vehicle vehicle = new Vehicle();
+        vehicle.setState("TX");
+        vehicle.setPlateNumber("ABC123");
+        rant.setVehicle(vehicle);
+        rant.setRantText("This is a test rant");
+        assertNotNull("ModelAndView should not be null", modelAndView);
+        assertViewName(modelAndView, "vehicleRants");
+        assertModelAttributeAvailable(modelAndView, "rants");
+        assertCompareListModelAttribute(modelAndView, "rants", expectedRants);
+    }
 }

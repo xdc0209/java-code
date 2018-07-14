@@ -45,7 +45,6 @@ import org.apache.http.impl.client.HttpRequestFutureTask;
 
 public class ClientWithRequestFuture
 {
-
     public static void main(String[] args) throws Exception
     {
         // the simplest way to create a HttpAsyncClientWithFuture

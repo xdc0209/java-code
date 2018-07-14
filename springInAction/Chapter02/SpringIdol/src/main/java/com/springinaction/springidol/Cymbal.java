@@ -1,10 +1,13 @@
 package com.springinaction.springidol;
 
+public class Cymbal implements Instrument
+{
+    public Cymbal()
+    {
+    }
 
-public class Cymbal implements Instrument {
-  public Cymbal() {}
-  
-  public void play() {
-    System.out.println("CRASH CRASH CRASH");
-  }
+    public void play()
+    {
+        System.out.println("CRASH CRASH CRASH");
+    }
 }

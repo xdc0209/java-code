@@ -13,26 +13,26 @@ import com.springinaction.poker.PokerHandType;
  * 
  * @author wallsc
  */
-public class EvaluateHandMarshallingEndpoint extends
-                  AbstractMarshallingPayloadEndpoint {
+public class EvaluateHandMarshallingEndpoint extends AbstractMarshallingPayloadEndpoint
+{
+    @Override
+    protected Object invokeInternal(Object object) throws Exception
+    {
+        EvaluateHandRequest request = (EvaluateHandRequest) object;
 
-   @Override
-   protected Object invokeInternal(Object object) throws Exception {
+        PokerHand pokerHand = new PokerHand();
+        pokerHand.setCards(request.getHand());
 
-      EvaluateHandRequest request = (EvaluateHandRequest) object;
+        PokerHandType pokerHandType = pokerHandEvaluator.evaluateHand(pokerHand);
 
-      PokerHand pokerHand = new PokerHand();
-      pokerHand.setCards(request.getHand());
+        return new EvaluateHandResponse(pokerHandType);
+    }
 
-      PokerHandType pokerHandType = pokerHandEvaluator.evaluateHand(pokerHand);
+    // injected
+    private PokerHandEvaluator pokerHandEvaluator;
 
-      return new EvaluateHandResponse(pokerHandType);
-   }
-
-   // injected
-   private PokerHandEvaluator pokerHandEvaluator;
-
-   public void setPokerHandEvaluator(PokerHandEvaluator pokerHandEvaluator) {
-      this.pokerHandEvaluator = pokerHandEvaluator;
-   }
+    public void setPokerHandEvaluator(PokerHandEvaluator pokerHandEvaluator)
+    {
+        this.pokerHandEvaluator = pokerHandEvaluator;
+    }
 }

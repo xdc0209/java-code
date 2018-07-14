@@ -37,5 +37,4 @@ public class Album
     {
         this.name = name;
     }
-
 }

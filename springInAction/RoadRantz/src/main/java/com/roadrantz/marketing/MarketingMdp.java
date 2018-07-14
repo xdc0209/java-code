@@ -5,8 +5,13 @@ package com.roadrantz.marketing;
  * 
  * @author wallsc
  */
-public class MarketingMdp implements MarketingService {
-   public MarketingMdp() {}
+public class MarketingMdp implements MarketingService
+{
+    public MarketingMdp()
+    {
+    }
 
-   public void processDriverInfo(SpammedMotorist driver) {}
+    public void processDriverInfo(SpammedMotorist driver)
+    {
+    }
 }

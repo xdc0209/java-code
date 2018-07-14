@@ -16,7 +16,6 @@ import com.xdc.basic.api.rmi.demo.intf.IHelloRMI;
  */
 public class RMIClient
 {
-
     public static void main(String[] args)
     {
         Scanner cin = new Scanner(System.in);
@@ -32,7 +31,6 @@ public class RMIClient
             IHelloRMI iRmi = (IHelloRMI) Naming.lookup(String.format("rmi://%s:%s/My_RMI", ip, port));
 
             System.out.println(iRmi.sayHello());
-
         }
         catch (MalformedURLException e)
         {

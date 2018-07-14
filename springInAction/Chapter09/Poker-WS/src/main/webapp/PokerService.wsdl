@@ -14,7 +14,7 @@
          <xs:element name="EvaluateHandRequest">
             <xs:complexType>
                <xs:sequence>
-                  <xs:element minOccurs="5" maxOccurs="5" ref="schemas:card"/> 
+                  <xs:element minOccurs="5" maxOccurs="5" ref="schemas:card"/>
                   <!-- Changed maxOccurs...added minOccurs -->
       </xs:sequence>
             </xs:complexType>
@@ -27,9 +27,9 @@
                </xs:sequence>
             </xs:complexType>
          </xs:element>
-         <xs:element name="suit" type="xs:string"/> 
+         <xs:element name="suit" type="xs:string"/>
          <!-- Changed from NCName to string -->
-  <xs:element name="face" type="xs:string"/> 
+  <xs:element name="face" type="xs:string"/>
          <!-- Changed from NCName to string -->
   <xs:element name="EvaluateHandResponse">
             <xs:complexType>

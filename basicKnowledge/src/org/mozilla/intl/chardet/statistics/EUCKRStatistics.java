@@ -193,7 +193,6 @@ public class EUCKRStatistics extends nsEUCStatistics
                 0.000000f, // FreqH[fc]
                 0.000000f, // FreqH[fd]
                 0.000000f // FreqH[fe]
-
         };
         mFirstByteStdDev = 0.025593f; // Lead Byte StdDev
         mFirstByteMean = 0.010638f; // Lead Byte Mean
@@ -293,7 +292,6 @@ public class EUCKRStatistics extends nsEUCStatistics
                 0.023702f, // FreqL[fc]
                 0.003710f, // FreqL[fd]
                 0.001855f // FreqL[fe]
-
         };
         mSecondByteStdDev = 0.013937f; // Trail Byte StdDev
         mSecondByteMean = 0.010638f; // Trail Byte Mean

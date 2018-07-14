@@ -7,16 +7,16 @@
   xmlns:flow=
     "http://www.springframework.org/schema/webflow-config"
   xsi:schemaLocation=
-     "http://www.springframework.org/schema/beans 
+     "http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
       http://www.springframework.org/schema/webflow-config
       http://www.springframework.org/schema/webflow-config/spring-webflow-config-1.0.xsd">
 
   <!-- Verbose (pre-Spring 2.0 configuration of flow executor, as shown on page 587 -->
   <!--
-  <bean id="flowExecutor" 
+  <bean id="flowExecutor"
       class="org.springframework.webflow.config.FlowExecutorFactoryBean">
-    <property name="definitionLocator" 
+    <property name="definitionLocator"
         ref="flowRegistry"/>
     <property name="executionAttributes">
       <map>
@@ -25,12 +25,12 @@
         </entry>
       </map>
     </property>
-    <property name="repositoryType" 
+    <property name="repositoryType"
         value="CONTINUATION"/>
   </bean>
   -->
   <!-- Verbose (pre-Spring 2.0) flow registry, shown on page 588 -->
-  <!--   
+  <!--
   <bean id="flowRegistry"
       class="org.springframework.webflow.engine.builder.xml.XmlFlowRegistryFactoryBean">
     <property name="flowLocations">
@@ -38,66 +38,66 @@
         <value>/WEB-INF/flows/**/*-flow.xml</value>
       </list>
     </property>
-  </bean>  
+  </bean>
   -->
 
   <!-- Flow executor, shown on page 587 -->
-  <flow:executor id="flowExecutor" 
+  <flow:executor id="flowExecutor"
       registry-ref="flowRegistry" />
-  
+
   <!-- Flow registry, shown on page 588 -->
   <flow:registry id="flowRegistry">
-    <flow:location 
+    <flow:location
         path="/WEB-INF/flows/**/*-flow.xml" />
   </flow:registry>
-  
+
   <!-- ====================
            Flow Actions
-       ==================== -->  
-  <!-- 
+       ==================== -->
+  <!--
     Bean that implements the customer lookup action.
-    
+
     As described on page 597
-   -->       
+   -->
   <bean id="lookupCustomerAction"
       class="com.springinaction.pizza.flow.LookupCustomerAction">
-    <property name="customerService" 
+    <property name="customerService"
         ref="customerService" />
   </bean>
-  
-  <!-- 
+
+  <!--
     Form action that is used to take new customer information and
     bind it to a Customer object.
-    
+
     As shown on page 600.
    -->
-  <bean id="customerFormAction" 
+  <bean id="customerFormAction"
       class="org.springframework.webflow.action.FormAction">
     <property name="formObjectName" value="customer" />
-    <property name="formObjectClass" 
+    <property name="formObjectClass"
         value="com.springinaction.pizza.domain.Customer" />
     <property name="formObjectScope" value="REQUEST" />
   </bean>
 
-  <!-- 
+  <!--
     Form action that is used to take pizza selection information and
     bind it to a Pizza object.
-    
+
     As shown on page 604
    -->
-  <bean id="pizzaFormAction" 
+  <bean id="pizzaFormAction"
       class="org.springframework.webflow.action.FormAction">
     <property name="formObjectName" value="pizza" />
-    <property name="formObjectClass" 
+    <property name="formObjectClass"
         value="com.springinaction.pizza.domain.Pizza" />
     <property name="formObjectScope" value="REQUEST" />
   </bean>
 
-  
-  <bean id="checkDeliveryAreaAction" 
+
+  <bean id="checkDeliveryAreaAction"
       class="com.springinaction.pizza.flow.CheckDeliveryAreaAction" />
-      
-  <bean id="specialtyBuilder" 
+
+  <bean id="specialtyBuilder"
       class="com.springinaction.pizza.flow.SpecialtyPizzaBuilder" />
-      
+
 </beans>

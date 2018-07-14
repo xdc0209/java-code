@@ -11,17 +11,22 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
  *
  * @author craig.walls
  */
-public class DailyRantEmailJob extends QuartzJobBean {
-  public DailyRantEmailJob() {}
+public class DailyRantEmailJob extends QuartzJobBean
+{
+    public DailyRantEmailJob()
+    {
+    }
 
-  protected void executeInternal(JobExecutionContext jobContext)
-      throws JobExecutionException {
-    rantService.sendDailyRantEmails();
-  }
+    protected void executeInternal(JobExecutionContext jobContext) throws JobExecutionException
+    {
+        rantService.sendDailyRantEmails();
+    }
 
-  // injected
-  private RantService rantService;
-  public void setRantService(RantService rantService) {
-    this.rantService = rantService;
-  }
+    // injected
+    private RantService rantService;
+
+    public void setRantService(RantService rantService)
+    {
+        this.rantService = rantService;
+    }
 }

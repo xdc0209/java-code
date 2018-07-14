@@ -14,7 +14,6 @@ import com.springinaction.poker.PokerHandType;
 
 public class TemplateBasedPokerClient 
     implements PokerClient {
-
   public PokerHandType evaluateHand(Card[] cards) 
       throws IOException {
     

@@ -111,5 +111,4 @@ public class Albums
     {
         this.type = type;
     }
-
 }

@@ -260,7 +260,6 @@ public abstract class nsPSMDetector
                     return mDone;
                 }
             }
-
         }
 
         if (mRunSampler)

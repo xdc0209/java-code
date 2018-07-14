@@ -447,9 +447,9 @@ public class ConnectionPool
     public static void main(String[] args)
     {
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://192.168.224.128:3306/test";
+        String url = "jdbc:mysql://192.168.1.100:3306/test";
         String user = "root";
-        String password = "xtuull";
+        String password = "12345678";
         ConnectionPool connPool = new ConnectionPool(driver, url, user, password);
 
         try

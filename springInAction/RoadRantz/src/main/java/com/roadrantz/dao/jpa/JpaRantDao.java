@@ -24,51 +24,57 @@ import com.roadrantz.domain.Vehicle;
  * 
  * @author wallsc
  */
-public class JpaRantDao extends JpaDaoSupport implements RantDao {
+public class JpaRantDao extends JpaDaoSupport implements RantDao
+{
+    public JpaRantDao()
+    {
+    }
 
-   public JpaRantDao() {}
+    public void saveRant(Rant rant)
+    {
+        getJpaTemplate().persist(rant);
+    }
 
-   public void saveRant(Rant rant) {
-      getJpaTemplate().persist(rant);
-   }
+    @SuppressWarnings("unchecked")
+    public List<Rant> getAllRants()
+    {
+        return getJpaTemplate().find("select r from Rant r");
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<Rant> getAllRants() {
-      return getJpaTemplate().find("select r from Rant r");
-   }
+    @SuppressWarnings("unchecked")
+    public List<Rant> getRantsForDay(Date day)
+    {
+        return getJpaTemplate().find("select r from Rant r where r.postedDate=?1", day);
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<Rant> getRantsForDay(Date day) {
-      return getJpaTemplate().find(
-                        "select r from Rant r where r.postedDate=?1", day);
-   }
+    public Vehicle findVehicleByPlate(String state, String plateNumber)
+    {
+        List matches = getJpaTemplate().find("select v from Vehicle v where v.state=?1 and v.plateNumber=?2", state,
+                plateNumber);
 
-   public Vehicle findVehicleByPlate(String state, String plateNumber) {
-      List matches = getJpaTemplate()
-                        .find(
-                                          "select v from Vehicle v where v.state=?1 and v.plateNumber=?2",
-                                          state, plateNumber);
+        return (matches.size() > 0) ? (Vehicle) matches.get(0) : null;
+    }
 
-      return (matches.size() > 0) ? (Vehicle) matches.get(0) : null;
-   }
+    public void saveVehicle(Vehicle vehicle)
+    {
+        getJpaTemplate().persist(vehicle);
+    }
 
-   public void saveVehicle(Vehicle vehicle) {
-      getJpaTemplate().persist(vehicle);
-   }
+    public Motorist getMotoristByEmail(String email)
+    {
+        List matches = getJpaTemplate().find("select d from Motorist d where d.email=?1", email);
 
-   public Motorist getMotoristByEmail(String email) {
-      List matches = getJpaTemplate().find(
-                        "select d from Motorist d where d.email=?1", email);
+        return (matches.size() > 0) ? (Motorist) matches.get(0) : null;
+    }
 
-      return (matches.size() > 0) ? (Motorist) matches.get(0) : null;
-   }
+    public void saveMotorist(Motorist driver)
+    {
+        getJpaTemplate().persist(driver);
+    }
 
-   public void saveMotorist(Motorist driver) {
-      getJpaTemplate().persist(driver);
-   }
-
-   public int getMotoristCount() {
-      // TODO Auto-generated method stub
-      return 0;
-   }
+    public int getMotoristCount()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

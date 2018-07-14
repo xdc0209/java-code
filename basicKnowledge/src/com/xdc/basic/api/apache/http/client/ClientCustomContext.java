@@ -46,7 +46,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientCustomContext
 {
-
     public final static void main(String[] args) throws Exception
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -97,5 +96,4 @@ public class ClientCustomContext
             httpclient.close();
         }
     }
-
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE form-validation PUBLIC 
-    "-//Apache Software Foundation//DTD 
-        Commons Validator Rules Configuration 1.1//EN" 
+<!DOCTYPE form-validation PUBLIC
+    "-//Apache Software Foundation//DTD
+        Commons Validator Rules Configuration 1.1//EN"
     "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
 
 <form-validation>
@@ -19,7 +19,7 @@
 			        <var>
 			            <var-name>mask</var-name>
 			            <var-value>^[0-9A-Za-z]{2,6}$</var-value>
-			        </var>              
+			        </var>
             </field>
         </form>
     </formset>

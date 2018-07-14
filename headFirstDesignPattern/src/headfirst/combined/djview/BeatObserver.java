@@ -1,5 +1,6 @@
 package headfirst.combined.djview;
-  
-public interface BeatObserver {
-	void updateBeat();
+
+public interface BeatObserver
+{
+    void updateBeat();
 }

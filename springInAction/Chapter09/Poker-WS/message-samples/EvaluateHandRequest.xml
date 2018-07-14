@@ -1,4 +1,4 @@
-<EvaluateHandRequest 
+<EvaluateHandRequest
     xmlns="http://www.springinaction.com/poker/schemas">
   <card>
     <suit>HEARTS</suit>

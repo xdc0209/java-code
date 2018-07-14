@@ -49,4 +49,3 @@ log4j.additivity.userInfoLog = false
 它用来设置是否同时输出到log4j.rootLogger所配置的日志中，设为false就不会输出到其它地方啦！注意这里的"userInfoLog"是你在程序中给logger起的那个自定义的名字！
 如果你说，我只是不想同时输出这个日志到log4j.rootLogger所配置的logfile中，stdout里我还想同时输出呢！那也好办，如：
 log4j.logger.userInfoLog=DEBUG, userLog, stdout
-

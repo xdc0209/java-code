@@ -1,5 +1,5 @@
 virgo 连接参数：
-192.168.227.135:9875 admin springsource
+192.168.1.100:9875 admin springsource
 
 连接问题解决：使用JCONSOLE监控远程LINUX运行的JAVA进程，总是在报连接失败的错误。
 方法1：
@@ -10,7 +10,7 @@ virgo 连接参数：
 
 方法2：
     修改java启动参数：
-    -Djava.rmi.server.hostname=192.168.227.135
+    -Djava.rmi.server.hostname=192.168.1.100
     -Dcom.sun.management.jmxremote
     -Dcom.sun.management.jmxremote.port=9875
     -Dcom.sun.management.jmxremote.authenticate=true

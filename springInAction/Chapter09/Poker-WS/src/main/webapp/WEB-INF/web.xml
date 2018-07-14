@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee" 
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
                http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
   <description>PokerService</description>
@@ -18,7 +18,7 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  
+
   <servlet>
     <servlet-name>poker</servlet-name>
     <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
@@ -27,13 +27,13 @@
       <param-value>true</param-value>
     </init-param>
   </servlet>
-  
-  
+
+
   <servlet-mapping>
     <servlet-name>poker</servlet-name>
     <url-pattern>/services/*</url-pattern>
   </servlet-mapping>
-  
+
   <servlet-mapping>
     <servlet-name>poker</servlet-name>
     <url-pattern>*.wsdl</url-pattern>

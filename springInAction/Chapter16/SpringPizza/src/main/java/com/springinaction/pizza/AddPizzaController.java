@@ -6,21 +6,24 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import com.springinaction.pizza.domain.Pizza;
 
-public class AddPizzaController extends SimpleFormController {
-   public AddPizzaController() {}
+public class AddPizzaController extends SimpleFormController
+{
+    public AddPizzaController()
+    {
+    }
 
-   @Override
-   protected ModelAndView onSubmit(Object command, BindException bindException)
-                     throws Exception {
+    @Override
+    protected ModelAndView onSubmit(Object command, BindException bindException) throws Exception
+    {
+        Pizza pizza = (Pizza) command;
 
-      Pizza pizza = (Pizza) command;
+        addPizzaToOrder(pizza);
 
-      addPizzaToOrder(pizza);
+        return new ModelAndView("redirect:/showOrder.htm");
+    }
 
-      return new ModelAndView("redirect:/showOrder.htm");
-   }
-
-   private void addPizzaToOrder(Pizza pizza) {
-   // to be implemented (use your imagination)
-   }
+    private void addPizzaToOrder(Pizza pizza)
+    {
+        // to be implemented (use your imagination)
+    }
 }

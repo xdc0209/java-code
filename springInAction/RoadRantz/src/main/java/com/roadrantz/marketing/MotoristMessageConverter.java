@@ -17,39 +17,42 @@ import com.roadrantz.domain.Motorist;
  * 
  * @author wallsc
  */
-public class MotoristMessageConverter implements MessageConverter {
-   public MotoristMessageConverter() {}
+public class MotoristMessageConverter implements MessageConverter
+{
+    public MotoristMessageConverter()
+    {
+    }
 
-   public Object fromMessage(Message message) throws JMSException,
-                     MessageConversionException {
+    public Object fromMessage(Message message) throws JMSException, MessageConversionException
+    {
+        if (!(message instanceof MapMessage))
+        {
+            throw new MessageConversionException("Message isn't a MapMessage");
+        }
 
-      if (!(message instanceof MapMessage)) {
-         throw new MessageConversionException("Message isn't a MapMessage");
-      }
+        MapMessage mapMessage = (MapMessage) message;
+        SpammedMotorist motorist = new SpammedMotorist();
 
-      MapMessage mapMessage = (MapMessage) message;
-      SpammedMotorist motorist = new SpammedMotorist();
+        motorist.setFirstName(mapMessage.getString("firstName"));
+        motorist.setLastName(mapMessage.getString("lastName"));
+        motorist.setEmail(mapMessage.getString("email"));
 
-      motorist.setFirstName(mapMessage.getString("firstName"));
-      motorist.setLastName(mapMessage.getString("lastName"));
-      motorist.setEmail(mapMessage.getString("email"));
+        return motorist;
+    }
 
-      return motorist;
-   }
+    public Message toMessage(Object object, Session session) throws JMSException, MessageConversionException
+    {
+        if (!(object instanceof Motorist))
+        {
+            throw new MessageConversionException("Object isn't a Motorist");
+        }
 
-   public Message toMessage(Object object, Session session)
-                     throws JMSException, MessageConversionException {
+        Motorist motorist = (Motorist) object;
+        MapMessage message = session.createMapMessage();
+        message.setString("firstName", motorist.getFirstName());
+        message.setString("lastName", motorist.getLastName());
+        message.setString("email", motorist.getEmail());
 
-      if (!(object instanceof Motorist)) {
-         throw new MessageConversionException("Object isn't a Motorist");
-      }
-
-      Motorist motorist = (Motorist) object;
-      MapMessage message = session.createMapMessage();
-      message.setString("firstName", motorist.getFirstName());
-      message.setString("lastName", motorist.getLastName());
-      message.setString("email", motorist.getEmail());
-
-      return message;
-   }
+        return message;
+    }
 }

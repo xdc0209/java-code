@@ -501,7 +501,7 @@
             <!--远程仓库名称-->
             <name>banseon-repository-proxy</name>
             <!--远程仓库URL，按protocol://hostname/path形式-->
-            <url>http://192.168.1.169:9999/repository/</url>
+            <url>http://192.168.1.100:9999/repository/</url>
             <!--用于定位和排序构件的仓库布局类型-可以是default（默认）或者legacy（遗留）。Maven 2为其仓库提供了一个默认的布局；然而，Maven 1.x有一种不同的布局。我们可以使用该元素指定布局是default（默认）还是legacy（遗留）。-->
             <layout>default</layout>
         </repository>

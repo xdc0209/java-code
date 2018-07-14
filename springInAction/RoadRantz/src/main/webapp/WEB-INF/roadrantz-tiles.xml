@@ -1,7 +1,7 @@
 <!DOCTYPE tiles-definitions PUBLIC
  "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
  "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
-  
+
 <tiles-definitions>
   <definition name=".header" page="/WEB-INF/jsp/header.jsp"
       controllerClass="com.roadrantz.tiles.HeaderTileController" />
@@ -12,42 +12,42 @@
     <put name="content" value="/WEB-INF/jsp/defaultContentPage.jsp"/>
     <put name="footer" value="/WEB-INF/jsp/footer.jsp"/>
   </definition>
-  
+
 	<definition name="login" extends="template">
 	  <put name="title" value="Login to RoadRantz" />
 	  <put name="content" value="/WEB-INF/jsp/login.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="home" extends="template">
 	  <put name="title" value="Welcome to RoadRantz" />
 	  <put name="content" value="/WEB-INF/jsp/home.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="addRant" extends="template">
 	  <put name="title" value="Add a rant" />
 	  <put name="content" value="/WEB-INF/jsp/addRant.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="motoristConfirmation" extends="template">
 	  <put name="title" value="Confirm motorist information" />
 	  <put name="content" value="/WEB-INF/jsp/motoristConfirmation.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="motoristDetailForm" extends="template">
 	  <put name="title" value="Enter motorist information" />
 	  <put name="content" value="/WEB-INF/jsp/motoristDetailForm.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="motoristVehicleForm" extends="template">
 	  <put name="title" value="Add vehicles" />
 	  <put name="content" value="/WEB-INF/jsp/motoristVehicleForm.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="rantAdded" extends="template">
 	  <put name="title" value="Rant added" />
 	  <put name="content" value="/WEB-INF/jsp/rantAdded.jsp"/>
-	</definition>  
+	</definition>
 	<definition name="vehicleRants" extends="template">
 	  <put name="title" value="Rants for a vehicle" />
 	  <put name="content" value="/WEB-INF/jsp/vehicleRants.jsp"/>
-	</definition>  
+	</definition>
   <definition name="error" extends="template">
 	  <put name="title" value="Authorization error" />
 	  <put name="content" value="/WEB-INF/jsp/error.jsp"/>
-	</definition>  
-	
+	</definition>
+
 </tiles-definitions>

@@ -21,7 +21,6 @@ public class PokerWsClient2 extends WebServiceGatewaySupport {
   }
   
   public void doSomething()  throws IOException {
-
     Source requestSource = new ResourceSource(request);
     StringResult result = new StringResult();
     

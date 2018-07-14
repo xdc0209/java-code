@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ----------------------------- xdc's shell comm lib start -------------------------------------
+# ----------------------------- kiwi bash lib start -------------------------------------
 
 # Make sure to execute this script with bash. Bash works well on suse, redhat, aix.##
 # 确保以bash执行此脚本。Bash在suse、redhat、aix上表现很出色。##
@@ -52,7 +52,7 @@ function die()
     exit 1
 }
 
-# ----------------------------- xdc's shell comm lib end ---------------------------------------
+# ----------------------------- kiwi bash lib end ---------------------------------------
 
 KERNEL_HOME=$BASE_DIR/..
 

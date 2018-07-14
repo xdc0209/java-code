@@ -39,7 +39,6 @@ class BusinessImplProxy implements Business
         doBefore();
         businessImpl.doAction2();
         doAfter();
-
     }
 
     private void doBefore()

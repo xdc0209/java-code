@@ -37,5 +37,4 @@ public class GetClassNameInStaticMethod
         }.getClassName();
         System.out.println(clazzName3);
     }
-
 }

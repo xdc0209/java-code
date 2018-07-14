@@ -31,5 +31,4 @@ public class Hibernate3Util
     {
         return sessionFactory;
     }
-
 }

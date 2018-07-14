@@ -14,23 +14,25 @@ import com.springinaction.pizza.service.CustomerService;
  * 
  * @author wallsc
  */
-public class LookupCustomerAction implements Action {
-   public Event execute(RequestContext context) throws Exception {
+public class LookupCustomerAction implements Action
+{
+    public Event execute(RequestContext context) throws Exception
+    {
+        String phoneNumber = context.getRequestParameters().get("phoneNumber");
 
-      String phoneNumber = context.getRequestParameters().get("phoneNumber");
+        Customer customer = customerService.lookupCustomer(phoneNumber);
 
-      Customer customer = customerService.lookupCustomer(phoneNumber);
+        Order order = (Order) context.getFlowScope().get("order");
+        order.setCustomer(customer);
 
-      Order order = (Order) context.getFlowScope().get("order");
-      order.setCustomer(customer);
+        return new Event(this, "success");
+    }
 
-      return new Event(this, "success");
-   }
+    // injected
+    private CustomerService customerService;
 
-   // injected
-   private CustomerService customerService;
-
-   public void setCustomerService(CustomerService customerService) {
-      this.customerService = customerService;
-   }
+    public void setCustomerService(CustomerService customerService)
+    {
+        this.customerService = customerService;
+    }
 }

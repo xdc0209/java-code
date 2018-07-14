@@ -47,7 +47,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientCustomSSL
 {
-
     public final static void main(String[] args) throws Exception
     {
         KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -67,7 +66,6 @@ public class ClientCustomSSL
         CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
         try
         {
-
             HttpGet httpget = new HttpGet("https://localhost/");
 
             System.out.println("executing request" + httpget.getRequestLine());
@@ -95,5 +93,4 @@ public class ClientCustomSSL
             httpclient.close();
         }
     }
-
 }

@@ -193,7 +193,6 @@ public class GB2312Statistics extends nsEUCStatistics
                 0.000000f, // FreqH[fc]
                 0.000000f, // FreqH[fd]
                 0.000000f // FreqH[fe]
-
         };
         mFirstByteStdDev = 0.020081f; // Lead Byte StdDev
         mFirstByteMean = 0.010638f; // Lead Byte Mean

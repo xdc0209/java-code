@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
+<beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-  <bean id="webServiceTemplate" 
+  <bean id="webServiceTemplate"
       class="org.springframework.ws.client.core.WebServiceTemplate">
     <property name="messageFactory">
       <bean class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
     </property>
     <property name="messageSender" ref="urlMessageSender"/>
-    
+
     <property name="marshaller" ref="marshaller" />
     <property name="unmarshaller" ref="marshaller" />
   </bean>
-  
-  <bean id="marshaller" 
+
+  <bean id="marshaller"
       class="org.springframework.oxm.castor.CastorMarshaller">
     <property name="mappingLocation" value="classpath:mapping.xml" />
-  </bean>    
+  </bean>
 
   <bean id="templateBasedClient"
       class="com.springinaction.ws.client.TemplateBasedPokerClient">
@@ -31,7 +31,7 @@
   </bean>
 
 
-  <bean id="pokerClientGateway" 
+  <bean id="pokerClientGateway"
       class="com.springinaction.ws.client.PokerClientGateway">
     <property name="messageFactory">
       <bean class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
@@ -44,18 +44,18 @@
 
   <!-- HttpUrlConnectionMessageSender is very basic, not supporting
        authentication or advanced configuration options. -->
-  <bean id="urlMessageSender" 
+  <bean id="urlMessageSender"
       class="org.springframework.ws.transport.http.HttpUrlConnectionMessageSender">
-    <property name="url" 
+    <property name="url"
         value="http://localhost:8080/Poker-WS/services"/>
   </bean>
 
   <!-- CommonsHttpMessageSender supports authentication and
        advanced configuration options through the "httpClient"
        property. -->
-  <bean id="commonsMessageSender" 
+  <bean id="commonsMessageSender"
       class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
-    <property name="url" 
+    <property name="url"
         value="http://localhost:8080/Poker-WS/services"/>
   </bean>
 

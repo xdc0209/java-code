@@ -43,7 +43,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientEvictExpiredConnections
 {
-
     public static void main(String[] args) throws Exception
     {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -93,7 +92,6 @@ public class ClientEvictExpiredConnections
             // Shut down the evictor thread
             connEvictor.shutdown();
             connEvictor.join();
-
         }
         finally
         {
@@ -103,7 +101,6 @@ public class ClientEvictExpiredConnections
 
     public static class IdleConnectionEvictor extends Thread
     {
-
         private final HttpClientConnectionManager connMgr;
 
         private volatile boolean                  shutdown;
@@ -146,7 +143,5 @@ public class ClientEvictExpiredConnections
                 notifyAll();
             }
         }
-
     }
-
 }

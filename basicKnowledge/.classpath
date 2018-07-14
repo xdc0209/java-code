@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="lib/guava-24.0-jre.jar" sourcepath="libsrc/guava-24.0-jre-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-beanutils-1.8.3.jar" sourcepath="libsrc/apache/commons/commons-beanutils-1.8.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-beanutils-bean-collections-1.8.3.jar"/>
@@ -16,6 +17,12 @@
 	<classpathentry kind="lib" path="lib/apache/commons/commons-jxpath-1.3.jar" sourcepath="libsrc/apache/commons/commons-jxpath-1.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-lang-2.6.jar" sourcepath="libsrc/apache/commons/commons-lang-2.6-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons/commons-lang3-3.1.jar" sourcepath="libsrc/apache/commons/commons-lang3-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/log/slf4j-api-1.7.21.jar" sourcepath="libsrc/log/slf4j-api-1.7.21-sources.jar"/>
+	<classpathentry kind="lib" path="lib/log/logback/logback-classic-1.1.7.jar" sourcepath="libsrc/log/logback/logback-classic-1.1.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/log/logback/logback-core-1.1.7.jar" sourcepath="libsrc/log/logback/logback-core-1.1.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/log/commons-logging-1.1.3.jar" sourcepath="libsrc/log/commons-logging-1.1.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/log/commons-logging-adapters-1.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/log/commons-logging-api-1.1.3.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mybatis-3.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/ojdbc6.jar"/>
@@ -41,7 +48,6 @@
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.2.RELEASE.jar" sourcepath="libsrc/spring/spring-webmvc-portlet-3.2.2.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar" sourcepath="libsrc/easymock-3.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/apache/http-3.1/commons-httpclient-3.1.jar" sourcepath="libsrc/apache/http-3.1/commons-httpclient-3.1-src.zip"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/classmate-0.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-2.2.4.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator/lib/required/javax.el-api-2.2.4.jar"/>
@@ -140,13 +146,9 @@
 	<classpathentry kind="lib" path="lib/btrace/btrace-boot.jar"/>
 	<classpathentry kind="lib" path="lib/btrace/btrace-client.jar"/>
 	<classpathentry kind="lib" path="lib/hessian-4.0.37.jar" sourcepath="libsrc/hessian-4.0.37-src.jar"/>
-	<classpathentry kind="lib" path="lib/log/logback/logback-classic-1.1.7.jar" sourcepath="libsrc/log/logback/logback-classic-1.1.7-sources.jar"/>
-	<classpathentry kind="lib" path="lib/log/logback/logback-core-1.1.7.jar" sourcepath="libsrc/log/logback/logback-core-1.1.7-sources.jar"/>
-	<classpathentry kind="lib" path="lib/log/commons-logging-1.1.3.jar" sourcepath="libsrc/log/commons-logging-1.1.3-sources.jar"/>
-	<classpathentry kind="lib" path="lib/log/commons-logging-adapters-1.1.3.jar"/>
-	<classpathentry kind="lib" path="lib/log/commons-logging-api-1.1.3.jar"/>
-	<classpathentry kind="lib" path="lib/log/slf4j-api-1.7.21.jar" sourcepath="libsrc/log/slf4j-api-1.7.21-sources.jar"/>
 	<classpathentry kind="lib" path="lib/json/bson4jackson/bson4jackson-2.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/jpinyin-1.1.8.jar" sourcepath="libsrc/jpinyin-master.zip"/>
+	<classpathentry kind="lib" path="lib/quartz/quartz-2.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/quartz/quartz-jobs-2.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

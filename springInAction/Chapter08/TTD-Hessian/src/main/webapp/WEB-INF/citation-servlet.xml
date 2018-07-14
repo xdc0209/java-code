@@ -2,23 +2,23 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
   <bean id="citationService" class="com.tickettodrive.CitationServiceImpl" />
-    
-  <!-- 
+
+  <!--
     Exports the citationService bean as a Hessian service.
-    
+
     From section 8.3.2, page 319
-    
+
     Notice, that I'm using the short-hand
     value attribute here, while the book shows the long-hand <value>
     element. I had intended for the book to use the short-hand form, as
     shown below, but didn't catch this until the book was already typeset
-    and it was too late to change.    
-   -->    
-  <bean name="hessianCitationService" 
+    and it was too late to change.
+   -->
+  <bean name="hessianCitationService"
       class="org.springframework.remoting.caucho.HessianServiceExporter">
     <property name="service" ref="citationService" />
     <property name="serviceInterface" value="com.tickettodrive.CitationService" />

@@ -51,7 +51,6 @@ public class EditContactController
       ActionResponse response, Object command, 
       BindException bindException) 
       throws Exception {
-
     String userName = 
         ControllerUtil.getUserName(request);
     
@@ -68,5 +67,4 @@ public class EditContactController
       RolodexService rolodexService) {
     this.rolodexService = rolodexService;
   }
-
 }

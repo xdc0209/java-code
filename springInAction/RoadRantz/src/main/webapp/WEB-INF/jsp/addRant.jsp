@@ -14,7 +14,7 @@
          }
       </style>
   </head>
-  
+
   <body>
     <h2>Enter a rant...</h2>
     <form:form method="POST" action="addRant.htm" commandName="rant">

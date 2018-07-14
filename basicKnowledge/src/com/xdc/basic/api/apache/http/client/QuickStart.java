@@ -42,7 +42,6 @@ import org.apache.http.util.EntityUtils;
 
 public class QuickStart
 {
-
     public static void main(String[] args) throws Exception
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -96,5 +95,4 @@ public class QuickStart
             httpclient.close();
         }
     }
-
 }

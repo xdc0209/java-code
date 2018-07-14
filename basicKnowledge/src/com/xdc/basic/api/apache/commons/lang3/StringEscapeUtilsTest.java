@@ -38,6 +38,5 @@ public class StringEscapeUtilsTest
         // StringEscapeUtils.UNESCAPE_XML.translate(input);
 
         System.out.println();
-
     }
 }

@@ -44,7 +44,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientWithResponseHandler
 {
-
     public final static void main(String[] args) throws Exception
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -71,18 +70,15 @@ public class ClientWithResponseHandler
                         throw new ClientProtocolException("Unexpected response status: " + status);
                     }
                 }
-
             };
             String responseBody = httpclient.execute(httpget, responseHandler);
             System.out.println("----------------------------------------");
             System.out.println(responseBody);
             System.out.println("----------------------------------------");
-
         }
         finally
         {
             httpclient.close();
         }
     }
-
 }

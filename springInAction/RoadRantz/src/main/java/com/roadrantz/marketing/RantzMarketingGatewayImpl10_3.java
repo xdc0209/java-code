@@ -16,30 +16,38 @@ import com.roadrantz.domain.Motorist;
  * 
  * @author wallsc
  */
-public class RantzMarketingGatewayImpl10_3 implements RantzMarketingGateway {
-   public RantzMarketingGatewayImpl10_3() {}
+public class RantzMarketingGatewayImpl10_3 implements RantzMarketingGateway
+{
+    public RantzMarketingGatewayImpl10_3()
+    {
+    }
 
-   public void sendMotoristInfo(final Motorist motorist) {
-      jmsTemplate.send(destination, new MessageCreator() {
-         public Message createMessage(Session session) throws JMSException {
-            MapMessage message = session.createMapMessage();
-            message.setString("lastName", motorist.getLastName());
-            message.setString("firstName", motorist.getFirstName());
-            message.setString("email", motorist.getEmail());
-            return message;
-         }
-      });
-   }
+    public void sendMotoristInfo(final Motorist motorist)
+    {
+        jmsTemplate.send(destination, new MessageCreator()
+        {
+            public Message createMessage(Session session) throws JMSException
+            {
+                MapMessage message = session.createMapMessage();
+                message.setString("lastName", motorist.getLastName());
+                message.setString("firstName", motorist.getFirstName());
+                message.setString("email", motorist.getEmail());
+                return message;
+            }
+        });
+    }
 
-   private JmsTemplate jmsTemplate;
+    private JmsTemplate jmsTemplate;
 
-   public void setJmsTemplate(JmsTemplate jmsTemplate) {
-      this.jmsTemplate = jmsTemplate;
-   }
+    public void setJmsTemplate(JmsTemplate jmsTemplate)
+    {
+        this.jmsTemplate = jmsTemplate;
+    }
 
-   private Destination destination;
+    private Destination destination;
 
-   public void setDestination(Destination destination) {
-      this.destination = destination;
-   }
+    public void setDestination(Destination destination)
+    {
+        this.destination = destination;
+    }
 }

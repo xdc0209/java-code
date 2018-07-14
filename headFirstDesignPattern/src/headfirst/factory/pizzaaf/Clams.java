@@ -1,5 +1,6 @@
 package headfirst.factory.pizzaaf;
 
-public interface Clams {
-	public String toString();
+public interface Clams
+{
+    public String toString();
 }

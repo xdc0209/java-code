@@ -1,8 +1,8 @@
-<%@ taglib prefix="portlet" 
+<%@ taglib prefix="portlet"
     uri="http://java.sun.com/portlet" %>
-<%@ taglib prefix="spring" 
+<%@ taglib prefix="spring"
     uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form"   
+<%@ taglib prefix="form"
     uri="http://www.springframework.org/tags/form" %>
 <h2>Contact Edit</h2>
 
@@ -13,9 +13,9 @@
   <portlet:param name="action" value="contacts"/>
 </portlet:renderURL>
 
-<form:form method="POST" 
+<form:form method="POST"
     action="${actionUrl}" commandName="command">
-            
+
   <form:hidden path="id" />
 
   <table width="100%" border="0">
@@ -45,7 +45,7 @@
     </tr>
     <tr><td align="center" colspan="2">
       <input type="submit" value="Save">&nbsp;
-      <input type="button" value="Cancel" 
+      <input type="button" value="Cancel"
           onclick="window.location.href=
               '${contactsUrl}';">
     </td></tr>

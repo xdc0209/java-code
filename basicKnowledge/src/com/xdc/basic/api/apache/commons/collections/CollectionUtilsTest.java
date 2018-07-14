@@ -15,7 +15,6 @@ public class CollectionUtilsTest
     @SuppressWarnings("unchecked")
     public static void main(String[] args)
     {
-
         String[] arrayA = new String[] { "1", "2", "3", "3", "4", "5" };
         String[] arrayB = new String[] { "3", "4", "4", "5", "6", "7" };
         List<String> a = Arrays.asList(arrayA);

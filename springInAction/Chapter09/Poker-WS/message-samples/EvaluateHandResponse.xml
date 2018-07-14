@@ -1,4 +1,4 @@
-<EvaluateHandResponse 
+<EvaluateHandResponse
     xmlns="http://www.springinaction.com/poker/schemas">
   <handName>Full House</handName>
 </EvaluateHandResponse>

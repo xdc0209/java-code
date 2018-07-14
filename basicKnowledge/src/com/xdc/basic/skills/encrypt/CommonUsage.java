@@ -48,6 +48,5 @@ public class CommonUsage
         String decryptSecretKey = RSACodec.decrypt(encryptSecretKey, privateKey);
         String decryptData = AESCodec.decrypt(encryptData, decryptSecretKey);
         System.out.println("解密：" + decryptData);
-
     }
 }

@@ -42,7 +42,6 @@ import org.apache.http.impl.client.HttpClients;
  */
 public class ClientConnectionRelease
 {
-
     public final static void main(String[] args) throws Exception
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -95,5 +94,4 @@ public class ClientConnectionRelease
             httpclient.close();
         }
     }
-
 }

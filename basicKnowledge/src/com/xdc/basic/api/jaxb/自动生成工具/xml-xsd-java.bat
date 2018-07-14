@@ -16,4 +16,3 @@ del %xsd_file% || pause && exit 1
 
 echo java代码生成完成.
 pause
-

@@ -55,7 +55,6 @@ class CyclicBarrierTest
             };
             thread.start();
         }
-
     }
 
     private static void doTest()

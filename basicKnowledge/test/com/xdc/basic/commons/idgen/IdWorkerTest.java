@@ -6,10 +6,12 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 class IdWorkerTest
 {
+    @Ignore("比较耗时。")
     @Test
     void test()
     {

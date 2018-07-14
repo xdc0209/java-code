@@ -11,4 +11,3 @@ a.接收远程调用请求：
 远程调用HTTP请求—>HessianServiceExporter接收请求—>HessianExporter将远程调用对象封装为HessianSkeleton框架—> HessianSkeleton处理远程调用请求。
 b.返回远程调用响应：
 HessianSkeleton封装远程调用处理结果—>HTTP响应—>客户端。
-

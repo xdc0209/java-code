@@ -25,4 +25,3 @@ Received event! org.apache.commons.configuration.event.ConfigurationEvent@18de5e
   propertyValue=file:/D:/JavaTools/source-code/java-code/basicKnowledge/src/common-logging.properties
   beforeUpdate=false
 ]
-

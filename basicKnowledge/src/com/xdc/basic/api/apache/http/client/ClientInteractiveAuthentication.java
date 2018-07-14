@@ -52,7 +52,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientInteractiveAuthentication
 {
-
     public static void main(String[] args) throws Exception
     {
         BasicCredentialsProvider credsProvider = new BasicCredentialsProvider();

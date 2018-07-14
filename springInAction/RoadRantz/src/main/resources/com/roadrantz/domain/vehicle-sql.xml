@@ -4,7 +4,7 @@
     "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
 
 <sqlMap namespace="RoadRantz">
-  <select id="getVehicleById" 
+  <select id="getVehicleById"
       resultClass="com.roadrantz.domain.Vehicle">
     <![CDATA[
       select id, state, plateNumber
@@ -12,21 +12,21 @@
        where id=#value#
     ]]>
   </select>
-  
-  <select id="findVehicleByPlate" 
+
+  <select id="findVehicleByPlate"
       parameterClass="com.roadrantz.domain.Vehicle">
     select id, plateNumber, state
       from Vehicle
      where state = #state#
        and plateNumber = #plateNumber#
   </select>
-  
+
   <insert id="insertVehicle" parameterClass="com.roadrantz.domain.Vehicle">
   	  	<selectKey keyProperty="id" resultClass="java.lang.Integer">
 			call identity()
-		</selectKey>	
-  
-    insert into Vehicle (id, state, plateNumber) 
+		</selectKey>
+
+    insert into Vehicle (id, state, plateNumber)
               values (null, #state#, #plateNumber#)
   </insert>
 </sqlMap>

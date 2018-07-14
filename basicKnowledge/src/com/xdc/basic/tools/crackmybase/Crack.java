@@ -43,7 +43,6 @@ public class Crack
                 bufferedWriter.write(line);
                 bufferedWriter.newLine();
             }
-
         }
         catch (Exception e)
         {
@@ -64,10 +63,8 @@ public class Crack
             {
                 e.printStackTrace();
             }
-
         }
 
         file.delete();
-
     }
 }

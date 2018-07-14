@@ -5,7 +5,7 @@ import com.xdc.basic.tools.restframework.core.RestMethod;
 import com.xdc.basic.tools.restframework.message.ip.GetIpResponse;
 
 /*
- * 测试链接：http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=218.4.255.255
+ * 测试链接：http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=114.114.114.114
  */
 public interface IpCaller
 {

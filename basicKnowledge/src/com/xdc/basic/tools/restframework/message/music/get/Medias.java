@@ -25,5 +25,4 @@ public class Medias
     {
         this.p2purl = p2purl;
     }
-
 }

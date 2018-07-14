@@ -360,5 +360,4 @@ public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializabl
     {
         getHibernateTemplate().flush();
     }
-
 }

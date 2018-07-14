@@ -2,16 +2,21 @@ package com.springinaction.poker.webservice;
 
 import com.springinaction.poker.Card;
 
-public class EvaluateHandRequest {
-  private Card[] hand;
-  
-  public EvaluateHandRequest() {}
+public class EvaluateHandRequest
+{
+    private Card[] hand;
 
-  public Card[] getHand() {
-    return hand;
-  }
+    public EvaluateHandRequest()
+    {
+    }
 
-  public void setHand(Card[] cards) {
-    this.hand = cards;
-  }
+    public Card[] getHand()
+    {
+        return hand;
+    }
+
+    public void setHand(Card[] cards)
+    {
+        this.hand = cards;
+    }
 }

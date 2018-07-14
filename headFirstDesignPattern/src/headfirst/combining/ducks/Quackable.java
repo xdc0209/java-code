@@ -1,5 +1,6 @@
 package headfirst.combining.ducks;
 
-public interface Quackable {
-	public void quack();
+public interface Quackable
+{
+    public void quack();
 }

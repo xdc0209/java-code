@@ -22,7 +22,6 @@ public class StudentRowObjChecker
 
         String genderCheck = genderCheck(StudentRowObj.genderColum, gender);
         checkResult.addErrorDetailOnNotEmpty(genderCheck);
-
     }
 
     /**

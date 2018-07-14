@@ -29,7 +29,6 @@ public class DeleteContactController extends AbstractController {
     List contacts = rolodexService.getContacts(userName);
     
     return new ModelAndView("contactList", "contacts", contacts);  
-
   }
   
   private RolodexService rolodexService;

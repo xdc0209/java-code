@@ -2,8 +2,8 @@ package com.xdc.basic.api.apache.commons.chain.framwork.process;
 
 import java.util.concurrent.ThreadFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xdc.basic.api.apache.commons.chain.framwork.api.ExecuteResultHandler;
 import com.xdc.basic.api.apache.commons.chain.framwork.api.ExecuteResultHandlerHolder;
@@ -12,7 +12,7 @@ import com.xdc.basic.api.apache.commons.chain.framwork.queue.ResponseQueue;
 
 public class ResponseProcess extends MessageProcess
 {
-    private static Log log = LogFactory.getLog(ResponseProcess.class);
+    private static Logger log = LoggerFactory.getLogger(ResponseProcess.class);
 
     @Override
     public void handle()

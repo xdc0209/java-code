@@ -14,25 +14,26 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.roadrantz.service.RantService;
 
-public class HomeAction extends Action {
-  public ActionForward execute(ActionMapping mapping, ActionForm form, 
-      HttpServletRequest request, HttpServletResponse response) 
-      throws Exception {
+public class HomeAction extends Action
+{
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws Exception
+    {
+        ApplicationContext ctx = WebApplicationContextUtils
+                .getRequiredWebApplicationContext(getServlet().getServletContext());
 
-    ApplicationContext ctx =
-        WebApplicationContextUtils.getRequiredWebApplicationContext(
-        getServlet().getServletContext());
-    
-    RantService rantService = (RantService) ctx.getBean("rantService");
-    
-    List recentRants = rantService.getRecentRants();
-    request.setAttribute("rants", recentRants);
+        RantService rantService = (RantService) ctx.getBean("rantService");
 
-    return mapping.findForward("home");
-  }
-  
-  private RantService rantService;
-  public void setRantService(RantService rantService) {
-    this.rantService = rantService;
-  }
+        List recentRants = rantService.getRecentRants();
+        request.setAttribute("rants", recentRants);
+
+        return mapping.findForward("home");
+    }
+
+    private RantService rantService;
+
+    public void setRantService(RantService rantService)
+    {
+        this.rantService = rantService;
+    }
 }

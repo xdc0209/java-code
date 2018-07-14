@@ -50,7 +50,6 @@ public class CurrentTime extends JFrame implements ActionListener, Refreshable
         date = new Date();
         String time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         return time;
-
     }
 
     public static void main(String[] args)

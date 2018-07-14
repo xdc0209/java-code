@@ -18,33 +18,34 @@ import com.roadrantz.domain.Vehicle;
  * 
  * @author wallsc
  */
-public class RantServiceTest3 extends
-                  AbstractTransactionalDataSourceSpringContextTests {
-   public RantServiceTest3() {}
+public class RantServiceTest3 extends AbstractTransactionalDataSourceSpringContextTests
+{
+    public RantServiceTest3()
+    {
+    }
 
-   @Override
-   protected String[] getConfigLocations() {
-      return new String[] { "roadrantz-services.xml", "roadrantz-data.xml",
-            "roadrantz-data-jdbc.xml", "roadrantz-email.xml" };
-   }
+    @Override
+    protected String[] getConfigLocations()
+    {
+        return new String[] { "roadrantz-services.xml", "roadrantz-data.xml", "roadrantz-data-jdbc.xml",
+                "roadrantz-email.xml" };
+    }
 
-   public void testAddRant() throws Exception {
-      RantService rantService = (RantService) applicationContext
-                        .getBean("rantService");
-      Rant newRant = new Rant();
-      newRant.setRantText("TEST RANT TEXT");
-      Vehicle vehicle = new Vehicle();
-      vehicle.setPlateNumber("FOOBAR");
-      vehicle.setState("TX");
-      newRant.setVehicle(vehicle);
-      int before = jdbcTemplate.queryForInt("select count(*) from rant");
-      rantService.addRant(newRant);
-      int after = jdbcTemplate.queryForInt("select count(*) from rant");
-      assertEquals("There should be one more row in rant table.", after,
-                        before + 1);
-      String testRantText = (String) jdbcTemplate.queryForObject(
-                        "select rantText from rant where id=?",
-                        new Object[] { newRant.getId() }, String.class);
-      assertEquals("TEST RANT TEXT", testRantText);
-   }
+    public void testAddRant() throws Exception
+    {
+        RantService rantService = (RantService) applicationContext.getBean("rantService");
+        Rant newRant = new Rant();
+        newRant.setRantText("TEST RANT TEXT");
+        Vehicle vehicle = new Vehicle();
+        vehicle.setPlateNumber("FOOBAR");
+        vehicle.setState("TX");
+        newRant.setVehicle(vehicle);
+        int before = jdbcTemplate.queryForInt("select count(*) from rant");
+        rantService.addRant(newRant);
+        int after = jdbcTemplate.queryForInt("select count(*) from rant");
+        assertEquals("There should be one more row in rant table.", after, before + 1);
+        String testRantText = (String) jdbcTemplate.queryForObject("select rantText from rant where id=?",
+                new Object[] { newRant.getId() }, String.class);
+        assertEquals("TEST RANT TEXT", testRantText);
+    }
 }

@@ -9,6 +9,7 @@
 # 忽略eclipse工程构建后生成的文件##
 **/basicKnowledge/bin/
 **/headFirstDesignPattern/bin/
+**/markdownFormatter/bin/
 
 # 忽略maven工程的无用文件##
 **/mavenDemo/**/.project

@@ -109,5 +109,4 @@ public class EUCKRSMModel extends SMModel
     };
 
     private static int[] euckrCharLenTable = new int[] { 0, 1, 2, 0 };
-
 }

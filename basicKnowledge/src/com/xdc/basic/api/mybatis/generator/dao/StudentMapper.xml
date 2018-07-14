@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xdc.basic.api.mybatis.generator.dao.StudentMapper" >
-  <resultMap id="BaseResultMap" type="com.xdc.basic.api.mybatis.generator.model.Student" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdc.basic.api.mybatis.generator.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.xdc.basic.api.mybatis.generator.model.Student">
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="CHAR" />
     <result column="major" property="major" jdbcType="VARCHAR" />
     <result column="grade" property="grade" jdbcType="CHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -37,25 +37,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -66,141 +66,141 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, name, gender, major, grade
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xdc.basic.api.mybatis.generator.model.StudentExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xdc.basic.api.mybatis.generator.model.StudentExample">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from student
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
     <include refid="Base_Column_List" />
     from student
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from student
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xdc.basic.api.mybatis.generator.model.StudentExample" >
+  <delete id="deleteByExample" parameterType="com.xdc.basic.api.mybatis.generator.model.StudentExample">
     delete from student
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xdc.basic.api.mybatis.generator.model.Student" >
-    insert into student (id, name, gender, 
+  <insert id="insert" parameterType="com.xdc.basic.api.mybatis.generator.model.Student">
+    insert into student (id, name, gender,
       major, grade)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR},
       #{major,jdbcType=VARCHAR}, #{grade,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xdc.basic.api.mybatis.generator.model.Student" >
+  <insert id="insertSelective" parameterType="com.xdc.basic.api.mybatis.generator.model.Student">
     insert into student
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender,
       </if>
-      <if test="major != null" >
+      <if test="major != null">
         major,
       </if>
-      <if test="grade != null" >
+      <if test="grade != null">
         grade,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         #{gender,jdbcType=CHAR},
       </if>
-      <if test="major != null" >
+      <if test="major != null">
         #{major,jdbcType=VARCHAR},
       </if>
-      <if test="grade != null" >
+      <if test="grade != null">
         #{grade,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xdc.basic.api.mybatis.generator.model.StudentExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.xdc.basic.api.mybatis.generator.model.StudentExample" resultType="java.lang.Integer">
     select count(*) from student
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update student
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
+      <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.gender != null" >
+      <if test="record.gender != null">
         gender = #{record.gender,jdbcType=CHAR},
       </if>
-      <if test="record.major != null" >
+      <if test="record.major != null">
         major = #{record.major,jdbcType=VARCHAR},
       </if>
-      <if test="record.grade != null" >
+      <if test="record.grade != null">
         grade = #{record.grade,jdbcType=CHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update student
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=CHAR},
       major = #{record.major,jdbcType=VARCHAR},
       grade = #{record.grade,jdbcType=CHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xdc.basic.api.mybatis.generator.model.Student" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xdc.basic.api.mybatis.generator.model.Student">
     update student
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender = #{gender,jdbcType=CHAR},
       </if>
-      <if test="major != null" >
+      <if test="major != null">
         major = #{major,jdbcType=VARCHAR},
       </if>
-      <if test="grade != null" >
+      <if test="grade != null">
         grade = #{grade,jdbcType=CHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xdc.basic.api.mybatis.generator.model.Student" >
+  <update id="updateByPrimaryKey" parameterType="com.xdc.basic.api.mybatis.generator.model.Student">
     update student
     set name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=CHAR},

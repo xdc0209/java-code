@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
   Customer info flow, as shown in listing 15.7.
  -->
 <flow xmlns="http://www.springframework.org/schema/webflow"
@@ -10,43 +10,43 @@
         http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
 
   <start-state idref="askForPhoneNumber" />
-  
-  <!-- 
+
+  <!--
     View state to prompt the customer for their phone number.
-    
+
     Originally (on page 593), this was part of the order flow, but was
     later re-factored out into the customer info flow (in section 15.3.2).
    -->
-  <view-state id="askForPhoneNumber" 
+  <view-state id="askForPhoneNumber"
       view="phoneNumberForm">
     <transition on="submit" to="lookupCustomer" />
   </view-state>
 
-  <!-- 
+  <!--
     Action state to retrieve customer information from the given phone
     number.
-    
+
     Discussed on page 597
    -->
   <action-state id="lookupCustomer">
     <action bean="lookupCustomerAction" />
-    
-    <transition on="success" 
+
+    <transition on="success"
         to="checkDeliveryArea" /> <!-- Added on page 613 -->
-        
+
     <transition on-exception=
-        "com.springinaction.pizza.service.CustomerNotFoundException" 
+        "com.springinaction.pizza.service.CustomerNotFoundException"
         to="addNewCustomer" />
   </action-state>
 
-  <!-- 
+  <!--
     View state to show a form for customer information.
-    
+
     Shown on page 599 and further fleshed out on page 600
    -->
   <view-state id="addNewCustomer" view="newCustomerForm">
     <render-actions>
-      <action bean="customerFormAction" 
+      <action bean="customerFormAction"
           method="setupForm"/>
     </render-actions>
     <transition on="submit" to="checkDeliveryArea"> <!-- Added on page 613 -->
@@ -56,21 +56,21 @@
     </transition>
   </view-state>
 
-  <!-- 
+  <!--
     Decision state to decide if the customer is in the delivery area
-    
+
     As shown on page 612
    -->
   <decision-state id="checkDeliveryArea">
-    <if test="${flowScope.order.customer.inDeliveryArea}" 
-        then="showOrder" 
+    <if test="${flowScope.order.customer.inDeliveryArea}"
+        then="showOrder"
         else="warnNoDeliveryAvailable"/>
   </decision-state>
 
-  <!-- 
+  <!--
     View state to warn the customer that delivery is not available and
     that their order will only be available for take-out.
-    
+
     As shown on page 613
    -->
   <view-state id="warnNoDeliveryAvailable"
@@ -81,11 +81,11 @@
 
   <end-state id="finish">
     <output-mapper>
-      <mapping source="flowScope.customer" 
+      <mapping source="flowScope.customer"
           target="customer"/>
     </output-mapper>
-  </end-state> 
-  
+  </end-state>
+
   <global-transitions>
     <transition on="cancel" to="finish" />
   </global-transitions>

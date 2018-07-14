@@ -265,5 +265,4 @@ public class PasswordHash
             System.out.println("ERROR: " + ex);
         }
     }
-
 }

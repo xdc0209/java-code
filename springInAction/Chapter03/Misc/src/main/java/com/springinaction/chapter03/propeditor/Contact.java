@@ -1,17 +1,20 @@
 package com.springinaction.chapter03.propeditor;
 
-public class Contact {
-  // This class will probably have other properties, too
-  // But the phoneNumber property is all that's needed
-  // to demonstrate property editors.
-  
-  private PhoneNumber phoneNumber;
+public class Contact
+{
+    // This class will probably have other properties, too
+    // But the phoneNumber property is all that's needed
+    // to demonstrate property editors.
 
-  public PhoneNumber getPhoneNumber() {
-    return phoneNumber;
-  }
+    private PhoneNumber phoneNumber;
 
-  public void setPhoneNumber(PhoneNumber phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
+    public PhoneNumber getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
 }

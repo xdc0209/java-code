@@ -6,8 +6,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,13 +15,15 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.metadata.ClassMetadata;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xdc.basic.api.hibernate.orm4.framwaork.dao.BaseDao;
 import com.xdc.basic.api.hibernate.orm4.framwaork.util.HibernateUtil;
 
 public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializable> implements BaseDao<T, PK>
 {
-    private static final Log log = LogFactory.getLog(BaseDaoImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(BaseDaoImpl.class);
 
     // 获得泛型类型
     @SuppressWarnings("unchecked")
@@ -51,7 +51,7 @@ public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializabl
     @Override
     public void save(T entity)
     {
-        log.debug("Save entity begin.");
+        log.debug("Save entity start. entity=[{}].", entity);
 
         Session session = getSession();
         try
@@ -60,12 +60,13 @@ public abstract class BaseDaoImpl<T extends Serializable, PK extends Serializabl
             session.save(entity);
             session.getTransaction().commit(); // commit后，session自动关闭，不必再调用close方法
 
-            log.debug("Save entity successful.");
+            log.debug("Save entity finish.");
         }
         catch (RuntimeException re)
         {
-            log.error("Save entity failed.", re);
+            log.error(String.format("Save entity fail. entity=[%s].", entity), re);
             session.getTransaction().rollback();
+            throw re;
         }
     }
 

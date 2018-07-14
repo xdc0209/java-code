@@ -1,5 +1,6 @@
 package headfirst.command.simpleremote;
 
-public interface Command {
-	public void execute();
+public interface Command
+{
+    public void execute();
 }

@@ -11,7 +11,7 @@ public class HashMapTest
     public static void main(String[] args)
     {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("name", "xudacaho");
+        map.put("name", "xudachao");
         map.put("age", "24");
         map.put("number", "20082890");
         map.put("gender", "male");

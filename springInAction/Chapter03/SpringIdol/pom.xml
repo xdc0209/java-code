@@ -22,7 +22,7 @@
           <target>1.5</target>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -44,12 +44,12 @@
                 <java classname="com.springinaction.springidol.SpringIdolMain">
                   <classpath>
                     <path refid="maven.runtime.classpath" />
-                  </classpath> 
+                  </classpath>
                 </java>
                 <java classname="com.springinaction.springidol.SpringIdolConfiguredMain" fork="true">
                   <classpath>
                     <path refid="maven.runtime.classpath" />
-                  </classpath> 
+                  </classpath>
                   <jvmarg line="-javaagent:lib/aspectjweaver.jar" />
                 </java>
                 <echo>====================================================================</echo>
@@ -62,7 +62,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
     </plugins>
   </build>
 

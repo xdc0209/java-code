@@ -1,7 +1,7 @@
 <form method="POST" action="flow.htm">
   <input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}">
   <input type="hidden" name="amount" value="${amount}" />
-  
+
   <b>Credit card #:  </b><input type="text" name="creditCardNumber"><br/>
   <b>Expiration  :  </b>
       <select name="expirationMonth">
@@ -17,7 +17,7 @@
         <option value="10">Oct</option>
         <option value="11">Nov</option>
         <option value="12">Dec</option>
-      </select> / 
+      </select> /
       <select name="expirationYear">
         <option value="2007">2007</option>
         <option value="2008">2008</option>
@@ -26,9 +26,9 @@
         <option value="2011">2011</option>
         <option value="2012">2012</option>
       </select><br/>
-    
-  <input type="submit" class="button" 
+
+  <input type="submit" class="button"
       name="_eventId_submit" value="Submit">
-  <input type="submit" class="button" 
-      name="_eventId_cancel" value="Cancel">        
+  <input type="submit" class="button"
+      name="_eventId_cancel" value="Cancel">
 </form>

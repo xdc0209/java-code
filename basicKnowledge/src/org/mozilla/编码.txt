@@ -12,7 +12,7 @@ UTF-8                                  UTF-8                EF BB BF
       如果java程序处理Notepad中的UFT-8（即带有BOM的），需要去除前三个字节。
       在java中，class文件采用utf8的编码方式，JVM运行时采用utf16。Java的字符串是永远都是unicode的，采用的是UTF-16的编码方式。
       Java使用UTF-8编码时生成的文件是不带BOM的。
-  
+
 字符集和编码
 ASCII是古老的编码，那个时候还不区分字符集和编码，基本可以看作合二为一的东西。
 Unicode严格来说是字符集，可以有多种编码。
@@ -23,7 +23,7 @@ UTF-8是一种Unicode的编码。
 
 =====================================================================
 摘自：http://www.cppblog.com/woaidongmao/archive/2009/08/10/92795.html
-string和byte[] 
+string和byte[]
 string其实核心是char[],然而要把byte转化成string，必须经过编码。string.length()其实就是char数组的长度，如果使用不同的编码，很可能会错分，造成散字和乱码。
 
 
@@ -35,4 +35,3 @@ Java语言，字符在内存中采用的是Unicode双字节定长编码。
 一般WinXP系统，简体中文版的默认编码是GB2312编码，而不是Unicode编码，
 并且，你在使用FileWriter对象的时候，并没有指定具体的编码，那么默认编码就是操作系统的默认编码。
 所以，文件中的字符，采用的是GB2312编码，汉字占2个字节，ASCII字符占1个字节。
-

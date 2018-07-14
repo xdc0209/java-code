@@ -98,5 +98,4 @@ public class KeyTool
         ks.store(output, newPassword.toCharArray());
         output.close();
     }
-
 }

@@ -2,13 +2,13 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-        
+
   <bean id="citationService" class="com.tickettodrive.CitationServiceImpl" />
-  
-  <!-- 
-    An RMI service exporter, as discussed in section 8.2.2 and shown on 
+
+  <!--
+    An RMI service exporter, as discussed in section 8.2.2 and shown on
     page 315.
    -->
   <bean class="org.springframework.remoting.rmi.RmiServiceExporter">

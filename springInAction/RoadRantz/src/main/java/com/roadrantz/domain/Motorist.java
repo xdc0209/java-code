@@ -19,94 +19,110 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
 @SuppressWarnings("serial")
-public class Motorist implements Serializable {
-  private Integer id;
-  private String firstName;
-  private String lastName;
-  private String email;
-  private String password;
-  private List<Vehicle> vehicles;
-  private Set<MotoristPrivilege> privileges;
-  
-  public Motorist() {
-    privileges = new HashSet<MotoristPrivilege>();
-  }
+public class Motorist implements Serializable
+{
+    private Integer                id;
+    private String                 firstName;
+    private String                 lastName;
+    private String                 email;
+    private String                 password;
+    private List<Vehicle>          vehicles;
+    private Set<MotoristPrivilege> privileges;
 
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  @OneToMany(cascade=CascadeType.ALL, 
-      mappedBy="motorist")
-  public List<Vehicle> getVehicles() {
-    return vehicles;
-  }
-
-  public void setVehicles(List<Vehicle> vehicles) {
-    this.vehicles = vehicles;
-  }
-  
-  @Transient
-  public List<Rant> getRants() {
-    List<Rant> allRants = new ArrayList<Rant>();
-    
-    for (Vehicle vehicle : vehicles) {
-      allRants.addAll(vehicle.getRants());
+    public Motorist()
+    {
+        privileges = new HashSet<MotoristPrivilege>();
     }
-    
-    return allRants;
-  }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getEmail()
+    {
+        return email;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
 
-  @OneToMany(cascade=CascadeType.ALL, 
-      fetch=FetchType.LAZY, 
-      mappedBy="motorist")
-  public Set<MotoristPrivilege> getPrivileges() {
-    return privileges;
-  }
-  
-  public void setPrivileges(Set<MotoristPrivilege> privileges) {
-    this.privileges = privileges;
-  }
-  
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this);
-  }
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "motorist")
+    public List<Vehicle> getVehicles()
+    {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles)
+    {
+        this.vehicles = vehicles;
+    }
+
+    @Transient
+    public List<Rant> getRants()
+    {
+        List<Rant> allRants = new ArrayList<Rant>();
+
+        for (Vehicle vehicle : vehicles)
+        {
+            allRants.addAll(vehicle.getRants());
+        }
+
+        return allRants;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "motorist")
+    public Set<MotoristPrivilege> getPrivileges()
+    {
+        return privileges;
+    }
+
+    public void setPrivileges(Set<MotoristPrivilege> privileges)
+    {
+        this.privileges = privileges;
+    }
+
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

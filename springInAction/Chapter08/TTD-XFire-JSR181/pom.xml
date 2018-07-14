@@ -22,11 +22,11 @@
           <source>1.5</source>
           <target>1.5</target>
         </configuration>
-      </plugin> 
+      </plugin>
     </plugins>
   </build>
-  
-  <dependencies>    
+
+  <dependencies>
     <dependency>
       <groupId>org.codehaus.xfire</groupId>
       <artifactId>xfire-spring</artifactId>

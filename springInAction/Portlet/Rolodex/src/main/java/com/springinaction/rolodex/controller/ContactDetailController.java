@@ -14,7 +14,6 @@ public class ContactDetailController extends AbstractController {
   
   protected ModelAndView handleRenderRequestInternal(RenderRequest request,
       RenderResponse response) throws Exception {
-
     int id = Integer.parseInt(request.getParameter("contactId"));
     Contact contact = rolodexService.getContact(id);
     

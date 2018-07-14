@@ -7,4 +7,3 @@
 推荐validate2：
 validate1使用ThreadLocal实现多线程的安全，代码略微复杂。
 validate2实现了不可变对象，代码简洁清晰。
-

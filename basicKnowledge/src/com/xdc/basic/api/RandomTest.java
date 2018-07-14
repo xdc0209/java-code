@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class RandomTest
 {
-
     public static void main(String[] args)
     {
         // Math.random()方法

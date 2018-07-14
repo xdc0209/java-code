@@ -2,10 +2,10 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-       
-  <!-- 
+
+  <!--
     A JpaTemplate, as discussed in section 5.5.1, page 194
    -->
   <bean id="jpaTemplate"
@@ -13,15 +13,15 @@
     <property name="entityManagerFactory" ref="entityManagerFactory" />
   </bean>
 
-  <!-- 
+  <!--
      This is the bean declaration that was started in Listing 5.9 with the
      injection of the persistenceUnitName property.
    -->
   <bean id="entityManagerFactory"
       class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-    
+
     <property name="persistenceUnitName" value="rantzPU" />
-      
+
     <property name="jpaVendorAdapter">
         <bean
           class="org.springframework.orm.jpa.vendor.TopLinkJpaVendorAdapter">
@@ -31,7 +31,7 @@
             <property name="showSql" value="true" />
         </bean>
     </property>
-      
+
     <property name="jpaProperties">
       <props>
         <prop key="toplink.jdbc.driver">${db.driver}</prop>
@@ -42,23 +42,23 @@
         <prop key="toplink.target-database">HSQL</prop>
       </props>
     </property>
-    
+
     <property name="persistenceProviderClass"
         value="oracle.toplink.essentials.PersistenceProvider" />
   </bean>
-  
-  <!-- 
+
+  <!--
     This is the LocalContainerEntityManagerFactoryBean that was defined
     in Listing 5.10
    -->
-  <!-- 
-  <bean id="entityManagerFactory" 
+  <!--
+  <bean id="entityManagerFactory"
       class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
     <property name="dataSource" ref="dataSource" />
-      
+
     <property name="loadTimeWeaver">
-      <bean class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver" /> 
+      <bean class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver" />
     </property>
 
     <property name="jpaVendorAdapter">
@@ -72,23 +72,23 @@
     </property>
   </bean>
   -->
-  
-  <!-- 
+
+  <!--
     The JpaRantDao in a pure form (e.g., it doesn't extend or implement
-    any Spring-specific class/interfaces). 
-    
+    any Spring-specific class/interfaces).
+
      Upon looking back at the book, I discovered that I don't discuss this
      implementation at all in the book. That's unfortunate, since the Pure JPA
      approach is considered the preferred approach to using JPA in Spring.
      Nevertheless, here's the implementation for your enjoyment.
     -->
   <bean id="rantDao" class="com.roadrantz.dao.jpa.PureJpaRantDao" />
-  
-  
-  <!-- 
+
+
+  <!--
     A JPA-based transaction manager, as described in section 6.2.3, page 228.
    -->
-  <bean id="transactionManager" 
+  <bean id="transactionManager"
       class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory"
         ref="entityManagerFactory" />
@@ -104,5 +104,5 @@
        DAO classes with a @PersistenceContext annotation
        placed on a setEntityManager() method. -->
   <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-  
+
 </beans>

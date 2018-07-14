@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-app_2_4.xsd"
     version="2.4">
-    
+
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
@@ -18,7 +18,7 @@
       classpath:roadrantz-mbeans.xml
     </param-value>
   </context-param>
-   
+
    <!-- NOTE: ContextLoaderListener may not work for all application
               servers. If it does not work for yours, you must use
               ContextLoaderServlet instead.
@@ -29,12 +29,12 @@
 
 	<listener>
 	  <listener-class>org.acegisecurity.ui.session.HttpSessionEventPublisher</listener-class>
-	</listener> 
+	</listener>
 
   <servlet>
     <servlet-name>roadrantz</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    
+
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:roadrantz-servlet.xml</param-value>
@@ -61,7 +61,7 @@
     <servlet-name>roadrantz</servlet-name>
     <url-pattern>*.pdf</url-pattern>
   </servlet-mapping>
-    
+
   <!-- ================== ACEGI FILTERS ================ -->
   <filter>
     <filter-name>Acegi Filter Chain Proxy</filter-name>
@@ -77,5 +77,5 @@
   </filter-mapping>
 
   <welcome-file>index.html</welcome-file>
-   
+
 </web-app>

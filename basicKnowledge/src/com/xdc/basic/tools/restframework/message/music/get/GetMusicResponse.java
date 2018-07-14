@@ -147,5 +147,4 @@ public class GetMusicResponse
     {
         this.tracks = tracks;
     }
-
 }

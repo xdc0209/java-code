@@ -51,5 +51,4 @@ public class SerializationTest
             System.exit(0);
         }
     }
-
 }

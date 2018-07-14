@@ -6,19 +6,19 @@
         http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
 
   <start-state idref="promptForPaymentType" />
-  
-  <view-state id="promptForPaymentType" 
+
+  <view-state id="promptForPaymentType"
       view="paymentType">
     <transition on="creditcard" to="takeCreditCardInfo"/>
     <transition on="*" to="finish"/>
   </view-state>
-  
+
   <view-state id="takeCreditCardInfo" view="creditCardForm">
     <transition on="submit" to="processCreditCard"/>
   </view-state>
-  
+
   <action-state id="processCreditCard">
-    <bean-action bean="creditCardProcessor" 
+    <bean-action bean="creditCardProcessor"
         method="processPayment">
       <method-arguments>
         <argument expression=
@@ -35,8 +35,8 @@
   </action-state>
 
   <end-state id="finish" />
-      
+
   <global-transitions>
     <transition on="cancel" to="finish" />
-  </global-transitions>      
+  </global-transitions>
 </flow>

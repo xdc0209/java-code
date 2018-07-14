@@ -6,7 +6,7 @@
 
   <body>
     <h2>Rantz for: ${vehicle.state} ${vehicle.plateNumber}</h2>
-    
+
     <ul>
     <c:forEach items="${rants}" var="rant">
     <li><c:out value="${rant.vehicle.state}"/>/<c:out value="${rant.vehicle.plateNumber}"/> -- <c:out value="${rant.rantText}"/>

@@ -3,7 +3,7 @@ WHAT THE HECK IS ROADRANTZ?
 If you've been reading the book, you're probably wondering what RoadRantz is.
 Well, I had intended to write a short "About RoadRantz" segment to fit nicely
 in between chapters 4 and 5. Unfortunately, due to size and time constraints
-that never happened. 
+that never happened.
 
 In some attempt to make up for it, I'm going to attempt to settle the question
 of what RoadRantz is with this file.
@@ -13,7 +13,7 @@ It started that day I almost died
 Like many people in today's workforce, I have spent a large portion of my
 life driving to and from work. The reality is that most of my jobs have been
 nowhere near my home and I've been required to commute up to an hour and a
-half each way (worst case). 
+half each way (worst case).
 
 Whether you realize it or not, we share the road with a bunch of complete
 idiots. I generally don't have any bias against idiots--they can't help it
@@ -30,14 +30,14 @@ attempt to beautify herself. In all cases, the motorists were putting
 themselves and others on the road in danger.
 
 In short, if you're busy doing anything other than driving, you're not
-going to be able to drive that well. Not to mention, that much hair spray 
+going to be able to drive that well. Not to mention, that much hair spray
 creates a blinding haze that limits your visibility.
 
 Anyway, on one particular day, one of those idiots almost broad-sided me,
 swerving at the last second. I was certain that I had almost died--they were
 certain that they had just lost their cell signal.
 
-At that time, I decided there needed to be a way for me and other drivers to 
+At that time, I decided there needed to be a way for me and other drivers to
 vent about those idiots on the road that fail to recognize that they're
 endangering others lives with their reckless commute-time habits.
 
@@ -49,7 +49,7 @@ RoadRantz is a community site in the same vein as MySpace or Facebook. The
 big difference is that instead of building a community of friends (Why do
 you need that? If they're you're friends you should just call them or go
 get pizza or something.) you're building a community of people you've
-encountered in traffic. 
+encountered in traffic.
 
 The idea started simple enough: Take note of an idiot's license plate number
 and then go online to tell anyone and everyone how this particular motorist
@@ -71,7 +71,7 @@ What's in this project
 ----------------------
 I decided that RoadRantz would be a fun example for Spring in Action, 2E.
 That's because it covers so much of the ground that would also be covered
-in the book. No example is perfect and I couldn't easily use RoadRantz for 
+in the book. No example is perfect and I couldn't easily use RoadRantz for
 all sections in the book. But I think it does a good job of demonstrating
 most of the topics in SiA2.
 
@@ -81,7 +81,7 @@ had to focus my energy on getting the book done. Therefore, I've built just
 enough of the RoadRantz application to demonstrate the concepts in the book
 and only a little more than that.
 
-The problem with trying to demonstrate a wealth of Spring techniques in 
+The problem with trying to demonstrate a wealth of Spring techniques in
 a simple application is that you end up with a hammer in search of nails.
 That is, I needed to demonstrate something, so in some cases I shoe-horned
 an example into the RoadRantz application, even if I probably wouldn't
@@ -91,10 +91,10 @@ Now that the book is done, I intend to continue working on the RoadRantz
 application as a toy project. That means that I'll continue to add
 functionality and will continue to evolve the design. I'll also clean up
 the application, removing some of the examples that don't quite fit.
-And eventually I'll deploy it for public consumption. 
+And eventually I'll deploy it for public consumption.
 
-If you want to follow along with the changes I make, you can check out the 
-code from svn://svn.geekisp.com/SiA. The new changes will be made on the 
+If you want to follow along with the changes I make, you can check out the
+code from svn://svn.geekisp.com/SiA. The new changes will be made on the
 trunk, but you can always retrieve the original book version of the code
 from the BOOK-1.0 tag.
 
@@ -102,15 +102,15 @@ The basic design of RaodRantz
 -----------------------------
 Lately, I've become captivated by the idea of Domain Driven Design, as
 presented at length in Erik Evans' "Domain Driven Design: Tackling Complexity
-in the Heart of Software" and other related books and writings. 
+in the Heart of Software" and other related books and writings.
 
 Unfortunately, that interest in DDD came too late to impact the design of
-the RoadRantz application. 
+the RoadRantz application.
 
 So, RoadRantz follows a fairly basic layered approach consisting of a
 presentation layer, a business layer, and a persistence layer. Transcending
 all of those layers is a handful of domain objects, although not exactly
-the same rich domain-layer you might find discussed in Eric Evans' book. 
+the same rich domain-layer you might find discussed in Eric Evans' book.
 
 In the presentation layer you'll find things like Spring MVC and, to a
 lesser extent, Struts, WebWork, Tapestry, and JSF.
@@ -153,7 +153,7 @@ a create-tables.sql file which includes SQL for creating the tables in
 Hypersonic. You'll need to tweak those in order to use a different database.
 
 The RantService tests (RantServiceTest*.java) are excluded from normal
-test execution in the Maven pom.xml file. That's because they're not 
+test execution in the Maven pom.xml file. That's because they're not
 really unit-tests and because they require a database to be setup and
 running in order to test the RantService implementation. If you want to
 run those tests, you'll need to specify the "itest" Maven profile, as
@@ -162,10 +162,9 @@ follows:
    % mvc -P itest test
 
 At the moment, you'll need a running database to run those integration
-tests against RantServiceImpl. I intend to eventually rework those tests to 
+tests against RantServiceImpl. I intend to eventually rework those tests to
 use an in-memory Hypersonic database so they won't need a database otherwise.
 But for now, be sure to have a DB going.
 
 One final detail: Once you've got the database setup, you'll want to tweak
 the database connection properties. Those are setup in the db.properties file.
-

@@ -1,6 +1,8 @@
 package headfirst.adapter.ducks;
 
-public interface Turkey {
-	public void gobble();
-	public void fly();
+public interface Turkey
+{
+    public void gobble();
+
+    public void fly();
 }

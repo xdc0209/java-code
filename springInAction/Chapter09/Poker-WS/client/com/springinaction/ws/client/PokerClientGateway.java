@@ -12,7 +12,6 @@ import com.springinaction.poker.webservice.EvaluateHandResponse;
 public class PokerClientGateway 
     extends WebServiceGatewaySupport
     implements PokerClient {
-
   public PokerHandType evaluateHand(Card[] cards) 
       throws IOException {
     EvaluateHandRequest request = new EvaluateHandRequest();

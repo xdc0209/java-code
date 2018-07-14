@@ -28,7 +28,7 @@ class IOCharStreamTest
             while ((bufferUsed = fr.read(buffer, 0, buffer.length)) > 0)
             {
                 fw.write(buffer, 0, bufferUsed);
-                String s = new String(buffer);
+                String s = new String(buffer, 0, bufferUsed);
                 s = s.trim();
                 System.out.println(s);
             }

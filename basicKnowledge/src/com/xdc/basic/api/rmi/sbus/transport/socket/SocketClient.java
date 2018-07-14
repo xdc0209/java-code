@@ -63,6 +63,5 @@ public class SocketClient implements MessageClient
             log.error("Send message failed.", e);
             throw e;
         }
-
     }
 }

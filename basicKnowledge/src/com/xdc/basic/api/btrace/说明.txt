@@ -1,13 +1,13 @@
-介绍 
-Btrace (Byte Trace)是sun推出的一款java 动态、安全追踪（监控）工具，可以不停机的情况下监控线上情况，并且做到最少的侵入，占用最少的系统资源。  
+介绍
+Btrace (Byte Trace)是sun推出的一款java 动态、安全追踪（监控）工具，可以不停机的情况下监控线上情况，并且做到最少的侵入，占用最少的系统资源。
 In a way, BTrace scripts are very similar to AOP's aspects, but can be attached to any existing Java code (or better, bytecode) at runtime and without any configuration or modification at development time.
 
-背景 
-在生产环境中可能经常遇到各种问题，定位问题需要获取程序运行时的数据信息，如方法参数、返回值、全局变量、堆栈信息等。为了获取这些数据信息，我们可以 通过改写代码，增加日志信息的打印，再发布到生产环境。通过这种方式，一方面将增大定位问题的成本和周期，对于紧急问题无法做到及时响应；另一方面重新部 署后环境可能已被破坏，很难重新问题的场景。 
+背景
+在生产环境中可能经常遇到各种问题，定位问题需要获取程序运行时的数据信息，如方法参数、返回值、全局变量、堆栈信息等。为了获取这些数据信息，我们可以 通过改写代码，增加日志信息的打印，再发布到生产环境。通过这种方式，一方面将增大定位问题的成本和周期，对于紧急问题无法做到及时响应；另一方面重新部 署后环境可能已被破坏，很难重新问题的场景。
 
-BTrace功能 
-BTrace天生就为解决这类问题而来，它可以动态地跟踪java运行程序。通过hotswap技术，动态将跟踪字节码注入到运行类中，对运行代码侵入较小，对性能上的影响可以忽略不计。 
-BTrace在使用上有很多限制条件，如不能创建对象、数组、抛出和捕获异常、循环等，具体限制条件参考用户文档中的BTrace Restrictions。用户文档地址: http://kenai.com/projects/btrace/pages/UserGuide。 
+BTrace功能
+BTrace天生就为解决这类问题而来，它可以动态地跟踪java运行程序。通过hotswap技术，动态将跟踪字节码注入到运行类中，对运行代码侵入较小，对性能上的影响可以忽略不计。
+BTrace在使用上有很多限制条件，如不能创建对象、数组、抛出和捕获异常、循环等，具体限制条件参考用户文档中的BTrace Restrictions。用户文档地址: http://kenai.com/projects/btrace/pages/UserGuide。
 根据官方声明，不当地使用btrace可能导致jvm崩溃，如BTrace使用错误的.class文件，Hotspot JVM自身存在的hotswap bug等。可以先在本地验证BTrace脚本的正确性，再传到生产环境中定位问题。
 
 工具的使用：存在两种使用方式

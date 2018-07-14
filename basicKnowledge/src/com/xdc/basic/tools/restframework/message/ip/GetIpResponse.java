@@ -121,5 +121,4 @@ public class GetIpResponse
     {
         this.desc = desc;
     }
-
 }

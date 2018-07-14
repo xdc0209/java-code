@@ -66,7 +66,6 @@ public class X2_StudentHandler extends DefaultHandler
     @Override
     public void endDocument() throws SAXException
     {
-
     }
 
     @Override

@@ -89,11 +89,10 @@ public class InterruptTest3
                         // 参考自：int org.apache.commons.exec.DefaultExecutor.executeInternal(CommandLine command, Map environment, File dir, ExecuteStreamHandler streams) throws IOException
                         // see http://bugs.sun.com/view_bug.do?bug_id=6420270
                         // see https://issues.apache.org/jira/browse/EXEC-46
-                        // Process.waitFor should clear interrupt status when throwing InterruptedException
-                        // but we have to do that manually
-                        // Process.waitFor响应了中断后，应该清除中断，但是它没有，因此我们必须负责清理。
-                        // 一般的处理中断的策略是：在代码的合适位置(while死循环中的某处)，判断中断状态，如果处于中断，则先要清除中断，再对此次中断做对应的逻辑处理(如终止while死循环)。清除中断的原因是避免外界的一次异常中断信号，触发本线程的多次处理。
-                        // 其实java的此问题已经修改，查看int java.lang.ProcessImpl.waitFor() throws InterruptedException中已经清除了中断后再抛出InterruptedException，此处再清除一次中断为了兼容有问题的jre，并且再中断一次也没有副作用。
+                        // Process.waitFor should clear interrupt status when throwing InterruptedException but we have to do that manually.
+                        // Process.waitFor抛出InterruptedException时，应该清除中断状态，但是它没有，因此我们必须负责清理。
+                        // 一般的处理中断的策略是：在代码的合适位置(如循环代码中的某处)，判断中断状态，如果处于中断，则先要清除中断，再对此次中断做对应的逻辑处理(如终止循环)。清除中断的原因是避免外界的一次异常中断信号，触发本线程的多次处理。
+                        // 其实java的此问题已经修改，查看int java.lang.ProcessImpl.waitFor() throws InterruptedException中已经清除了中断后再抛出InterruptedException，此处再清除一次中断为了兼容有问题的jre，并且再清除一次中断也没有副作用。
                         Thread.interrupted();
                     }
 
@@ -122,7 +121,6 @@ public class InterruptTest3
                 // 等待超时，向与命令行进程对应的等待线程发中断信号，不再等待
                 waitProcessExitThread.interrupt();
             }
-
         }, timeout);
 
         return waitProcessExitThread.getExitValue();

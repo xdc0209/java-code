@@ -2,10 +2,10 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-  <!-- 
+  <!--
     Loads externalized configuration details from db.properties.
    -->
   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -13,9 +13,9 @@
   </bean>
 
   <!--
-    A DriverManagerDataSource, as described in section 5.2.3 
+    A DriverManagerDataSource, as described in section 5.2.3
    -->
-  <bean id="dataSource" 
+  <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="${db.driver}" />
     <property name="url" value="${db.url}" />

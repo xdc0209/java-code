@@ -539,7 +539,6 @@ public class StudentExample
 
     public static class Criteria extends GeneratedCriteria
     {
-
         protected Criteria()
         {
             super();

@@ -14,7 +14,7 @@ public interface BaseDao<T extends Serializable, PK extends Serializable>
     // -------------------- 基本检索、增加、修改、删除操作 --------------------
     // //////////////////////////////////////////////////////////////////////
 
-    // 增加实体, getHibernateTemplate没有带锁的sava，因为LockMode为行锁
+    // 增加实体, getHibernateTemplate没有带锁的save，因为LockMode为行锁
     public void save(T entity);
 
     // 增加或更新实体

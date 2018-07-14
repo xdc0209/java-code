@@ -11,7 +11,6 @@ import com.springinaction.poker.webservice.EvaluateHandResponse;
 
 public class MarshallingPokerClient 
     implements PokerClient {
-
   public PokerHandType evaluateHand(Card[] cards) 
       throws IOException {
     EvaluateHandRequest request = new EvaluateHandRequest();

@@ -2,18 +2,18 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-  <!-- 
+  <!--
     JaxRpcPortProxyFactoryBean to wire in the citation web service.
-    
+
     As configured here, this should work with the JSR-181 version of the
     XFire service. The properties may need to be changed to work with any
     other implementation of the citation service.
-    
-    From section 8.5.3, page 336. 
-   -->  
+
+    From section 8.5.3, page 336.
+   -->
   <bean id="citationService"
       class="org.springframework.remoting.jaxrpc.JaxRpcPortProxyFactoryBean">
     <property name="wsdlDocumentUrl"
@@ -33,7 +33,7 @@
       </list>
     </property>
   </bean>
-  
+
   <!-- From pages 337-338 -->
   <bean id="beanMappingPostProcessor"
       class="org.springframework.remoting.jaxrpc.support.AxisBeanMappingServicePostProcessor">
@@ -43,9 +43,9 @@
       </list>
     </property>
     <property name="typeNamespaceUri" value="http://tickettodrive.com" />
-  </bean>  
-  
+  </bean>
+
   <!-- From page 340 -->
   <bean id="arrayMappingPostProcessor"
-      class="com.tickettodrive.ws.AxisArrayOfCitationMappingServicePostProcessor" />  
+      class="com.tickettodrive.ws.AxisArrayOfCitationMappingServicePostProcessor" />
 </beans>

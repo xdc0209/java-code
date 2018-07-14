@@ -66,6 +66,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
@@ -81,6 +82,7 @@ import com.xdc.basic.tools.restserver.jersey.core.filter.authentication.sign.api
 
 import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 
+@Ignore("依赖ServerMain。")
 public class ClientMain
 {
     private static final Logger LOGGER                             = Logger.getLogger(ClientMain.class.getName());

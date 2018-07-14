@@ -2,31 +2,29 @@ Spring-WS Step-by-Step
 ======================
  1. Create message samples
     - Just XML
-    
+
  2. Use Trang to generate XSD
     % java -jar trang.jar -I xml -O xsd EvaluateHand*.xml PokerTypes.xsd
-    
+
  3. Fine-tune XSD
     - Fix types, bounds, etc.
-    
+
  4. Use Arjen's XSLT with SAXON to generate WSDL
     % java -jar saxon8.jar PokerTypes.xsd xsd2wsdl.xsl > PokerService.wsdl
- 
+
  5. Fine-tune WSDL
     - Extract XSD...import instead
     - Tweak operation names if desired
     - Change service URL...or...
       - look into org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter
-    
+
  6. Create/Map schema objects
     - Resist temptation to use domain objects
     - Use JAXB to generate objects
     - Optionally, use Castor XML to map objects
-    
+
  7. Write Endpoint implementation
- 
+
  8. Wire all parts up in Spring
- 
+
  9. Deploy
- 
-    

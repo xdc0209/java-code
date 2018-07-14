@@ -34,7 +34,7 @@ public class MergingSort
     }
 
     /**
-     * 将有序的n[low,middle]和n[middle+1,middle]合并为有序的n[low,high]
+     * 将有序的n[low,middle]和n[middle+1,high]合并为有序的n[low,high]
      * 
      * @param n
      *            数组

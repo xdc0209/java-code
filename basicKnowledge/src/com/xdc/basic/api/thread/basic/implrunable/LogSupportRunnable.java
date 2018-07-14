@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.xdc.basic.api.log.slf4j.LogTest;
 
 /**
- * 为了避免线程因异常而不留痕迹的消失，将业务代码都在try-catch执行。此类作为线程的基类，继承此类即可实现线程。
+ * 为了避免线程因异常而不留痕迹的消失，将业务代码都放在try-catch执行。此类作为线程的基类，继承此类即可实现线程。
  */
 public abstract class LogSupportRunnable implements Runnable
 {

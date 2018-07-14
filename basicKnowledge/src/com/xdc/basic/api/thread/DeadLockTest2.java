@@ -40,7 +40,6 @@ public class DeadLockTest2
 
     public class Thread2 extends Thread
     {
-
         @Override
         public void run()
         {

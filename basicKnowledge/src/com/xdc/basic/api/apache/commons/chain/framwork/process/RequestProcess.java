@@ -9,8 +9,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.chain.Chain;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.impl.ChainBase;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xdc.basic.api.apache.commons.chain.framwork.handler.HandlerContext;
 import com.xdc.basic.api.apache.commons.chain.framwork.handler.HandlerFactory;
@@ -21,7 +21,7 @@ import com.xdc.basic.api.apache.commons.chain.framwork.queue.ResponseQueue;
 
 public class RequestProcess extends MessageProcess
 {
-    private static Log            log      = LogFactory.getLog(RequestProcess.class);
+    private static Logger         log      = LoggerFactory.getLogger(RequestProcess.class);
 
     private final ExecutorService executor = Executors.newFixedThreadPool(100, new RequestHandlerThreadFactory());
 
@@ -55,15 +55,13 @@ public class RequestProcess extends MessageProcess
                     response.setRequestId(request.getRequestId());
 
                     ResponseQueue.getInstance().put(response);
-
                 }
                 catch (Exception e)
                 {
-                    log.error(e);
+                    log.error("Handle request fail.", e);
                 }
             }
         });
-
     }
 
     @Override

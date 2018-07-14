@@ -8,7 +8,6 @@ public class BrokenComparator
 {
     public static void main(String[] args)
     {
-
         // Broken comparator - can you spot the flaw? - Page 221
         Comparator<Integer> naturalOrder = new Comparator<Integer>()
         {

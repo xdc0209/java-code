@@ -22,8 +22,8 @@
           <source>1.5</source>
           <target>1.5</target>
         </configuration>
-      </plugin> 
-       
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -45,7 +45,7 @@
                 <java classname="com.tickettodrive.rmi.RmiMain">
                   <classpath>
                     <path refid="maven.runtime.classpath" />
-                  </classpath> 
+                  </classpath>
                 </java>
                 <echo>====================================================================</echo>
                 <echo>=============================== FINISHED ===========================</echo>
@@ -57,17 +57,17 @@
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
     </plugins>
   </build>
-  
+
   <dependencies>
     <dependency>
       <groupId>hessian</groupId>
       <artifactId>hessian</artifactId>
       <version>3.0.1</version>
     </dependency>
-    
+
    <dependency>
       <groupId>org.codehaus.xfire</groupId>
       <artifactId>xfire-spring</artifactId>
@@ -80,7 +80,7 @@
     <artifactId>axis</artifactId>
     <version>1.4</version>
 </dependency>
-    
+
 <dependency>
     <groupId>org.apache.axis</groupId>
     <artifactId>axis-jaxrpc</artifactId>

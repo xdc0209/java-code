@@ -10,7 +10,7 @@ keytool -list -v -keystore keystore.jks
 keytool -export -alias certificatekey -keystore keystore.jks -rfc -file selfsignedcert.cer
 
 第四步 – 把认凭证件导入到truststore文件
-keytool -import -alias certificatekey -file selfsignedcert.cer  -keystore truststore.jks
+keytool -import -alias certificatekey -file selfsignedcert.cer -keystore truststore.jks
 
-第五步 – 验证新创建的truststore文件 
+第五步 – 验证新创建的truststore文件
 keytool -list -v -keystore truststore.jks

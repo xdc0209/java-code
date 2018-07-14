@@ -10,43 +10,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MOTORIST_PRIVILEGES")
+@Table(name = "MOTORIST_PRIVILEGES")
 @SuppressWarnings("serial")
-public class MotoristPrivilege implements Serializable {
-  private Integer id;
-  private Motorist motorist;
-  private String privilege;
-  
-  public MotoristPrivilege() {}
-  
-  public MotoristPrivilege(String privilege) {
-    this.privilege = privilege;
-  }
-  
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  public Integer getId() {
-    return id;
-  }
-  
-  public void setId(Integer id) {
-    this.id = id;
-  }
+public class MotoristPrivilege implements Serializable
+{
+    private Integer  id;
+    private Motorist motorist;
+    private String   privilege;
 
-  @ManyToOne
-  public Motorist getMotorist() {
-    return motorist;
-  }
-  
-  public void setMotorist(Motorist motorist) {
-    this.motorist = motorist;
-  }
-  
-  public String getPrivilege() {
-    return privilege;
-  }
-  
-  public void setPrivilege(String privilege) {
-    this.privilege = privilege;
-  }
+    public MotoristPrivilege()
+    {
+    }
+
+    public MotoristPrivilege(String privilege)
+    {
+        this.privilege = privilege;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
+    @ManyToOne
+    public Motorist getMotorist()
+    {
+        return motorist;
+    }
+
+    public void setMotorist(Motorist motorist)
+    {
+        this.motorist = motorist;
+    }
+
+    public String getPrivilege()
+    {
+        return privilege;
+    }
+
+    public void setPrivilege(String privilege)
+    {
+        this.privilege = privilege;
+    }
 }

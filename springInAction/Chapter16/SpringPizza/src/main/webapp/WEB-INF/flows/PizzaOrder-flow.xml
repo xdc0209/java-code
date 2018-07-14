@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
   Complete flow definition, as shown in listing 15.6. But then is torn apart
   as the customer and pizza portions are refactored into subflows.
  -->
@@ -11,31 +11,31 @@
         "http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
 
-  <var name="order" 
-      class="com.springinaction.pizza.domain.Order" 
+  <var name="order"
+      class="com.springinaction.pizza.domain.Order"
       scope="flow"/>
-      
+
   <start-state idref="askForPhoneNumber"  />
 
-  <view-state id="askForPhoneNumber" 
+  <view-state id="askForPhoneNumber"
       view="phoneNumberForm">
     <transition on="submit" to="lookupCustomer" />
   </view-state>
 
   <action-state id="lookupCustomer">
     <action bean="lookupCustomerAction" />
-    
-    <transition on="success" 
+
+    <transition on="success"
         to="checkDeliveryArea" /> <!-- Added on page 613 -->
-        
+
     <transition on-exception=
-        "com.springinaction.pizza.service.CustomerNotFoundException" 
+        "com.springinaction.pizza.service.CustomerNotFoundException"
         to="addNewCustomer" />
   </action-state>
 
   <view-state id="addNewCustomer" view="newCustomerForm">
     <render-actions>
-      <action bean="customerFormAction" 
+      <action bean="customerFormAction"
           method="setupForm"/>
     </render-actions>
     <transition on="submit" to="checkDeliveryArea"> <!-- Added on page 613 -->
@@ -45,21 +45,21 @@
     </transition>
   </view-state>
 
-  <!-- 
+  <!--
     Decision state to decide if the customer is in the delivery area
-    
+
     As shown on page 612
    -->
   <decision-state id="checkDeliveryArea">
-    <if test="${flowScope.order.customer.inDeliveryArea}" 
-        then="showOrder" 
+    <if test="${flowScope.order.customer.inDeliveryArea}"
+        then="showOrder"
         else="warnNoDeliveryAvailable"/>
   </decision-state>
 
-  <!-- 
+  <!--
     View state to warn the customer that delivery is not available and
     that their order will only be available for take-out.
-    
+
     As shown on page 613
    -->
   <view-state id="warnNoDeliveryAvailable"
@@ -69,15 +69,15 @@
   </view-state>
 
 
-    
+
   <view-state id="showOrder" view="orderDetails">
     <transition on="addPizza" to="addPizza" />
     <transition on="continue" to="takePayment" />
   </view-state>
-  
-  <!-- 
+
+  <!--
     View state for prompting a user for a pizza selection.
-    
+
     Shown on page 604
    -->
   <view-state id="addPizza" view="newPizzaForm">
@@ -90,15 +90,15 @@
           "flowScope.order.addPizza(requestScope.pizza)" />
     </transition>
   </view-state>
-  
-  <!-- 
+
+  <!--
     View state to take payment info from a customer.
-    
+
     Shown on pages 605-606
    -->
   <view-state id="takePayment" view="paymentForm">
     <transition on="submit" to="submitOrder">
-      <bean-action bean="paymentProcessor" 
+      <bean-action bean="paymentProcessor"
           method="approveCreditCard">
         <method-arguments>
           <argument expression=
@@ -112,35 +112,35 @@
         </method-arguments>
       </bean-action>
     </transition>
-    
-    <transition 
+
+    <transition
       on-exception="com.springinaction.pizza.PaymentException"
       to="takePayment" />
   </view-state>
 
-  <!-- 
+  <!--
     Action state to submit the order to the order service.
-    
+
     As shown on page 607
-   -->  
+   -->
   <action-state id="submitOrder">
     <bean-action bean="orderService" method="saveOrder">
       <method-arguments>
         <argument expression="${flowScope.order}" />
       </method-arguments>
     </bean-action>
-    
+
     <transition on="success" to="finish" />
   </action-state>
-  
-  <end-state id="finish" 
+
+  <end-state id="finish"
       view="flowRedirect:PizzaOrder-flow" />
 
-  <!-- 
+  <!--
     Globally transition "cancel" to the "finish" state
-    
+
     As shown on page 608
-   -->     
+   -->
   <global-transitions>
     <transition on="cancel" to="finish" />
   </global-transitions>

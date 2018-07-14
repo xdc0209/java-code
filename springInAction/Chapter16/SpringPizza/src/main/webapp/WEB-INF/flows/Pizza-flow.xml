@@ -5,12 +5,12 @@
         "http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
 
-  <var name="pizza" 
-      class="com.springinaction.pizza.domain.Pizza" 
+  <var name="pizza"
+      class="com.springinaction.pizza.domain.Pizza"
       scope="flow"/>
 
   <start-state idref="chooseSize" />
-  
+
   <view-state id="chooseSize" view="chooseSize">
     <transition on="submit" to="chooseType">
       <evaluate-action expression=
@@ -21,7 +21,7 @@
   <view-state id="chooseType" view="chooseType">
     <transition on="submit" to="checkType" />
   </view-state>
-  
+
   <decision-state id="checkType">
     <if test="${requestParameters.pizzaType == 'BUILD'}"
         then="chooseToppings"
@@ -34,7 +34,7 @@
           "flowScope.pizza.setToppings(requestParameters.toppings)" />
     </transition>
   </view-state>
-  
+
   <action-state id="createSpecialtyPizza">
     <action bean="specialtyBuilder" />
     <transition on="success" to="finish" />
@@ -44,10 +44,10 @@
     <output-mapper>
       <mapping source="flowScope.pizza" target="pizza"/>
     </output-mapper>
-  </end-state> 
-     
+  </end-state>
+
   <end-state id="cancelPizza" />
-     
+
   <global-transitions>
     <transition on="cancel" to="cancelPizza" />
   </global-transitions>

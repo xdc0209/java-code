@@ -43,7 +43,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientAuthentication
 {
-
     public static void main(String[] args) throws Exception
     {
         CredentialsProvider credsProvider = new BasicCredentialsProvider();

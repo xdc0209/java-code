@@ -2,6 +2,7 @@ package com.xdc.basic.api.java4android.io;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.charset.Charset;
 
 import com.xdc.basic.commons.PathUtil;
 
@@ -34,8 +35,8 @@ class IOByteStreamTest
                 // 调用输出流的write方法，写入数据
                 fos.write(buffer, 0, bufferUsed);
                 // 将字节还原成字符
-                String s = new String(buffer);
-                // 调用一个String对象的trim方法，将会去除这个字符串的首位空格和空字符。
+                String s = new String(buffer, 0, bufferUsed, Charset.forName("UTF-8"));
+                // 调用一个String对象的trim方法，将会去除这个字符串的前导空白和后导空白
                 s = s.trim();
                 System.out.println(s);
             }

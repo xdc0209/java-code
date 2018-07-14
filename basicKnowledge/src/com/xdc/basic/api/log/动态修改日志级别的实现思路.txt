@@ -26,4 +26,3 @@ chkconfig cron on
 
 echo "$APP_HOME/bin/log.sh -r" | at now + 30 minutes >/dev/null 2>&1
 grep logback.xml /etc/crontab >/dev/null 2>&1 || echo '0 2 * * * root $APP_HOME/bin/log.sh -r >>/etc/crontab
-

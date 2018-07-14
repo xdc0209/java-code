@@ -9,8 +9,10 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore("需要手工交互。")
 public class ReadConsole
 {
     /**

@@ -5,15 +5,14 @@ import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
 import org.springframework.aop.MethodBeforeAdvice;
 
+public class MinstrelAdvice implements MethodBeforeAdvice
+{
+    public void before(Method method, Object[] args, Object target) throws Throwable
+    {
+        Knight knight = (Knight) target;
 
-public class MinstrelAdvice implements MethodBeforeAdvice {
-  public void before(Method method, Object[] args, Object target) 
-      throws Throwable {
+        Logger song = Logger.getLogger(target.getClass());
 
-    Knight knight = (Knight) target;
-    
-    Logger song = Logger.getLogger(target.getClass());
-    
-    song.debug("Brave " + knight.getName() + " did " + method.getName());
-  }
+        song.debug("Brave " + knight.getName() + " did " + method.getName());
+    }
 }

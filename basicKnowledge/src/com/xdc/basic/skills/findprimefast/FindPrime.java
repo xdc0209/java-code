@@ -295,7 +295,6 @@ public class FindPrime
         //
         // System.out.println("运行时间: " + (endTime - startTime) + "ms");
         // System.out.println();
-
     }
 
     private static void writeToFile(String fileName, ArrayList<Integer> arrayList)

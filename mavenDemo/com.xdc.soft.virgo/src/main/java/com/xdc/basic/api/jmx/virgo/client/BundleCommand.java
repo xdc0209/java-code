@@ -27,7 +27,7 @@ public class BundleCommand extends AbstractJmxCommand
     // 状态，可选，带参数
     private Option stateOption   = new Option("-s", false, true, "query bundle with state");
 
-    // 总数，可选，不带参数 
+    // 总数，可选，不带参数
     private Option totalOption   = new Option("-t", false, false, "total of result bundles");
 
     @Override

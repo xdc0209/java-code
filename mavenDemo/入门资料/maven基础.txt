@@ -52,4 +52,3 @@ project.x：              pom文件中的属性，比如：<project><version>1.0
 settings.x：             settings.xml文件中的属性，比如：<settings><offline>false</offline></settings>，引用方式：${settings.offline}
 Java System Properties： java.lang.System.getProperties()中的属性，比如java.home，引用方式：${java.home}
 自定义：在pom文件中可以：<properties><installDir>c:/apps/cargo-installs</installDir></properties>，引用方式：${installDir}
-

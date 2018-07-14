@@ -49,5 +49,4 @@ public class HeapDmupTestStub
 
         logger.info("Init HeapDmupTestStub finish.");
     }
-
 }

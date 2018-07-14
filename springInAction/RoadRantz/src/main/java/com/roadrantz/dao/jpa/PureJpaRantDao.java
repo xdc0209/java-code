@@ -31,60 +31,67 @@ import com.roadrantz.domain.Vehicle;
  * @author wallsc
  */
 @Repository
-public class PureJpaRantDao implements RantDao {
-   public PureJpaRantDao() {}
+public class PureJpaRantDao implements RantDao
+{
+    public PureJpaRantDao()
+    {
+    }
 
-   private EntityManager entityManager;
+    private EntityManager entityManager;
 
-   @PersistenceContext
-   public void setEntityManager(EntityManager entityManager) {
-      this.entityManager = entityManager;
-   }
+    @PersistenceContext
+    public void setEntityManager(EntityManager entityManager)
+    {
+        this.entityManager = entityManager;
+    }
 
-   public void saveRant(Rant rant) {
-      entityManager.persist(rant);
-   }
+    public void saveRant(Rant rant)
+    {
+        entityManager.persist(rant);
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<Rant> getAllRants() {
-      return entityManager.createQuery("select r from Rant r").getResultList();
-   }
+    @SuppressWarnings("unchecked")
+    public List<Rant> getAllRants()
+    {
+        return entityManager.createQuery("select r from Rant r").getResultList();
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<Rant> getRantsForDay(Date day) {
-      return entityManager.createQuery(
-                        "select r from Rant r where r.postedDate=?1")
-                        .setParameter(1, day).getResultList();
-   }
+    @SuppressWarnings("unchecked")
+    public List<Rant> getRantsForDay(Date day)
+    {
+        return entityManager.createQuery("select r from Rant r where r.postedDate=?1").setParameter(1, day)
+                .getResultList();
+    }
 
-   public Vehicle findVehicleByPlate(String state, String plateNumber) {
-      List matches = entityManager.createQuery(
-                        "select v from Vehicle v where v.state=?1 "
-                                          + "and v.plateNumber=?2")
-                        .setParameter(1, state).setParameter(2, plateNumber)
-                        .getResultList();
+    public Vehicle findVehicleByPlate(String state, String plateNumber)
+    {
+        List matches = entityManager.createQuery("select v from Vehicle v where v.state=?1 " + "and v.plateNumber=?2")
+                .setParameter(1, state).setParameter(2, plateNumber).getResultList();
 
-      return (matches.size() > 0) ? (Vehicle) matches.get(0) : null;
-   }
+        return (matches.size() > 0) ? (Vehicle) matches.get(0) : null;
+    }
 
-   public void saveVehicle(Vehicle vehicle) {
-      entityManager.persist(vehicle);
-   }
+    public void saveVehicle(Vehicle vehicle)
+    {
+        entityManager.persist(vehicle);
+    }
 
-   public Motorist getMotoristByEmail(String email) {
-      List matches = entityManager.createQuery(
-                        "select d from Motorist d where d.email=?1")
-                        .setParameter(1, email).getResultList();
+    public Motorist getMotoristByEmail(String email)
+    {
+        List matches = entityManager.createQuery("select d from Motorist d where d.email=?1").setParameter(1, email)
+                .getResultList();
 
-      return (matches.size() > 0) ? (Motorist) matches.get(0) : null;
-   }
+        return (matches.size() > 0) ? (Motorist) matches.get(0) : null;
+    }
 
-   public void saveMotorist(Motorist driver) {
-      entityManager.persist(driver);
-   }
+    public void saveMotorist(Motorist driver)
+    {
+        entityManager.persist(driver);
+    }
 
-   public int getMotoristCount() {
-      // TODO Auto-generated method stub
-      return 0;
-   }
+    public int getMotoristCount()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

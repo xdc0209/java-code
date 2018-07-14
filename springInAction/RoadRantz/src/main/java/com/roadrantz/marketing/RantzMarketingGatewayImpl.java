@@ -10,13 +10,14 @@ import org.springframework.jms.core.support.JmsGatewaySupport;
 
 import com.roadrantz.domain.Motorist;
 
-public class RantzMarketingGatewayImpl 
-    extends JmsGatewaySupport
-    implements RantzMarketingGateway {
-  public RantzMarketingGatewayImpl() {}
-  
-  public void sendMotoristInfo(final Motorist motorist) {
-    getJmsTemplate().convertAndSend(motorist);
-  }
+public class RantzMarketingGatewayImpl extends JmsGatewaySupport implements RantzMarketingGateway
+{
+    public RantzMarketingGatewayImpl()
+    {
+    }
 
+    public void sendMotoristInfo(final Motorist motorist)
+    {
+        getJmsTemplate().convertAndSend(motorist);
+    }
 }

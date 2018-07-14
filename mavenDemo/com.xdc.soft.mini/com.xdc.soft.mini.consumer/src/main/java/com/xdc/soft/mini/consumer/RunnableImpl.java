@@ -15,7 +15,6 @@ public class RunnableImpl implements Runnable
     {
         super();
         this.compute = compute;
-
     }
 
     @Override
@@ -32,7 +31,6 @@ public class RunnableImpl implements Runnable
 
         while (true)
         {
-
             ArrayList<String> buffer = intput();
 
             int x = Integer.valueOf(buffer.get(0));

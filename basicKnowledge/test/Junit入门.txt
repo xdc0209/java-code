@@ -27,4 +27,3 @@ Assert.assertNotSame(String message, Object unexpected, Object actual)    要求
 Assert.assertThat(String reason, T actual, Matcher matcher)               要求matcher.matches(actual)==true
 
 注意：JUnit3的package是junit.framework，而JUnit4的package是org.junit。推荐使用JUnit4。
-

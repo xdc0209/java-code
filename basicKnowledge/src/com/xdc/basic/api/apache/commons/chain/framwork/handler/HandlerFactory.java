@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xdc.basic.api.apache.commons.chain.framwork.handler.cluser.CreateClusterHandler;
 import com.xdc.basic.api.apache.commons.chain.framwork.handler.cluser.DeleteClusterHandler;
@@ -23,7 +23,7 @@ import com.xdc.basic.api.apache.commons.chain.framwork.message.instance.DeleteIn
 
 public class HandlerFactory
 {
-    private static Log                                           log = LogFactory.getLog(HandlerFactory.class);
+    private static Logger                                        log = LoggerFactory.getLogger(HandlerFactory.class);
 
     private static Map<Class<?>, List<Class<? extends Command>>> map = new HashMap<Class<?>, List<Class<? extends Command>>>();
 
@@ -40,7 +40,7 @@ public class HandlerFactory
         }
         catch (Throwable e)
         {
-            log.error(e);
+            log.error("Init HandlerFactory fail.", e);
         }
     }
 

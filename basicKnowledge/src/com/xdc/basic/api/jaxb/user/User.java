@@ -50,7 +50,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @XmlRootElement(name = "user")
 public class User
 {
-
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NCName")
@@ -136,5 +135,4 @@ public class User
     {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-
 }

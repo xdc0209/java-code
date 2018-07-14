@@ -2,14 +2,14 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
   <!-- Spring WebFlow flow controller, as configured on page 585 -->
   <bean id="flowController"
       class="org.springframework.webflow.executor.mvc.FlowController">
     <property name="flowExecutor" ref="flowExecutor" />
-<!-- 
+<!--
     <property name="argumentExtractor">
       <bean class="org.springframework.webflow.executor.support.RequestPathFlowExecutorArgumentExtractor"/>
     </property>
@@ -22,11 +22,11 @@
   </bean>
 
   <!-- URL mapping for flow controller, as shown on page 586 -->
-  <bean id="urlMapping" 
+  <bean id="urlMapping"
       class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 
   <!-- View resolver for the pizza flow, as shown on page 594 -->
-  <bean id="viewResolver" 
+  <bean id="viewResolver"
       class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/WEB-INF/jsp/" />
     <property name="suffix" value=".jsp" />

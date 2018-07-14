@@ -2,7 +2,7 @@
 	<property name="spring.home" location="c:/downloads/spring-framework-2.0.6/" />
 	<property name="hsql.path" location="c:/roadrantz/roadrantz" />
 	<property name="hsql.name" value="roadrantz" />
-	
+
 	<target name="startDb">
     <echo message="Starting HSQLDB"/>
     <java fork="true" dir="." classname="org.hsqldb.Server">
@@ -15,7 +15,7 @@
       <arg value="${hsql.name}"/>
     </java>
 	</target>
-	
+
   <target name="dbmgr">
     <java fork="true" dir="." classname="org.hsqldb.util.DatabaseManager">
       <classpath>

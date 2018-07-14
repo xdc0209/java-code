@@ -3,22 +3,22 @@
 <mapper namespace="com.xdc.basic.api.mybatis.manual.dao.StudentMapper">
 
   <insert id="insert" parameterType="com.xdc.basic.api.mybatis.manual.model.Student">
-    insert into 
+    insert into
       student (id, name, gender, major, grade)
-    values 
+    values
       (#{id}, #{name}, #{gender}, #{major}, #{grade})
   </insert>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from 
-      student 
+    delete from
+      student
     where id = #{id}
   </delete>
 
   <update id="updateByPrimaryKey" parameterType="com.xdc.basic.api.mybatis.manual.model.Student">
-    update 
+    update
       student
-    set 
+    set
       name = #{name},
       gender = #{gender},
       major = #{major},
@@ -30,7 +30,7 @@
     resultType="com.xdc.basic.api.mybatis.manual.model.Student">
     select
       id, name, gender, major, grade
-    from 
+    from
       student
     where id = #{id}
   </select>

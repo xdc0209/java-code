@@ -49,7 +49,6 @@ import org.apache.http.util.EntityUtils;
  */
 public class ClientFormLogin
 {
-
     public static void main(String[] args) throws Exception
     {
         BasicCookieStore cookieStore = new BasicCookieStore();

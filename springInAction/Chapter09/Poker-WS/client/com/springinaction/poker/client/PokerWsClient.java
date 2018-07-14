@@ -14,10 +14,8 @@ import org.springframework.xml.transform.ResourceSource;
 import org.springframework.xml.transform.StringResult;
 
 public class PokerWsClient {
-
   
   public void evaluatePokerHand()  throws IOException {
-
     Source requestSource = new ResourceSource(request);
     StringResult result = new StringResult();
     

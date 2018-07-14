@@ -3,15 +3,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:aop="http://www.springframework.org/schema/aop"
-           xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           xsi:schemaLocation="http://www.springframework.org/schema/beans
              http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-                       http://www.springframework.org/schema/aop 
+                       http://www.springframework.org/schema/aop
             http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
   <!--  ================== -->
   <!--  FILTER CHAIN PROXY -->
   <!--  ================== -->
-  <!-- 
+  <!--
     FilterChainProxy, as originally described on page 282. Then further
     configured on page 284 in Listing 7.1.
    -->
@@ -29,7 +29,7 @@
   <!--  ============== -->
   <!--  AUTHENTICATION -->
   <!--  ============== -->
-  <bean id="authenticationProcessingFilter" 
+  <bean id="authenticationProcessingFilter"
       class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
     <property name="authenticationManager" ref="authenticationManager"/>
     <property name="authenticationFailureUrl" value="/login.htm?login_error=1" />
@@ -38,24 +38,24 @@
     <property name="rememberMeServices" ref="rememberMeServices" />
   </bean>
 
-  
-<!-- 
-  <bean id="authenticationProcessingFilter" 
+
+<!--
+  <bean id="authenticationProcessingFilter"
       class="org.acegisecurity.ui.basicauth.BasicProcessingFilter">
-    <property name="authenticationManager" 
+    <property name="authenticationManager"
         ref="authenticationManager"/>
     <property name="authenticationEntryPoint"
         ref="authenticationEntryPoint"/>
   </bean>
 -->
-<!-- 
-	<bean id="authenticationProcessingFilter" 
+<!--
+	<bean id="authenticationProcessingFilter"
 	    class="org.acegisecurity.ui.digestauth.DigestProcessingFilter">
 	  <property name="userDetailsService" ref="userDetailsService" />
 	  <property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
-	</bean>  
+	</bean>
 -->
-  <!-- 
+  <!--
     The ProviderManager bean, originally discussed on page 254.
    -->
   <bean id="authenticationManager"
@@ -67,24 +67,24 @@
         <ref bean="rememberMeAuthenticationProvider" />
       </list>
     </property>
-    <property name="sessionController" 
-        ref="concurrentSessionController" />    
+    <property name="sessionController"
+        ref="concurrentSessionController" />
   </bean>
 
-  <!-- 
+  <!--
     The DaoAuthenticationProvider, described in section 7.2.2, page 257.
    -->
   <bean id="daoAuthenticationProvider"
       class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
-    <property name="userDetailsService" 
+    <property name="userDetailsService"
         ref="userDetailsService" />
-<!-- 
+<!--
     <property name="passwordEncoder" ref="encoder" />
     <property name="saltSource" ref="saltSource" />
 -->
   </bean>
 
-  <!-- 
+  <!--
     A JdbcDaoImpl implementation of a user detail service. Originally
     discussed on page 259, then tweaked on page 260 to match the
     RoadRantz database.
@@ -109,42 +109,42 @@
     </property>
   </bean>
 
-<!-- 
+<!--
   Form-based authentication entry point, as described in section 7.4.3,
   page 289.
  -->
-<!-- 
+<!--
   <bean id="authenticationEntryPoint"
       class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
     <property name="loginFormUrl" value="/login.htm" />
     <property name="forceHttps" value="true" />
   </bean>
 -->
-  
-<!-- 
+
+<!--
   HTTP Basic authentication entry point, as described in section 7.4.3,
   page 288.
  -->
-<!-- 
-  <bean id="authenticationEntryPoint" 
+<!--
+  <bean id="authenticationEntryPoint"
       class="org.acegisecurity.ui.basicauth.BasicProcessingFilterEntryPoint">
     <property name="realmName" value="RoadRantz" />
   </bean>
--->  
-  
-<bean id="authenticationEntryPoint" 
+-->
+
+<bean id="authenticationEntryPoint"
     class="org.acegisecurity.ui.digestauth.DigestProcessingFilterEntryPoint">
   <property name="realmName" value="RoadRantz" />
   <property name="key" value="rantz" />
   <property name="nonceValiditySeconds" value="10" />
-</bean>  
-  
+</bean>
+
 
   <!--  ENCRYPTION -->
   <!--
-  <bean id="encoder" 
+  <bean id="encoder"
       class="org.acegisecurity.providers.encoding.Md5PasswordEncoder" />
-      
+
   <bean id="saltSource"
       class="org.acegisecurity.providers.dao.salt.SystemWideSaltSource">
     <property name="systemWideSalt" value="RR13579" />
@@ -156,23 +156,23 @@
     <property name="passwordEncoder" ref="encoder" />
     <property name="saltSource" ref="saltSource" />
   </bean>
-  
+
   <bean id="loggingAdvice" class="com.roadrantz.util.LoggingAdvisor" />
 
   <aop:config>
     <aop:aspect id="encodingAround" ref="passwordEncodingAdvice">
       <aop:around
-          pointcut="execution(* com.roadrantz.dao.RantDao.saveMotorist(com.roadrantz.domain.Motorist))" 
+          pointcut="execution(* com.roadrantz.dao.RantDao.saveMotorist(com.roadrantz.domain.Motorist))"
           method="encodeMotoristPassword"/>
-    </aop:aspect>  
+    </aop:aspect>
     <aop:aspect id="loggingAround" ref="loggingAdvice">
-      <aop:around pointcut="execution(* org.acegisecurity.providers.encoding.Md5PasswordEncoder.isPasswordValid(String,String,Object))" 
+      <aop:around pointcut="execution(* org.acegisecurity.providers.encoding.Md5PasswordEncoder.isPasswordValid(String,String,Object))"
           method="log" />
     </aop:aspect>
   </aop:config>
-  
+
   <aop:aspectj-autoproxy />
-  
+
   <bean class="com.roadrantz.util.LoggingAspect" />
 -->
 
@@ -180,11 +180,11 @@
   <!--  ============= -->
   <!--  AUTHORIZATION -->
   <!--  ============= -->
-  <!-- 
+  <!--
     Access decision manager, originally shown on page 273, then further
     configured on page 275.
    -->
-  <bean id="accessDecisionManager" 
+  <bean id="accessDecisionManager"
       class="org.acegisecurity.vote.UnanimousBased">
     <property name="allowIfAllAbstainDecisions" value="false" />
     <property name="decisionVoters">
@@ -197,12 +197,12 @@
   <!--  ===================== -->
   <!--  EXCEPTION TRANSLATION -->
   <!--  ===================== -->
-  <!-- 
+  <!--
     Security exception translation filter, as described in section 7.4.4, page 292.
    -->
   <bean id="exceptionTranslationFilter"
       class="org.acegisecurity.ui.ExceptionTranslationFilter">
-    <property name="authenticationEntryPoint" 
+    <property name="authenticationEntryPoint"
         ref="authenticationEntryPoint" />
     <property name="accessDeniedHandler">
       <bean class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
@@ -210,11 +210,11 @@
       </bean>
     </property>
   </bean>
- 
+
   <!--  =========== -->
   <!--  INTEGRATION -->
   <!--  =========== -->
-  <!-- 
+  <!--
     HttpSessionContetIntegrationFilter, as originally described in section
     7.4.2, on page 286.
    -->
@@ -222,11 +222,11 @@
       class="org.acegisecurity.context.HttpSessionContextIntegrationFilter">
     <property name="forceEagerSessionCreation" value="true" />
   </bean>
-  
+
   <!--  =========================== -->
   <!--  FILTER SECURITY INTERCEPTOR -->
   <!--  =========================== -->
-  <!-- 
+  <!--
     FilterSecurityInterceptor, as shown in section 7.4.5.
    -->
   <bean id="filterSecurityInterceptor"
@@ -236,50 +236,50 @@
     <property name="objectDefinitionSource">
       <value>
         CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
-        PATTERN_TYPE_APACHE_ANT 
+        PATTERN_TYPE_APACHE_ANT
         /booger.htm=ROLE_BOOGER
       </value>
     </property>
   </bean>
-  
+
   <!--  ========= -->
   <!--  ANONYMOUS -->
   <!--  ========= -->
-  <bean id="anonymousProcessingFilter" 
+  <bean id="anonymousProcessingFilter"
       class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
     <property name="key" value="foobar" />
     <property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS" />
-  </bean>   
+  </bean>
 
-  <bean id="anonymousAuthenticationProvider" 
+  <bean id="anonymousAuthenticationProvider"
      class="org.acegisecurity.providers.anonymous.AnonymousAuthenticationProvider">
     <property name="key" value="foobar" />
   </bean>
-    
+
   <!--  =========== -->
   <!--  REMEMBER ME -->
   <!--  =========== -->
-	<bean id="rememberMeProcessingFilter" 
+	<bean id="rememberMeProcessingFilter"
 	    class="org.acegisecurity.ui.rememberme.RememberMeProcessingFilter">
 	  <property name="rememberMeServices" ref="rememberMeServices" />
 	  <property name="authenticationManager" ref="authenticationManager" />
 	</bean>
-	
-	<bean id="rememberMeServices" 
+
+	<bean id="rememberMeServices"
 	    class="org.acegisecurity.ui.rememberme.TokenBasedRememberMeServices">
 	  <property name="userDetailsService" ref="userDetailsService" />
 	  <property name="key" value="roadRantz" />
 	</bean>
-	   
-	<bean id="rememberMeAuthenticationProvider" 
+
+	<bean id="rememberMeAuthenticationProvider"
 	    class="org.acegisecurity.providers.rememberme.RememberMeAuthenticationProvider">
 	  <property name="key" value="roadRantz" />
-	</bean>  
-	
+	</bean>
+
   <!--  ====== -->
 	<!--  LOGOUT -->
   <!--  ====== -->
-  <bean id="logoutFilter" 
+  <bean id="logoutFilter"
       class="org.acegisecurity.ui.logout.LogoutFilter">
     <constructor-arg value="/home.htm" />
     <constructor-arg>
@@ -289,31 +289,31 @@
        </list>
     </constructor-arg>
   </bean>
-  
+
   <!--  ============== -->
   <!--  HTTP/S CHANNEL -->
   <!--  ============== -->
-  <!-- 
+  <!--
     Ensures HTTPS when necessary. Discussed in section 7.4.6.
    -->
-  <bean id="channelProcessingFilter" 
+  <bean id="channelProcessingFilter"
       class="org.acegisecurity.securechannel.ChannelProcessingFilter">
     <property name="channelDecisionManager" ref="channelDecisionManager" />
     <property name="filterInvocationDefinitionSource">
       <value>
-        CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON 
-        PATTERN_TYPE_APACHE_ANT 
+        CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+        PATTERN_TYPE_APACHE_ANT
         /login.htm=REQUIRES_SECURE_CHANNEL
         /j_acegi_security_check*=REQUIRES_SECURE_CHANNEL
         /**=REQUIRES_INSECURE_CHANNEL
       </value>
     </property>
   </bean>
-  
-  <!-- 
+
+  <!--
     Described on pae 297.
    -->
-  <bean id="channelDecisionManager" 
+  <bean id="channelDecisionManager"
       class="org.acegisecurity.securechannel.ChannelDecisionManagerImpl">
     <property name="channelProcessors">
       <list>
@@ -322,7 +322,7 @@
       </list>
     </property>
   </bean>
-  
+
 
   <!--  =========== -->
   <!--  CONCURRENCY -->
@@ -332,16 +332,15 @@
     <property name="sessionRegistry" ref="sessionRegistry" />
     <property name="expiredUrl" value="/home.htm" />
   </bean>
-  
-	<bean id="concurrentSessionController" 
+
+	<bean id="concurrentSessionController"
 	    class="org.acegisecurity.concurrent.ConcurrentSessionControllerImpl">
 	  <property name="maximumSessions" value="1" />
 	  <property name="sessionRegistry" ref="sessionRegistry" />
 	  <property name="exceptionIfMaximumExceeded" value="true" />
 	</bean>
-	
-  <bean id="sessionRegistry" 
-      class="org.acegisecurity.concurrent.SessionRegistryImpl" />
-  
-</beans>
 
+  <bean id="sessionRegistry"
+      class="org.acegisecurity.concurrent.SessionRegistryImpl" />
+
+</beans>

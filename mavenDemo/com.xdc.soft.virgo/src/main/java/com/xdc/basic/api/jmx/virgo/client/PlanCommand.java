@@ -17,13 +17,13 @@ public class PlanCommand extends AbstractJmxCommand
     // 名称，可选，带参数
     private Option nameOption    = new Option("-n", false, true, "query plan with name");
 
-    // 版本，可选，带参数                                                                       
+    // 版本，可选，带参数
     private Option versionOption = new Option("-v", false, true, "query plan with version");
 
-    // 状态，可选，带参数                                                                       
+    // 状态，可选，带参数
     private Option stateOption   = new Option("-s", false, true, "query plan with state");
 
-    // 总数，可选，不带参数                                                                     
+    // 总数，可选，不带参数
     private Option totalOption   = new Option("-t", false, false, "total of result plans");
 
     @Override

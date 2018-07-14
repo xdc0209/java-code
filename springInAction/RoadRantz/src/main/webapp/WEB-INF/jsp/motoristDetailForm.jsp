@@ -7,12 +7,12 @@
   <head>
     <title>Motorist Detail</title>
   </head>
-  
+
   <body>
     <h2>Motorist info (Step 1 of 3)</h2>
-    
+
     <form:form commandName="motorist" method="POST" action="register.htm">
-      <input type="hidden" name="page" value="0" /><br>      
+      <input type="hidden" name="page" value="0" /><br>
       <spring:message code="field.email" /> <form:input path="email" /><br>
       <spring:message code="field.password" />: <form:input path="password" /><br>
       <spring:message code="field.firstName" /><form:input path="firstName" /><br>

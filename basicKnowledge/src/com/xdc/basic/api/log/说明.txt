@@ -74,4 +74,3 @@ log4j：
 logback：
 %date{yyyy-MM-dd HH:mm:ss.SSSZ}|%-5level|%thread| %message |%class.%method\(%file:%line\)%n
 提示1：括号要转义，否则会报错。
-

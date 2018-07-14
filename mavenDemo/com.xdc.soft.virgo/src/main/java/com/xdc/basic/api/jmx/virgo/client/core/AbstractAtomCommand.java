@@ -21,7 +21,7 @@ public abstract class AbstractAtomCommand implements Command
     // 存放命令的选项，使用LinkedHashMap，保存放入顺序
     private Map<String, Option> options         = new LinkedHashMap<String, Option>();
 
-    // 帮助选项，可选，不带参数 
+    // 帮助选项，可选，不带参数
     protected Option            helpOption      = new Option("-h", false, false, "display this help");
 
     @Override

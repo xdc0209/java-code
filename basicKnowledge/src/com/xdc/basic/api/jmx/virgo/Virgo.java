@@ -43,7 +43,7 @@ public class Virgo
         // rmi: service:jmx:rmi:///jndi/rmi://Virgo_Server_IP_Address:9875/jmxrmi
         // jmxmp: service:jmx:jmxmp://Virgo_Server_IP_Address:9875
 
-        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://192.168.227.135:9875/jmxrmi");
+        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://192.168.1.100:9875/jmxrmi");
 
         Map<String, Object> env = new HashMap<String, Object>();
         env.put(JMXConnector.CREDENTIALS, new String[] { "admin", "springsource" });

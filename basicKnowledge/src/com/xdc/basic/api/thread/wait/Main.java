@@ -43,7 +43,6 @@ public class Main
             {
                 throw new RuntimeException("Wait to [ get dice == 6 ] time out.");
             }
-
         }, 5000);
 
         System.out.println("End:  " + new Date());

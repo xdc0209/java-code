@@ -15,9 +15,9 @@ public class SendJars
         // TODO 时间有限，后期优化吧
         // 连通性校验没做，异常处理没做，架构优化没做
 
-        String ip = "192.168.157.134";
+        String ip = "192.168.1.100";
         String user = "xdc0209";
-        String password = "xtuull";
+        String password = "12345678";
         String searchPath = "/home/xdc0209";
 
         Authentication authentication = new Authentication(ip, user, password);

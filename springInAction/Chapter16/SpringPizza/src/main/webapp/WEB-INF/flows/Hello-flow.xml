@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
   Very basic Hello World flow, as described on page 590.
  -->
 <flow xmlns="http://www.springframework.org/schema/webflow"
@@ -10,12 +10,12 @@
         http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
 
   <start-state idref="hello" />
-  
-  <view-state id="hello" 
+
+  <view-state id="hello"
       view="hello">
     <transition on="continue" to="finish"/>
   </view-state>
 
-  <end-state id="finish" 
+  <end-state id="finish"
       view="flowRedirect:Hello-flow" />
 </flow>

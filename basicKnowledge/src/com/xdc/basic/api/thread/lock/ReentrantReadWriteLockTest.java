@@ -137,6 +137,5 @@ public class ReentrantReadWriteLockTest
         // 等待最后一个task_2被执行完
         future.get();
         cachedService.shutdownNow();
-
     }
 }

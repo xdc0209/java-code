@@ -2,17 +2,16 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="pokerClient" 
+  <bean id="pokerClient"
       class="com.springinaction.poker.client.PokerWsClient2">
     <property name="webServiceTemplate" ref="wsTemplate" />
   </bean>
-  
-  <bean id="wsTemplate" 
+
+  <bean id="wsTemplate"
       class="org.springframework.ws.client.core.WebServiceTemplate">
-      
+
   </bean>
 </beans>
-        

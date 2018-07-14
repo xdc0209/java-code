@@ -4,7 +4,6 @@ import org.junit.Test;
 
 public class StringRegexTest
 {
-
     /**
      * 展示String中的正则表达式对分组的支持
      */

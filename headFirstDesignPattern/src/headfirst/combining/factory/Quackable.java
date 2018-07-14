@@ -1,5 +1,6 @@
 package headfirst.combining.factory;
 
-public interface Quackable {
-	public void quack();
+public interface Quackable
+{
+    public void quack();
 }

@@ -23,7 +23,7 @@ rem Select command we are to run
   rem First parm is command
     set COMMAND=%~1
     rem Rest are parameters - shift done in subroutines
-   
+
   rem Switch on COMMAND in {"start","stop"}
 
     if "%COMMAND%" == "start" (
@@ -130,7 +130,7 @@ rem ------------------------------
 
   :endStartOptionLoop
 
-  
+
   rem Adjust permissions if necessary
     cscript //NoLogo "%KERNEL_HOME%\bin\jmxPermissions.vbs" "%CONFIG_DIR%\"
 
@@ -142,24 +142,24 @@ rem ------------------------------
     if not "%CLEAN_FLAG%"=="" (
       rmdir /Q /S "%KERNEL_HOME%\serviceability"
       rmdir /Q /S "%KERNEL_HOME%\work"
-      
+
       set LAUNCH_OPTS=%LAUNCH_OPTS% -clean
     )
 
   rem do Shell work:
-    if not "%SHELL_FLAG%"=="" ( 
+    if not "%SHELL_FLAG%"=="" (
       echo "Warning: Kernel shell not supported; -shell option ignored."
       rem set LAUNCH_OPTS=%LAUNCH_OPTS% -Forg.eclipse.virgo.kernel.shell.local=true
     )
 
   rem Set JMX options
-    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.port=%JMX_PORT% 
-    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.authenticate=true 
-    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.login.config=virgo-kernel 
-    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.access.file="%CONFIG_DIR%\org.eclipse.virgo.kernel.jmxremote.access.properties" 
-    set JMX_OPTS=%JMX_OPTS% -Djavax.net.ssl.keyStore="%KEYSTORE_PATH%" 
-    set JMX_OPTS=%JMX_OPTS% -Djavax.net.ssl.keyStorePassword=%KEYSTORE_PASSWORD% 
-    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.ssl=false 
+    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.port=%JMX_PORT%
+    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.authenticate=true
+    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.login.config=virgo-kernel
+    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.access.file="%CONFIG_DIR%\org.eclipse.virgo.kernel.jmxremote.access.properties"
+    set JMX_OPTS=%JMX_OPTS% -Djavax.net.ssl.keyStore="%KEYSTORE_PATH%"
+    set JMX_OPTS=%JMX_OPTS% -Djavax.net.ssl.keyStorePassword=%KEYSTORE_PASSWORD%
+    set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.ssl=false
     set JMX_OPTS=%JMX_OPTS% -Dcom.sun.management.jmxremote.ssl.need.client.auth=false
 
     if not "%NO_START_FLAG%"=="" goto :eof
@@ -169,27 +169,27 @@ rem ------------------------------
 
     set JAVA_OPTS=%JAVA_OPTS% -Xmx512m -XX:MaxPermSize=512m
     rem Run the server
-  
+
       rem Marshall parameters
       set KERNEL_JAVA_PARMS=%JAVA_OPTS% %DEBUG_OPTS% %JMX_OPTS%
 
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -XX:+HeapDumpOnOutOfMemoryError 
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -XX:ErrorFile="%KERNEL_HOME%\serviceability\error.log" 
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -XX:+HeapDumpOnOutOfMemoryError
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -XX:ErrorFile="%KERNEL_HOME%\serviceability\error.log"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -XX:HeapDumpPath="%KERNEL_HOME%\serviceability\heap_dump.hprof"
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Djava.security.auth.login.config="%CONFIG_DIR%\org.eclipse.virgo.kernel.authentication.config" 
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dorg.eclipse.virgo.kernel.authentication.file="%CONFIG_DIR%\org.eclipse.virgo.kernel.users.properties" 
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Djava.io.tmpdir="%TMP_DIR%" 
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dorg.eclipse.virgo.kernel.home="%KERNEL_HOME%" 
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Djava.security.auth.login.config="%CONFIG_DIR%\org.eclipse.virgo.kernel.authentication.config"
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dorg.eclipse.virgo.kernel.authentication.file="%CONFIG_DIR%\org.eclipse.virgo.kernel.users.properties"
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Djava.io.tmpdir="%TMP_DIR%"
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dorg.eclipse.virgo.kernel.home="%KERNEL_HOME%"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dosgi.java.profile="file:%CONFIG_DIR%\java6-server.profile"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dssh.server.keystore="%CONFIG_DIR%/hostkey.ser"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dorg.eclipse.virgo.kernel.config="%CONFIG_DIR%"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dosgi.sharedConfiguration.area="%CONFIG_DIR%"
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Declipse.ignoreApp="true" 
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Declipse.ignoreApp="true"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dosgi.install.area="%KERNEL_HOME%"
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dosgi.configuration.area="%KERNEL_HOME%\work" 
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dosgi.configuration.area="%KERNEL_HOME%\work"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Dosgi.frameworkClassPath="%FWCLASSPATH%"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -Djava.endorsed.dirs="%KERNEL_HOME%\lib\endorsed"
-      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -classpath "%CLASSPATH%" 
+      set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -classpath "%CLASSPATH%"
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% org.eclipse.equinox.launcher.Main
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% -noExit
       set KERNEL_JAVA_PARMS=%KERNEL_JAVA_PARMS% %LAUNCH_OPTS%
@@ -204,7 +204,7 @@ goto :eof
 
 rem ------------------------------
 :doStopCommand
-  
+
   shift
   rem The shift must be here :()
 
@@ -218,14 +218,14 @@ rem ------------------------------
   rem Loop through options
   :stopOptionLoop
 
-  if "%~1"=="" goto endStopOptionLoop  
+  if "%~1"=="" goto endStopOptionLoop
   if "%~1"=="-truststore" goto truststoreStop
   if "%~1"=="-truststorePassword" goto truststorePasswordStop
-  if "%~1"=="-configDir" goto configDirStop 
+  if "%~1"=="-configDir" goto configDirStop
   if "%~1"=="-jmxport" goto jmxportStop
-  
+
   set OTHER_ARGS=%OTHER_ARGS% "%~1"
-    
+
   :continueStopOptionLoop
   shift
   goto stopOptionLoop

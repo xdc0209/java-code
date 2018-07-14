@@ -7,7 +7,7 @@ hibernate会话与数据库连接问题
 一、hibernate的session与连接的关系；
     session与connection，是多对一关系，每个session都有一个与之对应的connection，一个connection不同时刻可以供多个session使用。
     有连接池的情况下（缺省就有一个自带的）session关闭后，connection不一定关闭，hibernate缺省使用自带的连接池（connection.pool_size值为最大连接数），因此，session.close()后，还可以查询到应用占用的连接。
-   
+
     正常情况下，每个open的session都需要close掉，如果是单线程使用的话，那么查询oracle数据库的连接，则一直是一个connection，如果多线程使用的话，则可能是一个或多个（多线程的open如果错开时间，则一个，多线程如果几乎同时，则超过一个，小于或等于连接池数据），如果session只open，不close，则每次增加一个connection。
     通常每次页面请求是一个线程，模拟多线程，可以在jsp中用frameset，每个frame的src指向一个不同的session查询。也可以加断点，访问多个页面，后访问的先从断点执行，这样多线程交叉执行session操作，会发现在连接池连接较少时，会增加连接进到池中。
 

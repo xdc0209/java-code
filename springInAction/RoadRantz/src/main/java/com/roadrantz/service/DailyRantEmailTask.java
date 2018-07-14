@@ -9,16 +9,22 @@ import java.util.TimerTask;
  *
  * @author craig.walls
  */
-public class DailyRantEmailTask extends TimerTask {
-  public DailyRantEmailTask() {}
+public class DailyRantEmailTask extends TimerTask
+{
+    public DailyRantEmailTask()
+    {
+    }
 
-  public void run() {
-    rantService.sendDailyRantEmails();
-  }
+    public void run()
+    {
+        rantService.sendDailyRantEmails();
+    }
 
-  // injected
-  private RantService rantService;
-  public void setRantService(RantService rantService) {
-    this.rantService = rantService;
-  }
+    // injected
+    private RantService rantService;
+
+    public void setRantService(RantService rantService)
+    {
+        this.rantService = rantService;
+    }
 }

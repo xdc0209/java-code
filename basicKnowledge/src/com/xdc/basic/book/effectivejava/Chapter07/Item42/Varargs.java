@@ -3,7 +3,6 @@ package com.xdc.basic.book.effectivejava.Chapter07.Item42;
 // Sample uses of varargs
 public class Varargs
 {
-
     // Simple use of varargs - Page 197
     static int sum(int... args)
     {

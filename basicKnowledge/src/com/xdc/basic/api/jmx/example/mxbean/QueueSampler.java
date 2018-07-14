@@ -11,7 +11,6 @@ import java.util.Queue;
 
 public class QueueSampler implements QueueSamplerMXBean
 {
-
     private final Queue<String> queue;
 
     public QueueSampler(Queue<String> queue)

@@ -1,5 +1,6 @@
 package com.springinaction.poker;
 
-public enum Suit {
-  SPADES, CLUBS, HEARTS, DIAMONDS
+public enum Suit
+{
+    SPADES, CLUBS, HEARTS, DIAMONDS
 }

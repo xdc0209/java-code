@@ -38,7 +38,6 @@ import org.apache.http.impl.client.HttpClients;
  */
 public class ClientAbortMethod
 {
-
     public final static void main(String[] args) throws Exception
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -74,5 +73,4 @@ public class ClientAbortMethod
             httpclient.close();
         }
     }
-
 }

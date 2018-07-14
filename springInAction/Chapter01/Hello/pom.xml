@@ -23,7 +23,7 @@
           <target>1.5</target>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -45,7 +45,7 @@
                 <java classname="com.springinaction.chapter01.hello.HelloApp">
                   <classpath>
                     <path refid="maven.runtime.classpath" />
-                  </classpath> 
+                  </classpath>
                 </java>
                 <echo>====================================================================</echo>
                 <echo>=============================== FINISHED ===========================</echo>
@@ -57,7 +57,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
     </plugins>
   </build>
 

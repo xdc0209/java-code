@@ -9,7 +9,7 @@
   tr.odd {
     background-color:#eeeeee;
   }
-  
+
   th.sorted {
     background-color:#666666;
     color:#ffffff;
@@ -19,7 +19,7 @@
     background-color:#666666;
     color:#ffffff;
   }
-  
+
   th.sortable a {
     color:#ffffff;
   }
@@ -54,7 +54,7 @@
 %>
 
 <portlet:renderURL var="addUrl">
-  <portlet:param name="action" 
+  <portlet:param name="action"
       value="editContact"/>
 </portlet:renderURL>
 
@@ -68,12 +68,12 @@
   }
 %>
 
-<display:table name="contacts" 
-    pagesize="${pageSize}" export="false" 
-    id="contact" style="width:100%" sort="list" 
+<display:table name="contacts"
+    pagesize="${pageSize}" export="false"
+    id="contact" style="width:100%" sort="list"
     defaultsort="1">
   <display:column sortable="true" title="Name">
-    <c:out value="${contact.lastName}"/>, 
+    <c:out value="${contact.lastName}"/>,
     <c:out value="${contact.firstName}"/>
   </display:column>
   <display:column sortable="true" title="Phone">
@@ -81,32 +81,32 @@
   </display:column>
   <display:column sortable="false" title="">
     <portlet:renderURL var="detailUrl">
-      <portlet:param name="action" 
+      <portlet:param name="action"
           value="contactDetail"/>
-      <portlet:param name="contactId" 
+      <portlet:param name="contactId"
           value="${contact.id}"/>
     </portlet:renderURL>
     <portlet:renderURL var="editUrl">
-      <portlet:param name="action" 
+      <portlet:param name="action"
           value="editContact"/>
-      <portlet:param name="contactId" 
+      <portlet:param name="contactId"
           value="${contact.id}"/>
     </portlet:renderURL>
     <portlet:actionURL var="deleteUrl">
-      <portlet:param name="action" 
+      <portlet:param name="action"
           value="deleteContact"/>
-      <portlet:param name="contactId" 
+      <portlet:param name="contactId"
           value="${contact.id}"/>
     </portlet:actionURL>
     <a href="${detailUrl}"><img src=
-        "/Rolodex/images/view.gif" border="0" 
+        "/Rolodex/images/view.gif" border="0"
         title="View contact details"></a>
     <c:if test="${not empty contact.ownerName}">
       <a href="${editUrl}"><img src=
-          "/Rolodex/images/edit.gif" border="0" 
+          "/Rolodex/images/edit.gif" border="0"
           title="Edit contact"></a>
       <a href="${deleteUrl}"><img src=
-          "/Rolodex/images/trash.gif" border="0" 
+          "/Rolodex/images/trash.gif" border="0"
           title="Delete contact"></a>
     </c:if>
   </display:column>

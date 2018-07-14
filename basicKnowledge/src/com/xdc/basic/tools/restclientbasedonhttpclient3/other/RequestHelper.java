@@ -6,6 +6,7 @@ import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
+import com.xdc.basic.commons.PathUtil;
 import com.xdc.basic.commons.json.JsonUtil;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.Constants;
 import com.xdc.basic.tools.restclientbasedonhttpclient3.constants.HttpMethodType;
@@ -25,14 +26,14 @@ public class RequestHelper
 
         String reqStr = JsonUtil.toJson(req);
 
-        String reqFile = "demo.req";
+        String reqFile = PathUtil.connect(PathUtil.getAbsolutePath(), "req.txt");
         FileUtils.writeStringToFile(FileUtils.getFile(reqFile), reqStr, Charsets.UTF_8, false);
     }
 
     @Test
     public void readReqest() throws IOException, RestClientException
     {
-        String reqFile = "demo.req";
+        String reqFile = PathUtil.connect(PathUtil.getAbsolutePath(), "req.txt");
         String reqStr = FileUtils.readFileToString(FileUtils.getFile(reqFile), Charsets.UTF_8);
 
         Request req = JsonUtil.fromJson(reqStr, Request.class);
