@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<context>com.xdc.basic.tools.statemachine.test.tsuit.ContextInfo</context>
+	<states>
+		<state start="1">
+			<name>S0</name>
+			<handlers>
+				<handler>
+					<name>e1</name>
+					<nxtstate>S1</nxtstate>
+					<function>com.xdc.basic.tools.statemachine.test.tsuit.S0.onE1</function>
+					<rettype succval="OK">java.lang.String</rettype>
+				</handler>
+				<handler>
+					<name>e2</name>
+					<nxtstate>S2</nxtstate>
+					<function>com.xdc.basic.tools.statemachine.test.tsuit.S0.onE2</function>
+					<rettype succval="0">int</rettype>
+				</handler>
+			</handlers>
+		</state>
+		<state>
+			<name>S1</name>
+			<handlers>
+				<handler>
+					<name>e1</name>
+					<nxtstate>S1</nxtstate>
+					<function>com.xdc.basic.tools.statemachine.test.tsuit.S1.onE1</function>
+					<rettype>com.xdc.basic.tools.statemachine.IRetValue</rettype>
+				</handler>
+				<handler>
+					<name>e2</name>
+					<nxtstate>S2</nxtstate>
+					<function>com.xdc.basic.tools.statemachine.test.tsuit.S1.onE2</function>
+					<rettype>careless</rettype>
+				</handler>
+			</handlers>
+		</state>
+		<state>
+			<name>S2</name>
+			<handlers></handlers>
+		</state>
+	</states>
+	<events>
+		<event>
+			<name>e1</name>
+			<argtype>com.xdc.basic.tools.statemachine.test.tsuit.E1Arg</argtype>
+		</event>
+		<event>
+			<name>e2</name>
+			<argtype>com.xdc.basic.tools.statemachine.test.tsuit.E2Arg</argtype>
+		</event>
+		<event>
+			<name>e3</name>
+			<argtype>java.lang.Object</argtype>
+		</event>
+	</events>
+</root>
