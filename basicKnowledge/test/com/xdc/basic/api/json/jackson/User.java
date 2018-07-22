@@ -39,7 +39,7 @@ public class User
     public enum Gender
     {
         MALE, FEMALE
-    };
+    }
 
     private Name    _name;
     private Gender  _gender;

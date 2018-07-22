@@ -12,7 +12,7 @@ public class SbusSkeleton<T>
     /**
      * 服务实例
      */
-    private T serviceInstance = null;;
+    private T serviceInstance = null;
 
     public SbusSkeleton(T serviceInstance)
     {

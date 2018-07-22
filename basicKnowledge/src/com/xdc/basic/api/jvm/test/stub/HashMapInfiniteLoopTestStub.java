@@ -24,7 +24,7 @@ public class HashMapInfiniteLoopTestStub
             {
                 map.put(7, 77);
                 System.out.println(map);
-            };
+            }
         }.start();
 
         new Thread("Thread2")
@@ -34,7 +34,7 @@ public class HashMapInfiniteLoopTestStub
             {
                 map.put(3, 33);
                 System.out.println(map);
-            };
+            }
         }.start();
     }
 }

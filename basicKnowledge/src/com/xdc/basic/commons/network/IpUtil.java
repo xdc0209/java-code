@@ -35,7 +35,7 @@ public class IpUtil
     // IP:DynamicPort 示例：127.0.0.1:1024
     private static final String ipv4IpDynamicPortRegex     = String.format("^(%s):(%s)$",
             StringUtils.substringBetween(ipv4IpRegex, "^", "$"),
-            StringUtils.substringBetween(ipv4DynamicPortRegex, "^", "$"));;
+            StringUtils.substringBetween(ipv4DynamicPortRegex, "^", "$"));
 
     // IP1,IP2,IP3,... 示例：127.0.0.1,127.0.0.2,127.0.0.3
     private static final String ipv4IpListRegex            = String.format("^(%s)(,(%s))*$",

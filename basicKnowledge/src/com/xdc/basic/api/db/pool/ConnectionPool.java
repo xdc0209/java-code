@@ -1,14 +1,5 @@
 package com.xdc.basic.api.db.pool;
 
-// 数据库连接池的简单实现
-// 摘自：http://blog.sina.com.cn/s/blog_55d57a460100iq71.html
-//
-// 一个效果非常不错的JAVA数据库连接池.
-// from: http://www.jxer.com/home/?uid-195-action-viewspace-itemid-332
-// 虽然现在用APACHE COMMONS DBCP可以非常方便的建立数据库连接池，
-// 但是像这篇文章把数据库连接池的内部原理写的这么透彻，注视这么完整，
-// 真是非常难得，让开发人员可以更深层次的理解数据库连接池，真是非常感谢这篇文章的作者。
-//
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
@@ -18,6 +9,14 @@ import java.sql.Statement;
 import java.util.Enumeration;
 import java.util.Vector;
 
+// 数据库连接池的简单实现
+// 摘自：http://blog.sina.com.cn/s/blog_55d57a460100iq71.html
+//
+// 一个效果非常不错的JAVA数据库连接池.
+// from: http://www.jxer.com/home/?uid-195-action-viewspace-itemid-332
+// 虽然现在用APACHE COMMONS DBCP可以非常方便的建立数据库连接池，
+// 但是像这篇文章把数据库连接池的内部原理写的这么透彻，注视这么完整，
+// 真是非常难得，让开发人员可以更深层次的理解数据库连接池，真是非常感谢这篇文章的作者。
 public class ConnectionPool
 {
     private String                   jdbcDriver             = "";   // 数据库驱动
