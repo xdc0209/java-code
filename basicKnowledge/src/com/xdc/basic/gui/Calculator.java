@@ -1,11 +1,5 @@
 package com.xdc.basic.gui;
 
-/*
- * 设计一个简单计算器，
- * 在“操作数”标签右侧的两个文本框输入操作数，
- * 当单击操作符＋，－，×，÷按钮时，
- * 对两个操作数进行运算并将结果填入到“结果”标签右侧的文本框中
- */
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/*
+ * 设计一个简单计算器，
+ * 在“操作数”标签右侧的两个文本框输入操作数，
+ * 当单击操作符＋，－，×，÷按钮时，
+ * 对两个操作数进行运算并将结果填入到“结果”标签右侧的文本框中
+ */
 public class Calculator extends JFrame implements ActionListener
 {
     private static final long serialVersionUID = -1717806291593500805L;

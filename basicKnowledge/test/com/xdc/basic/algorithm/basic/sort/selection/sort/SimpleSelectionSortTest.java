@@ -5,8 +5,6 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.xdc.basic.algorithm.basic.sort.selection.sort.SimpleSelectionSort;
-
 public class SimpleSelectionSortTest
 {
     @Test

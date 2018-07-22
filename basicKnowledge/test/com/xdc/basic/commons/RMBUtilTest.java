@@ -3,8 +3,6 @@ package com.xdc.basic.commons;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.xdc.basic.commons.RMBUtil;
-
 public class RMBUtilTest
 {
     @Test

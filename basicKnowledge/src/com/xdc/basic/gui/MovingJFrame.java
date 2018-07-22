@@ -1,14 +1,14 @@
 package com.xdc.basic.gui;
 
-/**
- * @author xiaopeng1
- * @version 1.0
- */
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+/**
+ * @author xiaopeng1
+ * @version 1.0
+ */
 public class MovingJFrame extends JFrame
 {
     private static final long serialVersionUID = 1363625893429832291L;

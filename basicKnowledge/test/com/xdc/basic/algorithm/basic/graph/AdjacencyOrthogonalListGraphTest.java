@@ -2,9 +2,6 @@ package com.xdc.basic.algorithm.basic.graph;
 
 import org.junit.Test;
 
-import com.xdc.basic.algorithm.basic.graph.AdjacencyOrthogonalListGraph;
-import com.xdc.basic.algorithm.basic.graph.Graph;
-
 public class AdjacencyOrthogonalListGraphTest
 {
     private <T> Graph<T> newGraph(boolean directed)

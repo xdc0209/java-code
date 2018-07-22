@@ -1,5 +1,3 @@
-package com.xdc.basic.tools.restclientbasedonhttpclient3.easyssl;
-
 /*
  * ********************************************************************** **
  ** **
@@ -23,6 +21,8 @@ package com.xdc.basic.tools.restclientbasedonhttpclient3.easyssl;
  ** <http://www.apache.org/>. **
  ** **********************************************************************
  */
+package com.xdc.basic.tools.restclientbasedonhttpclient3.easyssl;
+
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;

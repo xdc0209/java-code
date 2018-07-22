@@ -2,9 +2,6 @@ package com.xdc.basic.algorithm.basic.graph;
 
 import org.junit.Test;
 
-import com.xdc.basic.algorithm.basic.graph.AdjacencyMatrixGraph;
-import com.xdc.basic.algorithm.basic.graph.Graph;
-
 public class AdjacencyMatrixGraphTest
 {
     private <T> Graph<T> newGraph(boolean directed)

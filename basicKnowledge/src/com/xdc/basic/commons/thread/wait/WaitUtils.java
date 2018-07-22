@@ -1,7 +1,5 @@
 package com.xdc.basic.commons.thread.wait;
 
-import com.xdc.basic.commons.thread.wait.WaitCondition;
-
 public class WaitUtils
 {
     private final static long SLEEP_STEP = 1000;
