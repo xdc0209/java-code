@@ -22,7 +22,7 @@
 
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/college" />
+				<property name="url" value="jdbc:mysql://localhost:3306/college?characterEncoding=utf8" />
 				<property name="username" value="college" />
 				<property name="password" value="123456" />
 			</dataSource>

@@ -1,4 +1,4 @@
-package com.xdc.basic.api.socket.tcp;
+package com.xdc.basic.api.socket.tcp.demo1;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
