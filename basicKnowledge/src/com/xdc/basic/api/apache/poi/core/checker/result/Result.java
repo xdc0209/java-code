@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.poi.check.result;
+package com.xdc.basic.api.apache.poi.core.checker.result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,28 @@ public abstract class Result
     private final List<String> errorDetails   = new ArrayList<String>();
 
     /**
-     * 0：成功 1：警告 2：失败
+     * 结果：0成功、1警告、2失败
      */
     private int                result;
 
+    /**
+     * excel行号
+     */
     private int                excelRowNum;
 
     public int getResult()
     {
         return result;
+    }
+
+    public int getExcelRowNum()
+    {
+        return excelRowNum;
+    }
+
+    public void setExcelRowNum(int excelRowNum)
+    {
+        this.excelRowNum = excelRowNum;
     }
 
     public List<String> getSummeryDetails()
@@ -64,16 +77,6 @@ public abstract class Result
 
         this.result = Result.failure;
         errorDetails.add(errorDetail);
-    }
-
-    public int getExcelRowNum()
-    {
-        return excelRowNum;
-    }
-
-    public void setExcelRowNum(int excelRowNum)
-    {
-        this.excelRowNum = excelRowNum;
     }
 
     @Override

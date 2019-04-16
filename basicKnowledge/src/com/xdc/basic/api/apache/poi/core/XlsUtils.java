@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.poi.utils;
+package com.xdc.basic.api.apache.poi.core;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +20,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.xdc.basic.api.apache.poi.model.xls.RowObj;
+import com.xdc.basic.api.apache.poi.core.annotation.XlsColum;
+import com.xdc.basic.api.apache.poi.core.annotation.XlsSheet;
+import com.xdc.basic.api.apache.poi.core.model.RowObj;
 
 public class XlsUtils
 {

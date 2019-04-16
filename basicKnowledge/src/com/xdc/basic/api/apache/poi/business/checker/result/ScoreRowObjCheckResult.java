@@ -1,26 +1,18 @@
-package com.xdc.basic.api.apache.poi.check.result;
+package com.xdc.basic.api.apache.poi.business.checker.result;
 
-import com.xdc.basic.api.apache.poi.model.bean.Score;
+import com.xdc.basic.api.apache.poi.business.model.bean.Score;
+import com.xdc.basic.api.apache.poi.core.checker.result.Result;
 
 public class ScoreRowObjCheckResult extends Result
 {
     private String studentNubmer;
 
     private String courseNumber;
+
     /**
      * 校验结果为成功时，生成对应的bean
      */
     private Score  score;
-
-    public Score getScore()
-    {
-        return score;
-    }
-
-    public void setScore(Score score)
-    {
-        this.score = score;
-    }
 
     public String getStudentNubmer()
     {
@@ -40,5 +32,15 @@ public class ScoreRowObjCheckResult extends Result
     public void setCourseNumber(String courseNumber)
     {
         this.courseNumber = courseNumber;
+    }
+
+    public Score getScore()
+    {
+        return score;
+    }
+
+    public void setScore(Score score)
+    {
+        this.score = score;
     }
 }

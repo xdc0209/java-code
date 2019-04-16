@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.poi.model.xls;
+package com.xdc.basic.api.apache.poi.core.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

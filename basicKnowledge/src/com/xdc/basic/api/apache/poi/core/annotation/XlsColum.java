@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.poi.utils;
+package com.xdc.basic.api.apache.poi.core.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,9 +7,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Documented
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface XlsSheet
+public @interface XlsColum
 {
     String name();
 }

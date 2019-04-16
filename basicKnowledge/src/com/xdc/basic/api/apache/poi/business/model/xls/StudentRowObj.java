@@ -1,7 +1,8 @@
-package com.xdc.basic.api.apache.poi.model.xls;
+package com.xdc.basic.api.apache.poi.business.model.xls;
 
-import com.xdc.basic.api.apache.poi.utils.XlsColum;
-import com.xdc.basic.api.apache.poi.utils.XlsSheet;
+import com.xdc.basic.api.apache.poi.core.annotation.XlsColum;
+import com.xdc.basic.api.apache.poi.core.annotation.XlsSheet;
+import com.xdc.basic.api.apache.poi.core.model.RowObj;
 
 @XlsSheet(name = StudentRowObj.sheetName)
 public class StudentRowObj extends RowObj

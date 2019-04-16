@@ -6,14 +6,14 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
-import com.xdc.basic.api.apache.poi.check.StudentRowObjChecker;
-import com.xdc.basic.api.apache.poi.check.result.StudentRowObjCheckResult;
-import com.xdc.basic.api.apache.poi.model.bean.Student;
-import com.xdc.basic.api.apache.poi.model.xls.CourseRowObj;
-import com.xdc.basic.api.apache.poi.model.xls.ScoreRowObj;
-import com.xdc.basic.api.apache.poi.model.xls.StudentRowObj;
-import com.xdc.basic.api.apache.poi.utils.XlsToBeanBuilder;
-import com.xdc.basic.api.apache.poi.utils.XlsUtils;
+import com.xdc.basic.api.apache.poi.business.checker.StudentRowObjChecker;
+import com.xdc.basic.api.apache.poi.business.checker.result.StudentRowObjCheckResult;
+import com.xdc.basic.api.apache.poi.business.model.XlsToBeanConverter;
+import com.xdc.basic.api.apache.poi.business.model.bean.Student;
+import com.xdc.basic.api.apache.poi.business.model.xls.CourseRowObj;
+import com.xdc.basic.api.apache.poi.business.model.xls.ScoreRowObj;
+import com.xdc.basic.api.apache.poi.business.model.xls.StudentRowObj;
+import com.xdc.basic.api.apache.poi.core.XlsUtils;
 import com.xdc.basic.commons.PathUtil;
 
 public class Main
@@ -40,13 +40,8 @@ public class Main
         List<StudentRowObjCheckResult> studentRowObjCheckResults = new ArrayList<StudentRowObjCheckResult>();
         for (StudentRowObj studentRowObj : studentRowObjs)
         {
-            StudentRowObjCheckResult studentRowObjCheckResult = new StudentRowObjCheckResult();
-            studentRowObjCheckResult.setExcelRowNum(studentRowObj.getRowNum());
-            studentRowObjCheckResult.setNumber(studentRowObj.getNumber());
-            studentRowObjCheckResult.setName(studentRowObj.getName());
+            StudentRowObjCheckResult studentRowObjCheckResult = StudentRowObjChecker.check(studentRowObj);
             studentRowObjCheckResults.add(studentRowObjCheckResult);
-
-            StudentRowObjChecker.check(studentRowObj, studentRowObjCheckResult);
 
             if (CollectionUtils.isNotEmpty(studentRowObjCheckResult.getSummeryDetails()))
             {
@@ -54,7 +49,7 @@ public class Main
                 continue;
             }
 
-            Student student = XlsToBeanBuilder.build(studentRowObj);
+            Student student = XlsToBeanConverter.converter(studentRowObj);
             studentRowObjCheckResult.setStudent(student);
         }
         System.out.println(studentRowObjCheckResults);

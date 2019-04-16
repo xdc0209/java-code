@@ -1,4 +1,4 @@
-package com.xdc.basic.api.apache.poi.model.bean;
+package com.xdc.basic.api.apache.poi.business.model.bean;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

@@ -1,6 +1,7 @@
-package com.xdc.basic.api.apache.poi.check.result;
+package com.xdc.basic.api.apache.poi.business.checker.result;
 
-import com.xdc.basic.api.apache.poi.model.bean.Student;
+import com.xdc.basic.api.apache.poi.business.model.bean.Student;
+import com.xdc.basic.api.apache.poi.core.checker.result.Result;
 
 public class StudentRowObjCheckResult extends Result
 {
